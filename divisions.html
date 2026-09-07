@@ -5,24 +5,39 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Divisions | Agility United</title>
 
+
     <!-- GOOGLE FONT -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
+
     <!-- CSS -->
 
-    <link rel="stylesheet" href="division.css">
+    <link
+        rel="stylesheet"
+        href="division.css"
+    >
 
 </head>
 
@@ -31,25 +46,63 @@
 
 
     <!-- =========================================
-         NAVBAR
+         NAVBAR UTAMA
     ========================================== -->
 
+    <header class="navbar">
 
-        <!-- NAVIGATION -->
 
-        <nav class="nav-menu" id="navMenu">
+        <!-- LOGO + NAMA -->
+
+        <a
+            href="index.html"
+            class="brand"
+        >
+
+            <img
+                src="assets/logo.png"
+                alt="Agility United Logo"
+                class="logo"
+            >
+
+
+            <div class="brand-text">
+
+                <h2>
+                    AGILITY
+                    <span>UNITED</span>
+                </h2>
+
+                <p>
+                    MORE THAN A CLAN
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- MENU NAVIGASI -->
+
+        <nav
+            class="nav-menu"
+            id="navMenu"
+        >
 
             <a href="index.html">
                 Home
             </a>
 
+
             <a href="about.html">
                 About
             </a>
 
+
             <a href="member.html">
                 Members
             </a>
+
 
             <a
                 href="divisions.html"
@@ -58,13 +111,37 @@
                 Divisions
             </a>
 
+
             <a href="achivement.html">
                 Achievement
             </a>
 
+
             <a href="contact.html">
                 Contact
             </a>
+
+
+            <!-- JOIN US KHUSUS HP -->
+
+            <a
+                href="member.html"
+                class="mobile-join"
+            >
+                Join Us
+            </a>
+
+        </nav>
+
+
+        <!-- JOIN US DESKTOP -->
+
+        <a
+            href="member.html"
+            class="join-btn"
+        >
+            Join Us
+        </a>
 
 
         <!-- TITIK TIGA KHUSUS HP -->
@@ -83,9 +160,11 @@
 
     <!-- =========================================
          KETUA KLUB
+         LANGSUNG SETELAH NAVBAR
     ========================================== -->
 
     <section class="club-leader-section">
+
 
         <div class="section-header">
 
@@ -107,10 +186,14 @@
         <div class="club-leader-card">
 
 
+            <!-- ICON -->
+
             <div class="leader-icon">
                 ♛
             </div>
 
+
+            <!-- INFORMASI KETUA -->
 
             <div class="leader-content">
 
@@ -120,7 +203,7 @@
                 </p>
 
 
-                <!-- GANTI NAMA DISINI -->
+                <!-- GANTI NAMA KETUA DI SINI -->
 
                 <h2 class="leader-name">
                     NAMA KETUA KLUB
@@ -162,6 +245,7 @@
 
                 </div>
 
+
             </div>
 
 
@@ -172,18 +256,19 @@
 
 
     <!-- =========================================
-         DIVISIONS
+         DAFTAR DIVISI
     ========================================== -->
 
     <main class="division-section">
 
 
-        <!-- JUDUL -->
+        <!-- JUDUL DIVISI -->
 
         <div class="division-heading">
 
 
             <div class="division-title-left">
+
 
                 <div class="title-accent"></div>
 
@@ -222,12 +307,11 @@
         </div>
 
 
-        <!-- =========================================
+        <!-- =====================================
              DATA DIVISI DARI GOOGLE SHEET
 
-             DIVISION.JS AKAN MEMASUKKAN
-             CARD DIVISI DI SINI
-        ========================================== -->
+             CARD DIVISI AKAN MUNCUL DI SINI
+        ====================================== -->
 
         <div
             id="division-container"
@@ -270,7 +354,7 @@
         <div class="footer-content">
 
 
-            <!-- BRAND -->
+            <!-- LOGO FOOTER -->
 
             <div class="footer-brand">
 
@@ -283,7 +367,8 @@
                 <div>
 
                     <h2>
-                        AGILITY <span>UNITED</span>
+                        AGILITY
+                        <span>UNITED</span>
                     </h2>
 
                     <p>
@@ -296,7 +381,7 @@
             </div>
 
 
-            <!-- FOOTER TEXT -->
+            <!-- TEXT FOOTER -->
 
             <div class="footer-text">
 
@@ -330,14 +415,14 @@
 
 
     <!-- =========================================
-         JAVASCRIPT
+         JAVASCRIPT DATA DIVISI
     ========================================== -->
 
     <script src="division.js"></script>
 
 
     <!-- =========================================
-         MOBILE MENU
+         JAVASCRIPT MENU HP
     ========================================== -->
 
     <script>
@@ -350,7 +435,6 @@
 
 
         menuToggle.addEventListener(
-
             "click",
 
             function () {
@@ -358,7 +442,33 @@
                 navMenu.classList.toggle("show");
 
             }
+        );
 
+
+        /* TUTUP MENU SETELAH KLIK */
+
+        const navLinks =
+            document.querySelectorAll(
+                ".nav-menu a"
+            );
+
+
+        navLinks.forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+
+                    function () {
+
+                        navMenu.classList.remove(
+                            "show"
+                        );
+
+                    }
+                );
+
+            }
         );
 
     </script>
