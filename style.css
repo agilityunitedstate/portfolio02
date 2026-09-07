@@ -1,163 +1,186 @@
-/* ================================= */
-/* GLOBAL STYLE */
-/* AGILITY UNITED */
-/* ================================= */
-
-
-/* ================= RESET ================= */
+/* =========================
+   RESET
+========================= */
 
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
 }
 
 
 html {
-
     scroll-behavior: smooth;
-
 }
 
 
 body {
 
-    font-family: "Poppins", sans-serif;
-
-    background: #0d0d0d;
+    background: #080808;
 
     color: white;
+
+    font-family: 'Montserrat', sans-serif;
 
     overflow-x: hidden;
 
 }
 
 
-/* ================= NAVBAR ================= */
+/* =========================
+   ROOT COLOR
+========================= */
+
+:root {
+
+    --orange: #ff6b1a;
+
+    --orange-light: #ff8c42;
+
+    --black: #080808;
+
+    --dark: #0d0d0d;
+
+    --card: #111214;
+
+    --gray: #a0a0a8;
+
+    --border: #292b31;
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
 
-    position: fixed;
-
-    top: 0;
-
-    left: 0;
-
     width: 100%;
 
-    height: 85px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
+    height: 78px;
 
     padding: 0 5%;
 
-    background:
+    display: flex;
 
-        rgba(10, 10, 10, 0.95);
+    align-items: center;
 
-    backdrop-filter:
+    justify-content: space-between;
 
-        blur(10px);
+    background: #0a0a0a;
 
-    border-bottom:
+    border-bottom: 1px solid #252525;
 
-        1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
 
-    z-index: 9999;
+    top: 0;
+
+    z-index: 1000;
 
 }
 
 
-/* ================= LOGO ================= */
+/* BRAND */
 
-.logo-container {
+.brand {
 
     display: flex;
 
     align-items: center;
 
+    gap: 12px;
+
+    text-decoration: none;
+
 }
 
 
-.main-logo {
+.logo {
 
-    width: 60px;
+    width: 58px;
 
-    height: 60px;
+    height: 58px;
 
     object-fit: contain;
 
-    transition: 0.3s;
+}
+
+
+.brand-text h2 {
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
+
+    color: white;
 
 }
 
 
-.main-logo:hover {
+.brand-text h2 span {
 
-    transform: scale(1.08);
+    color: var(--orange);
 
 }
 
 
-/* ================= NAVIGATION ================= */
+.brand-text p {
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #888;
+
+    margin-top: 4px;
+
+}
+
+
+/* NAV MENU */
 
 .nav-menu {
 
     display: flex;
 
-    align-items: center;
-
-    gap: 22px;
+    gap: 34px;
 
 }
 
 
 .nav-menu a {
 
-    position: relative;
-
     text-decoration: none;
 
-    color: #cccccc;
+    color: #c5c5c5;
 
-    font-size: 12px;
+    font-size: 13px;
 
-    font-weight: 600;
+    font-weight: 500;
 
-    letter-spacing: 1px;
+    position: relative;
 
     transition: 0.3s;
-
-    white-space: nowrap;
 
 }
 
 
 .nav-menu a:hover {
 
-    color: #f4c542;
+    color: var(--orange);
 
 }
 
 
 .nav-menu a.active {
 
-    color: #f4c542;
+    color: var(--orange);
 
 }
 
 
-/* LINE ACTIVE */
-
-.nav-menu a::after {
+.nav-menu a.active::after {
 
     content: "";
 
@@ -165,99 +188,807 @@ body {
 
     left: 0;
 
-    bottom: -8px;
+    bottom: -30px;
 
-    width: 0%;
+    width: 100%;
 
     height: 2px;
 
-    background: #f4c542;
+    background: var(--orange);
+
+}
+
+
+/* JOIN BUTTON */
+
+.join-btn {
+
+    text-decoration: none;
+
+    color: white;
+
+    border: 1px solid var(--orange);
+
+    padding: 11px 24px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
 
     transition: 0.3s;
 
 }
 
 
-.nav-menu a:hover::after {
+.join-btn:hover {
+
+    background: var(--orange);
+
+    color: black;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.division-hero {
+
+    height: 300px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(255, 90, 0, 0.15),
+            rgba(0, 0, 0, 0.9),
+            rgba(255, 90, 0, 0.15)
+        ),
+
+        url("assets/background.jpeg");
+
+    background-size: cover;
+
+    background-position: center;
+
+}
+
+
+.hero-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(255, 100, 0, 0.08),
+            transparent 60%
+        );
+
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.hero-logo {
+
+    width: 120px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.hero-content h1 {
+
+    font-family: 'Anton', sans-serif;
+
+    font-size: 48px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.hero-content h1 span {
+
+    color: var(--orange);
+
+}
+
+
+.hero-content p {
+
+    margin-top: 12px;
+
+    font-size: 12px;
+
+    letter-spacing: 7px;
+
+    color: #aaa;
+
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.tabs {
+
+    display: flex;
+
+    gap: 70px;
+
+    padding: 0 8%;
+
+    background: #0a0a0a;
+
+    border-bottom: 1px solid #292929;
+
+}
+
+
+.tab {
+
+    padding: 22px 15px;
+
+    color: #999;
+
+    text-decoration: none;
+
+    position: relative;
+
+    font-size: 15px;
+
+}
+
+
+.tab:hover {
+
+    color: var(--orange);
+
+}
+
+
+.active-tab {
+
+    color: var(--orange);
+
+}
+
+
+.active-tab::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -1px;
+
+    left: 0;
 
     width: 100%;
 
+    height: 3px;
+
+    background: var(--orange);
+
 }
 
 
-.nav-menu a.active::after {
+/* =========================
+   DIVISION SECTION
+========================= */
+
+.division-section {
+
+    width: 90%;
+
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding: 70px 0;
+
+}
+
+
+.section-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 35px;
+
+}
+
+
+.section-title h2 {
+
+    font-size: 36px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.section-title h2::before {
+
+    content: "";
+
+    display: inline-block;
+
+    width: 5px;
+
+    height: 35px;
+
+    background: var(--orange);
+
+    margin-right: 18px;
+
+    vertical-align: middle;
+
+    border-radius: 5px;
+
+}
+
+
+.section-title p {
+
+    color: #9b9ba3;
+
+    font-size: 15px;
+
+}
+
+
+.section-slogan {
+
+    text-align: right;
+
+}
+
+
+.section-slogan p {
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    line-height: 1.8;
+
+    color: #888;
+
+}
+
+
+/* =========================
+   DIVISION CARD
+========================= */
+
+.division-card {
 
     width: 100%;
 
-}
+    min-height: 210px;
 
+    display: grid;
 
+    grid-template-columns:
 
-/* ================= SCROLLBAR ================= */
+        220px
+        1fr
+        1fr
+        50px;
 
-::-webkit-scrollbar {
+    align-items: center;
 
-    width: 8px;
+    margin-bottom: 18px;
 
-}
+    border: 1px solid var(--border);
 
+    border-radius: 12px;
 
-::-webkit-scrollbar-track {
+    overflow: hidden;
 
-    background: #0d0d0d;
+    background:
 
-}
+        linear-gradient(
+            90deg,
+            #111214,
+            #0d0e10
+        );
 
-
-::-webkit-scrollbar-thumb {
-
-    background: #f4c542;
-
-}
-
-
-::-webkit-scrollbar-thumb:hover {
-
-    background: #ffffff;
-
-}
-
-
-
-/* ================= SELECTION ================= */
-
-::selection {
-
-    background: #f4c542;
-
-    color: #111;
+    transition: 0.3s;
 
 }
 
 
+.division-card:hover {
 
-/* ================= TABLET ================= */
+    transform: translateY(-5px);
 
-@media screen and (max-width: 1200px) {
+    border-color: var(--orange);
+
+    box-shadow:
+
+        0 10px 40px
+        rgba(255, 100, 0, 0.1);
+
+}
 
 
-    .navbar {
+/* =========================
+   DIVISION LOGO
+========================= */
 
-        padding: 0 3%;
+.division-logo {
 
-    }
+    height: 100%;
+
+    min-height: 210px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-right: 1px solid var(--border);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255, 100, 0, 0.2),
+            #0a0a0a
+        );
+
+}
+
+
+.division-logo img {
+
+    width: 150px;
+
+    height: 150px;
+
+    object-fit: contain;
+
+}
+
+
+/* =========================
+   DIVISION INFO
+========================= */
+
+.division-info {
+
+    padding: 30px;
+
+}
+
+
+.division-info h2 {
+
+    font-size: 25px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.division-info h3 {
+
+    color: var(--orange);
+
+    font-size: 15px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.division-info p {
+
+    color: #9a9a9f;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    max-width: 300px;
+
+}
+
+
+/* =========================
+   DIVISION STATS
+========================= */
+
+.division-stats {
+
+    border-left: 1px solid var(--border);
+
+    padding-left: 30px;
+
+}
+
+
+.stat-row {
+
+    display: grid;
+
+    grid-template-columns:
+
+        35px
+        90px
+        1fr;
+
+    align-items: center;
+
+    margin: 17px 0;
+
+}
+
+
+.stat-icon {
+
+    color: var(--orange);
+
+    font-size: 20px;
+
+}
+
+
+.stat-title {
+
+    color: #aaa;
+
+    font-size: 14px;
+
+}
+
+
+.stat-value {
+
+    color: white;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================
+   ARROW BUTTON
+========================= */
+
+.arrow-btn {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--orange);
+
+    color: black;
+
+    text-decoration: none;
+
+    border-radius: 50%;
+
+    font-size: 25px;
+
+    transition: 0.3s;
+
+}
+
+
+.arrow-btn:hover {
+
+    transform: scale(1.15);
+
+    background: white;
+
+}
+
+
+/* =========================
+   QUOTE
+========================= */
+
+.division-quote {
+
+    text-align: center;
+
+    margin-top: 70px;
+
+}
+
+
+.division-quote p {
+
+    color: var(--orange);
+
+    letter-spacing: 6px;
+
+    font-size: 12px;
+
+}
+
+
+.division-quote span {
+
+    width: 80px;
+
+    height: 2px;
+
+    background: var(--orange);
+
+    display: block;
+
+    margin: 25px auto;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+
+    border-top: 1px solid var(--border);
+
+    padding: 45px 5% 25px;
+
+    background: #090909;
+
+}
+
+
+.footer-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 35px;
+
+    border-bottom: 1px solid #222;
+
+}
+
+
+/* FOOTER BRAND */
+
+.footer-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.footer-brand img {
+
+    width: 55px;
+
+}
+
+
+.footer-brand h2 {
+
+    font-size: 17px;
+
+}
+
+
+.footer-brand h2 span {
+
+    color: var(--orange);
+
+}
+
+
+.footer-brand p {
+
+    margin-top: 5px;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #777;
+
+}
+
+
+/* SOCIAL */
+
+.social {
+
+    display: flex;
+
+    gap: 25px;
+
+}
+
+
+.social a {
+
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    transition: 0.3s;
+
+}
+
+
+.social a:hover {
+
+    color: var(--orange);
+
+}
+
+
+/* FOOTER SLOGAN */
+
+.footer-slogan {
+
+    border-left: 2px solid var(--orange);
+
+    padding-left: 25px;
+
+}
+
+
+.footer-slogan p {
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    color: #aaa;
+
+}
+
+
+/* FOOTER BOTTOM */
+
+.footer-bottom {
+
+    padding-top: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.footer-bottom p {
+
+    font-size: 11px;
+
+    color: #777;
+
+}
+
+
+.footer-bottom div {
+
+    display: flex;
+
+    gap: 20px;
+
+}
+
+
+.footer-bottom a {
+
+    text-decoration: none;
+
+    color: #777;
+
+    font-size: 11px;
+
+}
+
+
+.footer-bottom a:hover {
+
+    color: var(--orange);
+
+}
+
+
+/* =========================
+   RESPONSIVE TABLET
+========================= */
+
+@media screen and (max-width: 1000px) {
 
 
     .nav-menu {
 
-        gap: 13px;
+        gap: 15px;
 
     }
 
 
-    .nav-menu a {
+    .division-card {
 
-        font-size: 10px;
+        grid-template-columns:
+
+            180px
+            1fr;
+
+        padding-bottom: 20px;
+
+    }
+
+
+    .division-logo {
+
+        grid-row: span 2;
+
+    }
+
+
+    .division-stats {
+
+        border-left: none;
+
+        padding-left: 30px;
+
+    }
+
+
+    .arrow-btn {
+
+        display: none;
 
     }
 
@@ -265,79 +996,607 @@ body {
 }
 
 
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
 
-/* ================= MOBILE ================= */
+@media screen and (max-width: 700px) {
 
-@media screen and (max-width: 768px) {
 
+    /* NAVBAR */
 
     .navbar {
 
         height: auto;
 
-        min-height: 70px;
+        padding: 15px;
 
-        flex-direction: column;
+        flex-wrap: wrap;
 
-        padding: 10px 15px;
+        gap: 15px;
 
     }
 
 
-    .main-logo {
+    .brand-text {
 
-        width: 50px;
+        display: none;
 
-        height: 50px;
+    }
+
+
+    .logo {
+
+        width: 45px;
+
+        height: 45px;
 
     }
 
 
     .nav-menu {
 
-        margin-top: 10px;
+        order: 3;
 
         width: 100%;
 
-        display: flex;
+        overflow-x: auto;
 
-        justify-content: center;
+        gap: 25px;
 
-        flex-wrap: wrap;
-
-        gap: 10px;
+        padding-bottom: 10px;
 
     }
 
 
     .nav-menu a {
 
-        font-size: 9px;
+        font-size: 11px;
+
+        white-space: nowrap;
+
+    }
+
+
+    .nav-menu a.active::after {
+
+        bottom: -10px;
+
+    }
+
+
+    .join-btn {
+
+        padding: 8px 14px;
+
+        font-size: 11px;
+
+    }
+
+
+    /* HERO */
+
+    .division-hero {
+
+        height: 250px;
+
+    }
+
+
+    .hero-logo {
+
+        width: 90px;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 34px;
+
+    }
+
+
+    .hero-content p {
+
+        font-size: 8px;
+
+        letter-spacing: 4px;
+
+    }
+
+
+    /* TAB */
+
+    .tabs {
+
+        gap: 10px;
+
+        justify-content: space-around;
+
+        padding: 0;
+
+    }
+
+
+    .tab {
+
+        font-size: 12px;
+
+        padding: 18px 10px;
+
+    }
+
+
+    /* SECTION */
+
+    .division-section {
+
+        width: 92%;
+
+        padding: 45px 0;
+
+    }
+
+
+    .section-title {
+
+        display: block;
+
+    }
+
+
+    .section-title h2 {
+
+        font-size: 28px;
+
+    }
+
+
+    .section-title h2::before {
+
+        height: 28px;
+
+    }
+
+
+    .section-title p {
+
+        font-size: 12px;
+
+    }
+
+
+    .section-slogan {
+
+        display: none;
+
+    }
+
+
+    /* CARD */
+
+    .division-card {
+
+        display: block;
+
+    }
+
+
+    .division-logo {
+
+        height: 200px;
+
+        min-height: 200px;
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--border);
+
+    }
+
+
+    .division-info {
+
+        padding: 25px;
+
+    }
+
+
+    .division-info h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    .division-info p {
+
+        font-size: 12px;
+
+    }
+
+
+    .division-stats {
+
+        padding:
+
+            0
+            25px
+            20px;
+
+    }
+
+
+    .stat-row {
+
+        grid-template-columns:
+
+            30px
+            80px
+            1fr;
+
+    }
+
+
+    .stat-title {
+
+        font-size: 12px;
+
+    }
+
+
+    .stat-value {
+
+        font-size: 12px;
+
+    }
+
+
+    /* FOOTER */
+
+    .footer-top {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 30px;
+
+    }
+
+
+    .footer-bottom {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
 
     }
 
 
 }
+/* =========================
+   DIVISION NUMBER
+========================= */
+
+.division-number {
+
+    color: var(--orange);
+
+    font-family: 'Anton', sans-serif;
+
+    font-size: 28px;
+
+    text-align: center;
+
+    letter-spacing: 2px;
+
+    padding: 20px;
+
+}
 
 
+/* =========================
+   LOADING
+========================= */
 
-/* ================= SMALL MOBILE ================= */
+.loading {
 
-@media screen and (max-width: 480px) {
+    width: 100%;
+
+    padding: 80px;
+
+    text-align: center;
+
+    color: #999;
+
+    border:
+
+        1px solid
+        var(--border);
+
+    border-radius: 10px;
+
+}
 
 
-    .nav-menu {
+/* =========================
+   ERROR
+========================= */
 
-        gap: 8px;
+.error {
+
+    width: 100%;
+
+    padding: 50px;
+
+    text-align: center;
+
+    color: #ff6b1a;
+
+    border:
+
+        1px solid
+        #ff6b1a;
+
+    border-radius: 10px;
+
+}
+
+
+/* =========================
+   STAT ROLE
+========================= */
+
+.stat-value small {
+
+    color: var(--orange);
+
+    margin-left: 5px;
+
+    font-size: 11px;
+
+}
+/* =========================
+   CLUB LEADER SECTION
+========================= */
+
+.club-leader-section {
+
+    width: 90%;
+
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding: 70px 0 30px;
+
+    text-align: center;
+
+}
+
+
+/* TITLE */
+
+.club-leader-title p {
+
+    color: var(--orange);
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.club-leader-title h2 {
+
+    font-size: 32px;
+
+    margin-bottom: 35px;
+
+}
+
+
+/* LEADER CARD */
+
+.club-leader-card {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    margin: auto;
+
+    padding: 35px;
+
+    border: 1px solid var(--orange);
+
+    border-radius: 15px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255, 100, 0, 0.12),
+            #101010
+        );
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+.club-leader-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+
+    height: 250px;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(255, 100, 0, 0.18),
+            transparent 70%
+        );
+
+    top: -100px;
+
+    left: -100px;
+
+}
+
+
+/* ICON */
+
+.leader-crown {
+
+    width: 75px;
+
+    height: 75px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--orange);
+
+    color: var(--orange);
+
+    font-size: 35px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* POSITION */
+
+.leader-position {
+
+    color: var(--orange);
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* NAME */
+
+.leader-name {
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* INFO */
+
+.leader-details {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 50px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.leader-info {
+
+    text-align: center;
+
+}
+
+
+.leader-info span {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 11px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.leader-info strong {
+
+    color: white;
+
+    font-size: 15px;
+
+}
+
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 600px) {
+
+
+    .club-leader-section {
+
+        padding: 50px 0 20px;
 
     }
 
 
-    .nav-menu a {
+    .club-leader-title h2 {
 
-        font-size: 8px;
+        font-size: 25px;
 
     }
 
+
+    .club-leader-card {
+
+        padding: 30px 20px;
+
+    }
+
+
+    .leader-name {
+
+        font-size: 24px;
+
+    }
+
+
+    .leader-details {
+
+        gap: 25px;
+
+    }
 
 }
