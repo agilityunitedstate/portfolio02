@@ -5,39 +5,25 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Members | Agility United</title>
 
 
     <!-- GOOGLE FONT -->
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
 
     <!-- CSS -->
 
-    <link
-        rel="stylesheet"
-        href="members.css"
-    >
+    <link rel="stylesheet" href="members.css">
+
 
 </head>
 
@@ -45,45 +31,32 @@
 <body>
 
 
-    <!-- =========================================
+    <!-- =========================
          BACKGROUND
-    ========================================== -->
-
-    <div class="background-grid"></div>
+    ========================== -->
 
     <div class="background-lines"></div>
 
-    <div class="orange-glow glow-one"></div>
 
-    <div class="orange-glow glow-two"></div>
-
-
-    <!-- =========================================
+    <!-- =========================
          NAVBAR
-    ========================================== -->
+    ========================== -->
 
     <header class="navbar">
 
 
-        <!-- LOGO / BRAND -->
-
-        <a
-            href="index.html"
-            class="brand"
-        >
+        <a href="index.html" class="brand">
 
             <img
                 src="assets/logo.png"
                 alt="Agility United Logo"
-                class="nav-logo"
+                class="brand-logo"
             >
-
 
             <div class="brand-text">
 
                 <h2>
-                    AGILITY
-                    <span>UNITED</span>
+                    AGILITY <span>UNITED</span>
                 </h2>
 
                 <p>
@@ -95,7 +68,7 @@
         </a>
 
 
-        <!-- DESKTOP MENU -->
+        <!-- NAVIGATION -->
 
         <nav
             class="nav-menu"
@@ -106,11 +79,9 @@
                 Home
             </a>
 
-
             <a href="about.html">
                 About
             </a>
-
 
             <a
                 href="members.html"
@@ -119,16 +90,13 @@
                 Members
             </a>
 
-
             <a href="divisions.html">
                 Divisions
             </a>
 
-
             <a href="achivement.html">
                 Achievement
             </a>
-
 
             <a href="contact.html">
                 Contact
@@ -142,119 +110,37 @@
         <button
             class="menu-toggle"
             id="menuToggle"
-            aria-label="Buka Menu"
+            aria-label="Menu"
         >
-
             ⋮
-
         </button>
 
 
     </header>
 
 
-    <!-- =========================================
+
+    <!-- =========================
          MAIN
-    ========================================== -->
+    ========================== -->
 
-    <main>
-
-
-        <!-- HERO -->
-
-        <section class="member-hero">
+    <main class="members-page">
 
 
-            <div class="hero-label">
+        <!-- =========================
+             TOP AREA
+        ========================== -->
 
-                AGILITY UNITED COMMUNITY
-
-            </div>
-
-
-            <h1>
-
-                OUR
-                <span>MEMBERS</span>
-
-            </h1>
-
-
-            <p>
-
-                Meet the players who make Agility United
-                more than just a clan.
-
-            </p>
-
-
-            <!-- MEMBER STATS -->
-
-            <div class="member-stats">
-
-
-                <div class="stat-card">
-
-                    <span
-                        id="totalMembers"
-                    >
-                        0
-                    </span>
-
-                    <p>
-                        TOTAL MEMBERS
-                    </p>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <span>
-                        4
-                    </span>
-
-                    <p>
-                        MAIN ROLES
-                    </p>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <span>
-                        AU
-                    </span>
-
-                    <p>
-                        ONE FAMILY
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-        </section>
-
-
-        <!-- =========================================
-             MEMBER CONTROLS
-        ========================================== -->
-
-        <section class="member-controls">
+        <section class="members-top">
 
 
             <!-- SEARCH -->
 
             <div class="search-box">
 
-                <span>
+                <span class="search-icon">
                     ⌕
                 </span>
-
 
                 <input
                     type="text"
@@ -304,6 +190,14 @@
 
                 <button
                     class="filter-btn"
+                    data-role="WF"
+                >
+                    WF
+                </button>
+
+
+                <button
+                    class="filter-btn"
                     data-role="GK"
                 >
                     GK
@@ -316,67 +210,145 @@
         </section>
 
 
-        <!-- =========================================
-             MEMBER LIST
-        ========================================== -->
 
-        <section class="members-section">
+        <!-- =========================
+             TITLE
+        ========================== -->
 
-
-            <div class="section-heading">
+        <section class="members-heading">
 
 
-                <div>
-
-                    <p class="section-label">
-
-                        PLAYER DATABASE
-
-                    </p>
+            <div class="heading-left">
 
 
-                    <h2>
-
-                        AGILITY PLAYERS
-
-                    </h2>
-
-                </div>
+                <p class="heading-small">
+                    PLAYER DATABASE
+                </p>
 
 
-                <div
-                    class="member-count"
-                    id="memberCount"
-                >
+                <h1>
+                    AGILITY PLAYERS
+                </h1>
 
-                    0 PLAYERS
 
-                </div>
+                <p class="heading-description">
+
+                    Daftar pemain resmi
+                    Agility United
+
+                </p>
 
 
             </div>
 
 
-            <!-- MEMBER CONTAINER -->
+            <!-- PLAYER COUNT -->
+
+            <div class="player-count">
+
+                <strong
+                    id="playerCount"
+                >
+                    0
+                </strong>
+
+                <span>
+                    PLAYERS
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             TABLE
+        ========================== -->
+
+        <section class="table-section">
+
+
+            <div class="table-wrapper">
+
+
+                <table
+                    class="player-table"
+                >
+
+
+                    <!-- TABLE HEAD -->
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                NO
+                            </th>
+
+                            <th>
+                                NICKNAME
+                            </th>
+
+                            <th>
+                                GAME ID
+                            </th>
+
+                            <th>
+                                ROLE
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <!-- TABLE BODY -->
+
+                    <tbody
+                        id="playerContainer"
+                    >
+
+
+                        <tr>
+
+                            <td
+                                colspan="4"
+                                class="loading"
+                            >
+
+                                Memuat data pemain...
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+            <!-- EMPTY -->
 
             <div
-                class="members-grid"
-                id="membersContainer"
+                class="empty-state"
+                id="emptyState"
             >
 
+                <h3>
+                    Player tidak ditemukan
+                </h3>
 
-                <!-- LOADING -->
-
-                <div class="loading">
-
-                    <div class="loading-spinner"></div>
-
-                    <p>
-                        Loading players...
-                    </p>
-
-                </div>
-
+                <p>
+                    Coba gunakan pencarian lain.
+                </p>
 
             </div>
 
@@ -387,49 +359,49 @@
     </main>
 
 
-    <!-- =========================================
+
+    <!-- =========================
          FOOTER
-    ========================================== -->
+    ========================== -->
 
     <footer class="footer">
 
 
-        <div class="footer-brand">
+        <div class="footer-content">
 
 
-            <img
-                src="assets/logo.png"
-                alt="Agility United"
-            >
+            <div class="footer-brand">
 
-
-            <div>
 
                 <h2>
-
-                    AGILITY
-                    <span>UNITED</span>
-
+                    AGILITY <span>UNITED</span>
                 </h2>
 
 
                 <p>
-
-                    MORE THAN A CLAN
-
+                    MORE THAN A CLAN — A FAMILY
                 </p>
+
 
             </div>
 
 
-        </div>
+            <div class="footer-text">
 
+                <p>
+                    ONE CLAN.
+                </p>
 
-        <div class="footer-text">
+                <p>
+                    ONE FAMILY.
+                </p>
 
-            ONE CLAN.
-            ONE FAMILY.
-            ONE GOAL.
+                <p>
+                    ONE GOAL.
+                </p>
+
+            </div>
+
 
         </div>
 
@@ -445,7 +417,10 @@
     </footer>
 
 
-    <!-- JAVASCRIPT -->
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
 
     <script src="members.js"></script>
 
