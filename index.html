@@ -1,639 +1,633 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GHOST DIVISION — Klan Esports</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#090a0e;
-    --bg-panel:#12141c;
-    --bg-panel-alt:#171a24;
-    --line:#262a38;
-    --text:#e8e9ed;
-    --text-dim:#8b8fa3;
-    --red:#ff3b4e;
-    --cyan:#29f0d6;
-    --gold:#ffc247;
-    --display: 'Rajdhani', sans-serif;
-    --body: 'Inter', sans-serif;
-    --mono: 'JetBrains Mono', monospace;
-  }
+    <meta charset="UTF-8">
 
-  *{margin:0;padding:0;box-sizing:border-box;}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  html{scroll-behavior:smooth;}
+    <title>Agility United | Home</title>
 
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--body);
-    line-height:1.5;
-    overflow-x:hidden;
-  }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  a{color:inherit;text-decoration:none;}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  ::selection{background:var(--red);color:#0a0a0a;}
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-  .wrap{
-    max-width:1180px;
-    margin:0 auto;
-    padding:0 28px;
-  }
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
 
-  h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:.01em;}
-
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky;top:0;z-index:100;
-    background:rgba(9,10,14,.86);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .navbar{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:16px 28px;
-    max-width:1180px;margin:0 auto;
-  }
-  .brand{
-    display:flex;align-items:center;gap:10px;
-    font-family:var(--display);font-weight:700;font-size:20px;
-    letter-spacing:.03em;
-  }
-  .brand .mark{
-    width:28px;height:28px;
-    background:var(--red);
-    clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%);
-    flex-shrink:0;
-  }
-  nav.links{display:flex;gap:30px;}
-  nav.links a{
-    font-size:14.5px;color:var(--text-dim);
-    transition:color .15s ease;
-    position:relative;
-  }
-  nav.links a:hover{color:var(--text);}
-  nav.links a::after{
-    content:"";position:absolute;left:0;bottom:-6px;
-    width:0;height:2px;background:var(--cyan);
-    transition:width .18s ease;
-  }
-  nav.links a:hover::after{width:100%;}
-
-  .nav-cta{
-    font-family:var(--display);font-weight:600;font-size:14px;
-    padding:9px 18px;
-    background:var(--red);color:#0a0a0a;
-    clip-path:polygon(10px 0,100% 0,100% 100%,0 100%,0 10px);
-  }
-
-  .burger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;}
-
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    padding:110px 0 90px;
-    border-bottom:1px solid var(--line);
-    overflow:hidden;
-  }
-  .hero::before{
-    content:"";position:absolute;inset:0;
-    background:
-      linear-gradient(115deg, transparent 62%, rgba(255,59,78,.09) 62.3%, rgba(255,59,78,.09) 63%, transparent 63.3%),
-      linear-gradient(115deg, transparent 74%, rgba(41,240,214,.07) 74.3%, rgba(41,240,214,.07) 74.8%, transparent 75.1%);
-    pointer-events:none;
-  }
-  .hero-inner{position:relative;z-index:1;}
-  .eyebrow-tag{
-    display:inline-flex;align-items:center;gap:8px;
-    font-family:var(--mono);font-size:13px;color:var(--cyan);
-    border:1px solid rgba(41,240,214,.35);
-    padding:6px 12px;
-    margin-bottom:26px;
-    opacity:0;animation:riseIn .6s ease forwards;
-  }
-  .eyebrow-tag .dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;}
-
-  .hero h1{
-    font-size:clamp(48px,8vw,96px);
-    line-height:.95;
-    text-transform:uppercase;
-    opacity:0;animation:riseIn .7s ease .1s forwards;
-  }
-  .hero h1 span{display:block;color:var(--red);}
-
-  .hero p{
-    max-width:520px;
-    margin-top:22px;
-    color:var(--text-dim);
-    font-size:16.5px;
-    opacity:0;animation:riseIn .7s ease .2s forwards;
-  }
-
-  .hero-actions{
-    display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;
-    opacity:0;animation:riseIn .7s ease .3s forwards;
-  }
-  .btn-primary, .btn-ghost{
-    font-family:var(--display);font-weight:600;font-size:15px;
-    padding:13px 26px;
-    cursor:pointer;border:none;
-  }
-  .btn-primary{
-    background:var(--red);color:#0a0a0a;
-    clip-path:polygon(12px 0,100% 0,100% 100%,0 100%,0 12px);
-  }
-  .btn-ghost{
-    background:transparent;color:var(--text);
-    border:1px solid var(--line);
-    clip-path:polygon(12px 0,100% 0,100% 100%,0 100%,0 12px);
-  }
-  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);}
-
-  @keyframes riseIn{
-    from{opacity:0;transform:translateY(16px);}
-    to{opacity:1;transform:translateY(0);}
-  }
-
-  .stat-strip{
-    margin-top:70px;
-    display:grid;grid-template-columns:repeat(4,1fr);
-    border-top:1px solid var(--line);
-    opacity:0;animation:riseIn .7s ease .4s forwards;
-  }
-  .stat-strip div{
-    padding:22px 0 0;
-    border-right:1px solid var(--line);
-  }
-  .stat-strip div:last-child{border-right:none;}
-  .stat-num{
-    font-family:var(--mono);font-size:32px;font-weight:600;color:var(--text);
-  }
-  .stat-label{font-size:13px;color:var(--text-dim);margin-top:4px;}
-
-  /* ---------- SECTION SHELL ---------- */
-  section{padding:90px 0;border-bottom:1px solid var(--line);}
-  .sec-head{
-    display:flex;justify-content:space-between;align-items:flex-end;
-    margin-bottom:44px;flex-wrap:wrap;gap:16px;
-  }
-  .sec-head h2{font-size:clamp(30px,4vw,42px);text-transform:uppercase;}
-  .sec-head .sec-num{
-    font-family:var(--mono);color:var(--text-dim);font-size:14px;
-  }
-  .sec-desc{color:var(--text-dim);font-size:15px;max-width:460px;}
-
-  /* ---------- MONTHLY EVENTS ---------- */
-  .event-list{border-top:1px solid var(--line);}
-  .event-row{
-    display:grid;grid-template-columns:100px 1fr auto;
-    gap:24px;align-items:center;
-    padding:20px 0;border-bottom:1px solid var(--line);
-    transition:background .15s ease;
-  }
-  .event-row:hover{background:rgba(255,255,255,.02);}
-  .event-date{
-    font-family:var(--mono);font-size:14px;color:var(--cyan);
-  }
-  .event-date .day{display:block;font-size:26px;color:var(--text);font-weight:600;}
-  .event-title{font-family:var(--display);font-weight:600;font-size:19px;}
-  .event-meta{color:var(--text-dim);font-size:13.5px;margin-top:3px;}
-  .event-type{
-    font-family:var(--mono);font-size:12px;
-    padding:5px 12px;border:1px solid var(--line);
-    color:var(--text-dim);white-space:nowrap;
-  }
-  .event-type.scrim{color:var(--cyan);border-color:rgba(41,240,214,.35);}
-  .event-type.turnamen{color:var(--red);border-color:rgba(255,59,78,.35);}
-  .event-type.komunitas{color:var(--gold);border-color:rgba(255,194,71,.35);}
-
-  /* ---------- TABS (ROLE RANKING) ---------- */
-  .tabs{display:flex;gap:2px;margin-bottom:0;flex-wrap:wrap;}
-  .tab-btn{
-    font-family:var(--display);font-weight:600;font-size:14.5px;
-    padding:11px 20px;background:var(--bg-panel);
-    color:var(--text-dim);border:1px solid var(--line);border-bottom:none;
-    cursor:pointer;
-  }
-  .tab-btn.active{color:var(--bg);background:var(--cyan);}
-
-  .rank-table{width:100%;border-collapse:collapse;background:var(--bg-panel);border:1px solid var(--line);}
-  .rank-table th{
-    text-align:left;font-family:var(--mono);font-weight:500;font-size:12px;
-    color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;
-    padding:14px 18px;border-bottom:1px solid var(--line);
-  }
-  .rank-table td{
-    padding:14px 18px;border-bottom:1px solid var(--line);font-size:14.5px;
-  }
-  .rank-table tr:last-child td{border-bottom:none;}
-  .rank-table tr:hover td{background:rgba(255,255,255,.02);}
-  .rank-num{font-family:var(--mono);font-weight:600;font-size:15px;}
-  .rank-num.gold{color:var(--gold);}
-  .rank-num.silver{color:#c9d1d9;}
-  .rank-num.bronze{color:#cd8b4c;}
-  .player-ign{font-family:var(--display);font-weight:600;font-size:16px;}
-  .player-role{color:var(--text-dim);font-size:12.5px;}
-  .pts{font-family:var(--mono);color:var(--cyan);font-weight:600;}
-  .trend-up{color:var(--cyan);font-family:var(--mono);}
-  .trend-down{color:var(--red);font-family:var(--mono);}
-
-  .role-panel{display:none;}
-  .role-panel.active{display:block;}
-
-  /* ---------- DIVISI ---------- */
-  .div-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  .div-card{
-    background:var(--bg-panel);
-    border:1px solid var(--line);
-    padding:30px 26px;
-    clip-path:polygon(0 0,100% 0,100% 92%,92% 100%,0 100%);
-    position:relative;
-  }
-  .div-card.featured{border-color:var(--red);background:linear-gradient(160deg,var(--bg-panel-alt),var(--bg-panel));}
-  .div-tag{font-family:var(--mono);font-size:12px;color:var(--text-dim);}
-  .div-card h3{font-size:26px;margin-top:10px;text-transform:uppercase;}
-  .div-desc{color:var(--text-dim);font-size:14px;margin-top:12px;}
-  .div-foot{
-    display:flex;justify-content:space-between;
-    margin-top:26px;padding-top:18px;border-top:1px solid var(--line);
-    font-family:var(--mono);font-size:13px;color:var(--text-dim);
-  }
-  .div-foot b{color:var(--text);font-size:18px;display:block;font-family:var(--mono);}
-
-  /* ---------- ROSTER ---------- */
-  .roster-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
-    background:var(--line);border:1px solid var(--line);
-  }
-  .member-card{
-    background:var(--bg-panel);padding:22px 18px;
-    display:flex;flex-direction:column;gap:10px;
-  }
-  .avatar{
-    width:42px;height:42px;
-    background:var(--bg-panel-alt);
-    border:1px solid var(--line);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--display);font-weight:700;font-size:15px;color:var(--cyan);
-    clip-path:polygon(0 0,100% 0,100% 75%,75% 100%,0 100%);
-  }
-  .member-ign{font-family:var(--display);font-weight:600;font-size:16.5px;}
-  .member-role{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);}
-  .member-div{
-    font-size:11px;color:var(--red);align-self:flex-start;
-    border:1px solid rgba(255,59,78,.3);padding:2px 8px;margin-top:2px;
-  }
-
-  /* ---------- CONTACT ---------- */
-  .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;}
-  .contact-list{display:flex;flex-direction:column;}
-  .contact-item{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:20px 0;border-bottom:1px solid var(--line);
-  }
-  .contact-item:first-child{border-top:1px solid var(--line);}
-  .contact-label{font-family:var(--mono);font-size:12px;color:var(--text-dim);text-transform:uppercase;}
-  .contact-value{font-family:var(--display);font-weight:600;font-size:19px;}
-  .contact-value:hover{color:var(--cyan);}
-
-  .recruit-box{
-    background:var(--bg-panel);border:1px solid var(--line);
-    padding:34px;
-    clip-path:polygon(0 0,100% 0,100% 90%,90% 100%,0 100%);
-  }
-  .recruit-box h3{font-size:22px;text-transform:uppercase;}
-  .recruit-box p{color:var(--text-dim);font-size:14px;margin-top:12px;line-height:1.6;}
-  .status-open{
-    display:inline-flex;align-items:center;gap:8px;
-    font-family:var(--mono);font-size:12.5px;color:var(--cyan);
-    margin-top:20px;
-  }
-  .status-open .dot{width:7px;height:7px;background:var(--cyan);border-radius:50%;}
-
-  footer{padding:34px 0;}
-  .foot-row{
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
-    color:var(--text-dim);font-size:13px;
-  }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media(max-width:860px){
-    nav.links{display:none;}
-    .burger{display:block;}
-    .stat-strip{grid-template-columns:repeat(2,1fr);}
-    .stat-strip div:nth-child(2){border-right:none;}
-    .div-grid{grid-template-columns:1fr;}
-    .roster-grid{grid-template-columns:repeat(2,1fr);}
-    .contact-grid{grid-template-columns:1fr;gap:36px;}
-    .event-row{grid-template-columns:70px 1fr;}
-    .event-type{grid-column:1/-1;justify-self:start;margin-top:6px;}
-  }
-  @media(max-width:520px){
-    .roster-grid{grid-template-columns:1fr;}
-    .rank-table{display:block;overflow-x:auto;}
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:.001s !important;transition-duration:.001s !important;}
-  }
-
-  :focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
-</style>
 </head>
+
+
 <body>
 
-<header>
-  <div class="navbar">
-    <div class="brand"><span class="mark"></span>GHOST DIVISION</div>
-    <nav class="links">
-      <a href="#event">Event</a>
-      <a href="#peringkat-role">Peringkat Role</a>
-      <a href="#peringkat-tim">Peringkat Tim</a>
-      <a href="#divisi">Divisi</a>
-      <a href="#roster">Anggota</a>
-      <a href="#kontak">Kontak</a>
-    </nav>
-    <a href="#kontak" class="nav-cta">Gabung Klan</a>
-    <button class="burger" aria-label="Menu">☰</button>
-  </div>
-</header>
 
-<section class="hero">
-  <div class="wrap hero-inner">
-    <span class="eyebrow-tag"><span class="dot"></span>Musim Kompetitif — September 2026</span>
-    <h1>Bertahan di ranked.<span>Menang di turnamen.</span></h1>
-    <p>Klan multi-game dengan tiga divisi aktif, jadwal latihan mingguan, dan jalur kompetitif dari komunitas sampai turnamen resmi.</p>
-    <div class="hero-actions">
-      <button class="btn-primary" onclick="document.getElementById('roster').scrollIntoView()">Lihat Roster</button>
-      <button class="btn-ghost" onclick="document.getElementById('event').scrollIntoView()">Jadwal Bulan Ini</button>
-    </div>
-    <div class="stat-strip">
-      <div><div class="stat-num">86</div><div class="stat-label">Anggota aktif</div></div>
-      <div><div class="stat-num">3</div><div class="stat-label">Divisi</div></div>
-      <div><div class="stat-num">14</div><div class="stat-label">Turnamen diikuti</div></div>
-      <div><div class="stat-num">67%</div><div class="stat-label">Win rate musim ini</div></div>
-    </div>
-  </div>
-</section>
+    <!-- ========================= -->
+    <!-- NAVBAR -->
+    <!-- ========================= -->
 
-<section id="event">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Event bulan ini</h2>
-        <p class="sec-desc">Jadwal scrim, kualifikasi, dan sesi komunitas untuk September 2026.</p>
-      </div>
-      <span class="sec-num">01 / Event</span>
-    </div>
-    <div class="event-list">
-      <div class="event-row">
-        <div class="event-date"><span class="day">06</span>Sep</div>
-        <div>
-          <div class="event-title">Scrim mingguan — Divisi Utama vs Akademi</div>
-          <div class="event-meta">20.00 WIB · Server Custom Room</div>
+    <header class="navbar">
+
+        <div class="logo-container">
+
+            <a href="home.html">
+
+                <img src="assets/logo.png"
+                    alt="Agility United Logo"
+                    class="main-logo">
+
+            </a>
+
         </div>
-        <span class="event-type scrim">Scrim</span>
-      </div>
-      <div class="event-row">
-        <div class="event-date"><span class="day">12</span>Sep</div>
-        <div>
-          <div class="event-title">Kualifikasi Liga Komunitas Regional</div>
-          <div class="event-meta">15.00 WIB · Tim Divisi Utama</div>
+
+
+        <nav class="nav-menu">
+
+            <a href="home.html" class="active">
+                HOME
+            </a>
+
+            <a href="member.html">
+                MEMBER
+            </a>
+
+            <a href="divisions.html">
+                DIVISION
+            </a>
+
+            <a href="trophies.html">
+                TROPHIE
+            </a>
+
+            <a href="ruler.html">
+                RULER
+            </a>
+
+            <a href="ranking-role.html">
+                PERINGKAT ROLE
+            </a>
+
+            <a href="ranking-team.html">
+                PERINGKAT TIM
+            </a>
+
+            <a href="contact.html">
+                CONTACT
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- ========================= -->
+    <!-- HERO -->
+    <!-- ========================= -->
+
+    <section class="hero">
+
+        <div class="hero-overlay"></div>
+
+
+        <div class="hero-content">
+
+            <img src="assets/logo.png"
+                alt="Agility United"
+                class="hero-logo">
+
+
+            <p class="hero-subtitle">
+
+                ONE TEAM.
+                ONE FAMILY.
+                ONE DESTINATION.
+
+            </p>
+
+
+            <h1>
+
+                AGILITY UNITED
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                A competitive gaming community built for players who
+                want to grow, compete, and achieve greatness together.
+
+            </p>
+
+
+            <div class="hero-button">
+
+                <a href="member.html">
+
+                    EXPLORE MEMBERS
+
+                </a>
+
+
+                <a href="divisions.html"
+                    class="secondary-button">
+
+                    EXPLORE DIVISION
+
+                </a>
+
+            </div>
+
+
         </div>
-        <span class="event-type turnamen">Turnamen</span>
-      </div>
-      <div class="event-row">
-        <div class="event-date"><span class="day">19</span>Sep</div>
-        <div>
-          <div class="event-title">Malam komunitas — mabar & rekrutmen terbuka</div>
-          <div class="event-meta">19.30 WIB · Discord Voice Utama</div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- ABOUT US -->
+    <!-- ========================= -->
+
+    <section class="about-section">
+
+        <div class="section-container">
+
+
+            <div class="section-title">
+
+                <span>
+
+                    WHO WE ARE
+
+                </span>
+
+                <h2>
+
+                    ABOUT US
+
+                </h2>
+
+            </div>
+
+
+            <div class="about-content">
+
+
+                <div class="about-text">
+
+                    <h3>
+
+                        WE ARE AGILITY UNITED
+
+                    </h3>
+
+
+                    <p>
+
+                        Agility United is a competitive gaming community
+                        created for players who share the same passion,
+                        ambition, and competitive spirit.
+
+                    </p>
+
+
+                    <p>
+
+                        We believe that every great team starts with
+                        strong teamwork, communication, discipline,
+                        and trust between members.
+
+                    </p>
+
+
+                    <p>
+
+                        Our community is not only focused on winning
+                        competitions, but also on building friendships,
+                        developing skills, and creating unforgettable
+                        experiences together.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="about-card-container">
+
+
+                    <div class="about-card">
+
+                        <h3>
+
+                            COMMUNITY
+
+                        </h3>
+
+                        <p>
+
+                            Building a strong gaming community
+                            where every member belongs.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="about-card">
+
+                        <h3>
+
+                            COMPETITIVE
+
+                        </h3>
+
+                        <p>
+
+                            Always improving skills and
+                            competing at the highest level.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="about-card">
+
+                        <h3>
+
+                            UNITED
+
+                        </h3>
+
+                        <p>
+
+                            Different players.
+                            One team.
+                            One goal.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
         </div>
-        <span class="event-type komunitas">Komunitas</span>
-      </div>
-      <div class="event-row">
-        <div class="event-date"><span class="day">26</span>Sep</div>
-        <div>
-          <div class="event-title">Turnamen antar-divisi internal</div>
-          <div class="event-meta">13.00 WIB · Semua divisi</div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- VISION -->
+    <!-- ========================= -->
+
+    <section class="vision-section">
+
+
+        <div class="vision-container">
+
+
+            <div class="section-title">
+
+                <span>
+
+                    OUR PURPOSE
+
+                </span>
+
+
+                <h2>
+
+                    OUR VISION
+
+                </h2>
+
+            </div>
+
+
+
+            <div class="vision-box">
+
+
+                <div class="vision-number">
+
+                    01
+
+                </div>
+
+
+                <div class="vision-content">
+
+                    <h3>
+
+                        OUR VISION
+
+                    </h3>
+
+
+                    <p>
+
+                        To become a strong, competitive, and united
+                        gaming community that inspires players to grow,
+                        achieve excellence, and create a positive impact
+                        in the gaming community.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
         </div>
-        <span class="event-type turnamen">Turnamen</span>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="peringkat-role">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Peringkat role</h2>
-        <p class="sec-desc">Peringkat individu berdasarkan performa per role musim ini.</p>
-      </div>
-      <span class="sec-num">02 / Peringkat</span>
-    </div>
 
-    <div class="tabs">
-      <button class="tab-btn active" data-role="jungler">Jungler</button>
-      <button class="tab-btn" data-role="gold">Gold Laner</button>
-      <button class="tab-btn" data-role="mid">Mid Laner</button>
-      <button class="tab-btn" data-role="roam">Roamer</button>
-    </div>
+    </section>
 
-    <div class="role-panel active" id="jungler">
-      <table class="rank-table">
-        <thead><tr><th>#</th><th>Pemain</th><th>Divisi</th><th>Match</th><th>Poin</th></tr></thead>
-        <tbody>
-          <tr><td class="rank-num gold">1</td><td><div class="player-ign">Kaelth</div><div class="player-role">Jungler</div></td><td>Utama</td><td>42</td><td class="pts">981</td></tr>
-          <tr><td class="rank-num silver">2</td><td><div class="player-ign">Rovane</div><div class="player-role">Jungler</div></td><td>Utama</td><td>39</td><td class="pts">944</td></tr>
-          <tr><td class="rank-num bronze">3</td><td><div class="player-ign">Dhestu</div><div class="player-role">Jungler</div></td><td>Akademi</td><td>37</td><td class="pts">901</td></tr>
-          <tr><td class="rank-num">4</td><td><div class="player-ign">Wraika</div><div class="player-role">Jungler</div></td><td>Akademi</td><td>33</td><td class="pts">856</td></tr>
-        </tbody>
-      </table>
-    </div>
 
-    <div class="role-panel" id="gold">
-      <table class="rank-table">
-        <thead><tr><th>#</th><th>Pemain</th><th>Divisi</th><th>Match</th><th>Poin</th></tr></thead>
-        <tbody>
-          <tr><td class="rank-num gold">1</td><td><div class="player-ign">Ferzan</div><div class="player-role">Gold Laner</div></td><td>Utama</td><td>40</td><td class="pts">960</td></tr>
-          <tr><td class="rank-num silver">2</td><td><div class="player-ign">Yulric</div><div class="player-role">Gold Laner</div></td><td>Utama</td><td>38</td><td class="pts">922</td></tr>
-          <tr><td class="rank-num bronze">3</td><td><div class="player-ign">Nasryu</div><div class="player-role">Gold Laner</div></td><td>Akademi</td><td>35</td><td class="pts">877</td></tr>
-        </tbody>
-      </table>
-    </div>
 
-    <div class="role-panel" id="mid">
-      <table class="rank-table">
-        <thead><tr><th>#</th><th>Pemain</th><th>Divisi</th><th>Match</th><th>Poin</th></tr></thead>
-        <tbody>
-          <tr><td class="rank-num gold">1</td><td><div class="player-ign">Aldebar</div><div class="player-role">Mid Laner</div></td><td>Utama</td><td>44</td><td class="pts">1005</td></tr>
-          <tr><td class="rank-num silver">2</td><td><div class="player-ign">Sintayu</div><div class="player-role">Mid Laner</div></td><td>Utama</td><td>41</td><td class="pts">970</td></tr>
-          <tr><td class="rank-num bronze">3</td><td><div class="player-ign">Vranez</div><div class="player-role">Mid Laner</div></td><td>Akademi</td><td>36</td><td class="pts">890</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- ========================= -->
+    <!-- MISSION -->
+    <!-- ========================= -->
 
-    <div class="role-panel" id="roam">
-      <table class="rank-table">
-        <thead><tr><th>#</th><th>Pemain</th><th>Divisi</th><th>Match</th><th>Poin</th></tr></thead>
-        <tbody>
-          <tr><td class="rank-num gold">1</td><td><div class="player-ign">Behnara</div><div class="player-role">Roamer</div></td><td>Utama</td><td>43</td><td class="pts">958</td></tr>
-          <tr><td class="rank-num silver">2</td><td><div class="player-ign">Cakraw</div><div class="player-role">Roamer</div></td><td>Akademi</td><td>37</td><td class="pts">889</td></tr>
-          <tr><td class="rank-num bronze">3</td><td><div class="player-ign">Endrilo</div><div class="player-role">Roamer</div></td><td>Akademi</td><td>34</td><td class="pts">843</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+    <section class="mission-section">
 
-<section id="peringkat-tim">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Peringkat tim</h2>
-        <p class="sec-desc">Klasemen internal antar squad dalam klan, diperbarui tiap minggu.</p>
-      </div>
-      <span class="sec-num">03 / Peringkat</span>
-    </div>
-    <table class="rank-table">
-      <thead><tr><th>#</th><th>Tim</th><th>Divisi</th><th>M</th><th>W-L</th><th>Poin</th><th>Tren</th></tr></thead>
-      <tbody>
-        <tr><td class="rank-num gold">1</td><td class="player-ign">Ghost Alpha</td><td>Utama</td><td>18</td><td>14-4</td><td class="pts">742</td><td class="trend-up">▲ 3</td></tr>
-        <tr><td class="rank-num silver">2</td><td class="player-ign">Ghost Bravo</td><td>Utama</td><td>18</td><td>12-6</td><td class="pts">690</td><td class="trend-up">▲ 1</td></tr>
-        <tr><td class="rank-num bronze">3</td><td class="player-ign">Ghost Charlie</td><td>Akademi</td><td>16</td><td>10-6</td><td class="pts">614</td><td class="trend-down">▼ 1</td></tr>
-        <tr><td class="rank-num">4</td><td class="player-ign">Ghost Delta</td><td>Akademi</td><td>16</td><td>8-8</td><td class="pts">560</td><td class="trend-up">▲ 2</td></tr>
-        <tr><td class="rank-num">5</td><td class="player-ign">Ghost Echo</td><td>Komunitas</td><td>12</td><td>5-7</td><td class="pts">402</td><td class="trend-down">▼ 2</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
 
-<section id="divisi">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Divisi</h2>
-        <p class="sec-desc">Tiga jenjang kompetitif, dari komunitas kasual sampai roster kompetitif utama.</p>
-      </div>
-      <span class="sec-num">04 / Struktur</span>
-    </div>
-    <div class="div-grid">
-      <div class="div-card featured">
-        <span class="div-tag">Divisi 01</span>
-        <h3>Utama</h3>
-        <p class="div-desc">Roster kompetitif inti yang mewakili klan di turnamen eksternal dan liga regional.</p>
-        <div class="div-foot">
-          <div><b>18</b>Anggota</div>
-          <div><b>67%</b>Win rate</div>
+        <div class="mission-container">
+
+
+            <div class="section-title">
+
+                <span>
+
+                    WHAT WE DO
+
+                </span>
+
+
+                <h2>
+
+                    OUR MISSION
+
+                </h2>
+
+            </div>
+
+
+
+            <div class="mission-grid">
+
+
+                <!-- Mission 1 -->
+
+                <div class="mission-card">
+
+                    <div class="mission-number">
+
+                        01
+
+                    </div>
+
+
+                    <h3>
+
+                        BUILD COMMUNITY
+
+                    </h3>
+
+
+                    <p>
+
+                        Creating a friendly and supportive environment
+                        where every member can grow together.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Mission 2 -->
+
+                <div class="mission-card">
+
+                    <div class="mission-number">
+
+                        02
+
+                    </div>
+
+
+                    <h3>
+
+                        DEVELOP PLAYERS
+
+                    </h3>
+
+
+                    <p>
+
+                        Helping members improve their skills,
+                        teamwork, strategy, and competitive mindset.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Mission 3 -->
+
+                <div class="mission-card">
+
+                    <div class="mission-number">
+
+                        03
+
+                    </div>
+
+
+                    <h3>
+
+                        ACHIEVE SUCCESS
+
+                    </h3>
+
+
+                    <p>
+
+                        Participating in competitions and
+                        achieving new milestones together.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Mission 4 -->
+
+                <div class="mission-card">
+
+                    <div class="mission-number">
+
+                        04
+
+                    </div>
+
+
+                    <h3>
+
+                        STAY UNITED
+
+                    </h3>
+
+
+                    <p>
+
+                        Maintaining respect, loyalty,
+                        friendship, and unity within the team.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
         </div>
-      </div>
-      <div class="div-card">
-        <span class="div-tag">Divisi 02</span>
-        <h3>Akademi</h3>
-        <p class="div-desc">Jalur pengembangan pemain menuju divisi utama, dengan sesi latihan terjadwal.</p>
-        <div class="div-foot">
-          <div><b>26</b>Anggota</div>
-          <div><b>54%</b>Win rate</div>
-        </div>
-      </div>
-      <div class="div-card">
-        <span class="div-tag">Divisi 03</span>
-        <h3>Komunitas</h3>
-        <p class="div-desc">Ruang bermain santai bagi anggota baru untuk berkembang bersama klan.</p>
-        <div class="div-foot">
-          <div><b>42</b>Anggota</div>
-          <div><b>48%</b>Win rate</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="roster">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Anggota turnamen</h2>
-        <p class="sec-desc">Daftar pemain yang terdaftar untuk periode turnamen berjalan.</p>
-      </div>
-      <span class="sec-num">05 / Roster</span>
-    </div>
-    <div class="roster-grid">
-      <div class="member-card"><div class="avatar">AL</div><div class="member-ign">Aldebar</div><div class="member-role">Mid Laner</div><div class="member-div">Utama</div></div>
-      <div class="member-card"><div class="avatar">KA</div><div class="member-ign">Kaelth</div><div class="member-role">Jungler</div><div class="member-div">Utama</div></div>
-      <div class="member-card"><div class="avatar">FE</div><div class="member-ign">Ferzan</div><div class="member-role">Gold Laner</div><div class="member-div">Utama</div></div>
-      <div class="member-card"><div class="avatar">BE</div><div class="member-ign">Behnara</div><div class="member-role">Roamer</div><div class="member-div">Utama</div></div>
-      <div class="member-card"><div class="avatar">RO</div><div class="member-ign">Rovane</div><div class="member-role">Jungler</div><div class="member-div">Utama</div></div>
-      <div class="member-card"><div class="avatar">SI</div><div class="member-ign">Sintayu</div><div class="member-role">Mid Laner</div><div class="member-div">Utama</div></div>
-      <div class="member-card"><div class="avatar">DH</div><div class="member-ign">Dhestu</div><div class="member-role">Jungler</div><div class="member-div">Akademi</div></div>
-      <div class="member-card"><div class="avatar">YU</div><div class="member-ign">Yulric</div><div class="member-role">Gold Laner</div><div class="member-div">Akademi</div></div>
-      <div class="member-card"><div class="avatar">CA</div><div class="member-ign">Cakraw</div><div class="member-role">Roamer</div><div class="member-div">Akademi</div></div>
-      <div class="member-card"><div class="avatar">NA</div><div class="member-ign">Nasryu</div><div class="member-role">Gold Laner</div><div class="member-div">Akademi</div></div>
-      <div class="member-card"><div class="avatar">VR</div><div class="member-ign">Vranez</div><div class="member-role">Mid Laner</div><div class="member-div">Akademi</div></div>
-      <div class="member-card"><div class="avatar">EN</div><div class="member-ign">Endrilo</div><div class="member-role">Roamer</div><div class="member-div">Akademi</div></div>
-    </div>
-  </div>
-</section>
 
-<section id="kontak" style="border-bottom:none;">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Kontak</h2>
-        <p class="sec-desc">Hubungi pengurus klan atau gabung lewat kanal komunitas kami.</p>
-      </div>
-      <span class="sec-num">06 / Kontak</span>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-list">
-        <div class="contact-item">
-          <span class="contact-label">Discord</span>
-          <a class="contact-value" href="#">discord.gg/ghostdivision</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Instagram</span>
-          <a class="contact-value" href="#">@ghostdivision.gg</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">WhatsApp</span>
-          <a class="contact-value" href="#">+62 812-0000-0000</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Email</span>
-          <a class="contact-value" href="#">contact@ghostdivision.gg</a>
-        </div>
-      </div>
-      <div class="recruit-box">
-        <h3>Rekrutmen divisi akademi</h3>
-        <p>Kami membuka slot terbatas untuk pemain baru di Divisi Akademi. Kirim IGN, role utama, dan rank saat ini lewat Discord.</p>
-        <span class="status-open"><span class="dot"></span>Status: dibuka</span>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <div class="wrap foot-row">
-    <span>© 2026 Ghost Division</span>
-    <span>Dibuat untuk komunitas, oleh komunitas</span>
-  </div>
-</footer>
 
-<script>
-  document.querySelectorAll('.tab-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-      document.querySelectorAll('.role-panel').forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.role).classList.add('active');
-    });
-  });
-</script>
+
+    <!-- ========================= -->
+    <!-- JOIN -->
+    <!-- ========================= -->
+
+    <section class="join-section">
+
+
+        <div class="join-content">
+
+
+            <span>
+
+                READY TO COMPETE?
+
+            </span>
+
+
+            <h2>
+
+                JOIN THE AGILITY UNITED JOURNEY
+
+            </h2>
+
+
+            <p>
+
+                Explore our members, divisions,
+                achievements, and rankings.
+
+            </p>
+
+
+
+            <div class="join-buttons">
+
+
+                <a href="member.html">
+
+                    VIEW MEMBERS
+
+                </a>
+
+
+                <a href="ranking-team.html"
+                    class="join-secondary">
+
+                    VIEW RANKING
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- FOOTER -->
+    <!-- ========================= -->
+
+    <footer>
+
+
+        <div class="footer-content">
+
+
+            <img src="assets/logo.png"
+                alt="Agility United"
+                class="footer-logo">
+
+
+            <h3>
+
+                AGILITY UNITED
+
+            </h3>
+
+
+            <p>
+
+                One Team • One Family • One Destination
+
+            </p>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+
+                © 2026 Agility United.
+                All Rights Reserved.
+
+            </p>
+
+        </div>
+
+
+    </footer>
+
 
 </body>
+
 </html>
