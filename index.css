@@ -18,19 +18,23 @@
 
 :root {
 
-    --orange: #ff5b1f;
+    --orange: #ff5a1f;
 
-    --orange-light: #ff7a36;
+    --orange-light: #ff7a45;
 
-    --orange-dark: #c93b08;
+    --orange-dark: #d9430c;
 
-    --black: #070707;
+    --black: #060708;
 
-    --dark: #0d0d0f;
+    --dark: #0d0e10;
 
-    --white: #f4f4f4;
+    --dark-card: #111214;
 
-    --gray: #9b9b9b;
+    --white: #f2f2f2;
+
+    --gray: #8d8d8d;
+
+    --border: #252629;
 
 }
 
@@ -40,8 +44,6 @@
 ========================================= */
 
 body {
-
-    min-height: 100vh;
 
     background: var(--black);
 
@@ -55,7 +57,41 @@ body {
 
 
 /* =========================================
-   BACKGROUND LINES
+   BACKGROUND GRID
+========================================= */
+
+.background-grid {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -5;
+
+    opacity: 0.12;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,0.05) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.05) 1px,
+            transparent 1px
+        );
+
+    background-size:
+
+        80px 80px;
+
+}
+
+
+/* =========================================
+   DIAGONAL LINES
 ========================================= */
 
 .background-lines {
@@ -64,11 +100,9 @@ body {
 
     inset: 0;
 
-    z-index: 0;
+    z-index: -4;
 
-    pointer-events: none;
-
-    opacity: 0.45;
+    opacity: 0.4;
 
     background:
 
@@ -78,13 +112,13 @@ body {
 
             transparent 0px,
 
-            transparent 120px,
+            transparent 180px,
 
-            rgba(255, 91, 31, 0.10) 121px,
+            rgba(255,90,31,0.12) 181px,
 
-            transparent 122px,
+            transparent 182px,
 
-            transparent 240px
+            transparent 360px
 
         );
 
@@ -92,7 +126,7 @@ body {
 
 
 /* =========================================
-   GLOW
+   ORANGE GLOW
 ========================================= */
 
 .orange-glow {
@@ -103,43 +137,47 @@ body {
 
     pointer-events: none;
 
-    filter: blur(120px);
+    filter: blur(140px);
 
-    z-index: 0;
+    z-index: -3;
 
 }
 
 
-.glow-top {
+.glow-one {
 
     width: 450px;
 
     height: 450px;
 
-    background: rgba(255, 91, 31, 0.14);
+    background:
 
-    top: -150px;
+        rgba(255,90,31,0.10);
+
+    top: 20%;
 
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+
+        translateX(-50%);
 
 }
 
 
-.glow-bottom {
+.glow-two {
 
-    width: 500px;
+    width: 350px;
 
-    height: 400px;
+    height: 350px;
 
-    background: rgba(255, 91, 31, 0.10);
+    background:
 
-    bottom: -250px;
+        rgba(255,90,31,0.06);
 
-    left: 50%;
+    bottom: -200px;
 
-    transform: translateX(-50%);
+    right: -100px;
 
 }
 
@@ -150,90 +188,71 @@ body {
 
 .hero {
 
+    width: 100%;
+
     min-height: 100vh;
 
     position: relative;
 
-    z-index: 2;
-
     display: flex;
-
-    flex-direction: column;
 
     align-items: center;
 
     justify-content: center;
 
-    text-align: center;
+    padding:
 
-    padding: 50px 20px;
+        80px 20px;
 
 }
 
 
 /* =========================================
-   LOGO
+   TOP BRAND
 ========================================= */
 
-.logo-wrapper {
+.top-brand {
 
-    margin-bottom: 35px;
+    position: absolute;
 
-    animation:
+    top: 30px;
 
-        logoAppear 1.2s ease forwards;
-
-}
-
-
-.logo-ring {
-
-    width: 120px;
-
-    height: 120px;
+    left: 45px;
 
     display: flex;
 
     align-items: center;
 
-    justify-content: center;
+    gap: 10px;
 
-    border-radius: 50%;
+    color: #777;
 
-    border: 2px solid var(--orange);
+    font-size: 9px;
 
-    background:
+    font-weight: 600;
 
-        radial-gradient(
-
-            circle,
-
-            rgba(255, 91, 31, 0.12),
-
-            rgba(0, 0, 0, 0.6)
-
-        );
-
-    box-shadow:
-
-        0 0 35px rgba(255, 91, 31, 0.15),
-
-        inset 0 0 20px rgba(255, 91, 31, 0.08);
+    letter-spacing: 4px;
 
     animation:
 
-        floating 4s ease-in-out infinite;
+        fadeDown 1s ease forwards;
 
 }
 
 
-.logo {
+.brand-dot {
 
-    width: 75px;
+    width: 8px;
 
-    height: 75px;
+    height: 8px;
 
-    object-fit: contain;
+    border-radius: 50%;
+
+    background: var(--orange);
+
+    box-shadow:
+
+        0 0 12px var(--orange);
 
 }
 
@@ -244,11 +263,168 @@ body {
 
 .hero-content {
 
+    width: 100%;
+
+    max-width: 900px;
+
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
+
+    text-align: center;
+
+}
+
+
+/* =========================================
+   LOGO AREA
+========================================= */
+
+.logo-area {
+
+    position: relative;
+
+    width: 125px;
+
+    height: 125px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 35px;
+
+    animation:
+
+        logoAppear 1s ease forwards;
+
+}
+
+
+/* =========================================
+   LOGO RINGS
+========================================= */
+
+.logo-ring {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+}
+
+
+.ring-one {
+
+    width: 120px;
+
+    height: 120px;
+
+    border:
+
+        1px solid rgba(255,90,31,0.55);
+
+    animation:
+
+        rotateRing 10s linear infinite;
+
+}
+
+
+.ring-two {
+
+    width: 145px;
+
+    height: 145px;
+
+    border:
+
+        1px dashed rgba(255,90,31,0.20);
+
+    animation:
+
+        rotateRingReverse 20s linear infinite;
+
+}
+
+
+/* =========================================
+   LOGO BOX
+========================================= */
+
+.logo-box {
+
+    width: 85px;
+
+    height: 85px;
+
+    border-radius: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #161719,
+            #090909
+        );
+
+    border:
+
+        1px solid rgba(255,90,31,0.30);
+
+    box-shadow:
+
+        0 0 30px rgba(255,90,31,0.10),
+
+        inset 0 0 20px rgba(255,255,255,0.02);
+
+}
+
+
+.logo-box img {
+
+    width: 58px;
+
+    height: 58px;
+
+    object-fit: contain;
+
+}
+
+
+/* =========================================
+   WELCOME TEXT
+========================================= */
+
+.welcome-text {
+
+    color: var(--orange);
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 6px;
+
+    margin-bottom: 15px;
+
+    opacity: 0;
+
+    animation:
+
+        fadeUp 0.8s ease forwards;
+
+    animation-delay: 0.4s;
 
 }
 
@@ -256,19 +432,6 @@ body {
 /* =========================================
    TITLE
 ========================================= */
-
-.title-wrapper {
-
-    opacity: 0;
-
-    animation:
-
-        titleAppear 1s ease forwards;
-
-    animation-delay: 0.3s;
-
-}
-
 
 .hero h1 {
 
@@ -278,35 +441,45 @@ body {
 
     justify-content: center;
 
-    gap: 25px;
+    gap: 20px;
 
     font-family: "Anton", sans-serif;
 
-    font-size: clamp(60px, 8vw, 115px);
+    font-size:
+
+        clamp(55px, 7vw, 95px);
 
     font-weight: 400;
 
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 
     line-height: 1;
+
+    opacity: 0;
+
+    animation:
+
+        titleAppear 1s ease forwards;
+
+    animation-delay: 0.5s;
 
 }
 
 
-.title-agility {
+.title-white {
 
     color: var(--white);
 
 }
 
 
-.title-united {
+.title-orange {
 
     color: var(--orange);
 
     text-shadow:
 
-        0 0 30px rgba(255, 91, 31, 0.25);
+        0 0 35px rgba(255,90,31,0.15);
 
 }
 
@@ -315,17 +488,15 @@ body {
    SLOGAN
 ========================================= */
 
-.slogan {
+.slogan-container {
 
-    margin-top: 25px;
+    display: flex;
 
-    color: #b0b0b0;
+    align-items: center;
 
-    font-size: 13px;
+    gap: 18px;
 
-    font-weight: 600;
-
-    letter-spacing: 9px;
+    margin-top: 28px;
 
     opacity: 0;
 
@@ -333,50 +504,46 @@ body {
 
         fadeUp 0.8s ease forwards;
 
-    animation-delay: 0.7s;
+    animation-delay: 0.8s;
 
 }
 
 
-/* =========================================
-   ACCENT LINE
-========================================= */
+.slogan-container p {
 
-.accent-line {
+    color: #aaa;
 
-    width: 90px;
+    font-size: 10px;
 
-    height: 3px;
+    font-weight: 600;
 
-    margin: 30px auto;
+    letter-spacing: 6px;
+
+}
+
+
+.line {
+
+    width: 45px;
+
+    height: 1px;
 
     background:
 
         linear-gradient(
-
             90deg,
-
             transparent,
-
-            var(--orange),
-
-            var(--orange-light),
-
-            transparent
-
+            var(--orange)
         );
 
-    box-shadow:
+}
 
-        0 0 15px rgba(255, 91, 31, 0.7);
 
-    opacity: 0;
+.line:last-child {
 
-    animation:
+    transform:
 
-        fadeUp 0.8s ease forwards;
-
-    animation-delay: 0.9s;
+        rotate(180deg);
 
 }
 
@@ -385,17 +552,17 @@ body {
    DESCRIPTION
 ========================================= */
 
-.hero-description {
+.description {
+
+    max-width: 480px;
 
     color: #777;
 
-    font-size: 11px;
+    font-size: 12px;
 
-    letter-spacing: 3px;
+    line-height: 1.8;
 
-    margin-bottom: 35px;
-
-    text-transform: uppercase;
+    margin-top: 25px;
 
     opacity: 0;
 
@@ -409,16 +576,18 @@ body {
 
 
 /* =========================================
-   BUTTON
+   EXPLORE BUTTON
 ========================================= */
 
 .explore-button {
 
-    position: relative;
+    width: 250px;
 
-    width: 280px;
+    height: 60px;
 
-    height: 68px;
+    margin-top: 35px;
+
+    border-radius: 14px;
 
     display: flex;
 
@@ -426,7 +595,9 @@ body {
 
     justify-content: center;
 
-    gap: 20px;
+    gap: 22px;
+
+    position: relative;
 
     overflow: hidden;
 
@@ -434,35 +605,22 @@ body {
 
     color: white;
 
-    font-size: 16px;
-
-    font-weight: 700;
-
-    border-radius: 14px;
-
     background:
 
         linear-gradient(
-
             135deg,
-
             var(--orange-light),
-
             var(--orange),
-
-            #e7440d
-
+            var(--orange-dark)
         );
 
     box-shadow:
 
-        0 15px 35px rgba(255, 91, 31, 0.22);
+        0 15px 35px rgba(255,90,31,0.20);
 
     transition:
 
-        transform 0.3s ease,
-
-        box-shadow 0.3s ease;
+        0.35s ease;
 
     opacity: 0;
 
@@ -487,7 +645,7 @@ body {
 
     left: -120%;
 
-    width: 100%;
+    width: 80%;
 
     height: 100%;
 
@@ -499,20 +657,26 @@ body {
 
             transparent,
 
-            rgba(255,255,255,0.20),
+            rgba(255,255,255,0.22),
 
             transparent
 
         );
 
-    transition: 0.7s;
+    transform:
+
+        skewX(-25deg);
+
+    transition:
+
+        0.7s;
 
 }
 
 
 .explore-button:hover::before {
 
-    left: 120%;
+    left: 150%;
 
 }
 
@@ -525,21 +689,38 @@ body {
 
     box-shadow:
 
-        0 20px 45px rgba(255, 91, 31, 0.40);
+        0 20px 45px rgba(255,90,31,0.35);
 
 }
 
 
-.arrow {
+.button-text {
 
-    font-size: 23px;
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+}
+
+
+.button-icon {
+
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 22px;
 
     transition: 0.3s;
 
 }
 
 
-.explore-button:hover .arrow {
+.explore-button:hover .button-icon {
 
     transform:
 
@@ -549,14 +730,140 @@ body {
 
 
 /* =========================================
-   SCROLL TEXT
+   CLUB VALUES
 ========================================= */
 
-.scroll-text {
+.club-values {
+
+    margin-top: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 28px;
+
+    opacity: 0;
+
+    animation:
+
+        fadeUp 0.8s ease forwards;
+
+    animation-delay: 1.4s;
+
+}
+
+
+.value {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.value-number {
+
+    color: var(--orange);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+}
+
+
+.value p {
+
+    color: #777;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+}
+
+
+.value-divider {
+
+    width: 1px;
+
+    height: 20px;
+
+    background:
+
+        var(--border);
+
+}
+
+
+/* =========================================
+   SIDE TEXT
+========================================= */
+
+.side-text {
 
     position: absolute;
 
-    bottom: 30px;
+    right: 35px;
+
+    top: 50%;
+
+    transform:
+
+        translateY(-50%)
+        rotate(90deg);
+
+    transform-origin: center;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    color: #555;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.side-text span {
+
+    width: 40px;
+
+    height: 1px;
+
+    background: var(--orange);
+
+}
+
+
+/* =========================================
+   SCROLL
+========================================= */
+
+.scroll-down {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform:
+
+        translateX(-50%);
 
     display: flex;
 
@@ -566,24 +873,21 @@ body {
 
     color: #555;
 
-    font-size: 8px;
+}
 
-    letter-spacing: 4px;
 
-    animation:
+.scroll-down p {
 
-        fadeUp 1s ease forwards;
+    font-size: 7px;
 
-    animation-delay: 1.5s;
-
-    opacity: 0;
+    letter-spacing: 3px;
 
 }
 
 
-.scroll-text span {
+.scroll-line {
 
-    width: 30px;
+    width: 25px;
 
     height: 1px;
 
@@ -596,32 +900,6 @@ body {
    ANIMATION
 ========================================= */
 
-@keyframes floating {
-
-    0% {
-
-        transform:
-            translateY(0);
-
-    }
-
-    50% {
-
-        transform:
-            translateY(-10px);
-
-    }
-
-    100% {
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
 @keyframes logoAppear {
 
     from {
@@ -629,7 +907,9 @@ body {
         opacity: 0;
 
         transform:
-            scale(0.6);
+
+            scale(0.6)
+            rotate(-20deg);
 
     }
 
@@ -638,7 +918,9 @@ body {
         opacity: 1;
 
         transform:
-            scale(1);
+
+            scale(1)
+            rotate(0);
 
     }
 
@@ -652,6 +934,7 @@ body {
         opacity: 0;
 
         transform:
+
             translateY(35px);
 
     }
@@ -661,6 +944,7 @@ body {
         opacity: 1;
 
         transform:
+
             translateY(0);
 
     }
@@ -675,6 +959,7 @@ body {
         opacity: 0;
 
         transform:
+
             translateY(20px);
 
     }
@@ -684,6 +969,32 @@ body {
         opacity: 1;
 
         transform:
+
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes fadeDown {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+
+            translateY(-15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+
             translateY(0);
 
     }
@@ -698,6 +1009,7 @@ body {
         opacity: 0;
 
         transform:
+
             translateY(25px)
             scale(0.95);
 
@@ -708,8 +1020,51 @@ body {
         opacity: 1;
 
         transform:
+
             translateY(0)
             scale(1);
+
+    }
+
+}
+
+
+@keyframes rotateRing {
+
+    from {
+
+        transform:
+
+            rotate(0);
+
+    }
+
+    to {
+
+        transform:
+
+            rotate(360deg);
+
+    }
+
+}
+
+
+@keyframes rotateRingReverse {
+
+    from {
+
+        transform:
+
+            rotate(360deg);
+
+    }
+
+    to {
+
+        transform:
+
+            rotate(0);
 
     }
 
@@ -723,40 +1078,35 @@ body {
 @media screen and (max-width: 768px) {
 
 
-    .logo-ring {
+    .top-brand {
 
-        width: 105px;
-
-        height: 105px;
+        left: 25px;
 
     }
 
 
-    .logo {
+    .side-text {
 
-        width: 65px;
-
-        height: 65px;
+        display: none;
 
     }
 
 
     .hero h1 {
 
+        font-size: 65px;
+
         gap: 15px;
 
-        font-size: 70px;
-
     }
 
 
-    .slogan {
+    .club-values {
 
-        font-size: 10px;
-
-        letter-spacing: 6px;
+        gap: 15px;
 
     }
+
 
 }
 
@@ -770,32 +1120,81 @@ body {
 
     .hero {
 
-        padding: 30px 15px;
+        padding:
+
+            70px 15px
+            100px;
 
     }
 
 
-    .logo-wrapper {
+    .top-brand {
+
+        top: 20px;
+
+        left: 20px;
+
+        font-size: 7px;
+
+        letter-spacing: 2px;
+
+    }
+
+
+    .logo-area {
+
+        width: 105px;
+
+        height: 105px;
 
         margin-bottom: 30px;
 
     }
 
 
-    .logo-ring {
+    .ring-one {
 
-        width: 90px;
+        width: 100px;
 
-        height: 90px;
+        height: 100px;
 
     }
 
 
-    .logo {
+    .ring-two {
 
-        width: 55px;
+        width: 120px;
 
-        height: 55px;
+        height: 120px;
+
+    }
+
+
+    .logo-box {
+
+        width: 70px;
+
+        height: 70px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .logo-box img {
+
+        width: 45px;
+
+        height: 45px;
+
+    }
+
+
+    .welcome-text {
+
+        font-size: 7px;
+
+        letter-spacing: 4px;
 
     }
 
@@ -808,45 +1207,109 @@ body {
 
         font-size: 58px;
 
-    }
-
-
-    .slogan {
-
-        margin-top: 20px;
-
-        font-size: 8px;
-
-        letter-spacing: 4px;
+        line-height: 0.95;
 
     }
 
 
-    .hero-description {
+    .slogan-container {
 
-        font-size: 8px;
+        gap: 10px;
 
-        letter-spacing: 2px;
+        margin-top: 25px;
+
+    }
+
+
+    .slogan-container p {
+
+        font-size: 7px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .line {
+
+        width: 25px;
+
+    }
+
+
+    .description {
+
+        max-width: 300px;
+
+        font-size: 10px;
+
+        margin-top: 22px;
 
     }
 
 
     .explore-button {
 
-        width: 250px;
+        width: 230px;
 
-        height: 62px;
+        height: 58px;
 
-        font-size: 14px;
+        margin-top: 30px;
 
     }
 
 
-    .scroll-text {
+    .button-text {
+
+        font-size: 12px;
+
+    }
+
+
+    .club-values {
+
+        margin-top: 45px;
+
+        gap: 10px;
+
+    }
+
+
+    .value {
+
+        flex-direction: column;
+
+        gap: 5px;
+
+    }
+
+
+    .value-number {
+
+        font-size: 7px;
+
+    }
+
+
+    .value p {
 
         font-size: 6px;
 
-        letter-spacing: 2px;
+        letter-spacing: 1px;
+
+    }
+
+
+    .value-divider {
+
+        height: 25px;
+
+    }
+
+
+    .scroll-down {
+
+        bottom: 20px;
 
     }
 
