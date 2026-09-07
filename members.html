@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Members | Agility United</title>
+
+
+    <!-- GOOGLE FONT -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="member.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         BACKGROUND
+    ========================================== -->
+
+    <div class="background-grid"></div>
+
+    <div class="background-lines"></div>
+
+    <div class="orange-glow glow-one"></div>
+
+    <div class="orange-glow glow-two"></div>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <header class="navbar">
+
+
+        <!-- LOGO / BRAND -->
+
+        <a
+            href="index.html"
+            class="brand"
+        >
+
+            <img
+                src="assets/logo.png"
+                alt="Agility United Logo"
+                class="nav-logo"
+            >
+
+
+            <div class="brand-text">
+
+                <h2>
+                    AGILITY
+                    <span>UNITED</span>
+                </h2>
+
+                <p>
+                    MORE THAN A CLAN
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- DESKTOP MENU -->
+
+        <nav
+            class="nav-menu"
+            id="navMenu"
+        >
+
+            <a href="index.html">
+                Home
+            </a>
+
+
+            <a href="about.html">
+                About
+            </a>
+
+
+            <a
+                href="members.html"
+                class="active"
+            >
+                Members
+            </a>
+
+
+            <a href="divisions.html">
+                Divisions
+            </a>
+
+
+            <a href="achivement.html">
+                Achievement
+            </a>
+
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Buka Menu"
+        >
+
+            ⋮
+
+        </button>
+
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main>
+
+
+        <!-- HERO -->
+
+        <section class="member-hero">
+
+
+            <div class="hero-label">
+
+                AGILITY UNITED COMMUNITY
+
+            </div>
+
+
+            <h1>
+
+                OUR
+                <span>MEMBERS</span>
+
+            </h1>
+
+
+            <p>
+
+                Meet the players who make Agility United
+                more than just a clan.
+
+            </p>
+
+
+            <!-- MEMBER STATS -->
+
+            <div class="member-stats">
+
+
+                <div class="stat-card">
+
+                    <span
+                        id="totalMembers"
+                    >
+                        0
+                    </span>
+
+                    <p>
+                        TOTAL MEMBERS
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        4
+                    </span>
+
+                    <p>
+                        MAIN ROLES
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        AU
+                    </span>
+
+                    <p>
+                        ONE FAMILY
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================================
+             MEMBER CONTROLS
+        ========================================== -->
+
+        <section class="member-controls">
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <span>
+                    ⌕
+                </span>
+
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search nickname or ID..."
+                >
+
+            </div>
+
+
+            <!-- ROLE FILTER -->
+
+            <div class="role-filter">
+
+
+                <button
+                    class="filter-btn active"
+                    data-role="ALL"
+                >
+                    All
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-role="ST"
+                >
+                    ST
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-role="CM"
+                >
+                    CM
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-role="CB"
+                >
+                    CB
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-role="GK"
+                >
+                    GK
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================================
+             MEMBER LIST
+        ========================================== -->
+
+        <section class="members-section">
+
+
+            <div class="section-heading">
+
+
+                <div>
+
+                    <p class="section-label">
+
+                        PLAYER DATABASE
+
+                    </p>
+
+
+                    <h2>
+
+                        AGILITY PLAYERS
+
+                    </h2>
+
+                </div>
+
+
+                <div
+                    class="member-count"
+                    id="memberCount"
+                >
+
+                    0 PLAYERS
+
+                </div>
+
+
+            </div>
+
+
+            <!-- MEMBER CONTAINER -->
+
+            <div
+                class="members-grid"
+                id="membersContainer"
+            >
+
+
+                <!-- LOADING -->
+
+                <div class="loading">
+
+                    <div class="loading-spinner"></div>
+
+                    <p>
+                        Loading players...
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-brand">
+
+
+            <img
+                src="assets/logo.png"
+                alt="Agility United"
+            >
+
+
+            <div>
+
+                <h2>
+
+                    AGILITY
+                    <span>UNITED</span>
+
+                </h2>
+
+
+                <p>
+
+                    MORE THAN A CLAN
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-text">
+
+            ONE CLAN.
+            ONE FAMILY.
+            ONE GOAL.
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 AGILITY UNITED.
+            ALL RIGHTS RESERVED.
+
+        </div>
+
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="members.js"></script>
+
+
+</body>
+
+</html>
