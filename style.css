@@ -1,0 +1,343 @@
+/* ================================= */
+/* GLOBAL STYLE */
+/* AGILITY UNITED */
+/* ================================= */
+
+
+/* ================= RESET ================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    font-family: "Poppins", sans-serif;
+
+    background: #0d0d0d;
+
+    color: white;
+
+    overflow-x: hidden;
+
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 85px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 5%;
+
+    background:
+
+        rgba(10, 10, 10, 0.95);
+
+    backdrop-filter:
+
+        blur(10px);
+
+    border-bottom:
+
+        1px solid rgba(255, 255, 255, 0.08);
+
+    z-index: 9999;
+
+}
+
+
+/* ================= LOGO ================= */
+
+.logo-container {
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.main-logo {
+
+    width: 60px;
+
+    height: 60px;
+
+    object-fit: contain;
+
+    transition: 0.3s;
+
+}
+
+
+.main-logo:hover {
+
+    transform: scale(1.08);
+
+}
+
+
+/* ================= NAVIGATION ================= */
+
+.nav-menu {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+}
+
+
+.nav-menu a {
+
+    position: relative;
+
+    text-decoration: none;
+
+    color: #cccccc;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+
+    white-space: nowrap;
+
+}
+
+
+.nav-menu a:hover {
+
+    color: #f4c542;
+
+}
+
+
+.nav-menu a.active {
+
+    color: #f4c542;
+
+}
+
+
+/* LINE ACTIVE */
+
+.nav-menu a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -8px;
+
+    width: 0%;
+
+    height: 2px;
+
+    background: #f4c542;
+
+    transition: 0.3s;
+
+}
+
+
+.nav-menu a:hover::after {
+
+    width: 100%;
+
+}
+
+
+.nav-menu a.active::after {
+
+    width: 100%;
+
+}
+
+
+
+/* ================= SCROLLBAR ================= */
+
+::-webkit-scrollbar {
+
+    width: 8px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: #0d0d0d;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background: #f4c542;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background: #ffffff;
+
+}
+
+
+
+/* ================= SELECTION ================= */
+
+::selection {
+
+    background: #f4c542;
+
+    color: #111;
+
+}
+
+
+
+/* ================= TABLET ================= */
+
+@media screen and (max-width: 1200px) {
+
+
+    .navbar {
+
+        padding: 0 3%;
+
+    }
+
+
+    .nav-menu {
+
+        gap: 13px;
+
+    }
+
+
+    .nav-menu a {
+
+        font-size: 10px;
+
+    }
+
+
+}
+
+
+
+/* ================= MOBILE ================= */
+
+@media screen and (max-width: 768px) {
+
+
+    .navbar {
+
+        height: auto;
+
+        min-height: 70px;
+
+        flex-direction: column;
+
+        padding: 10px 15px;
+
+    }
+
+
+    .main-logo {
+
+        width: 50px;
+
+        height: 50px;
+
+    }
+
+
+    .nav-menu {
+
+        margin-top: 10px;
+
+        width: 100%;
+
+        display: flex;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+    }
+
+
+    .nav-menu a {
+
+        font-size: 9px;
+
+    }
+
+
+}
+
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media screen and (max-width: 480px) {
+
+
+    .nav-menu {
+
+        gap: 8px;
+
+    }
+
+
+    .nav-menu a {
+
+        font-size: 8px;
+
+    }
+
+
+}
