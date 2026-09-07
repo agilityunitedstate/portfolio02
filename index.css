@@ -5,7 +5,6 @@
 * {
 
     margin: 0;
-
     padding: 0;
 
     box-sizing: border-box;
@@ -14,22 +13,22 @@
 
 
 /* =========================================
-   ROOT COLOR
+   ROOT
 ========================================= */
 
 :root {
 
-    --orange: #ff5a1f;
+    --orange: #ff5b1f;
 
-    --orange-light: #ff7a3d;
+    --orange-light: #ff7a36;
 
-    --orange-dark: #b93208;
+    --orange-dark: #c93b08;
 
     --black: #070707;
 
-    --dark: #0c0c0c;
+    --dark: #0d0d0f;
 
-    --white: #f5f5f5;
+    --white: #f4f4f4;
 
     --gray: #9b9b9b;
 
@@ -42,23 +41,21 @@
 
 body {
 
-    width: 100%;
-
     min-height: 100vh;
 
     background: var(--black);
 
     color: var(--white);
 
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
 
-    overflow: hidden;
+    overflow-x: hidden;
 
 }
 
 
 /* =========================================
-   BACKGROUND
+   BACKGROUND LINES
 ========================================= */
 
 .background-lines {
@@ -67,9 +64,11 @@ body {
 
     inset: 0;
 
+    z-index: 0;
+
     pointer-events: none;
 
-    opacity: 0.5;
+    opacity: 0.45;
 
     background:
 
@@ -79,13 +78,13 @@ body {
 
             transparent 0px,
 
-            transparent 90px,
+            transparent 120px,
 
-            rgba(255, 90, 31, 0.12) 91px,
+            rgba(255, 91, 31, 0.10) 121px,
 
-            transparent 92px,
+            transparent 122px,
 
-            transparent 180px
+            transparent 240px
 
         );
 
@@ -93,10 +92,10 @@ body {
 
 
 /* =========================================
-   ORANGE GLOW
+   GLOW
 ========================================= */
 
-.background-glow {
+.orange-glow {
 
     position: fixed;
 
@@ -104,22 +103,22 @@ body {
 
     pointer-events: none;
 
-    filter: blur(100px);
+    filter: blur(120px);
 
-    opacity: 0.15;
+    z-index: 0;
 
 }
 
 
-.glow-one {
+.glow-top {
 
     width: 450px;
 
     height: 450px;
 
-    background: var(--orange);
+    background: rgba(255, 91, 31, 0.14);
 
-    top: 5%;
+    top: -150px;
 
     left: 50%;
 
@@ -128,15 +127,15 @@ body {
 }
 
 
-.glow-two {
+.glow-bottom {
 
-    width: 350px;
+    width: 500px;
 
-    height: 350px;
+    height: 400px;
 
-    background: var(--orange-dark);
+    background: rgba(255, 91, 31, 0.10);
 
-    bottom: -100px;
+    bottom: -250px;
 
     left: 50%;
 
@@ -150,8 +149,6 @@ body {
 ========================================= */
 
 .hero {
-
-    width: 100%;
 
     min-height: 100vh;
 
@@ -169,7 +166,7 @@ body {
 
     text-align: center;
 
-    padding: 40px 20px;
+    padding: 50px 20px;
 
 }
 
@@ -178,18 +175,22 @@ body {
    LOGO
 ========================================= */
 
-.logo-container {
+.logo-wrapper {
 
     margin-bottom: 35px;
+
+    animation:
+
+        logoAppear 1.2s ease forwards;
 
 }
 
 
-.logo-circle {
+.logo-ring {
 
-    width: 135px;
+    width: 120px;
 
-    height: 135px;
+    height: 120px;
 
     display: flex;
 
@@ -207,30 +208,47 @@ body {
 
             circle,
 
-            rgba(255, 90, 31, 0.08),
+            rgba(255, 91, 31, 0.12),
 
-            rgba(0, 0, 0, 0.4)
+            rgba(0, 0, 0, 0.6)
 
         );
 
     box-shadow:
 
-        0 0 30px rgba(255, 90, 31, 0.15),
+        0 0 35px rgba(255, 91, 31, 0.15),
 
-        inset 0 0 20px rgba(255, 90, 31, 0.08);
+        inset 0 0 20px rgba(255, 91, 31, 0.08);
 
-    animation: logoFloat 4s ease-in-out infinite;
+    animation:
+
+        floating 4s ease-in-out infinite;
 
 }
 
 
-.agility-logo {
+.logo {
 
-    width: 82px;
+    width: 75px;
 
-    height: 82px;
+    height: 75px;
 
     object-fit: contain;
+
+}
+
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.hero-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
 
 }
 
@@ -239,45 +257,56 @@ body {
    TITLE
 ========================================= */
 
-.hero-title h1 {
+.title-wrapper {
 
-    font-family: 'Anton', sans-serif;
+    opacity: 0;
 
-    font-size: clamp(58px, 9vw, 130px);
+    animation:
 
-    font-weight: 400;
+        titleAppear 1s ease forwards;
 
-    letter-spacing: 4px;
+    animation-delay: 0.3s;
 
-    line-height: 1;
+}
+
+
+.hero h1 {
 
     display: flex;
 
-    gap: 25px;
+    align-items: center;
 
     justify-content: center;
 
+    gap: 25px;
+
+    font-family: "Anton", sans-serif;
+
+    font-size: clamp(60px, 8vw, 115px);
+
+    font-weight: 400;
+
+    letter-spacing: 3px;
+
+    line-height: 1;
+
 }
 
 
-.agility {
+.title-agility {
 
     color: var(--white);
 
-    text-shadow:
-
-        0 5px 20px rgba(255,255,255,0.05);
-
 }
 
 
-.united {
+.title-united {
 
     color: var(--orange);
 
     text-shadow:
 
-        0 0 30px rgba(255, 90, 31, 0.2);
+        0 0 30px rgba(255, 91, 31, 0.25);
 
 }
 
@@ -288,126 +317,38 @@ body {
 
 .slogan {
 
-    margin-top: 28px;
+    margin-top: 25px;
 
-    color: #a9a9a9;
+    color: #b0b0b0;
 
-    font-size: 15px;
+    font-size: 13px;
 
     font-weight: 600;
 
-    letter-spacing: 12px;
+    letter-spacing: 9px;
+
+    opacity: 0;
+
+    animation:
+
+        fadeUp 0.8s ease forwards;
+
+    animation-delay: 0.7s;
 
 }
 
 
 /* =========================================
-   TITLE LINE
+   ACCENT LINE
 ========================================= */
 
-.title-line {
+.accent-line {
 
-    width: 110px;
+    width: 90px;
 
     height: 3px;
 
-    margin: 45px auto;
-
-    background: linear-gradient(
-
-        90deg,
-
-        transparent,
-
-        var(--orange),
-
-        var(--orange-light),
-
-        var(--orange),
-
-        transparent
-
-    );
-
-    box-shadow:
-
-        0 0 15px rgba(255, 90, 31, 0.6);
-
-}
-
-
-/* =========================================
-   EXPLORE BUTTON
-========================================= */
-
-.explore-button {
-
-    width: 310px;
-
-    min-height: 78px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 18px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    text-decoration: none;
-
-    color: white;
-
-    font-size: 18px;
-
-    font-weight: 700;
-
-    border-radius: 18px;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #ff6a20,
-
-            #f0440c
-
-        );
-
-    box-shadow:
-
-        0 12px 35px rgba(255, 90, 31, 0.22);
-
-    transition:
-
-        transform 0.3s ease,
-
-        box-shadow 0.3s ease;
-
-}
-
-
-/* BUTTON EFFECT */
-
-.explore-button::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 120%;
-
-    height: 100%;
-
-    top: 0;
-
-    left: -130%;
+    margin: 30px auto;
 
     background:
 
@@ -417,66 +358,236 @@ body {
 
             transparent,
 
-            rgba(255,255,255,0.18),
+            var(--orange),
+
+            var(--orange-light),
 
             transparent
 
         );
 
-    transition: 0.6s;
+    box-shadow:
+
+        0 0 15px rgba(255, 91, 31, 0.7);
+
+    opacity: 0;
+
+    animation:
+
+        fadeUp 0.8s ease forwards;
+
+    animation-delay: 0.9s;
+
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.hero-description {
+
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 35px;
+
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    animation:
+
+        fadeUp 0.8s ease forwards;
+
+    animation-delay: 1s;
+
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.explore-button {
+
+    position: relative;
+
+    width: 280px;
+
+    height: 68px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    overflow: hidden;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    border-radius: 14px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            var(--orange-light),
+
+            var(--orange),
+
+            #e7440d
+
+        );
+
+    box-shadow:
+
+        0 15px 35px rgba(255, 91, 31, 0.22);
+
+    transition:
+
+        transform 0.3s ease,
+
+        box-shadow 0.3s ease;
+
+    opacity: 0;
+
+    animation:
+
+        buttonAppear 0.8s ease forwards;
+
+    animation-delay: 1.2s;
+
+}
+
+
+/* BUTTON SHINE */
+
+.explore-button::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -120%;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(255,255,255,0.20),
+
+            transparent
+
+        );
+
+    transition: 0.7s;
 
 }
 
 
 .explore-button:hover::before {
 
-    left: 130%;
+    left: 120%;
 
 }
 
 
 .explore-button:hover {
 
-    transform: translateY(-5px);
+    transform:
+
+        translateY(-5px);
 
     box-shadow:
 
-        0 20px 45px rgba(255, 90, 31, 0.4);
+        0 20px 45px rgba(255, 91, 31, 0.40);
 
 }
 
 
-.button-arrow {
+.arrow {
 
-    font-size: 25px;
+    font-size: 23px;
 
     transition: 0.3s;
 
 }
 
 
-.explore-button:hover .button-arrow {
+.explore-button:hover .arrow {
 
-    transform: translateX(7px);
+    transform:
+
+        translateX(7px);
 
 }
 
 
 /* =========================================
-   HERO FOOTER
+   SCROLL TEXT
 ========================================= */
 
-.hero-footer {
+.scroll-text {
 
     position: absolute;
 
-    bottom: 35px;
+    bottom: 30px;
 
-    color: #666;
+    display: flex;
 
-    font-size: 9px;
+    align-items: center;
 
-    letter-spacing: 5px;
+    gap: 12px;
+
+    color: #555;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    animation:
+
+        fadeUp 1s ease forwards;
+
+    animation-delay: 1.5s;
+
+    opacity: 0;
+
+}
+
+
+.scroll-text span {
+
+    width: 30px;
+
+    height: 1px;
+
+    background: var(--orange);
 
 }
 
@@ -485,23 +596,120 @@ body {
    ANIMATION
 ========================================= */
 
-@keyframes logoFloat {
+@keyframes floating {
 
     0% {
 
-        transform: translateY(0);
+        transform:
+            translateY(0);
 
     }
 
     50% {
 
-        transform: translateY(-8px);
+        transform:
+            translateY(-10px);
 
     }
 
     100% {
 
-        transform: translateY(0);
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes logoAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.6);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes titleAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(35px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes buttonAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.95);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
 
     }
 
@@ -515,58 +723,38 @@ body {
 @media screen and (max-width: 768px) {
 
 
-    .logo-circle {
+    .logo-ring {
 
-        width: 110px;
+        width: 105px;
 
-        height: 110px;
-
-    }
-
-
-    .agility-logo {
-
-        width: 68px;
-
-        height: 68px;
+        height: 105px;
 
     }
 
 
-    .hero-title h1 {
+    .logo {
 
-        gap: 12px;
+        width: 65px;
 
-        letter-spacing: 2px;
+        height: 65px;
+
+    }
+
+
+    .hero h1 {
+
+        gap: 15px;
+
+        font-size: 70px;
 
     }
 
 
     .slogan {
 
-        font-size: 11px;
+        font-size: 10px;
 
-        letter-spacing: 7px;
-
-    }
-
-
-    .title-line {
-
-        margin: 35px auto;
-
-    }
-
-
-    .explore-button {
-
-        width: 280px;
-
-        min-height: 70px;
-
-        font-size: 16px;
-
-        border-radius: 16px;
+        letter-spacing: 6px;
 
     }
 
@@ -587,36 +775,36 @@ body {
     }
 
 
-    .logo-container {
+    .logo-wrapper {
 
         margin-bottom: 30px;
 
     }
 
 
-    .logo-circle {
+    .logo-ring {
 
-        width: 95px;
+        width: 90px;
 
-        height: 95px;
-
-    }
-
-
-    .agility-logo {
-
-        width: 58px;
-
-        height: 58px;
+        height: 90px;
 
     }
 
 
-    .hero-title h1 {
+    .logo {
+
+        width: 55px;
+
+        height: 55px;
+
+    }
+
+
+    .hero h1 {
 
         flex-direction: column;
 
-        gap: 5px;
+        gap: 0;
 
         font-size: 58px;
 
@@ -627,42 +815,38 @@ body {
 
         margin-top: 20px;
 
-        font-size: 9px;
+        font-size: 8px;
 
-        letter-spacing: 5px;
+        letter-spacing: 4px;
 
     }
 
 
-    .title-line {
+    .hero-description {
 
-        width: 80px;
+        font-size: 8px;
 
-        margin: 30px auto;
+        letter-spacing: 2px;
 
     }
 
 
     .explore-button {
 
-        width: 260px;
+        width: 250px;
 
-        min-height: 65px;
+        height: 62px;
 
-        border-radius: 15px;
-
-        font-size: 15px;
+        font-size: 14px;
 
     }
 
 
-    .hero-footer {
+    .scroll-text {
 
-        bottom: 20px;
+        font-size: 6px;
 
-        font-size: 7px;
-
-        letter-spacing: 3px;
+        letter-spacing: 2px;
 
     }
 
