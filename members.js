@@ -9,7 +9,7 @@
     Dengan URL CSV Google Sheet kamu
 */
 
-const SHEET_URL = "PASTE_GOOGLE_SHEET_CSV_URL_DI_SINI";
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJnrF27QnQSNsZP6LGyzMD1053hz8Zqscskhd26ENN8blQ_O_sORgoXghFevrOex3XA6A_nr_oXbtR/pub?output=csv";
 
 
 /* =========================================
