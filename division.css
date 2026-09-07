@@ -1,0 +1,1901 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    background: #08090b;
+
+    color: #f5f5f5;
+
+    font-family: 'Montserrat', sans-serif;
+
+    overflow-x: hidden;
+
+}
+
+
+/* =========================================
+   VARIABLE
+========================================= */
+
+:root {
+
+    --orange: #ff6b1a;
+
+    --orange-dark: #c94c0b;
+
+    --black: #08090b;
+
+    --dark: #0d0f12;
+
+    --card: #121419;
+
+    --border: #25282f;
+
+    --gray: #9ca0aa;
+
+    --white: #f5f5f5;
+
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+
+    width: 100%;
+
+    min-height: 110px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 4%;
+
+    background: #0b0c0e;
+
+    border-bottom: 1px solid #24272d;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    text-decoration: none;
+
+    flex-shrink: 0;
+
+}
+
+
+.logo {
+
+    width: 82px;
+
+    height: 82px;
+
+    object-fit: contain;
+
+    border: 1px solid #555;
+
+}
+
+
+.brand-text h2 {
+
+    color: #f5f5f5;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+.brand-text h2 span {
+
+    color: var(--orange);
+
+}
+
+
+.brand-text p {
+
+    color: #8f95a1;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    margin-top: 7px;
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.nav-menu {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 42px;
+
+}
+
+
+.nav-menu a {
+
+    position: relative;
+
+    text-decoration: none;
+
+    color: #c8ccd4;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    padding: 43px 0;
+
+    white-space: nowrap;
+
+    transition: 0.3s;
+
+}
+
+
+.nav-menu a:hover {
+
+    color: var(--orange);
+
+}
+
+
+.nav-menu a.active {
+
+    color: var(--orange);
+
+}
+
+
+.nav-menu a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    height: 3px;
+
+    background: var(--orange);
+
+    bottom: 0;
+
+    left: 0;
+
+    right: 0;
+
+}
+
+
+/* =========================================
+   JOIN BUTTON
+========================================= */
+
+.join-btn {
+
+    color: #f5f5f5;
+
+    text-decoration: none;
+
+    border: 1px solid var(--orange);
+
+    padding: 17px 35px;
+
+    border-radius: 10px;
+
+    transition: 0.3s;
+
+    flex-shrink: 0;
+
+}
+
+
+.join-btn:hover {
+
+    background: var(--orange);
+
+    color: #111;
+
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.division-hero {
+
+    width: 100%;
+
+    min-height: 330px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #0d0f13,
+            #08090b
+        );
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.hero-overlay {
+
+    width: 100%;
+
+    padding: 70px 20px;
+
+}
+
+
+.hero-content {
+
+    max-width: 800px;
+
+    margin: auto;
+
+}
+
+
+.hero-small-title {
+
+    color: var(--orange);
+
+    font-size: 12px;
+
+    letter-spacing: 6px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.hero-content h1 {
+
+    font-size: 56px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+
+}
+
+
+.hero-content h1 span {
+
+    color: var(--orange);
+
+}
+
+
+.hero-description {
+
+    color: var(--gray);
+
+    margin-top: 20px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================
+   KETUA KLUB SECTION
+========================================= */
+
+.club-leader-section {
+
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 90px 0 70px;
+
+}
+
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
+.section-header {
+
+    text-align: center;
+
+    margin-bottom: 45px;
+
+}
+
+
+.section-subtitle {
+
+    color: var(--orange);
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.section-header h2 {
+
+    font-size: 38px;
+
+    font-weight: 800;
+
+}
+
+
+.orange-line {
+
+    width: 65px;
+
+    height: 3px;
+
+    background: var(--orange);
+
+    margin: 22px auto 0;
+
+}
+
+
+/* =========================================
+   CLUB LEADER CARD
+========================================= */
+
+.club-leader-card {
+
+    width: 100%;
+
+    max-width: 750px;
+
+    margin: auto;
+
+    min-height: 280px;
+
+    padding: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 40px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255, 107, 26, 0.08),
+            #111318
+        );
+
+    border: 1px solid #343841;
+
+    border-left: 4px solid var(--orange);
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+/* EFFECT */
+
+.club-leader-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(255, 107, 26, 0.12),
+            transparent 70%
+        );
+
+    top: -150px;
+
+    right: -100px;
+
+}
+
+
+/* =========================================
+   LEADER ICON
+========================================= */
+
+.leader-icon {
+
+    width: 90px;
+
+    height: 90px;
+
+    min-width: 90px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid var(--orange);
+
+    border-radius: 50%;
+
+    color: var(--orange);
+
+    font-size: 38px;
+
+    background: #0c0d10;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* =========================================
+   LEADER CONTENT
+========================================= */
+
+.leader-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.leader-position {
+
+    color: var(--orange);
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.leader-name {
+
+    font-size: 32px;
+
+    margin-bottom: 28px;
+
+}
+
+
+/* =========================================
+   LEADER INFO
+========================================= */
+
+.leader-info-container {
+
+    display: flex;
+
+    gap: 60px;
+
+}
+
+
+.leader-info span {
+
+    display: block;
+
+    color: #777d87;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.leader-info strong {
+
+    color: var(--white);
+
+    font-size: 16px;
+
+}
+
+
+/* =========================================
+   DIVISION SECTION
+========================================= */
+
+.division-section {
+
+    width: 100%;
+
+    border-top: 1px solid var(--border);
+
+    padding: 80px 4%;
+
+}
+
+
+/* =========================================
+   DIVISION HEADING
+========================================= */
+
+.division-heading {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 60px;
+
+}
+
+
+.division-title-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+}
+
+
+.title-accent {
+
+    width: 6px;
+
+    height: 50px;
+
+    background: var(--orange);
+
+    border-radius: 10px;
+
+}
+
+
+.division-title-left h2 {
+
+    font-size: 48px;
+
+    font-weight: 800;
+
+}
+
+
+.division-title-left p {
+
+    color: var(--gray);
+
+    margin-top: 14px;
+
+    font-size: 16px;
+
+}
+
+
+/* =========================================
+   SLOGAN
+========================================= */
+
+.division-slogan {
+
+    text-align: right;
+
+    padding-top: 10px;
+
+}
+
+
+.division-slogan p {
+
+    color: #9a8b7e;
+
+    font-size: 11px;
+
+    letter-spacing: 8px;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* =========================================
+   DIVISION CONTAINER
+========================================= */
+
+.division-container {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 25px;
+
+}
+
+
+/* =========================================
+   DIVISION CARD
+========================================= */
+
+.division-card {
+
+    width: 100%;
+
+    min-height: 230px;
+
+    display: grid;
+
+    grid-template-columns:
+        180px
+        1fr
+        1fr
+        70px;
+
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 30px;
+
+    background: #111318;
+
+    border: 1px solid #292d35;
+
+    transition: 0.3s;
+
+}
+
+
+.division-card:hover {
+
+    border-color: var(--orange);
+
+    transform: translateY(-3px);
+
+}
+
+
+/* =========================================
+   DIVISION LOGO
+========================================= */
+
+.division-logo {
+
+    width: 140px;
+
+    height: 140px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #343841;
+
+    background: #0b0c0f;
+
+}
+
+
+.division-number {
+
+    color: var(--orange);
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================
+   DIVISION INFO
+========================================= */
+
+.division-info h2 {
+
+    font-size: 25px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.division-info h3 {
+
+    color: var(--orange);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    margin-bottom: 20px;
+
+}
+
+
+.division-info p {
+
+    color: var(--gray);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    max-width: 400px;
+
+}
+
+
+/* =========================================
+   DIVISION STATS
+========================================= */
+
+.division-stats {
+
+    border-left: 1px solid #2c3038;
+
+    padding-left: 35px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+.stat-row {
+
+    display: grid;
+
+    grid-template-columns:
+        35px
+        110px
+        1fr;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.stat-icon {
+
+    font-size: 17px;
+
+}
+
+
+.stat-title {
+
+    color: #858b96;
+
+    font-size: 12px;
+
+}
+
+
+.stat-value {
+
+    color: var(--white);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.stat-value small {
+
+    color: var(--orange);
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================
+   ARROW BUTTON
+========================================= */
+
+.arrow-btn {
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--orange);
+
+    background: transparent;
+
+    color: var(--orange);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.arrow-btn:hover {
+
+    background: var(--orange);
+
+    color: #111;
+
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading {
+
+    width: 100%;
+
+    padding: 80px 20px;
+
+    text-align: center;
+
+    color: var(--gray);
+
+    border: 1px solid var(--border);
+
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error {
+
+    width: 100%;
+
+    padding: 50px;
+
+    text-align: center;
+
+    color: var(--orange);
+
+    border: 1px solid var(--orange);
+
+}
+
+
+/* =========================================
+   QUOTE
+========================================= */
+
+.division-quote {
+
+    padding: 90px 20px 30px;
+
+    text-align: center;
+
+}
+
+
+.division-quote p {
+
+    color: var(--orange);
+
+    font-size: 13px;
+
+    letter-spacing: 8px;
+
+}
+
+
+.quote-line {
+
+    width: 120px;
+
+    height: 3px;
+
+    background: var(--orange);
+
+    margin: 35px auto 0;
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+
+    background: #0b0c0f;
+
+    border-top: 1px solid var(--border);
+
+    padding-top: 40px;
+
+}
+
+
+.footer-content {
+
+    width: 90%;
+
+    max-width: 1300px;
+
+    margin: auto;
+
+    padding: 20px 0 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+/* =========================================
+   FOOTER BRAND
+========================================= */
+
+.footer-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.footer-brand img {
+
+    width: 55px;
+
+    height: 55px;
+
+    object-fit: contain;
+
+}
+
+
+.footer-brand h2 {
+
+    font-size: 20px;
+
+}
+
+
+.footer-brand h2 span {
+
+    color: var(--orange);
+
+}
+
+
+.footer-brand p {
+
+    color: #777d87;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    margin-top: 8px;
+
+}
+
+
+/* =========================================
+   FOOTER TEXT
+========================================= */
+
+.footer-text {
+
+    text-align: right;
+
+}
+
+
+.footer-text p {
+
+    color: var(--orange);
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.footer-text span {
+
+    color: #777d87;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   FOOTER BOTTOM
+========================================= */
+
+.footer-bottom {
+
+    border-top: 1px solid var(--border);
+
+    padding: 22px;
+
+    text-align: center;
+
+}
+
+
+.footer-bottom p {
+
+    color: #666c75;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media screen and (max-width: 1100px) {
+
+
+    .navbar {
+
+        gap: 20px;
+
+    }
+
+
+    .nav-menu {
+
+        gap: 20px;
+
+    }
+
+
+    .nav-menu a {
+
+        font-size: 14px;
+
+    }
+
+
+    .join-btn {
+
+        padding: 13px 20px;
+
+    }
+
+
+    .division-card {
+
+        grid-template-columns:
+            150px
+            1fr;
+
+    }
+
+
+    .division-stats {
+
+        grid-column: 1 / 3;
+
+        border-left: none;
+
+        border-top: 1px solid #2c3038;
+
+        padding-left: 0;
+
+        padding-top: 25px;
+
+    }
+
+
+    .arrow-btn {
+
+        grid-column: 2;
+
+        justify-self: end;
+
+    }
+
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+
+    /* NAVBAR */
+
+    .navbar {
+
+        min-height: auto;
+
+        flex-wrap: wrap;
+
+        padding: 12px 15px;
+
+        gap: 12px;
+
+    }
+
+
+    /* BRAND */
+
+    .brand {
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
+
+
+    .logo {
+
+        width: 55px;
+
+        height: 55px;
+
+    }
+
+
+    .brand-text h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .brand-text p {
+
+        font-size: 8px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    /* =====================================
+       NAV MENU MOBILE
+
+       TIDAK ADA TITIK TIGA
+       TIDAK ADA HAMBURGER
+
+       TAB LANGSUNG TAMPIL
+    ===================================== */
+
+    .nav-menu {
+
+        width: 100%;
+
+        display: flex;
+
+        justify-content: flex-start;
+
+        gap: 25px;
+
+        overflow-x: auto;
+
+        overflow-y: hidden;
+
+        white-space: nowrap;
+
+        padding: 0 5px;
+
+        scrollbar-width: none;
+
+        border-top: 1px solid #25282f;
+
+    }
+
+
+    .nav-menu::-webkit-scrollbar {
+
+        display: none;
+
+    }
+
+
+    .nav-menu a {
+
+        padding: 18px 0;
+
+        font-size: 13px;
+
+        flex-shrink: 0;
+
+    }
+
+
+    /* JOIN BUTTON */
+
+    .join-btn {
+
+        width: 100%;
+
+        text-align: center;
+
+        padding: 12px;
+
+    }
+
+
+    /* HERO */
+
+    .division-hero {
+
+        min-height: 260px;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 36px;
+
+    }
+
+
+    .hero-description {
+
+        font-size: 13px;
+
+    }
+
+
+    /* KETUA KLUB */
+
+    .club-leader-section {
+
+        width: 90%;
+
+        padding: 65px 0;
+
+    }
+
+
+    .section-header h2 {
+
+        font-size: 28px;
+
+    }
+
+
+    .club-leader-card {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 35px 20px;
+
+        gap: 25px;
+
+    }
+
+
+    .leader-info-container {
+
+        justify-content: center;
+
+        gap: 35px;
+
+    }
+
+
+    .leader-name {
+
+        font-size: 25px;
+
+    }
+
+
+    /* DIVISION */
+
+    .division-section {
+
+        padding: 60px 20px;
+
+    }
+
+
+    .division-heading {
+
+        flex-direction: column;
+
+        gap: 35px;
+
+        margin-bottom: 45px;
+
+    }
+
+
+    .division-title-left h2 {
+
+        font-size: 38px;
+
+    }
+
+
+    .division-slogan {
+
+        text-align: left;
+
+        padding-left: 28px;
+
+    }
+
+
+    .division-slogan p {
+
+        font-size: 9px;
+
+        letter-spacing: 5px;
+
+    }
+
+
+    /* CARD */
+
+    .division-card {
+
+        grid-template-columns: 1fr;
+
+        padding: 25px;
+
+        gap: 30px;
+
+    }
+
+
+    .division-logo {
+
+        width: 100%;
+
+        height: 110px;
+
+    }
+
+
+    .division-stats {
+
+        grid-column: auto;
+
+        width: 100%;
+
+    }
+
+
+    .stat-row {
+
+        grid-template-columns:
+            30px
+            90px
+            1fr;
+
+    }
+
+
+    .arrow-btn {
+
+        grid-column: auto;
+
+        justify-self: center;
+
+    }
+
+
+    /* QUOTE */
+
+    .division-quote {
+
+        padding-top: 70px;
+
+    }
+
+
+    .division-quote p {
+
+        font-size: 10px;
+
+        letter-spacing: 4px;
+
+    }
+
+
+    /* FOOTER */
+
+    .footer-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 30px;
+
+    }
+
+
+    .footer-text {
+
+        text-align: left;
+
+    }
+
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media screen and (max-width: 480px) {
+
+
+    .hero-small-title {
+
+        letter-spacing: 4px;
+
+        font-size: 10px;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    .leader-icon {
+
+        width: 75px;
+
+        height: 75px;
+
+        min-width: 75px;
+
+        font-size: 30px;
+
+    }
+
+
+    .leader-position {
+
+        font-size: 9px;
+
+        letter-spacing: 2px;
+
+    }
+
+
+    .leader-info-container {
+
+        gap: 25px;
+
+    }
+
+
+    .division-title-left {
+
+        gap: 15px;
+
+    }
+
+
+    .division-title-left h2 {
+
+        font-size: 32px;
+
+    }
+
+
+    .division-title-left p {
+
+        font-size: 13px;
+
+    }
+
+
+    .stat-row {
+
+        grid-template-columns:
+            25px
+            75px
+            1fr;
+
+        gap: 5px;
+
+    }
+
+
+    .stat-title {
+
+        font-size: 10px;
+
+    }
+
+
+    .stat-value {
+
+        font-size: 11px;
+
+    }
+
+}
+/* =========================================
+   MOBILE MENU BUTTON
+========================================= */
+
+.menu-toggle {
+
+    display: none;
+
+    background: transparent;
+
+    border: none;
+
+    color: #ff6b1a;
+
+    font-size: 32px;
+
+    cursor: pointer;
+
+    padding: 5px 10px;
+
+}
+
+
+/* =========================================
+   MOBILE NAVBAR
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+
+    .navbar {
+
+        min-height: 75px;
+
+        display: flex;
+
+        flex-wrap: nowrap;
+
+        justify-content: space-between;
+
+        padding: 10px 20px;
+
+        position: relative;
+
+    }
+
+
+    /* BRAND */
+
+    .brand {
+
+        width: auto;
+
+        justify-content: flex-start;
+
+    }
+
+
+    .logo {
+
+        width: 48px;
+
+        height: 48px;
+
+    }
+
+
+    .brand-text h2 {
+
+        font-size: 17px;
+
+    }
+
+
+    .brand-text p {
+
+        font-size: 7px;
+
+        letter-spacing: 2px;
+
+        margin-top: 4px;
+
+    }
+
+
+    /* =====================================
+       HIDE JOIN DESKTOP
+    ===================================== */
+
+    .join-btn {
+
+        display: none;
+
+    }
+
+
+    /* =====================================
+       SHOW DOT MENU
+    ===================================== */
+
+    .menu-toggle {
+
+        display: block;
+
+        z-index: 1002;
+
+    }
+
+
+    /* =====================================
+       MOBILE MENU
+
+       AWALNYA DISEMBUNYIKAN
+    ===================================== */
+
+    .nav-menu {
+
+        display: none;
+
+        position: absolute;
+
+        top: 100%;
+
+        right: 15px;
+
+        width: 220px;
+
+        background: #111318;
+
+        border: 1px solid #2b3038;
+
+        border-top: 3px solid #ff6b1a;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 10px 0;
+
+        z-index: 1001;
+
+        box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+
+    }
+
+
+    /* =====================================
+       MENU ACTIVE
+    ===================================== */
+
+    .nav-menu.show {
+
+        display: flex;
+
+    }
+
+
+    /* =====================================
+       MENU LINKS
+    ===================================== */
+
+    .nav-menu a {
+
+        width: 100%;
+
+        padding: 16px 22px;
+
+        font-size: 14px;
+
+        color: #c8ccd4;
+
+        border-bottom: 1px solid #24272d;
+
+    }
+
+
+    .nav-menu a:last-child {
+
+        border-bottom: none;
+
+    }
+
+
+    .nav-menu a:hover {
+
+        background: #191c22;
+
+        color: #ff6b1a;
+
+    }
+
+
+    /* =====================================
+       ACTIVE MENU
+    ===================================== */
+
+    .nav-menu a.active::after {
+
+        display: none;
+
+    }
+
+
+    .nav-menu a.active {
+
+        color: #ff6b1a;
+
+        background: rgba(255,107,26,0.08);
+
+        border-left: 3px solid #ff6b1a;
+
+    }
+
+
+    /* =====================================
+       MOBILE JOIN US
+    ===================================== */
+
+    .mobile-join {
+
+        color: #ff6b1a !important;
+
+        font-weight: 700;
+
+        text-align: center;
+
+        border: 1px solid #ff6b1a !important;
+
+        margin: 12px 15px 5px;
+
+        width: auto !important;
+
+    }
+
+
+}
