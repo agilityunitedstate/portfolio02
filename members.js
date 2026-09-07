@@ -1,36 +1,76 @@
-/* =========================================
+/* ========================================
    GOOGLE SHEET CONFIGURATION
-========================================= */
+======================================== */
 
 
 /*
-    GANTI URL DI BAWAH INI
+========================================
 
-    Dengan URL CSV Google Sheet kamu
+MASUKKAN ID GOOGLE SHEET DISINI
+
+CONTOH LINK:
+
+https://docs.google.com/spreadsheets/d/
+1ABCDEF123456789XYZ
+/edit#gid=0
+
+MAKA SHEET ID ADALAH:
+
+1ABCDEF123456789XYZ
+
+========================================
 */
 
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJnrF27QnQSNsZP6LGyzMD1053hz8Zqscskhd26ENN8blQ_O_sORgoXghFevrOex3XA6A_nr_oXbtR/pub?output=csv";
+const SHEET_ID =
+    "GANTI_DENGAN_SHEET_ID_KAMU";
 
 
-/* =========================================
-   ELEMENT
-========================================= */
+/*
+========================================
 
-const membersContainer =
+NAMA TAB GOOGLE SHEET
+
+CONTOH:
+
+Sheet1
+
+Members
+
+Data Player
+
+========================================
+*/
+
+const SHEET_NAME =
+    "Sheet1";
+
+
+/* ========================================
+   GOOGLE SHEET URL
+======================================== */
+
+const SHEET_URL =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJnrF27QnQSNsZP6LGyzMD1053hz8Zqscskhd26ENN8blQ_O_sORgoXghFevrOex3XA6A_nr_oXbtR/pub?output=csv";
+
+
+/* ========================================
+   VARIABLES
+======================================== */
+
+let players = [];
+
+let currentRole = "ALL";
+
+
+const playerContainer =
     document.getElementById(
-        "membersContainer"
+        "playerContainer"
     );
 
 
-const totalMembers =
+const playerCount =
     document.getElementById(
-        "totalMembers"
-    );
-
-
-const memberCount =
-    document.getElementById(
-        "memberCount"
+        "playerCount"
     );
 
 
@@ -40,9 +80,9 @@ const searchInput =
     );
 
 
-const filterButtons =
-    document.querySelectorAll(
-        ".filter-btn"
+const emptyState =
+    document.getElementById(
+        "emptyState"
     );
 
 
@@ -58,24 +98,39 @@ const navMenu =
     );
 
 
-/* =========================================
-   DATA
-========================================= */
+/* ========================================
+   MOBILE MENU
+======================================== */
 
-let players = [];
+if (
+    menuToggle &&
+    navMenu
+) {
+
+    menuToggle.addEventListener(
+
+        "click",
+
+        function () {
+
+            navMenu.classList.toggle(
+                "show"
+            );
+
+        }
+
+    );
+
+}
 
 
-let activeRole = "ALL";
-
-
-/* =========================================
+/* ========================================
    LOAD GOOGLE SHEET
-========================================= */
+======================================== */
 
-async function loadMembers() {
+async function loadPlayers() {
 
     try {
-
 
         const response =
             await fetch(
@@ -83,276 +138,265 @@ async function loadMembers() {
             );
 
 
-        const data =
+        const text =
             await response.text();
 
 
-        const rows =
-            parseCSV(
-                data
+        /*
+        GOOGLE RESPONSE
+
+        google.visualization.Query.setResponse(...)
+
+        KITA AMBIL JSON DIDALAMNYA
+        */
+
+
+        const jsonText =
+            text
+                .substring(
+                    text.indexOf("{"),
+                    text.lastIndexOf("}") + 1
+                );
+
+
+        const data =
+            JSON.parse(
+                jsonText
             );
 
 
-        players =
-            rows;
+        const rows =
+            data.table.rows;
 
 
-        updateMemberStats();
+        players = [];
 
 
-        renderMembers();
+        rows.forEach(
 
+            function (row) {
 
-    }
 
-    catch (error) {
+                if (!row.c) {
 
+                    return;
 
-        console.error(
-            "Error loading members:",
-            error
-        );
+                }
 
 
-        membersContainer.innerHTML = `
+                const nickname =
+                    row.c[0]
+                        ? row.c[0].v
+                        : "";
 
-            <div class="empty-message">
 
-                <h3>
-                    Gagal memuat data player
-                </h3>
+                const id =
+                    row.c[1]
+                        ? row.c[1].v
+                        : "";
 
-                <br>
 
-                <p>
-                    Periksa URL Google Sheet
-                    atau koneksi internet.
-                </p>
+                const role =
+                    row.c[2]
+                        ? String(
+                            row.c[2].v
+                        ).toUpperCase()
+                        : "";
 
-            </div>
 
-        `;
+                /*
+                VALIDASI DATA
 
-    }
+                HANYA MASUKKAN
+                JIKA ADA NICKNAME
+                */
 
-}
+                if (
+                    nickname
+                ) {
 
+                    players.push({
 
-/* =========================================
-   CSV PARSER
-========================================= */
+                        nickname:
+                            String(
+                                nickname
+                            ),
 
-function parseCSV(text) {
+                        id:
+                            String(
+                                id
+                            ),
 
-    const lines =
-        text
-        .trim()
-        .split("\n");
+                        role:
+                            role
 
+                    });
 
-    if (
-        lines.length < 2
-    ) {
+                }
 
-        return [];
-
-    }
-
-
-    const headers =
-        lines[0]
-        .split(",")
-        .map(
-
-            header =>
-
-            header
-            .trim()
-            .toLowerCase()
-
-        );
-
-
-    const nicknameIndex =
-        headers.indexOf(
-            "nickname"
-        );
-
-
-    const idIndex =
-        headers.indexOf(
-            "id"
-        );
-
-
-    const roleIndex =
-        headers.indexOf(
-            "role"
-        );
-
-
-    const result = [];
-
-
-    for (
-        let i = 1;
-
-        i < lines.length;
-
-        i++
-    ) {
-
-
-        const columns =
-            lines[i]
-            .split(",");
-
-
-        const nickname =
-            columns[nicknameIndex]
-            ?.trim();
-
-
-        const id =
-            columns[idIndex]
-            ?.trim();
-
-
-        const role =
-            columns[roleIndex]
-            ?.trim()
-            .toUpperCase();
-
-
-        if (
-            nickname &&
-            id &&
-            role
-        ) {
-
-
-            result.push({
-
-                nickname:
-
-                    nickname,
-
-
-                id:
-
-                    id,
-
-
-                role:
-
-                    role
-
-            });
-
-        }
-
-    }
-
-
-    return result;
-
-}
-
-
-/* =========================================
-   UPDATE STATS
-========================================= */
-
-function updateMemberStats() {
-
-    totalMembers.textContent =
-        players.length;
-
-}
-
-
-/* =========================================
-   RENDER MEMBERS
-========================================= */
-
-function renderMembers() {
-
-
-    const searchValue =
-        searchInput
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const filteredPlayers =
-        players.filter(
-
-            player => {
-
-
-                const matchRole =
-
-                    activeRole === "ALL"
-
-                    ||
-
-                    player.role === activeRole;
-
-
-                const matchSearch =
-
-                    player.nickname
-                    .toLowerCase()
-                    .includes(
-                        searchValue
-                    )
-
-                    ||
-
-                    player.id
-                    .toLowerCase()
-                    .includes(
-                        searchValue
-                    );
-
-
-                return
-
-                    matchRole
-                    &&
-                    matchSearch;
 
             }
 
         );
 
 
-    memberCount.textContent =
+        renderPlayers();
 
-        `${filteredPlayers.length} PLAYERS`;
+    }
 
+    catch (
+        error
+    ) {
+
+        console.error(
+            "Google Sheet Error:",
+            error
+        );
+
+
+        playerContainer.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="4"
+                    class="loading"
+                >
+
+                    Gagal memuat data Google Sheet.
+
+                    <br>
+
+                    <br>
+
+                    Periksa:
+                    Sheet ID,
+                    Sheet Name,
+                    dan pengaturan Publish.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* ========================================
+   RENDER PLAYERS
+======================================== */
+
+function renderPlayers() {
+
+
+    const searchValue =
+        searchInput
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    /*
+    FILTER DATA
+    */
+
+    const filteredPlayers =
+        players.filter(
+
+            function (
+                player
+            ) {
+
+
+                const matchSearch =
+
+                    player.nickname
+                        .toLowerCase()
+                        .includes(
+                            searchValue
+                        )
+
+                    ||
+
+                    player.id
+                        .toLowerCase()
+                        .includes(
+                            searchValue
+                        );
+
+
+                const matchRole =
+
+                    currentRole ===
+                    "ALL"
+
+                    ||
+
+                    player.role ===
+                    currentRole;
+
+
+                return
+
+                    matchSearch
+
+                    &&
+
+                    matchRole;
+
+            }
+
+        );
+
+
+    /*
+    UPDATE PLAYER COUNT
+    */
+
+    playerCount.textContent =
+        filteredPlayers.length;
+
+
+    /*
+    CLEAR TABLE
+    */
+
+    playerContainer.innerHTML =
+        "";
+
+
+    /*
+    EMPTY STATE
+    */
 
     if (
         filteredPlayers.length === 0
     ) {
 
 
-        membersContainer.innerHTML = `
+        playerContainer.innerHTML = `
 
-            <div class="empty-message">
+            <tr>
 
-                <h3>
-                    Player tidak ditemukan
-                </h3>
+                <td
+                    colspan="4"
+                    class="loading"
+                >
 
-                <p>
-                    Coba gunakan pencarian lain.
-                </p>
+                    Tidak ada player ditemukan.
 
-            </div>
+                </td>
+
+            </tr>
 
         `;
+
+
+        emptyState.style.display =
+            "block";
 
 
         return;
@@ -360,131 +404,88 @@ function renderMembers() {
     }
 
 
-    membersContainer.innerHTML =
+    emptyState.style.display =
+        "none";
 
-        filteredPlayers
-        .map(
 
-            (
-                player,
-                index
-            ) =>
+    /*
+    CREATE TABLE
+    */
 
-            createMemberCard(
-                player,
-                index
-            )
+    filteredPlayers.forEach(
 
-        )
+        function (
+            player,
+            index
+        ) {
 
-        .join("");
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td
+                    class="player-number"
+                >
+
+                    ${index + 1}
+
+                </td>
+
+
+                <td
+                    class="player-name"
+                >
+
+                    ${player.nickname}
+
+                </td>
+
+
+                <td
+                    class="player-id"
+                >
+
+                    ${player.id}
+
+                </td>
+
+
+                <td>
+
+                    <span
+                        class="role-badge"
+                    >
+
+                        ${player.role}
+
+                    </span>
+
+                </td>
+
+            `;
+
+
+            playerContainer.appendChild(
+                row
+            );
+
+
+        }
+
+    );
+
 
 }
 
 
-/* =========================================
-   MEMBER CARD
-========================================= */
-
-function createMemberCard(
-
-    player,
-    index
-
-) {
-
-
-    const number =
-
-        String(
-            index + 1
-        )
-        .padStart(
-            2,
-            "0"
-        );
-
-
-    return `
-
-        <article class="member-card">
-
-
-            <div class="member-number">
-
-                ${number}
-
-            </div>
-
-
-            <div class="member-avatar">
-
-                ⚡
-
-            </div>
-
-
-            <h3 class="member-nickname">
-
-                ${escapeHTML(
-                    player.nickname
-                )}
-
-            </h3>
-
-
-            <p class="member-id">
-
-                ID:
-                ${escapeHTML(
-                    player.id
-                )}
-
-            </p>
-
-
-            <div class="member-role">
-
-                ROLE
-
-                ${escapeHTML(
-                    player.role
-                )}
-
-            </div>
-
-
-        </article>
-
-    `;
-
-}
-
-
-/* =========================================
-   ESCAPE HTML
-========================================= */
-
-function escapeHTML(text) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-
-    div.textContent =
-        text;
-
-
-    return div.innerHTML;
-
-}
-
-
-/* =========================================
+/* ========================================
    SEARCH
-========================================= */
+======================================== */
 
 searchInput.addEventListener(
 
@@ -492,20 +493,28 @@ searchInput.addEventListener(
 
     function () {
 
-        renderMembers();
+        renderPlayers();
 
     }
 
 );
 
 
-/* =========================================
+/* ========================================
    ROLE FILTER
-========================================= */
+======================================== */
+
+const filterButtons =
+    document.querySelectorAll(
+        ".filter-btn"
+    );
+
 
 filterButtons.forEach(
 
-    button => {
+    function (
+        button
+    ) {
 
 
         button.addEventListener(
@@ -515,94 +524,61 @@ filterButtons.forEach(
             function () {
 
 
+                /*
+                HAPUS ACTIVE
+                */
+
                 filterButtons.forEach(
 
-                    btn =>
+                    function (
+                        btn
+                    ) {
 
-                    btn.classList.remove(
-                        "active"
-                    )
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
 
                 );
 
 
-                this.classList.add(
+                /*
+                TAMBAH ACTIVE
+                */
+
+                button.classList.add(
                     "active"
                 );
 
 
-                activeRole =
-                    this.dataset.role;
+                /*
+                ROLE
+                */
+
+                currentRole =
+                    button.dataset.role;
 
 
-                renderMembers();
+                /*
+                RENDER
+                */
 
-            }
-
-        );
-
-    }
-
-);
-
-
-/* =========================================
-   MOBILE MENU
-========================================= */
-
-menuToggle.addEventListener(
-
-    "click",
-
-    function () {
-
-
-        navMenu.classList.toggle(
-            "show"
-        );
-
-
-    }
-
-);
-
-
-/* =========================================
-   CLOSE MENU AFTER CLICK
-========================================= */
-
-document
-.querySelectorAll(
-    ".nav-menu a"
-)
-.forEach(
-
-    link => {
-
-
-        link.addEventListener(
-
-            "click",
-
-            function () {
-
-
-                navMenu.classList.remove(
-                    "show"
-                );
+                renderPlayers();
 
 
             }
 
         );
 
+
     }
 
 );
 
 
-/* =========================================
+/* ========================================
    START
-========================================= */
+======================================== */
 
-loadMembers();
+loadPlayers();
