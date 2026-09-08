@@ -1,55 +1,17 @@
-/* =========================================================
-   AGILITY UNITED
-   DIVISION.CSS
-========================================================= */
-
-
-/* =========================================================
-   ROOT
-========================================================= */
-
-:root {
-
-    --orange: #ff6b1a;
-    --orange-light: #ff8a42;
-
-    --black: #070809;
-    --black-soft: #0d0f12;
-    --dark: #111318;
-    --dark-card: #171a20;
-
-    --white: #ffffff;
-
-    --gray: #9da3ae;
-    --light-gray: #c8ccd4;
-
-    --border:
-        rgba(255, 255, 255, 0.10);
-
-}
-
-
-/* =========================================================
+/* =========================================
    RESET
-========================================================= */
+========================================= */
 
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
 }
 
 
-html {
-
-    scroll-behavior: smooth;
-
-}
-
+/* =========================================
+   BODY
+========================================= */
 
 body {
 
@@ -58,10 +20,10 @@ body {
         sans-serif;
 
     background:
-        var(--black);
+        #0b0b0b;
 
     color:
-        var(--white);
+        #ffffff;
 
     overflow-x:
         hidden;
@@ -69,37 +31,20 @@ body {
 }
 
 
-a {
-
-    text-decoration:
-        none;
-
-    color:
-        inherit;
-
-}
-
-
-button {
-
-    font-family:
-        inherit;
-
-}
-
-
-/* =========================================================
+/* =========================================
    NAVBAR
-   SAMA DENGAN MEMBER.HTML
-========================================================= */
+========================================= */
 
 .navbar {
 
     width:
         100%;
 
-    min-height:
-        90px;
+    height:
+        80px;
+
+    padding:
+        0 7%;
 
     display:
         flex;
@@ -110,21 +55,23 @@ button {
     justify-content:
         space-between;
 
-    padding:
-        0 5%;
+    background:
+        #111111;
 
     border-bottom:
         1px solid
-        var(--border);
-
-    background:
-        rgba(7, 8, 9, 0.96);
-
-    backdrop-filter:
-        blur(10px);
+        rgba(
+            255,
+            102,
+            0,
+            0.2
+        );
 
     position:
-        relative;
+        sticky;
+
+    top:
+        0;
 
     z-index:
         1000;
@@ -132,11 +79,11 @@ button {
 }
 
 
-/* =========================================================
-   BRAND
-========================================================= */
+/* =========================================
+   NAV BRAND
+========================================= */
 
-.brand {
+.nav-brand {
 
     display:
         flex;
@@ -145,21 +92,24 @@ button {
         center;
 
     gap:
-        14px;
+        12px;
 
-    flex-shrink:
-        0;
+    text-decoration:
+        none;
+
+    color:
+        white;
 
 }
 
 
-.brand-logo {
+.nav-logo {
 
     width:
-        52px;
+        45px;
 
     height:
-        52px;
+        45px;
 
     object-fit:
         contain;
@@ -167,65 +117,31 @@ button {
 }
 
 
-.brand-text {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-}
-
-
-.brand-text h2 {
-
-    font-size:
-        20px;
+.nav-brand span {
 
     font-weight:
         800;
 
+    font-size:
+        15px;
+
     letter-spacing:
         1px;
 
+}
+
+
+.nav-brand strong {
+
     color:
-        var(--white);
+        #ff6b00;
 
 }
 
 
-.brand-text h2 span {
-
-    color:
-        var(--orange);
-
-}
-
-
-.brand-text p {
-
-    margin-top:
-        5px;
-
-    font-size:
-        8px;
-
-    font-weight:
-        600;
-
-    letter-spacing:
-        2px;
-
-    color:
-        var(--gray);
-
-}
-
-
-/* =========================================================
-   NAV MENU DESKTOP
-========================================================= */
+/* =========================================
+   NAV MENU
+========================================= */
 
 .nav-menu {
 
@@ -236,27 +152,30 @@ button {
         center;
 
     gap:
-        42px;
+        30px;
 
 }
 
 
 .nav-menu a {
 
-    position:
-        relative;
-
     color:
-        #b6bac2;
+        #ffffff;
+
+    text-decoration:
+        none;
 
     font-size:
-        14px;
+        13px;
 
     font-weight:
         600;
 
     transition:
-        0.3s ease;
+        0.3s;
+
+    position:
+        relative;
 
 }
 
@@ -264,7 +183,7 @@ button {
 .nav-menu a:hover {
 
     color:
-        var(--orange);
+        #ff6b00;
 
 }
 
@@ -272,12 +191,10 @@ button {
 .nav-menu a.active {
 
     color:
-        var(--orange);
+        #ff6b00;
 
 }
 
-
-/* GARIS ACTIVE DESKTOP */
 
 .nav-menu a.active::after {
 
@@ -290,25 +207,24 @@ button {
     left:
         0;
 
-    right:
-        0;
-
     bottom:
-        -35px;
+        -8px;
+
+    width:
+        100%;
 
     height:
         2px;
 
     background:
-        var(--orange);
+        #ff6b00;
 
 }
 
 
-/* =========================================================
-   TOMBOL TITIK TIGA
-   DESKTOP DISEMBUNYIKAN
-========================================================= */
+/* =========================================
+   MOBILE MENU BUTTON
+========================================= */
 
 .menu-toggle {
 
@@ -322,10 +238,10 @@ button {
         transparent;
 
     color:
-        var(--white);
+        #ff6b00;
 
     font-size:
-        34px;
+        30px;
 
     cursor:
         pointer;
@@ -336,33 +252,133 @@ button {
 }
 
 
-/* =========================================================
-   CLUB LEADER SECTION
-========================================================= */
+/* =========================================
+   HERO
+========================================= */
 
-.club-leader-section {
+.division-hero {
 
-    width:
-        100%;
+    min-height:
+        320px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
 
     padding:
-        90px 5% 70px;
+        70px 20px;
 
     background:
         linear-gradient(
-            180deg,
-            var(--black),
-            var(--black-soft)
+            135deg,
+            #0b0b0b,
+            #17110c
         );
 
 }
 
 
-/* =========================================================
-   SECTION HEADER
-========================================================= */
+.hero-label {
 
-.section-header {
+    color:
+        #ff6b00;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        3px;
+
+    margin-bottom:
+        15px;
+
+}
+
+
+.division-hero h1 {
+
+    font-family:
+        "Anton",
+        sans-serif;
+
+    font-size:
+        58px;
+
+    letter-spacing:
+        2px;
+
+    font-weight:
+        400;
+
+}
+
+
+.division-hero h1 span {
+
+    color:
+        #ff6b00;
+
+}
+
+
+.hero-description {
+
+    margin-top:
+        18px;
+
+    color:
+        #bcbcbc;
+
+    font-size:
+        14px;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+/* =========================================
+   SECTION
+========================================= */
+
+.club-leader-section,
+.division-section {
+
+    width:
+        100%;
+
+    max-width:
+        1200px;
+
+    margin:
+        auto;
+
+    padding:
+        90px 30px;
+
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.section-heading {
 
     text-align:
         center;
@@ -373,10 +389,10 @@ button {
 }
 
 
-.section-subtitle {
+.section-heading p:first-child {
 
     color:
-        var(--orange);
+        #ff6b00;
 
     font-size:
         11px;
@@ -385,33 +401,41 @@ button {
         700;
 
     letter-spacing:
-        4px;
+        3px;
 
     margin-bottom:
-        14px;
+        10px;
 
 }
 
 
-.section-header h2 {
+.section-heading h2 {
 
     font-family:
         "Anton",
         sans-serif;
 
-    font-size:
-        48px;
-
     font-weight:
         400;
 
+    font-size:
+        42px;
+
     letter-spacing:
-        2px;
+        1px;
 
 }
 
 
-.orange-line {
+.section-heading h2 span {
+
+    color:
+        #ff6b00;
+
+}
+
+
+.heading-line {
 
     width:
         55px;
@@ -419,35 +443,26 @@ button {
     height:
         3px;
 
-    margin:
-        20px auto 0;
-
     background:
-        var(--orange);
+        #ff6b00;
 
-    border-radius:
-        10px;
+    margin:
+        18px auto;
 
 }
 
 
-/* =========================================================
-   CLUB LEADER CARD
-========================================================= */
+/* =========================================
+   CLUB LEADER
+========================================= */
 
 .club-leader-card {
 
-    width:
-        100%;
-
     max-width:
-        950px;
+        800px;
 
     margin:
         auto;
-
-    padding:
-        38px 45px;
 
     display:
         flex;
@@ -458,59 +473,47 @@ button {
     gap:
         30px;
 
+    padding:
+        35px;
+
     background:
         linear-gradient(
             135deg,
-            #171a20,
-            #0f1115
+            #161616,
+            #0f0f0f
         );
 
     border:
         1px solid
-        var(--border);
-
-    border-left:
-        4px solid
-        var(--orange);
+        rgba(
+            255,
+            107,
+            0,
+            0.35
+        );
 
     border-radius:
-        16px;
+        18px;
 
     box-shadow:
-        0 15px 45px
-        rgba(0, 0, 0, 0.30);
-
-    transition:
-        0.3s ease;
-
-}
-
-
-.club-leader-card:hover {
-
-    transform:
-        translateY(-4px);
-
-    border-color:
-        rgba(255, 107, 26, 0.5);
+        0 15px 40px
+        rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
 
 }
 
 
-/* =========================================================
-   LEADER ICON
-========================================================= */
-
-.leader-icon {
+.club-leader-icon {
 
     width:
-        70px;
+        90px;
 
     height:
-        70px;
-
-    flex-shrink:
-        0;
+        90px;
 
     display:
         flex;
@@ -522,29 +525,21 @@ button {
         center;
 
     background:
-        rgba(255, 107, 26, 0.08);
-
-    border:
-        1px solid
-        rgba(255, 107, 26, 0.30);
-
-    border-radius:
-        15px;
+        #ff6b00;
 
     color:
-        var(--orange);
+        black;
+
+    border-radius:
+        50%;
 
     font-size:
-        30px;
+        45px;
 
 }
 
 
-/* =========================================================
-   LEADER CONTENT
-========================================================= */
-
-.leader-content {
+.club-leader-content {
 
     flex:
         1;
@@ -552,45 +547,35 @@ button {
 }
 
 
-.leader-position {
-
-    color:
-        var(--orange);
+.leader-title {
 
     font-size:
-        10px;
+        11px;
 
     font-weight:
         700;
+
+    color:
+        #ff6b00;
 
     letter-spacing:
         2px;
 
-    margin-bottom:
-        8px;
-
 }
 
 
-.leader-name {
+.club-leader-content h3 {
 
     font-size:
-        26px;
+        28px;
 
-    font-weight:
-        700;
-
-    margin-bottom:
-        22px;
+    margin:
+        8px 0 22px;
 
 }
 
 
-/* =========================================================
-   LEADER INFO
-========================================================= */
-
-.leader-info-container {
+.leader-data {
 
     display:
         flex;
@@ -601,7 +586,7 @@ button {
 }
 
 
-.leader-info {
+.leader-data div {
 
     display:
         flex;
@@ -610,244 +595,29 @@ button {
         column;
 
     gap:
-        7px;
-
-}
-
-
-.leader-info span {
-
-    color:
-        var(--gray);
-
-    font-size:
-        9px;
-
-    font-weight:
-        600;
-
-    letter-spacing:
-        2px;
-
-}
-
-
-.leader-info strong {
-
-    color:
-        var(--white);
-
-    font-size:
-        14px;
-
-}
-
-
-/* =========================================================
-   DIVISION SECTION
-========================================================= */
-
-.division-section {
-
-    width:
-        100%;
-
-    padding:
-        90px 5% 110px;
-
-    background:
-        #0b0d10;
-
-}
-
-
-/* =========================================================
-   DIVISION HEADING
-========================================================= */
-
-.division-heading {
-
-    width:
-        100%;
-
-    max-width:
-        1250px;
-
-    margin:
-        0 auto 50px;
-
-    display:
-        flex;
-
-    align-items:
-        flex-end;
-
-    justify-content:
-        space-between;
-
-    gap:
-        30px;
-
-}
-
-
-/* =========================================================
-   TITLE LEFT
-========================================================= */
-
-.division-title-left {
-
-    display:
-        flex;
-
-    align-items:
-        flex-start;
-
-    gap:
-        18px;
-
-}
-
-
-.title-accent {
-
-    width:
-        5px;
-
-    height:
-        68px;
-
-    flex-shrink:
-        0;
-
-    background:
-        var(--orange);
-
-    border-radius:
         5px;
 
 }
 
 
-.division-title-left h2 {
+.leader-data span {
 
-    font-family:
-        "Anton",
-        sans-serif;
+    color:
+        #888;
 
     font-size:
-        45px;
-
-    font-weight:
-        400;
+        10px;
 
     letter-spacing:
         1px;
 
-    margin-bottom:
-        10px;
-
 }
 
 
-.division-title-left p {
+.leader-data strong {
 
     color:
-        var(--gray);
-
-    font-size:
-        13px;
-
-    line-height:
-        1.7;
-
-}
-
-
-/* =========================================================
-   SLOGAN
-========================================================= */
-
-.division-slogan {
-
-    text-align:
-        right;
-
-    flex-shrink:
-        0;
-
-}
-
-
-.division-slogan p {
-
-    font-size:
-        11px;
-
-    font-weight:
-        700;
-
-    letter-spacing:
-        3px;
-
-    color:
-        var(--gray);
-
-}
-
-
-.division-slogan p:last-child {
-
-    color:
-        var(--orange);
-
-    margin-top:
-        7px;
-
-}
-
-
-/* =========================================================
-   DIVISION CONTAINER
-========================================================= */
-
-#division-container {
-
-    width:
-        100%;
-
-    max-width:
-        1250px;
-
-    margin:
-        auto;
-
-}
-
-
-/* =========================================================
-   LOADING
-========================================================= */
-
-.loading {
-
-    min-height:
-        200px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    text-align:
-        center;
-
-    color:
-        var(--gray);
+        white;
 
     font-size:
         14px;
@@ -855,117 +625,128 @@ button {
 }
 
 
-/* =========================================================
-   DIVISION CARD
-========================================================= */
+/* =========================================
+   DIVISION DESCRIPTION
+========================================= */
 
-.division-card {
+.division-description {
 
-    width:
-        100%;
+    color:
+        #999;
 
-    margin-bottom:
-        18px;
+    font-size:
+        13px;
 
-    padding:
-        24px 30px;
+    margin-top:
+        12px;
+
+}
+
+
+/* =========================================
+   DIVISION CONTAINER
+========================================= */
+
+.division-container {
 
     display:
         grid;
 
     grid-template-columns:
-        85px
-        minmax(0, 1fr)
-        auto;
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:
+        25px;
+
+}
+
+
+/* =========================================
+   DIVISION WRAPPER
+========================================= */
+
+.division-wrapper {
+
+    width:
+        100%;
+
+}
+
+
+/* =========================================
+   DIVISION CARD
+========================================= */
+
+.division-card {
+
+    display:
+        flex;
 
     align-items:
         center;
 
     gap:
-        25px;
+        18px;
+
+    padding:
+        22px;
 
     background:
-        linear-gradient(
-            135deg,
-            #171a20,
-            #101216
-        );
+        #141414;
 
     border:
         1px solid
-        var(--border);
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
 
     border-radius:
-        15px;
-
-    position:
-        relative;
-
-    overflow:
-        hidden;
+        16px;
 
     transition:
-        0.3s ease;
+        0.3s;
 
 }
 
-
-/* GARIS KIRI */
-
-.division-card::before {
-
-    content:
-        "";
-
-    position:
-        absolute;
-
-    left:
-        0;
-
-    top:
-        0;
-
-    width:
-        4px;
-
-    height:
-        100%;
-
-    background:
-        var(--orange);
-
-}
-
-
-/* HOVER */
 
 .division-card:hover {
 
     transform:
-        translateY(-4px);
+        translateY(
+            -4px
+        );
 
     border-color:
-        rgba(255, 107, 26, 0.45);
-
-    box-shadow:
-        0 15px 40px
-        rgba(0, 0, 0, 0.3);
+        rgba(
+            255,
+            107,
+            0,
+            0.6
+        );
 
 }
 
 
-/* =========================================================
+/* =========================================
    DIVISION LOGO
-========================================================= */
+========================================= */
 
 .division-logo {
 
     width:
-        75px;
+        70px;
 
     height:
-        75px;
+        70px;
+
+    flex-shrink:
+        0;
 
     display:
         flex;
@@ -977,14 +758,10 @@ button {
         center;
 
     background:
-        #0b0d10;
-
-    border:
-        1px solid
-        rgba(255, 107, 26, 0.25);
+        #0b0b0b;
 
     border-radius:
-        13px;
+        14px;
 
     overflow:
         hidden;
@@ -1001,36 +778,27 @@ button {
         100%;
 
     object-fit:
-        contain;
-
-    padding:
-        7px;
+        cover;
 
 }
 
 
-/* =========================================================
+/* =========================================
    DIVISION INFO
-========================================================= */
+========================================= */
 
 .division-info {
 
-    min-width:
-        0;
+    flex:
+        1;
 
 }
 
 
 .division-info h3 {
 
-    color:
-        var(--white);
-
     font-size:
-        21px;
-
-    font-weight:
-        700;
+        17px;
 
     margin-bottom:
         8px;
@@ -1041,20 +809,25 @@ button {
 .division-info p {
 
     color:
-        var(--gray);
+        #999;
 
     font-size:
-        12px;
-
-    line-height:
-        1.6;
+        11px;
 
 }
 
 
-/* =========================================================
-   DIVISION RIGHT AREA
-========================================================= */
+.division-info strong {
+
+    color:
+        #ff6b00;
+
+}
+
+
+/* =========================================
+   DIVISION RIGHT
+========================================= */
 
 .division-right {
 
@@ -1065,33 +838,27 @@ button {
         center;
 
     gap:
-        25px;
+        15px;
 
 }
 
 
-/* =========================================================
+/* =========================================
    DIVISION STATS
-========================================================= */
+========================================= */
 
 .division-stats {
 
     display:
         flex;
 
-    align-items:
-        center;
-
     gap:
-        25px;
+        12px;
 
 }
 
 
 .stat {
-
-    min-width:
-        65px;
 
     display:
         flex;
@@ -1099,136 +866,118 @@ button {
     flex-direction:
         column;
 
-    align-items:
-        center;
-
-    gap:
-        6px;
-
-}
-
-
-.stat-number {
-
-    color:
-        var(--orange);
-
-    font-size:
-        22px;
-
-    font-weight:
-        700;
-
-}
-
-
-.stat-label {
-
-    color:
-        var(--gray);
-
-    font-size:
-        8px;
-
-    font-weight:
-        600;
-
-    letter-spacing:
-        1.5px;
-
     text-align:
         center;
 
 }
 
 
-/* =========================================================
-   TOMBOL DIVISION
-========================================================= */
+.stat-number {
+
+    font-weight:
+        800;
+
+    font-size:
+        16px;
+
+    color:
+        white;
+
+}
+
+
+.stat-label {
+
+    font-size:
+        8px;
+
+    color:
+        #777;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
 
 .division-button {
 
     width:
-        48px;
+        38px;
 
     height:
-        48px;
-
-    flex-shrink:
-        0;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
+        38px;
 
     border:
-        1px solid
-        rgba(255, 107, 26, 0.5);
-
-    background:
-        transparent;
-
-    color:
-        var(--orange);
+        none;
 
     border-radius:
-        11px;
+        10px;
+
+    background:
+        #ff6b00;
+
+    color:
+        black;
 
     font-size:
-        20px;
+        25px;
+
+    font-weight:
+        600;
 
     cursor:
         pointer;
 
     transition:
-        0.3s ease;
+        0.3s;
 
 }
 
 
 .division-button:hover {
 
-    background:
-        var(--orange);
-
-    color:
-        var(--white);
+    transform:
+        scale(
+            1.08
+        );
 
 }
 
 
-/* =========================================================
-   DIVISION DETAIL
-========================================================= */
+/* =========================================
+   DIVISION DETAILS
+========================================= */
 
 .division-details {
 
     display:
         none;
 
-    margin:
-        -5px 0 25px;
+    margin-top:
+        15px;
 
     padding:
-        32px;
+        25px;
 
     background:
-        #101216;
+        #101010;
 
     border:
         1px solid
-        var(--border);
-
-    border-top:
-        none;
+        rgba(
+            255,
+            107,
+            0,
+            0.2
+        );
 
     border-radius:
-        0 0 15px 15px;
+        16px;
 
 }
 
@@ -1238,17 +987,48 @@ button {
     display:
         block;
 
+    animation:
+        showDetails
+        0.35s
+        ease;
+
 }
 
 
-/* =========================================================
+@keyframes showDetails {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(
+                -10px
+            );
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(
+                0
+            );
+
+    }
+
+}
+
+
+/* =========================================
    DETAIL TITLE
-========================================================= */
+========================================= */
 
 .detail-title {
-
-    color:
-        var(--orange);
 
     font-size:
         11px;
@@ -1256,26 +1036,26 @@ button {
     font-weight:
         700;
 
+    color:
+        #ff6b00;
+
     letter-spacing:
         2px;
 
-    margin-bottom:
-        18px;
+    margin:
+        10px 0 15px;
 
 }
 
 
-/* =========================================================
+/* =========================================
    DIVISION LEADER
-========================================================= */
+========================================= */
 
 .division-leader {
 
     padding:
-        22px;
-
-    margin-bottom:
-        30px;
+        18px;
 
     display:
         flex;
@@ -1287,17 +1067,20 @@ button {
         space-between;
 
     gap:
-        20px;
+        15px;
 
     background:
-        rgba(255, 107, 26, 0.06);
+        #171717;
 
-    border:
-        1px solid
-        rgba(255, 107, 26, 0.25);
+    border-left:
+        4px solid
+        #ff6b00;
 
     border-radius:
-        13px;
+        10px;
+
+    margin-bottom:
+        30px;
 
 }
 
@@ -1318,24 +1101,38 @@ button {
     display:
         flex;
 
-    align-items:
-        center;
+    flex-wrap:
+        wrap;
 
     gap:
-        25px;
-
-    color:
-        var(--gray);
-
-    font-size:
-        12px;
+        10px;
 
 }
 
 
-/* =========================================================
+.division-leader-info span {
+
+    font-size:
+        10px;
+
+    padding:
+        7px 10px;
+
+    border-radius:
+        5px;
+
+    background:
+        #0b0b0b;
+
+    color:
+        #aaa;
+
+}
+
+
+/* =========================================
    MEMBER GRID
-========================================================= */
+========================================= */
 
 .member-grid {
 
@@ -1343,226 +1140,158 @@ button {
         grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(
+            2,
+            1fr
+        );
 
     gap:
-        16px;
+        12px;
 
 }
 
 
-/* =========================================================
+/* =========================================
    MEMBER CARD
-========================================================= */
+========================================= */
 
 .member-card {
 
     padding:
-        20px;
+        15px;
 
     background:
-        #171a20;
+        #171717;
+
+    border-radius:
+        10px;
 
     border:
         1px solid
-        var(--border);
-
-    border-radius:
-        12px;
-
-    transition:
-        0.3s ease;
-
-}
-
-
-.member-card:hover {
-
-    transform:
-        translateY(-3px);
-
-    border-color:
-        rgba(255, 107, 26, 0.5);
+        rgba(
+            255,
+            255,
+            255,
+            0.05
+        );
 
 }
 
-
-/* =========================================================
-   MEMBER NAME
-========================================================= */
 
 .member-name {
 
-    color:
-        var(--white);
-
     font-size:
-        15px;
+        14px;
 
     font-weight:
         700;
 
     margin-bottom:
-        8px;
+        6px;
 
 }
 
-
-/* =========================================================
-   MEMBER ID
-========================================================= */
 
 .member-id {
 
     color:
-        var(--gray);
+        #888;
 
     font-size:
-        11px;
+        10px;
 
     margin-bottom:
-        12px;
+        10px;
 
 }
 
 
-/* =========================================================
-   MEMBER ROLE
-========================================================= */
+/* =========================================
+   ROLE
+========================================= */
 
 .member-role {
 
     display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
+        inline-block;
 
     padding:
         5px 10px;
 
-    color:
-        var(--orange);
-
     background:
-        rgba(255, 107, 26, 0.1);
+        #ff6b00;
 
-    border:
-        1px solid
-        rgba(255, 107, 26, 0.3);
+    color:
+        black;
 
     border-radius:
-        6px;
+        5px;
 
     font-size:
         10px;
 
     font-weight:
-        700;
+        800;
 
 }
 
 
-/* =========================================================
-   QUOTE
-========================================================= */
+/* =========================================
+   LOADING
+========================================= */
 
-.division-quote {
+.loading {
 
-    margin-top:
-        75px;
+    grid-column:
+        1 / -1;
 
     text-align:
         center;
 
-}
-
-
-.division-quote p {
+    padding:
+        50px;
 
     color:
-        var(--orange);
-
-    font-size:
-        13px;
-
-    font-weight:
-        700;
-
-    letter-spacing:
-        4px;
-
-}
-
-
-.quote-line {
-
-    width:
-        60px;
-
-    height:
-        2px;
-
-    margin:
-        20px auto 0;
+        #999;
 
     background:
-        var(--orange);
+        #141414;
+
+    border-radius:
+        15px;
 
 }
 
 
-/* =========================================================
+/* =========================================
    FOOTER
-========================================================= */
+========================================= */
 
 .footer {
 
+    margin-top:
+        70px;
+
+    padding:
+        60px 20px 30px;
+
     background:
-        #070809;
+        #080808;
+
+    text-align:
+        center;
 
     border-top:
         1px solid
-        var(--border);
+        rgba(
+            255,
+            107,
+            0,
+            0.15
+        );
 
 }
 
-
-/* FOOTER CONTENT */
-
-.footer-content {
-
-    width:
-        100%;
-
-    max-width:
-        1250px;
-
-    margin:
-        auto;
-
-    padding:
-        45px 0;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    gap:
-        30px;
-
-}
-
-
-/* FOOTER BRAND */
 
 .footer-brand {
 
@@ -1572,8 +1301,11 @@ button {
     align-items:
         center;
 
+    justify-content:
+        center;
+
     gap:
-        15px;
+        12px;
 
 }
 
@@ -1581,10 +1313,10 @@ button {
 .footer-brand img {
 
     width:
-        55px;
+        45px;
 
     height:
-        55px;
+        45px;
 
     object-fit:
         contain;
@@ -1595,276 +1327,146 @@ button {
 .footer-brand h2 {
 
     font-size:
-        20px;
-
-    font-weight:
-        700;
+        17px;
 
 }
 
 
-.footer-brand h2 span {
+.footer-brand span {
 
     color:
-        var(--orange);
+        #ff6b00;
 
 }
 
 
-.footer-brand p {
+.footer > p {
 
     margin-top:
-        6px;
-
-    color:
-        var(--gray);
+        15px;
 
     font-size:
-        8px;
+        10px;
 
     letter-spacing:
         2px;
 
-}
-
-
-/* FOOTER TEXT */
-
-.footer-text {
-
-    text-align:
-        right;
-
-}
-
-
-.footer-text p {
-
     color:
-        var(--gray);
+        #777;
 
-    font-size:
-        11px;
+}
 
-    letter-spacing:
+
+.footer-line {
+
+    width:
+        60px;
+
+    height:
         2px;
 
+    background:
+        #ff6b00;
+
+    margin:
+        25px auto;
+
 }
 
 
-.footer-text span {
+.footer small {
 
     color:
-        var(--orange);
-
-    font-size:
-        11px;
-
-}
-
-
-/* FOOTER BOTTOM */
-
-.footer-bottom {
-
-    padding:
-        20px;
-
-    text-align:
-        center;
-
-    border-top:
-        1px solid
-        var(--border);
-
-}
-
-
-.footer-bottom p {
-
-    color:
-        #666;
+        #555;
 
     font-size:
         9px;
 
-    letter-spacing:
-        1px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (
+    max-width: 900px
+) {
+
+    .division-container {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .navbar {
+
+        padding:
+            0 5%;
+
+    }
 
 }
 
 
-/* =========================================================
-   TABLET
-   MAX WIDTH 1100PX
-========================================================= */
+/* =========================================
+   MOBILE
+========================================= */
 
-@media
-(max-width: 1100px) {
+@media (
+    max-width: 768px
+) {
 
 
     /* NAVBAR */
 
-    .nav-menu {
-
-        gap:
-            25px;
-
-    }
-
-
-    .nav-menu a {
-
-        font-size:
-            13px;
-
-    }
-
-
-    /* MEMBER GRID */
-
-    .member-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-    }
-
-
-    /* DIVISION */
-
-    .division-card {
-
-        grid-template-columns:
-            75px
-            minmax(0, 1fr)
-            auto;
-
-        gap:
-            18px;
-
-    }
-
-
-    .division-logo {
-
-        width:
-            65px;
-
-        height:
-            65px;
-
-    }
-
-
-    .division-right {
-
-        gap:
-            15px;
-
-    }
-
-
-    .division-stats {
-
-        gap:
-            15px;
-
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-   MAX WIDTH 768PX
-========================================================= */
-
-@media
-(max-width: 768px) {
-
-
-    /* =====================================================
-       NAVBAR
-    ===================================================== */
-
     .navbar {
 
-        min-height:
-            75px;
+        height:
+            70px;
 
-        padding:
-            0 20px;
+        position:
+            sticky;
 
     }
 
 
-    /* =====================================================
-       BRAND
-    ===================================================== */
-
-    .brand-logo {
+    .nav-logo {
 
         width:
-            44px;
+            38px;
 
         height:
-            44px;
+            38px;
 
     }
 
 
-    .brand-text h2 {
+    .nav-brand span {
 
         font-size:
-            16px;
+            12px;
 
     }
 
 
-    .brand-text p {
-
-        display:
-            none;
-
-    }
-
-
-    /* =====================================================
-       TITIK TIGA
-       PERSIS SISTEM MEMBER.HTML
-    ===================================================== */
+    /* MENU */
 
     .menu-toggle {
 
         display:
             block;
 
-        border:
-            none;
+        position:
+            relative;
 
-        background:
-            transparent;
-
-        color:
-            var(--white);
-
-        font-size:
-            34px;
-
-        line-height:
-            1;
-
-        cursor:
-            pointer;
+        z-index:
+            2000;
 
     }
 
-
-    /* =====================================================
-       NAV MENU AWAL
-       DISEMBUNYIKAN
-    ===================================================== */
 
     .nav-menu {
 
@@ -1875,49 +1477,52 @@ button {
             absolute;
 
         top:
-            75px;
+            70px;
 
         right:
-            20px;
+            5%;
 
         width:
             210px;
+
+        padding:
+            15px;
 
         flex-direction:
             column;
 
         align-items:
-            flex-start;
+            stretch;
 
         gap:
             0;
 
-        padding:
-            15px;
-
         background:
-            #111318;
+            #151515;
 
         border:
             1px solid
-            var(--border);
+            rgba(
+                255,
+                107,
+                0,
+                0.3
+            );
 
         border-radius:
-            15px;
+            12px;
 
         box-shadow:
-            0 15px 40px
-            rgba(0, 0, 0, 0.5);
-
-        z-index:
-            9999;
+            0 15px 35px
+            rgba(
+                0,
+                0,
+                0,
+                0.5
+            );
 
     }
 
-
-    /* =====================================================
-       NAV MENU MUNCUL
-    ===================================================== */
 
     .nav-menu.show {
 
@@ -1927,25 +1532,33 @@ button {
     }
 
 
-    /* =====================================================
-       NAV MENU LINK
-    ===================================================== */
-
     .nav-menu a {
 
-        width:
-            100%;
-
         padding:
-            14px;
+            13px 15px;
 
         font-size:
-            14px;
+            12px;
+
+        border-bottom:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.05
+            );
 
     }
 
 
-    /* HAPUS GARIS DESKTOP */
+    .nav-menu a:last-child {
+
+        border-bottom:
+            none;
+
+    }
+
 
     .nav-menu a.active::after {
 
@@ -1955,667 +1568,217 @@ button {
     }
 
 
-    /* =====================================================
-       CLUB LEADER SECTION
-    ===================================================== */
-
-    .club-leader-section {
-
-        padding:
-            65px 20px 55px;
-
-    }
-
-
-    /* SECTION HEADER */
-
-    .section-header {
-
-        margin-bottom:
-            35px;
-
-    }
-
-
-    .section-header h2 {
-
-        font-size:
-            38px;
-
-    }
-
-
-    .section-subtitle {
-
-        font-size:
-            9px;
-
-        letter-spacing:
-            2px;
-
-    }
-
-
-    /* =====================================================
-       CLUB LEADER CARD
-    ===================================================== */
-
-    .club-leader-card {
-
-        padding:
-            25px;
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-
-        gap:
-            20px;
-
-    }
-
-
-    .leader-icon {
-
-        width:
-            60px;
-
-        height:
-            60px;
-
-    }
-
-
-    .leader-name {
-
-        font-size:
-            22px;
-
-    }
-
-
-    .leader-info-container {
-
-        width:
-            100%;
-
-        padding-top:
-            18px;
-
-        border-top:
-            1px solid
-            var(--border);
-
-        gap:
-            30px;
-
-    }
-
-
-    /* =====================================================
-       DIVISION SECTION
-    ===================================================== */
-
-    .division-section {
-
-        padding:
-            65px 20px 80px;
-
-    }
-
-
-    /* =====================================================
-       DIVISION HEADING
-    ===================================================== */
-
-    .division-heading {
-
-        margin-bottom:
-            35px;
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-
-        gap:
-            20px;
-
-    }
-
-
-    .division-title-left h2 {
-
-        font-size:
-            38px;
-
-    }
-
-
-    .division-slogan {
-
-        text-align:
-            left;
-
-    }
-
-
-    /* =====================================================
-       DIVISION CARD MOBILE
-    ===================================================== */
-
-    .division-card {
-
-        padding:
-            20px;
-
-        grid-template-columns:
-            65px
-            minmax(0, 1fr);
-
-        gap:
-            15px;
-
-    }
-
-
-    /* LOGO */
-
-    .division-logo {
-
-        width:
-            60px;
-
-        height:
-            60px;
-
-    }
-
-
-    /* INFO */
-
-    .division-info h3 {
-
-        font-size:
-            17px;
-
-    }
-
-
-    .division-info p {
-
-        font-size:
-            11px;
-
-    }
-
-
-    /* =====================================================
-       DIVISION RIGHT
-    ===================================================== */
-
-    .division-right {
-
-        grid-column:
-            1 / -1;
-
-        width:
-            100%;
-
-        padding-top:
-            15px;
-
-        margin-top:
-            5px;
-
-        border-top:
-            1px solid
-            var(--border);
-
-        justify-content:
-            space-between;
-
-    }
-
-
-    /* STATS */
-
-    .division-stats {
-
-        gap:
-            25px;
-
-    }
-
-
-    /* BUTTON */
-
-    .division-button {
-
-        width:
-            44px;
-
-        height:
-            44px;
-
-    }
-
-
-    /* =====================================================
-       DIVISION DETAILS
-    ===================================================== */
-
-    .division-details {
-
-        padding:
-            22px;
-
-    }
-
-
-    /* LEADER */
-
-    .division-leader {
-
-        padding:
-            20px;
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-
-    }
-
-
-    .division-leader-info {
-
-        flex-wrap:
-            wrap;
-
-        gap:
-            15px;
-
-    }
-
-
-    /* =====================================================
-       MEMBER GRID
-    ===================================================== */
-
-    .member-grid {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
-            12px;
-
-    }
-
-
-    /* =====================================================
-       QUOTE
-    ===================================================== */
-
-    .division-quote {
-
-        margin-top:
-            55px;
-
-    }
-
-
-    .division-quote p {
-
-        font-size:
-            10px;
-
-        letter-spacing:
-            2px;
-
-    }
-
-
-    /* =====================================================
-       FOOTER
-    ===================================================== */
-
-    .footer-content {
-
-        padding:
-            40px 20px;
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-
-    }
-
-
-    .footer-text {
-
-        text-align:
-            left;
-
-    }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-   MAX WIDTH 480PX
-========================================================= */
-
-@media
-(max-width: 480px) {
-
-
-    /* NAVBAR */
-
-    .navbar {
-
-        min-height:
-            68px;
-
-        padding:
-            0 15px;
-
-    }
-
-
-    /* BRAND */
-
-    .brand-logo {
-
-        width:
-            40px;
-
-        height:
-            40px;
-
-    }
-
-
-    .brand {
-
-        gap:
-            10px;
-
-    }
-
-
-    .brand-text h2 {
-
-        font-size:
-            14px;
-
-    }
-
-
-    /* TITIK TIGA */
-
-    .menu-toggle {
-
-        font-size:
-            32px;
-
-    }
-
-
-    /* MENU */
-
-    .nav-menu {
-
-        top:
-            68px;
-
-        right:
-            15px;
-
-        width:
-            200px;
-
-    }
-
-
-    /* =====================================================
-       CLUB LEADER
-    ===================================================== */
-
-    .club-leader-section {
-
-        padding:
-            55px 15px 45px;
-
-    }
-
-
-    .section-header h2 {
-
-        font-size:
-            32px;
-
-    }
-
-
-    .club-leader-card {
-
-        padding:
-            20px;
-
-    }
-
-
-    .leader-name {
-
-        font-size:
-            19px;
-
-    }
-
-
-    .leader-info-container {
-
-        gap:
-            22px;
-
-    }
-
-
-    /* =====================================================
-       DIVISION
-    ===================================================== */
-
-    .division-section {
-
-        padding:
-            55px 15px 70px;
-
-    }
-
-
-    .division-title-left {
-
-        gap:
-            13px;
-
-    }
-
-
-    .title-accent {
-
-        width:
-            4px;
-
-        height:
-            55px;
-
-    }
-
-
-    .division-title-left h2 {
-
-        font-size:
-            32px;
-
-    }
-
-
-    /* CARD */
-
-    .division-card {
-
-        padding:
-            17px;
-
-        grid-template-columns:
-            55px
-            minmax(0, 1fr);
-
-    }
-
-
-    .division-logo {
-
-        width:
-            52px;
-
-        height:
-            52px;
-
-    }
-
-
-    .division-info h3 {
-
-        font-size:
-            15px;
-
-    }
-
-
-    .division-info p {
-
-        font-size:
-            10px;
-
-    }
-
-
-    /* STATS */
-
-    .division-stats {
-
-        gap:
-            18px;
-
-    }
-
-
-    .stat {
-
-        min-width:
-            50px;
-
-    }
-
-
-    .stat-number {
-
-        font-size:
-            18px;
-
-    }
-
-
-    .stat-label {
-
-        font-size:
+    .nav-menu a.active {
+
+        background:
+            rgba(
+                255,
+                107,
+                0,
+                0.1
+            );
+
+        border-radius:
             7px;
 
     }
 
 
-    /* BUTTON */
+    /* HERO */
 
-    .division-button {
+    .division-hero {
 
-        width:
-            40px;
+        min-height:
+            270px;
 
-        height:
-            40px;
+        padding:
+            60px 20px;
+
+    }
+
+
+    .division-hero h1 {
 
         font-size:
-            17px;
+            42px;
+
+    }
+
+
+    /* SECTION */
+
+    .club-leader-section,
+    .division-section {
+
+        padding:
+            60px 20px;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size:
+            34px;
+
+    }
+
+
+    /* CLUB LEADER */
+
+    .club-leader-card {
+
+        flex-direction:
+            column;
+
+        text-align:
+            center;
+
+        padding:
+            30px 20px;
+
+    }
+
+
+    .leader-data {
+
+        justify-content:
+            center;
+
+        gap:
+            35px;
+
+    }
+
+
+    /* DIVISION CARD */
+
+    .division-card {
+
+        flex-wrap:
+            wrap;
+
+        padding:
+            18px;
+
+    }
+
+
+    .division-logo {
+
+        width:
+            60px;
+
+        height:
+            60px;
+
+    }
+
+
+    .division-info {
+
+        min-width:
+            160px;
+
+    }
+
+
+    .division-right {
+
+        width:
+            100%;
+
+        justify-content:
+            space-between;
+
+        margin-top:
+            5px;
 
     }
 
 
     /* DETAILS */
 
-    .division-details {
+    .division-leader {
 
-        padding:
-            17px;
+        flex-direction:
+            column;
 
-    }
-
-
-    /* QUOTE */
-
-    .division-quote {
-
-        margin-top:
-            45px;
+        align-items:
+            flex-start;
 
     }
 
 
-    /* FOOTER */
+    .member-grid {
 
-    .footer-content {
-
-        padding:
-            35px 15px;
+        grid-template-columns:
+            1fr;
 
     }
+
 
 }
 
 
-/* =========================================================
-   MENU ANIMATION
-========================================================= */
+/* =========================================
+   SMALL MOBILE
+========================================= */
 
-@keyframes menuOpen {
+@media (
+    max-width: 420px
+) {
 
-    from {
+    .nav-brand span {
 
-        opacity:
-            0;
-
-        transform:
-            translateY(-10px);
+        display:
+            none;
 
     }
 
 
-    to {
+    .division-hero h1 {
 
-        opacity:
-            1;
+        font-size:
+            36px;
 
-        transform:
-            translateY(0);
+    }
+
+
+    .club-leader-icon {
+
+        width:
+            75px;
+
+        height:
+            75px;
+
+        font-size:
+            35px;
+
+    }
+
+
+    .club-leader-content h3 {
+
+        font-size:
+            22px;
+
+    }
+
+
+    .division-info h3 {
+
+        font-size:
+            15px;
+
+    }
+
+
+    .division-stats {
+
+        gap:
+            20px;
 
     }
 
