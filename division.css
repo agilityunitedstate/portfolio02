@@ -1,24 +1,259 @@
 /* =========================================
-   DIVISION PAGE
+   ROOT
 ========================================= */
 
-.division-page {
-    width: 100%;
-    min-height: 100vh;
+:root {
+
+    --black: #070707;
+
+    --black-light: #0d0d0f;
+
+    --card: #131316;
+
+    --card-light: #18181c;
+
+    --orange: #ff5a1f;
+
+    --orange-dark: #b9360d;
+
+    --white: #f5f5f5;
+
+    --gray: #8d8d95;
+
+    --border: #29292f;
+
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
 
     background:
-        radial-gradient(
-            circle at top,
-            rgba(255, 102, 0, 0.04),
-            transparent 35%
-        ),
-        #08090b;
 
-    color: white;
+        linear-gradient(
+            115deg,
+            transparent 0%,
+            transparent 18%,
+            rgba(255, 90, 31, 0.04) 18.1%,
+            transparent 18.2%,
+            transparent 45%,
+            rgba(255, 90, 31, 0.03) 45.1%,
+            transparent 45.2%
+        ),
+
+        var(--black);
+
+
+    color: var(--white);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    overflow-x: hidden;
+
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+
+    height: 110px;
 
     padding:
-        120px 30px
-        80px;
+        0 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(7, 7, 7, 0.96);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    text-decoration: none;
+
+}
+
+
+.brand-logo {
+
+    width: 64px;
+
+    height: 64px;
+
+    object-fit: contain;
+
+}
+
+
+.brand-text h1 {
+
+    font-size: 27px;
+
+    letter-spacing: 2px;
+
+    color: var(--white);
+
+    font-weight: 800;
+
+}
+
+
+.brand-text h1 span {
+
+    color: var(--orange);
+
+}
+
+
+.brand-text p {
+
+    margin-top: 5px;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: var(--gray);
+
+}
+
+
+/* =========================================
+   NAV MENU
+========================================= */
+
+.nav-menu {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 45px;
+
+}
+
+
+.nav-menu a {
+
+    position: relative;
+
+    color: #bcbcc4;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+
+}
+
+
+.nav-menu a:hover {
+
+    color: var(--white);
+
+}
+
+
+.nav-menu a.active {
+
+    color: var(--orange);
+
+}
+
+
+.nav-menu a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -42px;
+
+    width: 100%;
+
+    height: 2px;
+
+    background: var(--orange);
+
+}
+
+
+/* =========================================
+   MOBILE BUTTON
+========================================= */
+
+.menu-toggle {
+
+    display: none;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--white);
+
+    font-size: 35px;
+
+    cursor: pointer;
+
+    line-height: 1;
+
 }
 
 
@@ -27,74 +262,421 @@
 ========================================= */
 
 .division-hero {
-    max-width: 1000px;
 
-    margin:
-        0 auto
-        55px;
+    padding:
 
-    text-align: center;
+        95px
+        8%
+        70px;
+
+    border-bottom:
+        1px solid var(--border);
+
 }
 
 
-.hero-label {
+.hero-content {
 
-    display: block;
+    max-width: 1200px;
 
-    color: #ff6a00;
+    margin: auto;
 
-    font-family: "Orbitron", sans-serif;
+}
+
+
+.hero-small {
+
+    color: var(--orange);
 
     font-size: 11px;
 
     font-weight: 700;
 
-    letter-spacing: 4px;
+    letter-spacing: 5px;
 
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 
 }
 
 
-.division-hero h1 {
+.hero-content h1 {
 
-    margin: 0;
-
-    font-family: "Orbitron", sans-serif;
+    font-family:
+        "Anton",
+        sans-serif;
 
     font-size: clamp(
-        35px,
-        5vw,
-        60px
+        55px,
+        8vw,
+        100px
     );
 
-    font-weight: 800;
+    letter-spacing: 2px;
 
-    letter-spacing: 3px;
-
-    color: #f4f4f4;
+    font-weight: 400;
 
 }
 
 
-.division-hero h1 span {
+.hero-content h1 span {
 
-    color: #ff6a00;
+    color: var(--orange);
 
 }
 
 
-.division-hero p {
+.hero-description {
 
     margin-top: 18px;
 
-    color: #8d96a0;
+    color: var(--gray);
 
-    font-family: "Rajdhani", sans-serif;
+    font-size: 14px;
 
-    font-size: 16px;
+}
 
-    letter-spacing: 0.5px;
+
+/* =========================================
+   CLUB LEADER
+========================================= */
+
+.club-leader-section {
+
+    padding:
+
+        90px
+        8%;
+
+}
+
+
+.club-leader-wrapper {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 70px;
+
+    align-items: center;
+
+}
+
+
+.section-label {
+
+    color: var(--orange);
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    font-weight: 700;
+
+}
+
+
+.club-leader-info h2 {
+
+    margin-top: 18px;
+
+    font-family:
+        "Anton",
+        sans-serif;
+
+    font-size: 58px;
+
+    font-weight: 400;
+
+    letter-spacing: 1px;
+
+}
+
+
+.club-leader-info h2 span {
+
+    color: var(--orange);
+
+}
+
+
+.title-line {
+
+    width: 70px;
+
+    height: 3px;
+
+    margin:
+        25px
+        0;
+
+    background:
+        var(--orange);
+
+}
+
+
+.club-description {
+
+    max-width: 480px;
+
+    color: var(--gray);
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+}
+
+
+/* =========================================
+   CLUB LEADER CARD
+========================================= */
+
+.club-leader-card {
+
+    min-height: 250px;
+
+    padding: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #16161a,
+            #0c0c0e
+        );
+
+    border:
+        1px solid var(--border);
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+.club-leader-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(255, 90, 31, 0.15),
+            transparent 70%
+        );
+
+    top: -150px;
+
+    right: -100px;
+
+}
+
+
+.leader-crown {
+
+    width: 85px;
+
+    height: 85px;
+
+    min-width: 85px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+
+        1px solid
+        rgba(255, 90, 31, 0.5);
+
+    color: var(--orange);
+
+    font-size: 42px;
+
+}
+
+
+.club-leader-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.leader-position {
+
+    color: var(--gray);
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.club-leader-content h3 {
+
+    margin:
+        12px
+        0
+        25px;
+
+    font-size: 26px;
+
+}
+
+
+.leader-data {
+
+    display: flex;
+
+    gap: 50px;
+
+}
+
+
+.leader-data div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.leader-data span {
+
+    color: var(--gray);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.leader-data strong {
+
+    color: var(--orange);
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================
+   DIVISION SECTION
+========================================= */
+
+.division-section {
+
+    padding:
+
+        70px
+        8%
+        110px;
+
+}
+
+
+.division-heading {
+
+    max-width: 1200px;
+
+    margin:
+        auto
+        auto
+        45px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    gap: 30px;
+
+}
+
+
+.division-heading h2 {
+
+    margin-top: 15px;
+
+    font-family:
+        "Anton",
+        sans-serif;
+
+    font-size: 55px;
+
+    font-weight: 400;
+
+}
+
+
+.division-heading h2 span {
+
+    color: var(--orange);
+
+}
+
+
+.division-description {
+
+    margin-top: 15px;
+
+    color: var(--gray);
+
+    font-size: 13px;
+
+}
+
+
+.division-slogan {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 10px;
+
+    color: var(--gray);
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
 
 }
 
@@ -105,11 +687,13 @@
 
 .division-container {
 
-    width: 100%;
-
-    max-width: 1150px;
+    max-width: 1200px;
 
     margin: auto;
+
+    display: grid;
+
+    gap: 20px;
 
 }
 
@@ -120,344 +704,134 @@
 
 .division-card {
 
-    margin-bottom: 30px;
-
-    border:
-        1px solid
-        rgba(255, 106, 0, 0.45);
-
     background:
+
         linear-gradient(
-            90deg,
-            rgba(255, 106, 0, 0.08),
-            rgba(15, 16, 18, 0.95) 35%
+            135deg,
+            #151518,
+            #0c0c0e
         );
 
-    transition:
-        0.3s ease;
+    border:
+        1px solid var(--border);
 
-    overflow: hidden;
+    transition: 0.3s;
 
 }
 
 
 .division-card:hover {
 
-    border-color: #ff6a00;
+    border-color:
+        var(--orange);
 
-    box-shadow:
-        0 0 25px
-        rgba(255, 106, 0, 0.08);
+    transform:
+        translateY(-3px);
 
 }
 
 
-/* =========================================
-   DIVISION HEADER
-========================================= */
-
-.division-header {
-
-    min-height: 110px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
+.division-card-header {
 
     padding:
-        20px 28px;
-
-    cursor: pointer;
-
-    border-bottom:
-        1px solid
-        transparent;
-
-}
-
-
-.division-card.open
-.division-header {
-
-    border-bottom-color:
-        #25282d;
-
-}
-
-
-/* =========================================
-   LOGO
-========================================= */
-
-.division-logo {
-
-    width: 64px;
-
-    height: 64px;
+        32px
+        35px;
 
     display: flex;
 
-    justify-content: center;
+    justify-content: space-between;
 
     align-items: center;
 
-    border:
-        1px solid
-        #3a4148;
-
-    background:
-        #121416;
-
-    flex-shrink: 0;
-
-    overflow: hidden;
-
-}
-
-
-.division-logo img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: contain;
-
-    padding: 6px;
-
-}
-
-
-.division-logo-placeholder {
-
-    font-family:
-        "Orbitron",
-        sans-serif;
-
-    color: #ff6a00;
-
-    font-size: 18px;
-
-    font-weight: 700;
-
-}
-
-
-/* =========================================
-   DIVISION INFO
-========================================= */
-
-.division-info {
-
-    flex: 1;
+    gap: 30px;
 
 }
 
 
 .division-number {
 
-    display: block;
-
-    color: #ff6a00;
-
-    font-family:
-        "Orbitron",
-        sans-serif;
+    color: var(--orange);
 
     font-size: 10px;
 
-    font-weight: 700;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 7px;
-
-}
-
-
-.division-name {
-
-    margin: 0;
-
-    color: #f2f2f2;
-
-    font-family:
-        "Orbitron",
-        sans-serif;
-
-    font-size: 22px;
+    letter-spacing: 3px;
 
     font-weight: 700;
 
-    letter-spacing: 1px;
+}
+
+
+.division-card-title h3 {
+
+    margin:
+        12px
+        0;
+
+    font-family:
+        "Anton",
+        sans-serif;
+
+    font-size: 30px;
+
+    font-weight: 400;
 
 }
 
 
-.member-count {
+.division-card-title p {
 
-    margin-top: 8px;
-
-    color: #7e8791;
-
-    font-family:
-        "Rajdhani",
-        sans-serif;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    letter-spacing: 1px;
-
-}
-
-
-/* =========================================
-   MEMBER BADGE
-========================================= */
-
-.member-badge {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    padding:
-        10px 16px;
-
-    border:
-        1px solid
-        #2e3339;
-
-    background:
-        #15171a;
-
-    color: #a0a7ae;
-
-    font-family:
-        "Rajdhani",
-        sans-serif;
+    color: var(--gray);
 
     font-size: 12px;
 
-    font-weight: 700;
+}
+
+
+.division-card-title strong {
+
+    color: var(--white);
+
+}
+
+
+.division-total {
+
+    padding:
+        12px
+        18px;
+
+    border:
+        1px solid var(--border);
+
+    color: var(--gray);
+
+    font-size: 10px;
 
     letter-spacing: 1px;
 
 }
 
 
-.member-badge-icon {
+.division-button {
 
-    color: #ff6a00;
+    width: 100%;
 
-}
+    padding: 17px;
 
+    border: none;
 
-/* =========================================
-   OPEN BUTTON
-========================================= */
-
-.open-button {
-
-    width: 40px;
-
-    height: 40px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    margin-left: 15px;
-
-    border:
-        1px solid
-        #30343a;
+    border-top:
+        1px solid var(--border);
 
     background:
-        #181a1d;
+        transparent;
 
-    color: #ff6a00;
+    color: var(--orange);
 
-    font-size: 22px;
-
-    transition:
-        0.3s;
-
-}
-
-
-.division-card.open
-.open-button {
-
-    transform:
-        rotate(180deg);
-
-    border-color:
-        #ff6a00;
-
-}
-
-
-/* =========================================
-   DIVISION CONTENT
-========================================= */
-
-.division-content {
-
-    display: none;
-
-    background:
-        #0d0f11;
-
-}
-
-
-.division-card.open
-.division-content {
-
-    display: block;
-
-}
-
-
-/* =========================================
-   SECTION TITLE
-========================================= */
-
-.division-section {
-
-    padding:
-        28px 30px;
-
-    border-bottom:
-        1px solid
-        #22262b;
-
-}
-
-
-.section-title {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    margin-bottom: 18px;
-
-    color: #8d96a0;
+    cursor: pointer;
 
     font-family:
-        "Orbitron",
+        "Montserrat",
         sans-serif;
 
     font-size: 11px;
@@ -466,152 +840,292 @@
 
     letter-spacing: 2px;
 
-}
-
-
-.section-title span {
-
-    color: #ff6a00;
+    transition: 0.3s;
 
 }
 
 
-/* =========================================
-   LEADER CARD
-========================================= */
-
-.leader-card {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 18px;
-
-    padding:
-        18px;
-
-    border:
-        1px solid
-        #30343a;
+.division-button:hover {
 
     background:
-        #181a1d;
+        var(--orange);
+
+    color:
+        var(--black);
 
 }
 
 
-.leader-avatar {
+.division-button span {
 
-    width: 50px;
-
-    height: 50px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    border:
-        1px solid
-        #7a390d;
-
-    background:
-        rgba(255, 106, 0, 0.05);
-
-    color: #ff6a00;
-
-    font-size: 20px;
-
-}
-
-
-.leader-info {
-
-    flex: 1;
-
-}
-
-
-.leader-label {
-
-    display: block;
-
-    color: #6e7781;
-
-    font-family:
-        "Orbitron",
-        sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 1.5px;
-
-    margin-bottom: 7px;
-
-}
-
-
-.leader-name {
-
-    margin: 0;
-
-    color: white;
-
-    font-family:
-        "Orbitron",
-        sans-serif;
+    margin-left: 10px;
 
     font-size: 16px;
 
 }
 
 
-.leader-id {
+/* =========================================
+   DIVISION DETAIL
+========================================= */
 
-    margin-top: 7px;
+.division-detail {
 
-    color: #777f88;
+    max-width: 1200px;
+
+    margin: auto;
+
+}
+
+
+/* BACK BUTTON */
+
+.back-button {
+
+    margin-bottom: 40px;
+
+    padding:
+        13px
+        20px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        transparent;
+
+    color: var(--gray);
+
+    cursor: pointer;
 
     font-family:
-        "Rajdhani",
+        "Montserrat",
         sans-serif;
 
-    font-size: 12px;
+    font-size: 10px;
 
     letter-spacing: 1px;
+
+    transition: 0.3s;
+
+}
+
+
+.back-button:hover {
+
+    border-color:
+        var(--orange);
+
+    color:
+        var(--orange);
 
 }
 
 
 /* =========================================
-   ROLE BADGE
+   TEAM HEADER
 ========================================= */
 
-.role-badge {
+.team-header {
 
-    min-width: 50px;
+    padding-bottom: 40px;
 
-    padding:
-        8px 12px;
+    border-bottom:
+        1px solid var(--border);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.team-small-title {
+
+    color: var(--orange);
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+}
+
+
+.team-header h2 {
+
+    margin:
+        15px
+        0;
+
+    font-family:
+        "Anton",
+        sans-serif;
+
+    font-size: 55px;
+
+    font-weight: 400;
+
+}
+
+
+.team-description {
+
+    color: var(--gray);
+
+    font-size: 13px;
+
+}
+
+
+.team-count {
 
     text-align: center;
 
-    border:
-        1px solid
-        rgba(255, 106, 0, 0.4);
+    padding: 20px 30px;
 
-    color: #ff6a00;
+    border:
+        1px solid var(--border);
+
+}
+
+
+.team-count strong {
+
+    display: block;
+
+    color: var(--orange);
+
+    font-size: 30px;
+
+}
+
+
+.team-count span {
+
+    font-size: 9px;
+
+    color: var(--gray);
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================================
+   LEADER
+========================================= */
+
+.team-leader-section {
+
+    margin-top: 55px;
+
+}
+
+
+.section-label {
+
+    margin-bottom: 18px;
+
+}
+
+
+.leader-card {
+
+    padding: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
 
     background:
-        rgba(255, 106, 0, 0.04);
+        var(--card);
 
-    font-family:
-        "Orbitron",
-        sans-serif;
+    border:
+        1px solid var(--border);
 
-    font-size: 10px;
+}
+
+
+.leader-avatar {
+
+    width: 70px;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(255, 90, 31, 0.5);
+
+    color:
+        var(--orange);
+
+    font-size: 28px;
+
+}
+
+
+.leader-information {
+
+    flex: 1;
+
+}
+
+
+.leader-information span {
+
+    color: var(--gray);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.leader-information h3 {
+
+    margin:
+        8px
+        0;
+
+    font-size: 18px;
+
+}
+
+
+.leader-information p {
+
+    color: var(--gray);
+
+    font-size: 11px;
+
+}
+
+
+.leader-role {
+
+    padding:
+        10px
+        20px;
+
+    border:
+        1px solid
+        rgba(255, 90, 31, 0.4);
+
+    color:
+        var(--orange);
+
+    font-size: 11px;
 
     font-weight: 700;
 
@@ -619,107 +1133,97 @@
 
 
 /* =========================================
-   TABLE
+   TEAM MEMBERS
 ========================================= */
 
-.member-table {
+.team-members-section {
 
-    width: 100%;
-
-    border-collapse: collapse;
+    margin-top: 60px;
 
 }
 
 
-.member-table th {
+.team-table-header {
+
+    display: grid;
+
+    grid-template-columns:
+
+        50px
+        55px
+        2fr
+        1.2fr
+        100px
+        100px;
 
     padding:
-        14px 10px;
-
-    text-align: left;
-
-    color: #6f7780;
+        18px
+        15px;
 
     border-top:
-        1px solid
-        #25292e;
+        1px solid var(--border);
 
     border-bottom:
-        1px solid
-        #25292e;
+        1px solid var(--border);
 
-    font-family:
-        "Orbitron",
-        sans-serif;
+    color:
+        var(--gray);
 
     font-size: 9px;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
 
 }
 
 
-.member-table td {
+.team-member-row {
 
-    padding:
-        13px 10px;
+    display: grid;
 
-    border-bottom:
-        1px solid
-        #202328;
+    grid-template-columns:
 
-    color: #d7dce1;
-
-    font-family:
-        "Rajdhani",
-        sans-serif;
-
-    font-size: 14px;
-
-}
-
-
-.member-table tr:hover {
-
-    background:
-        rgba(255, 106, 0, 0.025);
-
-}
-
-
-/* =========================================
-   NUMBER
-========================================= */
-
-.member-number {
-
-    color: #66707a;
-
-    font-family:
-        "Orbitron",
-        sans-serif;
-
-    font-size: 10px;
-
-}
-
-
-/* =========================================
-   PLAYER
-========================================= */
-
-.player-cell {
-
-    display: flex;
+        50px
+        55px
+        2fr
+        1.2fr
+        100px
+        100px;
 
     align-items: center;
 
-    gap: 12px;
+    min-height: 80px;
+
+    padding:
+        12px
+        15px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    transition: 0.3s;
 
 }
 
 
-.player-avatar {
+.team-member-row:hover {
+
+    background:
+        rgba(255, 255, 255, 0.02);
+
+}
+
+
+.member-index {
+
+    color:
+        var(--gray);
+
+    font-size: 11px;
+
+}
+
+
+.member-avatar {
 
     width: 36px;
 
@@ -727,103 +1231,89 @@
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
 
-    background:
-        #181b1f;
+    justify-content: center;
+
+    border:
+        1px solid var(--border);
+
+    color:
+        var(--gray);
+
+}
+
+
+.member-nickname {
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.member-game-id {
+
+    color:
+        var(--gray);
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.role-badge {
+
+    display: inline-block;
+
+    min-width: 45px;
+
+    padding:
+        8px
+        12px;
+
+    text-align: center;
 
     border:
         1px solid
-        #2d3238;
+        rgba(255, 90, 31, 0.4);
 
-    color: #7d8790;
-
-    font-size: 14px;
-
-}
-
-
-.player-name {
-
-    color: #f0f2f4;
-
-    font-weight: 700;
-
-}
-
-
-.player-id {
-
-    color: #7b848d;
-
-    font-family:
-        "Orbitron",
-        sans-serif;
+    color:
+        var(--orange);
 
     font-size: 10px;
 
+    font-weight: 700;
+
+}
+
+
+.member-status {
+
+    font-size: 9px;
+
     letter-spacing: 1px;
 
 }
 
 
-/* =========================================
-   STATUS
-========================================= */
-
 .status-leader {
 
-    color: #ff6a00;
-
-    font-family:
-        "Orbitron",
-        sans-serif;
-
-    font-size: 9px;
+    color:
+        var(--orange);
 
     font-weight: 700;
-
-    letter-spacing: 1px;
 
 }
 
 
 .status-member {
 
-    color: #77808a;
-
-    font-family:
-        "Orbitron",
-        sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 1px;
-
-}
-
-
-/* =========================================
-   NO LEADER
-========================================= */
-
-.no-leader {
-
-    padding: 20px;
-
-    border:
-        1px dashed
-        #30343a;
-
-    color: #737b84;
-
-    text-align: center;
-
-    font-family:
-        "Rajdhani",
-        sans-serif;
+    color:
+        var(--gray);
 
 }
 
@@ -832,207 +1322,656 @@
    LOADING
 ========================================= */
 
-.loading-box {
+.loading {
 
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-height: 250px;
-
-    color: #8d96a0;
-
-    font-family:
-        "Orbitron",
-        sans-serif;
-
-    font-size: 12px;
-
-    letter-spacing: 1px;
-
-}
-
-
-.loader {
-
-    width: 35px;
-
-    height: 35px;
-
-    border:
-        3px solid
-        #2a2f35;
-
-    border-top-color:
-        #ff6a00;
-
-    border-radius: 50%;
-
-    animation:
-        spin 0.8s linear infinite;
-
-    margin-bottom: 20px;
-
-}
-
-
-@keyframes spin {
-
-    to {
-
-        transform:
-            rotate(360deg);
-
-    }
-
-}
-
-
-/* =========================================
-   ERROR
-========================================= */
-
-.error-box {
-
-    padding: 30px;
+    padding: 70px;
 
     text-align: center;
 
+    color:
+        var(--gray);
+
     border:
-        1px solid
-        #6d2b2b;
+        1px solid var(--border);
 
-    background:
-        rgba(255, 0, 0, 0.03);
+}
 
-    color: #ff7777;
 
-    font-family:
-        "Rajdhani",
-        sans-serif;
+.error {
+
+    color:
+        #ff8058;
 
 }
 
 
 /* =========================================
-   RESPONSIVE
+   QUOTE
 ========================================= */
 
-@media screen and (max-width: 768px) {
+.division-quote {
 
-    .division-page {
+    margin-top: 80px;
+
+    text-align: center;
+
+}
+
+
+.division-quote p {
+
+    color:
+        var(--orange);
+
+    font-size: 12px;
+
+    letter-spacing: 8px;
+
+}
+
+
+.division-quote div {
+
+    width: 120px;
+
+    height: 2px;
+
+    margin:
+        30px
+        auto
+        0;
+
+    background:
+        var(--orange);
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+
+    padding:
+
+        55px
+        8%
+        25px;
+
+    border-top:
+        1px solid var(--border);
+
+    background:
+        #080809;
+
+}
+
+
+.footer-brand {
+
+    max-width: 1200px;
+
+    margin:
+        auto
+        auto
+        45px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.footer-brand img {
+
+    width: 60px;
+
+    height: 60px;
+
+    object-fit: contain;
+
+}
+
+
+.footer-brand h2 {
+
+    font-size: 22px;
+
+}
+
+
+.footer-brand h2 span {
+
+    color:
+        var(--orange);
+
+}
+
+
+.footer-brand p {
+
+    margin-top: 5px;
+
+    color:
+        var(--gray);
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.footer-bottom {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding-top: 25px;
+
+    border-top:
+        1px solid var(--border);
+
+    text-align: center;
+
+    color:
+        #55555d;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (
+    max-width: 900px
+) {
+
+
+    .navbar {
 
         padding:
-            100px 15px
-            60px;
+            0 30px;
+
+        height:
+            85px;
 
     }
 
 
-    .division-header {
+    .nav-menu {
 
-        padding:
-            18px 15px;
-
-        gap: 12px;
+        gap:
+            25px;
 
     }
 
 
-    .division-name {
+    .club-leader-wrapper {
 
-        font-size: 15px;
+        grid-template-columns:
+            1fr;
+
+        gap:
+            45px;
 
     }
 
 
-    .member-badge {
+    .division-heading {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .division-slogan {
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .team-table-header,
+
+    .team-member-row {
+
+        grid-template-columns:
+
+            40px
+            45px
+            1.5fr
+            1fr
+            70px;
+
+    }
+
+
+    .team-table-header div:last-child,
+
+    .team-member-row div:last-child {
 
         display: none;
 
     }
 
+}
 
-    .open-button {
 
-        margin-left: 0;
+/* =========================================
+   MOBILE
+========================================= */
 
-        flex-shrink: 0;
+@media (
+    max-width: 700px
+) {
+
+
+    /* NAVBAR */
+
+    .navbar {
+
+        height:
+            78px;
+
+        padding:
+            0 20px;
+
+        position:
+            sticky;
 
     }
 
+
+    .brand-logo {
+
+        width:
+            48px;
+
+        height:
+            48px;
+
+    }
+
+
+    .brand-text h1 {
+
+        font-size:
+            19px;
+
+    }
+
+
+    .brand-text p {
+
+        font-size:
+            7px;
+
+        letter-spacing:
+            2px;
+
+    }
+
+
+    /* HIDE NAV */
+
+    .nav-menu {
+
+        display:
+            none;
+
+        position:
+            absolute;
+
+        top:
+            78px;
+
+        right:
+            15px;
+
+        width:
+            210px;
+
+        padding:
+            15px;
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            0;
+
+        background:
+            #111114;
+
+        border:
+            1px solid var(--border);
+
+        box-shadow:
+            0 20px 40px
+            rgba(0, 0, 0, 0.5);
+
+    }
+
+
+    /* SHOW MENU */
+
+    .nav-menu.show {
+
+        display:
+            flex;
+
+    }
+
+
+    .nav-menu a {
+
+        width:
+            100%;
+
+        padding:
+            15px;
+
+        border-bottom:
+            1px solid var(--border);
+
+    }
+
+
+    .nav-menu a:last-child {
+
+        border-bottom:
+            none;
+
+    }
+
+
+    .nav-menu a.active::after {
+
+        display:
+            none;
+
+    }
+
+
+    /* THREE DOT BUTTON */
+
+    .menu-toggle {
+
+        display:
+            block;
+
+    }
+
+
+    /* HERO */
+
+    .division-hero {
+
+        padding:
+
+            65px
+            25px
+            55px;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size:
+            54px;
+
+    }
+
+
+    /* CLUB LEADER */
+
+    .club-leader-section {
+
+        padding:
+
+            65px
+            25px;
+
+    }
+
+
+    .club-leader-info h2 {
+
+        font-size:
+            45px;
+
+    }
+
+
+    .club-leader-card {
+
+        padding:
+            25px;
+
+        align-items:
+            flex-start;
+
+        gap:
+            20px;
+
+    }
+
+
+    .leader-crown {
+
+        width:
+            60px;
+
+        height:
+            60px;
+
+        min-width:
+            60px;
+
+        font-size:
+            28px;
+
+    }
+
+
+    .club-leader-content h3 {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .leader-data {
+
+        gap:
+            20px;
+
+    }
+
+
+    /* DIVISION */
 
     .division-section {
 
         padding:
-            22px 15px;
+
+            60px
+            25px
+            80px;
+
+    }
+
+
+    .division-heading h2 {
+
+        font-size:
+            45px;
+
+    }
+
+
+    .division-card-header {
+
+        padding:
+            25px;
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .division-card-title h3 {
+
+        font-size:
+            25px;
+
+    }
+
+
+    /* DETAIL */
+
+    .team-header {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            25px;
+
+    }
+
+
+    .team-header h2 {
+
+        font-size:
+            42px;
+
+    }
+
+
+    .team-count {
+
+        text-align:
+            left;
 
     }
 
 
     .leader-card {
 
-        gap: 12px;
+        flex-wrap:
+            wrap;
+
+        padding:
+            20px;
 
     }
 
 
-    .member-table {
+    .leader-role {
 
-        min-width: 600px;
-
-    }
-
-
-    .table-wrapper {
-
-        overflow-x: auto;
-
-    }
-
-}
-
-
-@media screen and (max-width: 500px) {
-
-    .division-logo {
-
-        width: 50px;
-
-        height: 50px;
+        margin-left:
+            95px;
 
     }
 
 
-    .division-number {
+    /* TABLE MOBILE */
 
-        font-size: 8px;
+    .team-table-header {
 
-    }
-
-
-    .member-count {
-
-        font-size: 11px;
+        display:
+            none;
 
     }
 
 
-    .leader-name {
+    .team-member-row {
 
-        font-size: 13px;
+        grid-template-columns:
+
+            35px
+            40px
+            1fr
+            65px;
+
+        gap:
+            10px;
+
+        min-height:
+            75px;
 
     }
 
 
-    .leader-card {
+    .member-game-id {
 
-        flex-wrap: wrap;
+        display:
+            none;
 
     }
+
+
+    .member-status {
+
+        display:
+            none;
+
+    }
+
+
+    /* QUOTE */
+
+    .division-quote p {
+
+        font-size:
+            9px;
+
+        letter-spacing:
+            4px;
+
+    }
+
+
+    /* FOOTER */
+
+    .footer {
+
+        padding:
+
+            45px
+            25px
+            20px;
+
+    }
+
 
 }
