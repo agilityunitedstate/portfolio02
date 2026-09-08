@@ -18,7 +18,7 @@ gviz/tq?tqx=out:json
 
 
 const GOOGLE_SHEET_URL =
-    "https://docs.google.com/spreadsheets/d/1f9i0QV2rZziybEitByrDDYTQijLYKoYIHFpGQZXO9gc/edit?usp=sharing";
+    "https://docs.google.com/spreadsheets/d/10wGKpvPXnrQyALarmxPxlFubAluEOkciX-FDPrR2R9A/gviz/tq?tqx=out:json";
 
 
 /* =========================================
