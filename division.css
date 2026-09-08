@@ -1,3 +1,746 @@
+ganti kolom sheetnya ada nickname, id, role, division dengan nama division seperti  agility shinigami, agility phoniex contohnya kemudian status leader dan member. lalu setiap kita klik tombol per divisi akan muncul leader siapa dan membernya siapa seperti tampilan atas
+hari ini 21.30
+script(2).js
+JavaScript
+division(7).css
+File
+division(9).js
+JavaScript
+divisions(5).html
+File
+perhatikan tab2nya tidak seperti member.html tidak ada titik tiga di hp dan mengapa gambar tampilan di laptop makin kiri letak tombolnya. buatkan koding full dan apa yang salah
+
+Teks yang ditempel (1)(20260908-144049).txt
+Dokumen
+
+ini division.css yang saat ini saya pakai saya ingin ada titik tiganya tetapi tidak muncul di hp kemudian letak tombol tab2nya tidak seperti di member.html berikut tampilannya Divisions | Agility United
+
+Saya menemukan penyebab utama kenapa titik tiga tidak muncul di HP. Di CSS kamu terdapat dua aturan mobile yang saling bertabrakan.
+
+Salah satu CSS lama mengatakan:
+
+@media screen and (max-width: 768px) {
+
+    .nav-menu {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+
+}
+
+Ini membuat navbar di HP tetap tampil horizontal, seperti tab-tab biasa. Sementara CSS lain mencoba menyembunyikan .nav-menu dan menampilkan .menu-toggle. Akibatnya CSS saling bertabrakan.
+
+Selain itu, dari HTML kamu tombol titik tiga sebenarnya sudah ada:
+
+<button
+    class="menu-toggle"
+    id="menuToggle"
+>
+    ⋮
+</button>
+
+Jadi kita tidak perlu mengubah desain utama division kamu.
+
+Solusi
+1. Hapus CSS mobile navbar lama
+
+Cari bagian seperti ini di division.css:
+
+/* NAV MENU MOBILE */
+
+.nav-menu {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: flex-start;
+
+    gap: 25px;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    white-space: nowrap;
+
+}
+
+Hapus bagian navbar mobile tersebut, terutama:
+
+.nav-menu {
+    display: flex;
+}
+
+Karena itu yang membuat titik tiga kalah.
+
+2. Tambahkan CSS ini PALING BAWAH division.css
+
+Jangan ubah CSS desain division yang sekarang. Cukup tempel ini paling bawah:
+
+/* =========================================================
+   FINAL MOBILE NAVBAR
+   TITIK TIGA AGILITY UNITED
+   TEMPEL PALING BAWAH DIVISION.CSS
+========================================================= */
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+.menu-toggle {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media screen and (max-width: 768px) {
+
+
+    /* =====================================
+       NAVBAR
+    ===================================== */
+
+    .navbar {
+
+        position: relative !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+
+        justify-content: space-between !important;
+
+        flex-wrap: nowrap !important;
+
+    }
+
+
+    /* Jika menggunakan nav-container */
+
+    .nav-container {
+
+        width: 100%;
+
+        display: flex !important;
+
+        align-items: center !important;
+
+        justify-content: space-between !important;
+
+        position: relative;
+
+    }
+
+
+    /* =====================================
+       TOMBOL TITIK TIGA
+    ===================================== */
+
+    .menu-toggle {
+
+        display: flex !important;
+
+        align-items: center;
+
+        justify-content: center;
+
+        margin-left: auto;
+
+        width: 45px;
+
+        height: 45px;
+
+        background: #111318;
+
+        border: 1px solid #ff6b1a;
+
+        border-radius: 10px;
+
+        color: #ff6b1a;
+
+        font-size: 28px;
+
+        font-weight: bold;
+
+        line-height: 1;
+
+        cursor: pointer;
+
+        z-index: 9999;
+
+        transition: 0.3s ease;
+
+    }
+
+
+    .menu-toggle:hover {
+
+        background: #ff6b1a;
+
+        color: #ffffff;
+
+    }
+
+
+    /* =====================================
+       MENU AWALNYA DISEMBUNYIKAN
+    ===================================== */
+
+    .nav-menu {
+
+        display: none !important;
+
+        position: absolute !important;
+
+        top: calc(100% + 10px) !important;
+
+        right: 0 !important;
+
+        left: auto !important;
+
+        width: 220px !important;
+
+        height: auto !important;
+
+        background: #111318 !important;
+
+        border: 1px solid #2b3038;
+
+        border-top: 3px solid #ff6b1a;
+
+        border-radius: 0 0 12px 12px;
+
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+
+        justify-content: flex-start !important;
+
+        gap: 0 !important;
+
+        padding: 8px 0 !important;
+
+        overflow: hidden !important;
+
+        white-space: normal !important;
+
+        z-index: 9998;
+
+        box-shadow:
+
+            0 15px 40px
+            rgba(0, 0, 0, 0.55);
+
+    }
+
+
+    /* =====================================
+       MENU MUNCUL SAAT DIKLIK
+    ===================================== */
+
+    .nav-menu.show {
+
+        display: flex !important;
+
+        animation:
+
+            agilityMenuOpen
+            0.3s ease;
+
+    }
+
+
+    /* =====================================
+       LINK
+    ===================================== */
+
+    .nav-menu a {
+
+        width: 100% !important;
+
+        display: block !important;
+
+        padding: 15px 22px !important;
+
+        margin: 0 !important;
+
+        text-align: left !important;
+
+        font-size: 14px !important;
+
+        color: #c8ccd4;
+
+        border-bottom:
+
+            1px solid
+            rgba(255,255,255,0.06);
+
+    }
+
+
+    .nav-menu a:last-child {
+
+        border-bottom: none;
+
+    }
+
+
+    /* HOVER */
+
+    .nav-menu a:hover {
+
+        background:
+
+            rgba(255,107,26,0.08);
+
+        color: #ff6b1a;
+
+    }
+
+
+    /* =====================================
+       ACTIVE MENU
+    ===================================== */
+
+    .nav-menu a.active {
+
+        color: #ff6b1a;
+
+        background:
+
+            rgba(255,107,26,0.10);
+
+        border-left:
+
+            3px solid #ff6b1a;
+
+    }
+
+
+    /* HAPUS GARIS ACTIVE DESKTOP */
+
+    .nav-menu a.active::after {
+
+        display: none !important;
+
+    }
+
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes agilityMenuOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+
+            translateY(-10px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+
+            translateY(0);
+
+    }
+
+}
+3. Perbaiki sedikit HTML navbar
+
+Dari file HTML yang kamu gunakan, saya melihat ada struktur:
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <!-- Logo -->
+
+        ...
+
+        <nav class="nav-menu" id="navMenu">
+
+        ...
+
+        </nav>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+        >
+            ⋮
+        </button>
+
+    </header>
+
+Masalahnya adalah <div class="nav-container"> belum ditutup sebelum </header>.
+
+Harusnya:
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+
+            <img
+                src="assets/logo.png"
+                alt="Agility United"
+            >
+
+            <div class="logo-text">
+
+                <span>AGILITY</span>
+
+                <strong>UNITED</strong>
+
+                <small>
+                    ESPORTS COMMUNITY
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVBAR -->
+
+        <nav
+            class="nav-menu"
+            id="navMenu"
+        >
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="members.html">
+                Members
+            </a>
+
+            <a
+                href="divisions.html"
+                class="active"
+            >
+                Divisions
+            </a>
+
+            <a href="achivement.html">
+                Achievement
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <!-- TITIK TIGA -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Buka Menu"
+        >
+            ⋮
+        </button>
+
+
+    </div>
+
+</header>
+
+Saya juga menemukan di versi HTML sebelumnya bahwa link Members masih diberi active dan link Divisions penulisannya salah. Ini perlu diperbaiki agar tab Divisions yang aktif.
+
+4. JavaScript
+
+Pastikan kode ini ada, cukup satu kali saja:
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const navMenu =
+    document.getElementById("navMenu");
+
+
+if (menuToggle && navMenu) {
+
+    menuToggle.addEventListener(
+        "click",
+        function () {
+
+            navMenu.classList.toggle(
+                "show"
+            );
+
+        }
+    );
+
+}
+Mengenai posisi tombol/card divisi yang berbeda dengan Member
+
+Kemungkinan masalahnya ada pada CSS layout .division-card, .division-stats, dan .arrow-btn, terutama karena pada ukuran laptop/tablet terdapat aturan:
+
+.division-card {
+    grid-template-columns:
+        150px
+        1fr;
+}
+
+sementara .arrow-btn menggunakan:
+
+.arrow-btn {
+    grid-column: 2;
+    justify-self: end;
+}
+
+Itu bisa membuat tombol panah/layout card berubah posisi pada ukuran layar tertentu.
+
+Jadi saran saya: gunakan CSS titik tiga di atas terlebih dahulu. Untuk masalah peletakan tombol divisi agar sama rapi seperti Member.html, kirimkan tampilan division.css lengkap yang sekarang atau file CSS-nya lagi, nanti saya perbaiki hanya bagian division card dan tombolnya tanpa mengubah desain yang sudah kamu suka.
+
+Teks yang ditempel (1)(20260908-144444).txt
+Dokumen
+ dimana yang diganti
+
+Kalau maksud kamu "dimana yang diganti?", jangan ganti seluruh division.css. Karena kamu ingin mempertahankan desain sekarang, lakukan hanya 2 bagian berikut.
+
+1. Cari CSS mobile navbar lama di division.css
+
+Tekan Ctrl + F, lalu cari:
+
+@media screen and (max-width: 768px)
+
+Di dalam bagian tersebut, cari .nav-menu yang masih seperti ini atau mirip:
+
+.nav-menu {
+    display: flex;
+    overflow-x: auto;
+}
+
+atau:
+
+.nav-menu {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+Hapus bagian .nav-menu mobile tersebut
+
+Karena itulah yang membuat menu tab tetap muncul horizontal di HP.
+
+2. Tempel kode baru paling bawah division.css
+
+Scroll sampai baris paling bawah, lalu tempel kode ini:
+
+/* =========================================
+   MOBILE NAVBAR TITIK TIGA
+   TAMBAHKAN PALING BAWAH
+========================================= */
+
+.menu-toggle {
+    display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    /* TOMBOL TITIK TIGA MUNCUL */
+
+    .menu-toggle {
+
+        display: flex !important;
+
+        align-items: center;
+        justify-content: center;
+
+        margin-left: auto;
+
+        width: 45px;
+        height: 45px;
+
+        background: #111318;
+
+        border: 1px solid #ff6600;
+
+        border-radius: 10px;
+
+        color: #ff6600;
+
+        font-size: 28px;
+
+        cursor: pointer;
+
+        z-index: 9999;
+
+    }
+
+
+    /* MENU DISEMBUNYIKAN */
+
+    .nav-menu {
+
+        display: none !important;
+
+        position: absolute !important;
+
+        top: 75px !important;
+        right: 15px !important;
+        left: auto !important;
+
+        width: 220px !important;
+
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+
+        gap: 0 !important;
+
+        padding: 10px 0 !important;
+
+        background: #111318 !important;
+
+        border: 1px solid #333;
+
+        border-top: 3px solid #ff6600;
+
+        border-radius: 10px;
+
+        overflow: hidden !important;
+
+        z-index: 9998;
+
+    }
+
+
+    /* KETIKA TITIK TIGA DIKLIK */
+
+    .nav-menu.show {
+
+        display: flex !important;
+
+    }
+
+
+    /* LINK MENU */
+
+    .nav-menu a {
+
+        width: 100% !important;
+
+        padding: 15px 20px !important;
+
+        margin: 0 !important;
+
+        text-align: left !important;
+
+    }
+
+}
+3. Yang paling penting di divisions.html
+
+Cari tombol titik tiga:
+
+<button
+    class="menu-toggle"
+    id="menuToggle"
+>
+    ⋮
+</button>
+
+Pastikan tombol tersebut di luar:
+
+<nav class="nav-menu">
+
+Contohnya harus seperti ini:
+
+<nav
+    class="nav-menu"
+    id="navMenu"
+>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="members.html">Members</a>
+
+    <a
+        href="divisions.html"
+        class="active"
+    >
+        Divisions
+    </a>
+
+    <a href="achivement.html">
+        Achievement
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
+
+</nav>
+
+
+<!-- TOMBOL TITIK TIGA DI LUAR NAV -->
+
+<button
+    class="menu-toggle"
+    id="menuToggle"
+>
+    ⋮
+</button>
+Jadi singkatnya
+❌ Jangan ganti semua CSS.
+✅ Yang dilakukan:
+
+A. Hapus CSS .nav-menu mobile lama yang membuat:
+
+display: flex;
+overflow-x: auto;
+
+B. Tempel CSS titik tiga yang saya berikan di paling bawah division.css.
+
+C. Pastikan tombol menu-toggle berada di luar <nav> di divisions.html.
+
+Kalau kamu mau, saya juga bisa menunjukkan langsung bagian mana yang harus dihapus dan diganti dari division.css kamu yang sekarang, sehingga kamu tidak perlu mencari sendiri.
+
+buatkan fullnya dan tatak letak kodingnya untuk menyesuaikan di laptop dan hp 
+
+Baik. Saya buatkan full division.css yang responsif untuk laptop dan HP, dengan tema hitam + orange, navbar desktop rapi, dan di HP berubah menjadi tombol titik tiga (⋮).
+
+CSS ini disesuaikan dengan struktur divisions.html dan division.js yang sebelumnya kamu gunakan. Ganti seluruh isi division.css lama dengan kode di bawah ini.
+
+division.css
 /* =========================================================
    AGILITY UNITED - DIVISION.CSS
    RESPONSIVE LAPTOP + TABLET + HP
@@ -2471,3 +3214,2707 @@ a {
     }
 
 }
+Penting: Struktur Navbar di divisions.html
+
+Agar titik tiga ini benar-benar muncul di HP, navbar HTML kamu harus seperti ini:
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <!-- LOGO -->
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+
+            <img
+                src="assets/logo.png"
+                alt="Agility United"
+            >
+
+            <div class="logo-text">
+
+                <span>
+                    AGILITY
+                </span>
+
+                <strong>
+                    UNITED
+                </strong>
+
+                <small>
+                    MORE THAN A CLAN
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav
+            class="nav-menu"
+            id="navMenu"
+        >
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="member.html">
+                Members
+            </a>
+
+            <a
+                href="divisions.html"
+                class="active"
+            >
+                Divisions
+            </a>
+
+            <a href="achivement.html">
+                Achievement
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <!-- TITIK TIGA -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Buka Menu"
+        >
+            ⋮
+        </button>
+
+
+    </div>
+
+</header>
+JavaScript untuk titik tiga
+
+Letakkan sebelum </body>:
+
+<script>
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const navMenu =
+        document.getElementById("navMenu");
+
+
+    if (menuToggle && navMenu) {
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+
+                navMenu.classList.toggle("show");
+
+            }
+        );
+
+    }
+
+</script>
+Hasil responsive-nya:
+
+💻 Laptop / Desktop
+
+[LOGO]       Home About Members Divisions Achievement Contact
+
+📱 HP
+
+[LOGO]                                      [ ⋮ ]
+
+Saat ⋮ ditekan:
+
+                    Home
+                    About
+                    Members
+                    Divisions
+                    Achievement
+                    Contact
+
+Dan bagian card divisi juga otomatis berubah:
+
+Laptop → logo | informasi | jumlah member | tombol.
+Tablet → tetap rapi dan proporsional.
+HP → logo + nama di atas, jumlah anggota di bawah, tombol tetap di kanan.
+
+Jika setelah mengganti CSS ini card dari division.js masih tidak sesuai, kemungkinan nama class yang dibuat JavaScript kamu berbeda dengan .division-card, .division-button, atau .member-card. Kirimkan division.js yang sekarang, lalu saya bisa menyesuaikan CSS dan JS agar tampilannya benar-benar sinkron.
+
+/* =========================================================
+AGILITY UNITED
+DIVISION PAGE
+========================================================= */
+
+/* =========================================================
+CONTAINER
+========================================================= */
+
+.division-container {
+
+width:
+    min(
+        1150px,
+        calc(100% - 50px)
+    );
+
+margin:
+    0 auto;
+
+}
+
+/* =========================================================
+HERO
+========================================================= */
+
+.division-hero {
+
+min-height:
+    55vh;
+
+position:
+    relative;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+text-align:
+    center;
+
+padding:
+    150px 25px 90px;
+
+overflow:
+    hidden;
+
+background:
+    radial-gradient(
+        circle at center,
+        rgba(
+            255,
+            107,
+            0,
+            0.16
+        ),
+        transparent 50%
+    ),
+    #080808;
+
+}
+
+.division-hero::before {
+
+content:
+    "";
+
+position:
+    absolute;
+
+inset:
+    0;
+
+background-image:
+
+    linear-gradient(
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        ) 1px,
+        transparent 1px
+    ),
+
+    linear-gradient(
+        90deg,
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        ) 1px,
+        transparent 1px
+    );
+
+background-size:
+    45px 45px;
+
+opacity:
+    0.55;
+
+pointer-events:
+    none;
+
+}
+
+.division-hero-overlay {
+
+position:
+    absolute;
+
+inset:
+    0;
+
+background:
+    radial-gradient(
+        circle at center,
+        rgba(
+            255,
+            107,
+            0,
+            0.14
+        ),
+        transparent 55%
+    );
+
+}
+
+.division-hero-content {
+
+position:
+    relative;
+
+z-index:
+    2;
+
+max-width:
+    800px;
+
+}
+
+.division-eyebrow {
+
+display:
+    inline-block;
+
+margin-bottom:
+    18px;
+
+color:
+    var(--orange);
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    11px;
+
+font-weight:
+    700;
+
+letter-spacing:
+    4px;
+
+}
+
+.division-hero h1 {
+
+margin:
+    0;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    clamp(
+        42px,
+        7vw,
+        82px
+    );
+
+line-height:
+    1.05;
+
+font-weight:
+    900;
+
+letter-spacing:
+    2px;
+
+}
+
+.division-hero h1 span {
+
+color:
+    var(--orange);
+
+}
+
+.division-hero p {
+
+max-width:
+    650px;
+
+margin:
+    25px auto 0;
+
+color:
+    #777;
+
+font-size:
+    14px;
+
+line-height:
+    1.9;
+
+}
+
+/* =========================================================
+SECTIONS
+========================================================= */
+
+.club-leader-section,
+.teams-section {
+
+padding:
+    100px 0;
+
+}
+
+.club-leader-section {
+
+background:
+    #0b0b0b;
+
+}
+
+.teams-section {
+
+background:
+    #080808;
+
+}
+
+/* =========================================================
+SECTION HEADING
+========================================================= */
+
+.section-heading {
+
+margin-bottom:
+    45px;
+
+}
+
+.section-heading > span {
+
+display:
+    block;
+
+margin-bottom:
+    10px;
+
+color:
+    var(--orange);
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    10px;
+
+font-weight:
+    700;
+
+letter-spacing:
+    3px;
+
+}
+
+.section-heading h2 {
+
+margin:
+    0;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    clamp(
+        30px,
+        4vw,
+        48px
+    );
+
+line-height:
+    1.1;
+
+}
+
+.section-heading h2 strong {
+
+color:
+    var(--orange);
+
+}
+
+.section-heading p {
+
+max-width:
+    600px;
+
+margin-top:
+    15px;
+
+color:
+    #666;
+
+font-size:
+    13px;
+
+line-height:
+    1.8;
+
+}
+
+/* =========================================================
+CLUB LEADER
+========================================================= */
+
+.club-leader-card {
+
+position:
+    relative;
+
+display:
+    grid;
+
+grid-template-columns:
+    60px
+    75px
+    1fr
+    auto;
+
+align-items:
+    center;
+
+gap:
+    25px;
+
+min-height:
+    170px;
+
+padding:
+    30px 35px;
+
+background:
+    linear-gradient(
+        135deg,
+        #151515,
+        #0d0d0d
+    );
+
+border:
+    1px solid #292929;
+
+overflow:
+    hidden;
+
+}
+
+.club-leader-card::before {
+
+content:
+    "";
+
+position:
+    absolute;
+
+top:
+    0;
+
+bottom:
+    0;
+
+left:
+    0;
+
+width:
+    3px;
+
+background:
+    var(--orange);
+
+}
+
+.leader-number {
+
+color:
+    #444;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    14px;
+
+}
+
+.leader-icon {
+
+width:
+    68px;
+
+height:
+    68px;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+background:
+    rgba(
+        255,
+        107,
+        0,
+        0.06
+    );
+
+border:
+    1px solid
+    rgba(
+        255,
+        107,
+        0,
+        0.35
+    );
+
+color:
+    var(--orange);
+
+font-size:
+    22px;
+
+}
+
+.leader-main {
+
+position:
+    relative;
+
+z-index:
+    2;
+
+}
+
+.leader-label {
+
+display:
+    block;
+
+margin-bottom:
+    7px;
+
+color:
+    var(--orange);
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    9px;
+
+font-weight:
+    700;
+
+letter-spacing:
+    2px;
+
+}
+
+.leader-main h3 {
+
+margin:
+    0;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    25px;
+
+}
+
+.leader-main p {
+
+margin-top:
+    5px;
+
+color:
+    #666;
+
+font-size:
+    12px;
+
+}
+
+.leader-info {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    35px;
+
+}
+
+.leader-info-item {
+
+display:
+    flex;
+
+flex-direction:
+    column;
+
+gap:
+    7px;
+
+}
+
+.leader-info-item span {
+
+color:
+    #555;
+
+font-size:
+    9px;
+
+font-weight:
+    700;
+
+letter-spacing:
+    1.5px;
+
+}
+
+.leader-info-item strong {
+
+color:
+    #ddd;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    13px;
+
+}
+
+.leader-role-badge {
+
+display:
+    inline-flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+min-width:
+    44px;
+
+height:
+    32px;
+
+padding:
+    0 12px;
+
+background:
+    rgba(
+        255,
+        107,
+        0,
+        0.08
+    );
+
+border:
+    1px solid
+    rgba(
+        255,
+        107,
+        0,
+        0.4
+    );
+
+color:
+    var(--orange);
+
+}
+
+/* =========================================================
+DIVISION LIST
+========================================================= */
+
+#divisions-container {
+
+display:
+    flex;
+
+flex-direction:
+    column;
+
+gap:
+    22px;
+
+}
+
+/* =========================================================
+DIVISION CARD
+========================================================= */
+
+.division-card {
+
+position:
+    relative;
+
+background:
+    #101010;
+
+border:
+    1px solid #242424;
+
+overflow:
+    hidden;
+
+transition:
+    border-color
+    0.3s ease,
+    box-shadow
+    0.3s ease,
+    transform
+    0.3s ease;
+
+}
+
+.division-card {
+
+border-color:
+    rgba(
+        255,
+        107,
+        0,
+        0.35
+    );
+
+box-shadow:
+    0 15px 40px
+    rgba(
+        0,
+        0,
+        0,
+        0.35
+    );
+
+}
+
+.division-card.open {
+
+border-color:
+    rgba(
+        255,
+        107,
+        0,
+        0.5
+    );
+
+}
+
+/* =========================================================
+DIVISION HEADER
+========================================================= */
+
+.division-header {
+
+width:
+    100%;
+
+min-height:
+    105px;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    space-between;
+
+gap:
+    20px;
+
+padding:
+    20px 25px;
+
+background:
+    linear-gradient(
+        90deg,
+        rgba(
+            255,
+            107,
+            0,
+            0.07
+        ),
+        transparent 60%
+    );
+
+border:
+    0;
+
+border-bottom:
+    1px solid #202020;
+
+color:
+    white;
+
+text-align:
+    left;
+
+cursor:
+    pointer;
+
+font-family:
+    inherit;
+
+}
+
+.division-header-left {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    20px;
+
+min-width:
+    0;
+
+}
+
+/* =========================================================
+DIVISION LOGO
+========================================================= */
+
+.division-logo {
+
+width:
+    68px;
+
+height:
+    68px;
+
+flex-shrink:
+    0;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+background:
+    #0b0b0b;
+
+border:
+    1px solid #303030;
+
+overflow:
+    hidden;
+
+}
+
+.division-logo img {
+
+width:
+    100%;
+
+height:
+    100%;
+
+object-fit:
+    contain;
+
+padding:
+    7px;
+
+}
+
+.division-logo i {
+
+color:
+    var(--orange);
+
+font-size:
+    22px;
+
+}
+
+/* =========================================================
+DIVISION INFO
+========================================================= */
+
+.division-info {
+
+min-width:
+    0;
+
+}
+
+.division-number {
+
+display:
+    block;
+
+margin-bottom:
+    6px;
+
+color:
+    var(--orange);
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    10px;
+
+font-weight:
+    700;
+
+letter-spacing:
+    2px;
+
+}
+
+.division-name {
+
+margin:
+    0;
+
+color:
+    white;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    21px;
+
+line-height:
+    1.25;
+
+}
+
+.division-description {
+
+margin:
+    7px 0 0;
+
+color:
+    #555;
+
+font-size:
+    11px;
+
+}
+
+/* =========================================================
+HEADER RIGHT
+========================================================= */
+
+.division-header-right {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    15px;
+
+flex-shrink:
+    0;
+
+}
+
+.division-member-count {
+
+display:
+    inline-flex;
+
+align-items:
+    center;
+
+gap:
+    7px;
+
+padding:
+    8px 12px;
+
+background:
+    #171717;
+
+border:
+    1px solid #292929;
+
+color:
+    #777;
+
+font-size:
+    9px;
+
+font-weight:
+    700;
+
+}
+
+.division-member-count i {
+
+color:
+    var(--orange);
+
+}
+
+.division-arrow {
+
+width:
+    38px;
+
+height:
+    38px;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+background:
+    #171717;
+
+border:
+    1px solid #292929;
+
+color:
+    #555;
+
+transition:
+    transform
+    0.3s ease,
+    color
+    0.3s ease;
+
+}
+
+.division-card
+.division-arrow {
+
+color:
+    var(--orange);
+
+}
+
+.division-card.open
+.division-arrow {
+
+transform:
+    rotate(180deg);
+
+color:
+    var(--orange);
+
+}
+
+/* =========================================================
+LEADER DIVISION
+========================================================= */
+
+.division-leader-section {
+
+padding:
+    25px 30px;
+
+background:
+    #0d0d0d;
+
+border-bottom:
+    1px solid #202020;
+
+}
+
+.division-leader-heading {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    9px;
+
+margin-bottom:
+    14px;
+
+color:
+    var(--orange);
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    9px;
+
+font-weight:
+    800;
+
+letter-spacing:
+    1.5px;
+
+}
+
+.division-leader-card {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    15px;
+
+padding:
+    16px;
+
+background:
+    #151515;
+
+border:
+    1px solid #292929;
+
+}
+
+.division-leader-avatar {
+
+width:
+    48px;
+
+height:
+    48px;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+flex-shrink:
+    0;
+
+background:
+    rgba(
+        255,
+        107,
+        0,
+        0.08
+    );
+
+border:
+    1px solid
+    rgba(
+        255,
+        107,
+        0,
+        0.35
+    );
+
+color:
+    var(--orange);
+
+}
+
+.division-leader-info {
+
+flex:
+    1;
+
+}
+
+.division-leader-info span {
+
+display:
+    block;
+
+margin-bottom:
+    4px;
+
+color:
+    #555;
+
+font-size:
+    8px;
+
+font-weight:
+    700;
+
+letter-spacing:
+    1.5px;
+
+}
+
+.division-leader-info h4 {
+
+margin:
+    0;
+
+color:
+    white;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    15px;
+
+}
+
+.division-leader-info p {
+
+margin:
+    4px 0 0;
+
+color:
+    #666;
+
+font-size:
+    10px;
+
+}
+
+.division-leader-role {
+
+min-width:
+    45px;
+
+padding:
+    7px 10px;
+
+text-align:
+    center;
+
+background:
+    rgba(
+        255,
+        107,
+        0,
+        0.08
+    );
+
+border:
+    1px solid
+    rgba(
+        255,
+        107,
+        0,
+        0.3
+    );
+
+color:
+    var(--orange);
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    9px;
+
+font-weight:
+    800;
+
+}
+
+/* =========================================================
+MEMBERS
+========================================================= */
+
+.division-members {
+
+display:none;
+
+padding: 0 30px 30px;
+
+background: #0d0d0d;
+
+}
+
+.division-card.open .division-members {
+
+display: block;
+
+animation: divisionOpen 0.35s ease;
+
+}
+/* =========================================================
+HIDE LEADER UNTIL OPEN
+========================================================= */
+
+.division-card(.open) .division-leader-section {
+
+display: none;
+
+}
+.division-card.open .division-leader-section {
+
+display: block;
+
+}
+@keyframes divisionOpen {
+
+from {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(-8px);
+
+}
+
+to {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+
+}
+
+}
+
+/* =========================================================
+MEMBER PANEL TOP
+========================================================= */
+
+.members-panel-top {
+
+padding:
+    24px 0 18px;
+
+border-bottom:
+    1px solid #202020;
+
+}
+
+.members-panel-title {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    9px;
+
+color:
+    #777;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    10px;
+
+font-weight:
+    700;
+
+letter-spacing:
+    1.5px;
+
+}
+
+.members-panel-title i {
+
+color:
+    var(--orange);
+
+}
+
+/* =========================================================
+TABLE
+========================================================= */
+
+.members-table-wrapper {
+
+width:
+    100%;
+
+overflow-x:
+    auto;
+
+}
+
+.members-table {
+
+width:
+    100%;
+
+border-collapse:
+    collapse;
+
+min-width:
+    650px;
+
+}
+
+.members-table th {
+
+padding:
+    15px;
+
+text-align:
+    left;
+
+color:
+    #555;
+
+font-size:
+    8px;
+
+font-weight:
+    700;
+
+letter-spacing:
+    1.5px;
+
+border-bottom:
+    1px solid #242424;
+
+}
+
+.members-table td {
+
+padding:
+    14px 15px;
+
+color:
+    #888;
+
+font-size:
+    11px;
+
+border-bottom:
+    1px solid #1b1b1b;
+
+}
+
+.members-table tbody tr {
+
+background:
+    #141414;
+
+}
+
+.members-table tbody tr td {
+
+border-bottom:
+    none;
+
+}
+
+/* =========================================================
+MEMBER INDEX
+========================================================= */
+
+.member-index {
+
+width:
+    55px;
+
+color:
+    #444 !important;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+}
+
+/* =========================================================
+MEMBER NAME
+========================================================= */
+
+.member-name-cell {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    12px;
+
+}
+
+.member-nickname {
+
+color:
+    white !important;
+
+font-weight:
+    700;
+
+}
+
+.member-photo-placeholder {
+
+width:
+    34px;
+
+height:
+    34px;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+flex-shrink:
+    0;
+
+background:
+    #181818;
+
+border:
+    1px solid #292929;
+
+color:
+    #555;
+
+}
+
+/* =========================================================
+GAME ID
+========================================================= */
+
+.member-game-id {
+
+color:
+    #666 !important;
+
+font-family:
+    monospace;
+
+letter-spacing:
+    1px;
+
+}
+
+/* =========================================================
+ROLE
+========================================================= */
+
+.member-role {
+
+display:
+    inline-flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+min-width:
+    40px;
+
+padding:
+    5px 9px;
+
+background:
+    rgba(
+        255,
+        107,
+        0,
+        0.08
+    );
+
+border:
+    1px solid
+    rgba(
+        255,
+        107,
+        0,
+        0.2
+    );
+
+color:
+    var(--orange);
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    8px;
+
+font-weight:
+    800;
+
+}
+
+/* =========================================================
+STATUS
+========================================================= */
+
+.member-status {
+
+color:
+    #555;
+
+font-size:
+    8px;
+
+font-weight:
+    700;
+
+letter-spacing:
+    1px;
+
+}
+
+.leader-status {
+
+color:
+    var(--orange);
+
+}
+
+/* =========================================================
+LOADING
+========================================================= */
+
+.division-loading {
+
+min-height:
+    250px;
+
+display:
+    flex;
+
+flex-direction:
+    column;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+gap:
+    15px;
+
+color:
+    #555;
+
+font-size:
+    11px;
+
+}
+
+.loading-spinner {
+
+width:
+    32px;
+
+height:
+    32px;
+
+border:
+    2px solid #252525;
+
+border-top-color:
+    var(--orange);
+
+border-radius:
+    50%;
+
+animation:
+    spin
+    0.8s
+    linear
+    infinite;
+
+}
+
+@keyframes spin {
+
+to {
+
+    transform:
+        rotate(360deg);
+
+}
+
+}
+
+/* =========================================================
+ERROR
+========================================================= */
+
+.division-error {
+
+padding:
+    45px 25px;
+
+text-align:
+    center;
+
+background:
+    #101010;
+
+border:
+    1px solid #292929;
+
+}
+
+.division-error i {
+
+display:
+    block;
+
+margin-bottom:
+    15px;
+
+color:
+    var(--orange);
+
+font-size:
+    28px;
+
+}
+
+.division-error h3 {
+
+margin:
+    0 0 10px;
+
+color:
+    white;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    16px;
+
+}
+
+.division-error p {
+
+margin:
+    0;
+
+color:
+    #777;
+
+font-size:
+    11px;
+
+}
+
+.division-error small {
+
+display:
+    block;
+
+margin-top:
+    10px;
+
+color:
+    #444;
+
+font-size:
+    10px;
+
+}
+
+/* =========================================================
+CTA
+========================================================= */
+
+.division-cta {
+
+padding:
+    100px 25px;
+
+text-align:
+    center;
+
+background:
+    radial-gradient(
+        circle at center,
+        rgba(
+            255,
+            107,
+            0,
+            0.11
+        ),
+        transparent 50%
+    ),
+    #080808;
+
+border-top:
+    1px solid #171717;
+
+}
+
+.division-cta > div {
+
+max-width:
+    700px;
+
+margin:
+    auto;
+
+}
+
+.division-cta > div > span {
+
+color:
+    var(--orange);
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    10px;
+
+font-weight:
+    700;
+
+letter-spacing:
+    3px;
+
+}
+
+.division-cta h2 {
+
+margin-top:
+    15px;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    clamp(
+        25px,
+        4vw,
+        42px
+    );
+
+}
+
+.division-cta h2 strong {
+
+color:
+    var(--orange);
+
+}
+
+.division-cta p {
+
+margin:
+    12px 0 25px;
+
+color:
+    #666;
+
+font-size:
+    13px;
+
+}
+
+.division-cta-button {
+
+display:
+    inline-flex;
+
+align-items:
+    center;
+
+gap:
+    12px;
+
+padding:
+    14px 22px;
+
+background:
+    var(--orange);
+
+color:
+    #080808;
+
+font-family:
+    "Orbitron",
+    sans-serif;
+
+font-size:
+    10px;
+
+font-weight:
+    800;
+
+letter-spacing:
+    1px;
+
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media (
+max-width: 750px
+) {
+
+.division-container {
+
+    width:
+        calc(100% - 35px);
+
+}
+
+
+.division-hero {
+
+    min-height:
+        48vh;
+
+    padding:
+        130px 20px 70px;
+
+}
+
+
+.club-leader-section,
+.teams-section {
+
+    padding:
+        75px 0;
+
+}
+
+
+.club-leader-card {
+
+    grid-template-columns:
+        55px
+        1fr;
+
+    gap:
+        18px;
+
+    padding:
+        25px;
+
+}
+
+
+.leader-number {
+
+    display:
+        none;
+
+}
+
+
+.leader-info {
+
+    grid-column:
+        1 / -1;
+
+    padding-top:
+        20px;
+
+    border-top:
+        1px solid #222;
+
+}
+
+
+.division-header {
+
+    padding:
+        18px;
+
+}
+
+
+.division-header-left {
+
+    gap:
+        13px;
+
+}
+
+
+.division-logo {
+
+    width:
+        55px;
+
+    height:
+        55px;
+
+}
+
+
+.division-name {
+
+    font-size:
+        16px;
+
+}
+
+
+.division-member-count {
+
+    display:
+        none;
+
+}
+
+
+.division-members {
+
+    padding:
+        0 18px 20px;
+
+}
+
+
+.division-leader-section {
+
+    padding:
+        20px 18px;
+
+}
+
+}
+
+@media (
+max-width: 500px
+) {
+
+.division-hero h1 {
+
+    font-size:
+        38px;
+
+}
+
+
+.division-hero p {
+
+    font-size:
+        12px;
+
+}
+
+
+.section-heading h2 {
+
+    font-size:
+        30px;
+
+}
+
+
+.division-header {
+
+    min-height:
+        85px;
+
+}
+
+
+.division-logo {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+}
+
+
+.division-number {
+
+    font-size:
+        8px;
+
+}
+
+
+.division-name {
+
+    font-size:
+        13px;
+
+}
+
+
+.division-description {
+
+    display:
+        none;
+
+}
+
+
+.division-arrow {
+
+    width:
+        32px;
+
+    height:
+        32px;
+
+}
+
+
+.division-leader-card {
+
+    align-items:
+        flex-start;
+
+}
+
+
+.division-leader-role {
+
+    min-width:
+        40px;
+
+}
+
+
+.division-members {
+
+    padding:
+        0 15px 20px;
+
+}
+
+}
+
+/* =========================================================
+MEMBER EMPTY STATE
+========================================================= */
+
+.member-empty {
+padding: 25px 15px !important;
+text-align: center;
+color: #555 !important;
+font-family: "Orbitron", sans-serif;
+font-size: 9px !important;
+letter-spacing: 1.5px;
+}
+
+/* =========================================================
+FINAL RESPONSIVE FIX
+Prevent overflow and keep division controls aligned
+on laptop, tablet and mobile.
+========================================================= */
+
+/* Safe sizing for every element inside this page */
+.division-container,
+.division-container *,
+.division-hero,
+.division-hero *,
+.club-leader-section,
+.club-leader-section *,
+.teams-section,
+.teams-section *,
+.division-cta,
+.division-cta * {
+box-sizing: border-box;
+}
+
+/* Prevent horizontal page overflow */
+.division-container {
+width: min(1150px, calc(100% - 40px));
+max-width: 1150px;
+margin-inline: auto;
+}
+
+.division-hero {
+width: 100%;
+}
+
+/* =========================================================
+CLUB LEADER - DESKTOP
+========================================================= */
+
+.club-leader-card {
+width: 100%;
+min-width: 0;
+grid-template-columns: 55px 68px minmax(180px, 1fr) auto;
+gap: clamp(16px, 2vw, 28px);
+}
+
+.leader-main,
+.leader-info {
+min-width: 0;
+}
+
+.leader-main h3,
+.leader-main p {
+overflow-wrap: anywhere;
+}
+
+.leader-info {
+justify-content: flex-end;
+flex-wrap: wrap;
+}
+
+/* =========================================================
+DIVISION HEADER - DESKTOP
+========================================================= */
+
+.division-header {
+width: 100%;
+min-width: 0;
+display: grid;
+grid-template-columns: minmax(0, 1fr) auto;
+align-items: center;
+gap: 20px;
+padding: 20px 24px;
+box-sizing: border-box;
+}
+
+.division-header-left {
+min-width: 0;
+overflow: hidden;
+}
+
+.division-info {
+min-width: 0;
+overflow: hidden;
+}
+
+.division-name {
+overflow-wrap: anywhere;
+word-break: normal;
+}
+
+.division-description {
+max-width: 100%;
+overflow-wrap: anywhere;
+}
+
+.division-header-right {
+flex: 0 0 auto;
+display: flex;
+align-items: center;
+justify-content: flex-end;
+gap: 10px;
+}
+
+.division-arrow {
+flex: 0 0 38px;
+}
+
+/* =========================================================
+OPEN CONTENT
+========================================================= */
+
+.division-members,
+.division-leader-section {
+width: 100%;
+min-width: 0;
+box-sizing: border-box;
+}
+
+.members-table-wrapper {
+width: 100%;
+max-width: 100%;
+overflow-x: auto;
+overflow-y: hidden;
+-webkit-overflow-scrolling: touch;
+}
+
+.members-table {
+min-width: 650px;
+}
+
+/* =========================================================
+TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 950px) {
+
+.division-container {
+    width: min(100% - 32px, 900px);
+}
+
+.club-leader-card {
+    grid-template-columns: 48px 60px minmax(150px, 1fr);
+}
+
+.leader-info {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    padding-top: 16px;
+    border-top: 1px solid #222;
+}
+
+.division-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 14px;
+    padding: 18px 20px;
+}
+
+.division-header-left {
+    gap: 14px;
+}
+
+.division-member-count {
+    display: none;
+}
+
+.division-logo {
+    width: 58px;
+    height: 58px;
+}
+
+.division-name {
+    font-size: 18px;
+}
+
+.division-description {
+    font-size: 10px;
+}
+
+.division-members {
+    padding-inline: 20px;
+}
+
+.division-leader-section {
+    padding-inline: 20px;
+}
+
+}
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+.division-container {
+    width: calc(100% - 24px);
+    max-width: none;
+}
+
+.division-hero {
+    min-height: 48vh;
+    padding: 120px 16px 65px;
+}
+
+.club-leader-section,
+.teams-section {
+    padding: 65px 0;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+/* Leader becomes a clean 2-column layout */
+.club-leader-card {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 14px;
+    min-height: 0;
+    padding: 20px;
+}
+
+.leader-number {
+    display: none;
+}
+
+.leader-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.leader-main {
+    min-width: 0;
+}
+
+.leader-main h3 {
+    font-size: 20px;
+    line-height: 1.25;
+}
+
+.leader-info {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding-top: 16px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.leader-info-item {
+    min-width: 70px;
+}
+
+/* Division header: content left, arrow always stays on right */
+.division-header {
+    min-height: 78px;
+    grid-template-columns: minmax(0, 1fr) 34px;
+    gap: 10px;
+    padding: 14px;
+}
+
+.division-header-left {
+    min-width: 0;
+    gap: 11px;
+}
+
+.division-logo {
+    width: 48px;
+    height: 48px;
+}
+
+.division-info {
+    min-width: 0;
+}
+
+.division-number {
+    font-size: 8px;
+    margin-bottom: 4px;
+}
+
+.division-name {
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.division-description {
+    display: none;
+}
+
+.division-header-right {
+    width: 34px;
+    justify-content: center;
+    gap: 0;
+}
+
+.division-arrow {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+}
+
+.division-members {
+    padding: 0 14px 18px;
+}
+
+.division-leader-section {
+    padding: 18px 14px;
+}
+
+.division-leader-card {
+    width: 100%;
+    min-width: 0;
+    gap: 12px;
+    padding: 14px;
+}
+
+.division-leader-info {
+    min-width: 0;
+}
+
+.division-leader-info h4,
+.division-leader-info p {
+    overflow-wrap: anywhere;
+}
+
+.division-leader-role {
+    flex: 0 0 auto;
+    min-width: 40px;
+}
+
+.members-panel-top {
+    padding-top: 20px;
+}
+
+.members-table {
+    min-width: 600px;
+}
+
+.division-cta {
+    padding: 70px 16px;
+}
+
+.division-cta-button {
+    max-width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 13px 18px;
+}
+
+}
+
+/* =========================================================
+VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+.division-container {
+    width: calc(100% - 18px);
+}
+
+.division-header {
+    grid-template-columns: minmax(0, 1fr) 32px;
+    padding: 12px;
+    gap: 8px;
+}
+
+.division-header-left {
+    gap: 9px;
+}
+
+.division-logo {
+    width: 42px;
+    height: 42px;
+}
+
+.division-name {
+    font-size: 12px;
+}
+
+.division-arrow {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+}
+
+.division-header-right {
+    width: 32px;
+}
+
+.club-leader-card {
+    padding: 16px;
+    gap: 10px;
+}
+
+.leader-main h3 {
+    font-size: 18px;
+}
+
+.leader-info {
+    gap: 10px;
+}
+
+.division-members,
+.division-leader-section {
+    padding-inline: 12px;
+}
+
+}
+
+/* =========================================================
+ACCESSIBILITY / TOUCH
+========================================================= */
+
+.division-header,
+.division-arrow,
+.division-cta-button {
+-webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: none) {
+.division-card {
+border-color: #242424;
+box-shadow: none;
+transform: none;
+}
+}
+
+Tutup
