@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Members | Agility United</title>
+
+
+    <!-- GOOGLE FONT -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="members.css">
+
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         BACKGROUND
+    ========================== -->
+
+    <div class="background-lines"></div>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+
+        <a href="index.html" class="brand">
+
+            <img
+                src="assets/logo.png"
+                alt="Agility United Logo"
+                class="brand-logo"
+            >
+
+            <div class="brand-text">
+
+                <h2>
+                    AGILITY <span>UNITED</span>
+                </h2>
+
+                <p>
+                    MORE THAN A CLAN
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav
+            class="nav-menu"
+            id="navMenu"
+        >
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="member.html">
+                Members
+            </a>
+
+            <a href="divisions.html">
+                Divisions
+            </a>
+
+            <a
+                href="nondivision.html"
+                class="active"
+            >
+                Non Division
+            </a>
+          
+            <a href="achivement.html">
+                Achievement
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Menu"
+        >
+            ⋮
+        </button>
+
+
+    </header>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="members-page">
+
+
+        <!-- =========================
+             TOP AREA
+        ========================== -->
+
+        <section class="members-top">
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    ⌕
+                </span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search nickname or ID..."
+                >
+
+            </div>
+
+
+            <!-- ROLE FILTER -->
+
+            <div class="role-filter">
+
+
+                <button
+                    class="filter-btn active"
+                    data-role="ALL"
+                >
+                    All
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-role="ST"
+                >
+                    ST
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-role="CM"
+                >
+                    CM
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-role="CB"
+                >
+                    CB
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-role="WF"
+                >
+                    WF
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-role="GK"
+                >
+                    GK
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             TITLE
+        ========================== -->
+
+        <section class="members-heading">
+
+
+            <div class="heading-left">
+
+
+                <p class="heading-small">
+                    PLAYER DATABASE
+                </p>
+
+
+                <h1>
+                    AGILITY PLAYERS
+                </h1>
+
+
+                <p class="heading-description">
+
+                    Daftar pemain resmi
+                    Agility United
+
+                </p>
+
+
+            </div>
+
+
+            <!-- PLAYER COUNT -->
+
+            <div class="player-count">
+
+                <strong
+                    id="playerCount"
+                >
+                    0
+                </strong>
+
+                <span>
+                    PLAYERS
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             TABLE
+        ========================== -->
+
+        <section class="table-section">
+
+
+            <div class="table-wrapper">
+
+
+                <table
+                    class="player-table"
+                >
+
+
+                    <!-- TABLE HEAD -->
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                NO
+                            </th>
+
+                            <th>
+                                NICKNAME
+                            </th>
+
+                            <th>
+                                GAME ID
+                            </th>
+
+                            <th>
+                                ROLE
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <!-- TABLE BODY -->
+
+                    <tbody
+                        id="playerContainer"
+                    >
+
+
+                        <tr>
+
+                            <td
+                                colspan="4"
+                                class="loading"
+                            >
+
+                                Memuat data pemain...
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+            <!-- EMPTY -->
+
+            <div
+                class="empty-state"
+                id="emptyState"
+            >
+
+                <h3>
+                    Player tidak ditemukan
+                </h3>
+
+                <p>
+                    Coba gunakan pencarian lain.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-content">
+
+
+            <div class="footer-brand">
+
+
+                <h2>
+                    AGILITY <span>UNITED</span>
+                </h2>
+
+
+                <p>
+                    MORE THAN A CLAN — A FAMILY
+                </p>
+
+
+            </div>
+
+
+            <div class="footer-text">
+
+                <p>
+                    ONE CLAN.
+                </p>
+
+                <p>
+                    ONE FAMILY.
+                </p>
+
+                <p>
+                    ONE GOAL.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 AGILITY UNITED.
+            ALL RIGHTS RESERVED.
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="members.js"></script>
+
+
+</body>
+
+</html>
