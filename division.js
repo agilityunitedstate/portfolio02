@@ -14,7 +14,7 @@ XXXXXXXX/pub?output=csv
 
 
 const SHEET_URL =
-    "PASTE_LINK_GOOGLE_SHEET_DISINI";
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyDHYKCBNZeDeg-zg731JxHCN6xaeW3XNIi5iUzug9FRZw-MhUaZ-fiLi4Bx0_1qB8Apsb1DrzQLh6/pub?output=csv";
 
 
 /* =========================================
