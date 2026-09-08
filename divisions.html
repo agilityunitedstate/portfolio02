@@ -1,43 +1,32 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>Divisions | Agility United</title>
+    <title>Team Divisions | Agility United</title>
 
+    <!-- Font -->
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
 
-    <!-- GOOGLE FONT -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
+    <link rel="preconnect"
         href="https://fonts.gstatic.com"
-        crossorigin
-    >
+        crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- CSS -->
+    <link rel="stylesheet"
+        href="style.css">
 
-    <link
-        rel="stylesheet"
-        href="division.css"
-    >
+    <link rel="stylesheet"
+        href="division.css">
 
 </head>
 
@@ -45,418 +34,125 @@
 <body>
 
 
-    <!-- =========================================
-         NAVBAR UTAMA
-    ========================================== -->
+    <!-- ================= HEADER ================= -->
 
     <header class="navbar">
 
+        <div class="nav-container">
 
-        <!-- LOGO + NAMA -->
+            <a href="index.html"
+                class="brand">
 
-        <a
-            href="index.html"
-            class="brand"
-        >
+                AGILITY
+                <span>UNITED</span>
 
-            <img
-                src="assets/logo.png"
-                alt="Agility United Logo"
-                class="logo"
-            >
-
-
-            <div class="brand-text">
-
-                <h2>
-                    AGILITY
-                    <span>UNITED</span>
-                </h2>
-
-                <p>
-                    MORE THAN A CLAN
-                </p>
-
-            </div>
-
-        </a>
-
-
-        <!-- MENU NAVIGASI -->
-
-        <nav
-            class="nav-menu"
-            id="navMenu"
-        >
-
-            <a href="index.html">
-                Home
             </a>
 
 
-            <a href="about.html">
-                About
-            </a>
+            <nav class="nav-links">
 
+                <a href="index.html">
+                    Home
+                </a>
 
-            <a href="member.html">
-                Members
-            </a>
+                <a href="members.html">
+                    Members
+                </a>
 
+                <a href="divisions.html"
+                    class="active">
+                    Divisions
+                </a>
 
-            <a
-                href="divisions.html"
-                class="active"
-            >
-                Divisions
-            </a>
+                <a href="achievement.html">
+                    Trophies
+                </a>
 
+                <a href="contact.html">
+                    Contact
+                </a>
 
-            <a href="achivement.html">
-                Achievement
-            </a>
+            </nav>
 
-
-            <a href="contact.html">
-                Contact
-            </a>
-
-
-           
-
-        </nav>
-
-
-
-
-        <!-- TITIK TIGA KHUSUS HP -->
-
-        <button
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Buka Menu"
-        >
-            ⋮
-        </button>
-
+        </div>
 
     </header>
 
 
-    <!-- =========================================
-         KETUA KLUB
-         LANGSUNG SETELAH NAVBAR
-    ========================================== -->
 
-    <section class="club-leader-section">
+    <!-- ================= MAIN ================= -->
 
+    <main class="division-page">
 
-        <div class="section-header">
 
-            <p class="section-subtitle">
-                AGILITY UNITED LEADERSHIP
-            </p>
+        <!-- TITLE -->
 
-            <h2>
-                KETUA KLUB
-            </h2>
+        <section class="division-hero">
 
-            <div class="orange-line"></div>
+            <span class="hero-label">
+                AGILITY UNITED
+            </span>
 
-        </div>
-
-
-        <!-- CARD KETUA KLUB -->
-
-        <div class="club-leader-card">
-
-
-            <!-- ICON -->
-
-            <div class="leader-icon">
-                ♛
-            </div>
-
-
-            <!-- INFORMASI KETUA -->
-
-            <div class="leader-content">
-
-
-                <p class="leader-position">
-                    KETUA KLUB AGILITY UNITED
-                </p>
-
-
-                <!-- GANTI NAMA KETUA DI SINI -->
-
-                <h2 class="leader-name">
-                    NAMA KETUA KLUB
-                </h2>
-
-
-                <div class="leader-info-container">
-
-
-                    <!-- GAME ID -->
-
-                    <div class="leader-info">
-
-                        <span>
-                            GAME ID
-                        </span>
-
-                        <strong>
-                            123456789
-                        </strong>
-
-                    </div>
-
-
-                    <!-- ROLE -->
-
-                    <div class="leader-info">
-
-                        <span>
-                            ROLE
-                        </span>
-
-                        <strong>
-                            CM
-                        </strong>
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </section>
-
-
-    <!-- =========================================
-         DAFTAR DIVISI
-    ========================================== -->
-
-    <main class="division-section">
-
-
-        <!-- JUDUL DIVISI -->
-
-        <div class="division-heading">
-
-
-            <div class="division-title-left">
-
-
-                <div class="title-accent"></div>
-
-
-                <div>
-
-                    <h2>
-                        Divisi
-                    </h2>
-
-                    <p id="division-description">
-                        Memuat data divisi...
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- SLOGAN -->
-
-            <div class="division-slogan">
-
-                <p>
-                    DIFFERENT ROLES
-                </p>
-
-                <p>
-                    SAME GOAL
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =====================================
-             DATA DIVISI DARI GOOGLE SHEET
-
-             CARD DIVISI AKAN MUNCUL DI SINI
-        ====================================== -->
-
-        <div
-            id="division-container"
-            class="division-container"
-        >
-
-            <div class="loading">
-
-                Memuat data dari Google Sheet...
-
-            </div>
-
-        </div>
-
-
-        <!-- QUOTE -->
-
-        <div class="division-quote">
+            <h1>
+                TEAM
+                <span>DIVISIONS</span>
+            </h1>
 
             <p>
-                " ONE CLAN, MANY STORIES "
+                Each division represents a competitive unit within
+                Agility United.
             </p>
 
-            <div class="quote-line"></div>
+        </section>
 
-        </div>
+
+
+        <!-- ================= DIVISION CONTAINER ================= -->
+
+        <section
+            id="divisionContainer"
+            class="division-container">
+
+
+            <!-- Loading -->
+
+            <div class="loading-box">
+
+                <div class="loader"></div>
+
+                <p>
+                    Loading divisions...
+                </p>
+
+            </div>
+
+
+        </section>
 
 
     </main>
 
 
-    <!-- =========================================
-         FOOTER
-         TANPA MEDIA SOSIAL
-    ========================================== -->
+
+    <!-- ================= FOOTER ================= -->
 
     <footer class="footer">
 
+        <p>
+            © 2026 AGILITY UNITED
+        </p>
 
-        <div class="footer-content">
-
-
-            <!-- LOGO FOOTER -->
-
-            <div class="footer-brand">
-
-                <img
-                    src="assets/logo.png"
-                    alt="Agility United"
-                >
-
-
-                <div>
-
-                    <h2>
-                        AGILITY
-                        <span>UNITED</span>
-                    </h2>
-
-                    <p>
-                        MORE THAN A CLAN — A FAMILY
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- TEXT FOOTER -->
-
-            <div class="footer-text">
-
-                <p>
-                    AGILITY UNITED
-                </p>
-
-                <span>
-                    One Clan. One Family.
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- COPYRIGHT -->
-
-        <div class="footer-bottom">
-
-            <p>
-                © 2026 AGILITY UNITED.
-                ALL RIGHTS RESERVED.
-            </p>
-
-        </div>
-
+        <p>
+            UNITED • COMPETE • DOMINATE
+        </p>
 
     </footer>
 
 
-    <!-- =========================================
-         JAVASCRIPT DATA DIVISI
-    ========================================== -->
+
+    <!-- JAVASCRIPT -->
 
     <script src="division.js"></script>
-
-
-    <!-- =========================================
-         JAVASCRIPT MENU HP
-    ========================================== -->
-
-    <script>
-
-        const menuToggle =
-            document.getElementById("menuToggle");
-
-        const navMenu =
-            document.getElementById("navMenu");
-
-
-        menuToggle.addEventListener(
-            "click",
-
-            function () {
-
-                navMenu.classList.toggle("show");
-
-            }
-        );
-
-
-        /* TUTUP MENU SETELAH KLIK */
-
-        const navLinks =
-            document.querySelectorAll(
-                ".nav-menu a"
-            );
-
-
-        navLinks.forEach(
-            function (link) {
-
-                link.addEventListener(
-                    "click",
-
-                    function () {
-
-                        navMenu.classList.remove(
-                            "show"
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-    </script>
 
 
 </body>
