@@ -238,7 +238,7 @@ body {
         transparent;
 
     color:
-        #ff6b00;
+        #ffffff;
 
     font-size:
         30px;
@@ -1732,7 +1732,7 @@ body {
     .nav-brand span {
 
         display:
-            none;
+            inline-block;
 
     }
 
