@@ -2,52 +2,10 @@
    GOOGLE SHEET CONFIGURATION
 ======================================== */
 
-
 /*
-========================================
-
-MASUKKAN ID GOOGLE SHEET DISINI
-
-CONTOH LINK:
-
-https://docs.google.com/spreadsheets/d/
-1ABCDEF123456789XYZ
-/edit#gid=0
-
-MAKA SHEET ID ADALAH:
-
-1ABCDEF123456789XYZ
-
-========================================
+   LINK GOOGLE SHEET YANG SUDAH
+   PUBLISH TO WEB FORMAT CSV
 */
-
-const SHEET_ID =
-    "GANTI_DENGAN_SHEET_ID_KAMU";
-
-
-/*
-========================================
-
-NAMA TAB GOOGLE SHEET
-
-CONTOH:
-
-Sheet1
-
-Members
-
-Data Player
-
-========================================
-*/
-
-const SHEET_NAME =
-    "Sheet1";
-
-
-/* ========================================
-   GOOGLE SHEET URL
-======================================== */
 
 const SHEET_URL =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJnrF27QnQSNsZP6LGyzMD1053hz8Zqscskhd26ENN8blQ_O_sORgoXghFevrOex3XA6A_nr_oXbtR/pub?output=csv";
@@ -108,9 +66,7 @@ if (
 ) {
 
     menuToggle.addEventListener(
-
         "click",
-
         function () {
 
             navMenu.classList.toggle(
@@ -118,8 +74,171 @@ if (
             );
 
         }
-
     );
+
+}
+
+
+/* ========================================
+   PARSE CSV
+======================================== */
+
+function parseCSV(text) {
+
+    const rows = [];
+
+    let row = [];
+
+    let value = "";
+
+    let insideQuotes = false;
+
+
+    for (
+        let i = 0;
+        i < text.length;
+        i++
+    ) {
+
+        const char =
+            text[i];
+
+
+        const nextChar =
+            text[i + 1];
+
+
+        /*
+        QUOTES
+        */
+
+        if (
+            char === '"'
+        ) {
+
+            if (
+                insideQuotes &&
+                nextChar === '"'
+            ) {
+
+                value += '"';
+
+                i++;
+
+            }
+
+            else {
+
+                insideQuotes =
+                    !insideQuotes;
+
+            }
+
+        }
+
+
+        /*
+        COMMA
+        */
+
+        else if (
+            char === "," &&
+            !insideQuotes
+        ) {
+
+            row.push(
+                value.trim()
+            );
+
+            value = "";
+
+        }
+
+
+        /*
+        NEW LINE
+        */
+
+        else if (
+            (
+                char === "\n" ||
+                char === "\r"
+            ) &&
+            !insideQuotes
+        ) {
+
+            if (
+                value !== "" ||
+                row.length > 0
+            ) {
+
+                row.push(
+                    value.trim()
+                );
+
+
+                rows.push(
+                    row
+                );
+
+
+                row = [];
+
+                value = "";
+
+            }
+
+
+            /*
+            HANDLE WINDOWS \r\n
+            */
+
+            if (
+                char === "\r" &&
+                nextChar === "\n"
+            ) {
+
+                i++;
+
+            }
+
+        }
+
+
+        /*
+        NORMAL CHARACTER
+        */
+
+        else {
+
+            value += char;
+
+        }
+
+    }
+
+
+    /*
+    LAST VALUE
+    */
+
+    if (
+        value !== "" ||
+        row.length > 0
+    ) {
+
+        row.push(
+            value.trim()
+        );
+
+        rows.push(
+            row
+        );
+
+    }
+
+
+    return rows;
 
 }
 
@@ -132,115 +251,197 @@ async function loadPlayers() {
 
     try {
 
+
+        /*
+        LOADING
+        */
+
+        playerContainer.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="4"
+                    class="loading"
+                >
+
+                    Memuat data player...
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        /*
+        FETCH GOOGLE SHEET
+        */
+
         const response =
             await fetch(
                 SHEET_URL
             );
 
 
-        const text =
+        /*
+        CHECK RESPONSE
+        */
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Gagal mengambil Google Sheet"
+            );
+
+        }
+
+
+        /*
+        GET CSV TEXT
+        */
+
+        const csvText =
             await response.text();
 
 
         /*
-        GOOGLE RESPONSE
-
-        google.visualization.Query.setResponse(...)
-
-        KITA AMBIL JSON DIDALAMNYA
+        DEBUG
         */
 
-
-        const jsonText =
-            text
-                .substring(
-                    text.indexOf("{"),
-                    text.lastIndexOf("}") + 1
-                );
+        console.log(
+            "Google Sheet CSV:",
+            csvText
+        );
 
 
-        const data =
-            JSON.parse(
-                jsonText
+        /*
+        PARSE CSV
+        */
+
+        const rows =
+            parseCSV(
+                csvText
             );
 
 
-        const rows =
-            data.table.rows;
+        console.log(
+            "Parsed Rows:",
+            rows
+        );
 
+
+        /*
+        RESET PLAYERS
+        */
 
         players = [];
 
 
-        rows.forEach(
+        /*
+        CEK APAKAH ADA DATA
+        */
 
-            function (row) {
+        if (
+            rows.length <= 1
+        ) {
 
+            throw new Error(
+                "Data Google Sheet kosong"
+            );
 
-                if (!row.c) {
-
-                    return;
-
-                }
-
-
-                const nickname =
-                    row.c[0]
-                        ? row.c[0].v
-                        : "";
+        }
 
 
-                const id =
-                    row.c[1]
-                        ? row.c[1].v
-                        : "";
+        /*
+        MULAI DARI INDEX 1
+
+        INDEX 0 ADALAH HEADER:
+
+        nickname | id | role
+        */
+
+        for (
+            let i = 1;
+            i < rows.length;
+            i++
+        ) {
 
 
-                const role =
-                    row.c[2]
-                        ? String(
-                            row.c[2].v
-                        ).toUpperCase()
-                        : "";
+            const row =
+                rows[i];
 
 
-                /*
-                VALIDASI DATA
+            /*
+            AMBIL DATA
+            */
 
-                HANYA MASUKKAN
-                JIKA ADA NICKNAME
-                */
+            const nickname =
+                row[0]
+                    ? row[0].trim()
+                    : "";
 
-                if (
-                    nickname
-                ) {
 
-                    players.push({
+            const id =
+                row[1]
+                    ? row[1].trim()
+                    : "";
 
-                        nickname:
-                            String(
-                                nickname
-                            ),
 
-                        id:
-                            String(
-                                id
-                            ),
+            const role =
+                row[2]
+                    ? row[2]
+                        .trim()
+                        .toUpperCase()
+                    : "";
 
-                        role:
-                            role
 
-                    });
+            /*
+            MASUKKAN DATA
+            JIKA NICKNAME ADA
+            */
 
-                }
+            if (
+                nickname !== ""
+            ) {
 
+                players.push({
+
+                    nickname:
+                        nickname,
+
+                    id:
+                        id,
+
+                    role:
+                        role
+
+                });
 
             }
 
+
+        }
+
+
+        /*
+        DEBUG
+        */
+
+        console.log(
+            "Players Loaded:",
+            players
         );
 
 
+        /*
+        TAMPILKAN PLAYER
+        */
+
         renderPlayers();
+
 
     }
 
@@ -260,25 +461,35 @@ async function loadPlayers() {
 
                 <td
                     colspan="4"
-                    class="loading"
+                    class="loading error"
                 >
 
-                    Gagal memuat data Google Sheet.
+                    <strong>
+                        Gagal memuat data Google Sheet.
+                    </strong>
 
                     <br>
 
                     <br>
 
-                    Periksa:
-                    Sheet ID,
-                    Sheet Name,
-                    dan pengaturan Publish.
+                    Periksa pengaturan
+                    Publish to Web Google Sheet.
 
                 </td>
 
             </tr>
 
         `;
+
+
+        if (
+            playerCount
+        ) {
+
+            playerCount.textContent =
+                "0";
+
+        }
 
     }
 
@@ -292,11 +503,30 @@ async function loadPlayers() {
 function renderPlayers() {
 
 
+    /*
+    JIKA ELEMENT BELUM ADA
+    */
+
+    if (
+        !playerContainer
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+    SEARCH VALUE
+    */
+
     const searchValue =
         searchInput
-            .value
-            .toLowerCase()
-            .trim();
+            ? searchInput
+                .value
+                .toLowerCase()
+                .trim()
+            : "";
 
 
     /*
@@ -305,28 +535,41 @@ function renderPlayers() {
 
     const filteredPlayers =
         players.filter(
-
             function (
                 player
             ) {
 
 
+                const nickname =
+                    player.nickname
+                        .toLowerCase();
+
+
+                const id =
+                    player.id
+                        .toLowerCase();
+
+
+                /*
+                SEARCH
+                */
+
                 const matchSearch =
 
-                    player.nickname
-                        .toLowerCase()
-                        .includes(
-                            searchValue
-                        )
+                    nickname.includes(
+                        searchValue
+                    )
 
                     ||
 
-                    player.id
-                        .toLowerCase()
-                        .includes(
-                            searchValue
-                        );
+                    id.includes(
+                        searchValue
+                    );
 
+
+                /*
+                ROLE
+                */
 
                 const matchRole =
 
@@ -339,25 +582,32 @@ function renderPlayers() {
                     currentRole;
 
 
-                return
+                return (
 
                     matchSearch
 
                     &&
 
-                    matchRole;
+                    matchRole
+
+                );
 
             }
-
         );
 
 
     /*
-    UPDATE PLAYER COUNT
+    UPDATE COUNT
     */
 
-    playerCount.textContent =
-        filteredPlayers.length;
+    if (
+        playerCount
+    ) {
+
+        playerCount.textContent =
+            filteredPlayers.length;
+
+    }
 
 
     /*
@@ -395,8 +645,14 @@ function renderPlayers() {
         `;
 
 
-        emptyState.style.display =
-            "block";
+        if (
+            emptyState
+        ) {
+
+            emptyState.style.display =
+                "block";
+
+        }
 
 
         return;
@@ -404,8 +660,18 @@ function renderPlayers() {
     }
 
 
-    emptyState.style.display =
-        "none";
+    /*
+    HIDE EMPTY STATE
+    */
+
+    if (
+        emptyState
+    ) {
+
+        emptyState.style.display =
+            "none";
+
+    }
 
 
     /*
@@ -413,7 +679,6 @@ function renderPlayers() {
     */
 
     filteredPlayers.forEach(
-
         function (
             player,
             index
@@ -431,38 +696,30 @@ function renderPlayers() {
                 <td
                     class="player-number"
                 >
-
                     ${index + 1}
-
                 </td>
 
 
                 <td
                     class="player-name"
                 >
-
                     ${player.nickname}
-
                 </td>
 
 
                 <td
                     class="player-id"
                 >
-
                     ${player.id}
-
                 </td>
 
 
                 <td>
 
                     <span
-                        class="role-badge"
+                        class="role-badge role-${player.role}"
                     >
-
                         ${player.role}
-
                     </span>
 
                 </td>
@@ -476,7 +733,6 @@ function renderPlayers() {
 
 
         }
-
     );
 
 
@@ -487,17 +743,20 @@ function renderPlayers() {
    SEARCH
 ======================================== */
 
-searchInput.addEventListener(
+if (
+    searchInput
+) {
 
-    "input",
+    searchInput.addEventListener(
+        "input",
+        function () {
 
-    function () {
+            renderPlayers();
 
-        renderPlayers();
+        }
+    );
 
-    }
-
-);
+}
 
 
 /* ========================================
@@ -511,25 +770,21 @@ const filterButtons =
 
 
 filterButtons.forEach(
-
     function (
         button
     ) {
 
 
         button.addEventListener(
-
             "click",
-
             function () {
 
 
                 /*
-                HAPUS ACTIVE
+                REMOVE ACTIVE
                 */
 
                 filterButtons.forEach(
-
                     function (
                         btn
                     ) {
@@ -539,12 +794,11 @@ filterButtons.forEach(
                         );
 
                     }
-
                 );
 
 
                 /*
-                TAMBAH ACTIVE
+                ADD ACTIVE
                 */
 
                 button.classList.add(
@@ -553,11 +807,12 @@ filterButtons.forEach(
 
 
                 /*
-                ROLE
+                GET ROLE
                 */
 
                 currentRole =
-                    button.dataset.role;
+                    button.dataset.role
+                        .toUpperCase();
 
 
                 /*
@@ -568,12 +823,10 @@ filterButtons.forEach(
 
 
             }
-
         );
 
 
     }
-
 );
 
 
