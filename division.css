@@ -160,7 +160,7 @@ body {
 .nav-menu a {
 
     color:
-        #ffffff;
+        var(--white);
 
     text-decoration:
         none;
