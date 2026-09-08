@@ -2225,3 +2225,427 @@
     font-size: 9px !important;
     letter-spacing: 1.5px;
 }
+
+
+/* =========================================================
+   FINAL RESPONSIVE FIX
+   Prevent overflow and keep division controls aligned
+   on laptop, tablet and mobile.
+========================================================= */
+
+/* Safe sizing for every element inside this page */
+.division-container,
+.division-container *,
+.division-hero,
+.division-hero *,
+.club-leader-section,
+.club-leader-section *,
+.teams-section,
+.teams-section *,
+.division-cta,
+.division-cta * {
+    box-sizing: border-box;
+}
+
+/* Prevent horizontal page overflow */
+.division-container {
+    width: min(1150px, calc(100% - 40px));
+    max-width: 1150px;
+    margin-inline: auto;
+}
+
+.division-hero {
+    width: 100%;
+}
+
+/* =========================================================
+   CLUB LEADER - DESKTOP
+========================================================= */
+
+.club-leader-card {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: 55px 68px minmax(180px, 1fr) auto;
+    gap: clamp(16px, 2vw, 28px);
+}
+
+.leader-main,
+.leader-info {
+    min-width: 0;
+}
+
+.leader-main h3,
+.leader-main p {
+    overflow-wrap: anywhere;
+}
+
+.leader-info {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+/* =========================================================
+   DIVISION HEADER - DESKTOP
+========================================================= */
+
+.division-header {
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    box-sizing: border-box;
+}
+
+.division-header-left {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.division-info {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.division-name {
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.division-description {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.division-header-right {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.division-arrow {
+    flex: 0 0 38px;
+}
+
+/* =========================================================
+   OPEN CONTENT
+========================================================= */
+
+.division-members,
+.division-leader-section {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.members-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.members-table {
+    min-width: 650px;
+}
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .division-container {
+        width: min(100% - 32px, 900px);
+    }
+
+    .club-leader-card {
+        grid-template-columns: 48px 60px minmax(150px, 1fr);
+    }
+
+    .leader-info {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        padding-top: 16px;
+        border-top: 1px solid #222;
+    }
+
+    .division-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 14px;
+        padding: 18px 20px;
+    }
+
+    .division-header-left {
+        gap: 14px;
+    }
+
+    .division-member-count {
+        display: none;
+    }
+
+    .division-logo {
+        width: 58px;
+        height: 58px;
+    }
+
+    .division-name {
+        font-size: 18px;
+    }
+
+    .division-description {
+        font-size: 10px;
+    }
+
+    .division-members {
+        padding-inline: 20px;
+    }
+
+    .division-leader-section {
+        padding-inline: 20px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .division-container {
+        width: calc(100% - 24px);
+        max-width: none;
+    }
+
+    .division-hero {
+        min-height: 48vh;
+        padding: 120px 16px 65px;
+    }
+
+    .club-leader-section,
+    .teams-section {
+        padding: 65px 0;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+    }
+
+    /* Leader becomes a clean 2-column layout */
+    .club-leader-card {
+        grid-template-columns: 48px minmax(0, 1fr);
+        gap: 14px;
+        min-height: 0;
+        padding: 20px;
+    }
+
+    .leader-number {
+        display: none;
+    }
+
+    .leader-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .leader-main {
+        min-width: 0;
+    }
+
+    .leader-main h3 {
+        font-size: 20px;
+        line-height: 1.25;
+    }
+
+    .leader-info {
+        grid-column: 1 / -1;
+        width: 100%;
+        padding-top: 16px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .leader-info-item {
+        min-width: 70px;
+    }
+
+    /* Division header: content left, arrow always stays on right */
+    .division-header {
+        min-height: 78px;
+        grid-template-columns: minmax(0, 1fr) 34px;
+        gap: 10px;
+        padding: 14px;
+    }
+
+    .division-header-left {
+        min-width: 0;
+        gap: 11px;
+    }
+
+    .division-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .division-info {
+        min-width: 0;
+    }
+
+    .division-number {
+        font-size: 8px;
+        margin-bottom: 4px;
+    }
+
+    .division-name {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .division-description {
+        display: none;
+    }
+
+    .division-header-right {
+        width: 34px;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .division-arrow {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 34px;
+    }
+
+    .division-members {
+        padding: 0 14px 18px;
+    }
+
+    .division-leader-section {
+        padding: 18px 14px;
+    }
+
+    .division-leader-card {
+        width: 100%;
+        min-width: 0;
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .division-leader-info {
+        min-width: 0;
+    }
+
+    .division-leader-info h4,
+    .division-leader-info p {
+        overflow-wrap: anywhere;
+    }
+
+    .division-leader-role {
+        flex: 0 0 auto;
+        min-width: 40px;
+    }
+
+    .members-panel-top {
+        padding-top: 20px;
+    }
+
+    .members-table {
+        min-width: 600px;
+    }
+
+    .division-cta {
+        padding: 70px 16px;
+    }
+
+    .division-cta-button {
+        max-width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 13px 18px;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .division-container {
+        width: calc(100% - 18px);
+    }
+
+    .division-header {
+        grid-template-columns: minmax(0, 1fr) 32px;
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .division-header-left {
+        gap: 9px;
+    }
+
+    .division-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .division-name {
+        font-size: 12px;
+    }
+
+    .division-arrow {
+        width: 32px;
+        height: 32px;
+        flex-basis: 32px;
+    }
+
+    .division-header-right {
+        width: 32px;
+    }
+
+    .club-leader-card {
+        padding: 16px;
+        gap: 10px;
+    }
+
+    .leader-main h3 {
+        font-size: 18px;
+    }
+
+    .leader-info {
+        gap: 10px;
+    }
+
+    .division-members,
+    .division-leader-section {
+        padding-inline: 12px;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY / TOUCH
+========================================================= */
+
+.division-header,
+.division-arrow,
+.division-cta-button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: none) {
+    .division-card:hover {
+        border-color: #242424;
+        box-shadow: none;
+        transform: none;
+    }
+}
