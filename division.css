@@ -1,420 +1,422 @@
-/* =========================================
-   ROOT
-========================================= */
+/* =========================================================
+   AGILITY UNITED
+   DIVISION PAGE
+========================================================= */
 
-:root {
 
-    --black: #070707;
+/* =========================================================
+   CONTAINER
+========================================================= */
 
-    --black-light: #0d0d0f;
+.division-container {
 
-    --card: #131316;
+    width:
+        min(
+            1150px,
+            calc(100% - 50px)
+        );
 
-    --card-light: #18181c;
-
-    --orange: #ff5a1f;
-
-    --orange-dark: #b9360d;
-
-    --white: #f5f5f5;
-
-    --gray: #8d8d95;
-
-    --border: #29292f;
+    margin:
+        0 auto;
 
 }
 
 
-/* =========================================
-   RESET
-========================================= */
-
-* {
-
-    margin: 0;
-
-    padding: 0;
-
-    box-sizing: border-box;
-
-}
-
-
-html {
-
-    scroll-behavior: smooth;
-
-}
-
-
-body {
-
-    background:
-
-        linear-gradient(
-            115deg,
-            transparent 0%,
-            transparent 18%,
-            rgba(255, 90, 31, 0.04) 18.1%,
-            transparent 18.2%,
-            transparent 45%,
-            rgba(255, 90, 31, 0.03) 45.1%,
-            transparent 45.2%
-        ),
-
-        var(--black);
-
-
-    color: var(--white);
-
-    font-family:
-        "Montserrat",
-        sans-serif;
-
-    overflow-x: hidden;
-
-}
-
-
-/* =========================================
-   NAVBAR
-========================================= */
-
-.navbar {
-
-    height: 110px;
-
-    padding:
-        0 70px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    border-bottom:
-        1px solid var(--border);
-
-    background:
-        rgba(7, 7, 7, 0.96);
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 1000;
-
-}
-
-
-/* =========================================
-   BRAND
-========================================= */
-
-.brand {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    text-decoration: none;
-
-}
-
-
-.brand-logo {
-
-    width: 64px;
-
-    height: 64px;
-
-    object-fit: contain;
-
-}
-
-
-.brand-text h1 {
-
-    font-size: 27px;
-
-    letter-spacing: 2px;
-
-    color: var(--white);
-
-    font-weight: 800;
-
-}
-
-
-.brand-text h1 span {
-
-    color: var(--orange);
-
-}
-
-
-.brand-text p {
-
-    margin-top: 5px;
-
-    font-size: 10px;
-
-    letter-spacing: 4px;
-
-    color: var(--gray);
-
-}
-
-
-/* =========================================
-   NAV MENU
-========================================= */
-
-.nav-menu {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 45px;
-
-}
-
-
-.nav-menu a {
-
-    position: relative;
-
-    color: #bcbcc4;
-
-    text-decoration: none;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    transition: 0.3s;
-
-}
-
-
-.nav-menu a:hover {
-
-    color: var(--white);
-
-}
-
-
-.nav-menu a.active {
-
-    color: var(--orange);
-
-}
-
-
-.nav-menu a.active::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-
-    bottom: -42px;
-
-    width: 100%;
-
-    height: 2px;
-
-    background: var(--orange);
-
-}
-
-
-/* =========================================
-   MOBILE BUTTON
-========================================= */
-
-.menu-toggle {
-
-    display: none;
-
-    border: none;
-
-    background: transparent;
-
-    color: var(--white);
-
-    font-size: 35px;
-
-    cursor: pointer;
-
-    line-height: 1;
-
-}
-
-
-/* =========================================
+/* =========================================================
    HERO
-========================================= */
+========================================================= */
 
 .division-hero {
 
+    min-height:
+        55vh;
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
     padding:
+        150px 25px 90px;
 
-        95px
-        8%
-        70px;
+    overflow:
+        hidden;
 
-    border-bottom:
-        1px solid var(--border);
-
-}
-
-
-.hero-content {
-
-    max-width: 1200px;
-
-    margin: auto;
-
-}
-
-
-.hero-small {
-
-    color: var(--orange);
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    letter-spacing: 5px;
-
-    margin-bottom: 18px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(
+                255,
+                107,
+                0,
+                0.16
+            ),
+            transparent 50%
+        ),
+        #080808;
 
 }
 
 
-.hero-content h1 {
+.division-hero::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background-image:
+
+        linear-gradient(
+            rgba(
+                255,
+                255,
+                255,
+                0.035
+            ) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(
+                255,
+                255,
+                255,
+                0.035
+            ) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        45px 45px;
+
+    opacity:
+        0.55;
+
+    pointer-events:
+        none;
+
+}
+
+
+.division-hero-overlay {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(
+                255,
+                107,
+                0,
+                0.14
+            ),
+            transparent 55%
+        );
+
+}
+
+
+.division-hero-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    max-width:
+        800px;
+
+}
+
+
+.division-eyebrow {
+
+    display:
+        inline-block;
+
+    margin-bottom:
+        18px;
+
+    color:
+        var(--orange);
 
     font-family:
-        "Anton",
+        "Orbitron",
         sans-serif;
 
-    font-size: clamp(
-        55px,
-        8vw,
-        100px
-    );
+    font-size:
+        11px;
 
-    letter-spacing: 2px;
+    font-weight:
+        700;
 
-    font-weight: 400;
-
-}
-
-
-.hero-content h1 span {
-
-    color: var(--orange);
+    letter-spacing:
+        4px;
 
 }
 
 
-.hero-description {
+.division-hero h1 {
 
-    margin-top: 18px;
+    margin:
+        0;
 
-    color: var(--gray);
+    font-family:
+        "Orbitron",
+        sans-serif;
 
-    font-size: 14px;
+    font-size:
+        clamp(
+            42px,
+            7vw,
+            82px
+        );
+
+    line-height:
+        1.05;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
 
 }
 
 
-/* =========================================
-   CLUB LEADER
-========================================= */
+.division-hero h1 span {
+
+    color:
+        var(--orange);
+
+}
+
+
+.division-hero p {
+
+    max-width:
+        650px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        #777;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.9;
+
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.club-leader-section,
+.teams-section {
+
+    padding:
+        100px 0;
+
+}
+
 
 .club-leader-section {
 
-    padding:
-
-        90px
-        8%;
+    background:
+        #0b0b0b;
 
 }
 
 
-.club-leader-wrapper {
+.teams-section {
 
-    max-width: 1200px;
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
-
-    gap: 70px;
-
-    align-items: center;
+    background:
+        #080808;
 
 }
 
 
-.section-label {
+/* =========================================================
+   SECTION HEADING
+========================================================= */
 
-    color: var(--orange);
+.section-heading {
 
-    font-size: 10px;
-
-    letter-spacing: 4px;
-
-    font-weight: 700;
+    margin-bottom:
+        45px;
 
 }
 
 
-.club-leader-info h2 {
+.section-heading > span {
 
-    margin-top: 18px;
+    display:
+        block;
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--orange);
 
     font-family:
-        "Anton",
+        "Orbitron",
         sans-serif;
 
-    font-size: 58px;
+    font-size:
+        10px;
 
-    font-weight: 400;
+    font-weight:
+        700;
 
-    letter-spacing: 1px;
-
-}
-
-
-.club-leader-info h2 span {
-
-    color: var(--orange);
+    letter-spacing:
+        3px;
 
 }
 
 
-.title-line {
-
-    width: 70px;
-
-    height: 3px;
+.section-heading h2 {
 
     margin:
-        25px
         0;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        clamp(
+            30px,
+            4vw,
+            48px
+        );
+
+    line-height:
+        1.1;
+
+}
+
+
+.section-heading h2 strong {
+
+    color:
+        var(--orange);
+
+}
+
+
+.section-heading p {
+
+    max-width:
+        600px;
+
+    margin-top:
+        15px;
+
+    color:
+        #666;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   CLUB LEADER
+========================================================= */
+
+.club-leader-card {
+
+    position:
+        relative;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        60px
+        75px
+        1fr
+        auto;
+
+    align-items:
+        center;
+
+    gap:
+        25px;
+
+    min-height:
+        170px;
+
+    padding:
+        30px 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #151515,
+            #0d0d0d
+        );
+
+    border:
+        1px solid #292929;
+
+    overflow:
+        hidden;
+
+}
+
+
+.club-leader-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    bottom:
+        0;
+
+    left:
+        0;
+
+    width:
+        3px;
 
     background:
         var(--orange);
@@ -422,300 +424,277 @@ body {
 }
 
 
-.club-description {
+.leader-number {
 
-    max-width: 480px;
-
-    color: var(--gray);
-
-    font-size: 14px;
-
-    line-height: 1.9;
-
-}
-
-
-/* =========================================
-   CLUB LEADER CARD
-========================================= */
-
-.club-leader-card {
-
-    min-height: 250px;
-
-    padding: 35px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 30px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #16161a,
-            #0c0c0e
-        );
-
-    border:
-        1px solid var(--border);
-
-    position: relative;
-
-    overflow: hidden;
-
-}
-
-
-.club-leader-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-
-    height: 300px;
-
-    border-radius: 50%;
-
-    background:
-
-        radial-gradient(
-            circle,
-            rgba(255, 90, 31, 0.15),
-            transparent 70%
-        );
-
-    top: -150px;
-
-    right: -100px;
-
-}
-
-
-.leader-crown {
-
-    width: 85px;
-
-    height: 85px;
-
-    min-width: 85px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border:
-
-        1px solid
-        rgba(255, 90, 31, 0.5);
-
-    color: var(--orange);
-
-    font-size: 42px;
-
-}
-
-
-.club-leader-content {
-
-    position: relative;
-
-    z-index: 2;
-
-}
-
-
-.leader-position {
-
-    color: var(--gray);
-
-    font-size: 10px;
-
-    letter-spacing: 3px;
-
-}
-
-
-.club-leader-content h3 {
-
-    margin:
-        12px
-        0
-        25px;
-
-    font-size: 26px;
-
-}
-
-
-.leader-data {
-
-    display: flex;
-
-    gap: 50px;
-
-}
-
-
-.leader-data div {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-
-}
-
-
-.leader-data span {
-
-    color: var(--gray);
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-}
-
-
-.leader-data strong {
-
-    color: var(--orange);
-
-    font-size: 13px;
-
-}
-
-
-/* =========================================
-   DIVISION SECTION
-========================================= */
-
-.division-section {
-
-    padding:
-
-        70px
-        8%
-        110px;
-
-}
-
-
-.division-heading {
-
-    max-width: 1200px;
-
-    margin:
-        auto
-        auto
-        45px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-end;
-
-    gap: 30px;
-
-}
-
-
-.division-heading h2 {
-
-    margin-top: 15px;
+    color:
+        #444;
 
     font-family:
-        "Anton",
+        "Orbitron",
         sans-serif;
 
-    font-size: 55px;
-
-    font-weight: 400;
-
-}
-
-
-.division-heading h2 span {
-
-    color: var(--orange);
+    font-size:
+        14px;
 
 }
 
 
-.division-description {
+.leader-icon {
 
-    margin-top: 15px;
+    width:
+        68px;
 
-    color: var(--gray);
+    height:
+        68px;
 
-    font-size: 13px;
+    display:
+        flex;
 
-}
+    align-items:
+        center;
 
+    justify-content:
+        center;
 
-.division-slogan {
+    background:
+        rgba(
+            255,
+            107,
+            0,
+            0.06
+        );
 
-    display: flex;
+    border:
+        1px solid
+        rgba(
+            255,
+            107,
+            0,
+            0.35
+        );
 
-    flex-direction: column;
+    color:
+        var(--orange);
 
-    align-items: flex-end;
-
-    gap: 10px;
-
-    color: var(--gray);
-
-    font-size: 10px;
-
-    letter-spacing: 5px;
-
-}
-
-
-/* =========================================
-   DIVISION CONTAINER
-========================================= */
-
-.division-container {
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    display: grid;
-
-    gap: 20px;
+    font-size:
+        22px;
 
 }
 
 
-/* =========================================
+.leader-main {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+}
+
+
+.leader-label {
+
+    display:
+        block;
+
+    margin-bottom:
+        7px;
+
+    color:
+        var(--orange);
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        9px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+.leader-main h3 {
+
+    margin:
+        0;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        25px;
+
+}
+
+
+.leader-main p {
+
+    margin-top:
+        5px;
+
+    color:
+        #666;
+
+    font-size:
+        12px;
+
+}
+
+
+.leader-info {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        35px;
+
+}
+
+
+.leader-info-item {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        7px;
+
+}
+
+
+.leader-info-item span {
+
+    color:
+        #555;
+
+    font-size:
+        9px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.5px;
+
+}
+
+
+.leader-info-item strong {
+
+    color:
+        #ddd;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        13px;
+
+}
+
+
+.leader-role-badge {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width:
+        44px;
+
+    height:
+        32px;
+
+    padding:
+        0 12px;
+
+    background:
+        rgba(
+            255,
+            107,
+            0,
+            0.08
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            107,
+            0,
+            0.4
+        );
+
+    color:
+        var(--orange);
+
+}
+
+
+/* =========================================================
+   DIVISION LIST
+========================================================= */
+
+#divisions-container {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        22px;
+
+}
+
+
+/* =========================================================
    DIVISION CARD
-========================================= */
+========================================================= */
 
 .division-card {
 
-    background:
+    position:
+        relative;
 
-        linear-gradient(
-            135deg,
-            #151518,
-            #0c0c0e
-        );
+    background:
+        #101010;
 
     border:
-        1px solid var(--border);
+        1px solid #242424;
 
-    transition: 0.3s;
+    overflow:
+        hidden;
+
+    transition:
+        border-color
+        0.3s ease,
+        box-shadow
+        0.3s ease,
+        transform
+        0.3s ease;
 
 }
 
@@ -723,198 +702,307 @@ body {
 .division-card:hover {
 
     border-color:
-        var(--orange);
+        rgba(
+            255,
+            107,
+            0,
+            0.35
+        );
 
-    transform:
-        translateY(-3px);
+    box-shadow:
+        0 15px 40px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
 
 }
 
 
-.division-card-header {
+.division-card.open {
+
+    border-color:
+        rgba(
+            255,
+            107,
+            0,
+            0.5
+        );
+
+}
+
+
+/* =========================================================
+   DIVISION HEADER
+========================================================= */
+
+.division-header {
+
+    width:
+        100%;
+
+    min-height:
+        105px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
 
     padding:
-        32px
-        35px;
+        20px 25px;
 
-    display: flex;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(
+                255,
+                107,
+                0,
+                0.07
+            ),
+            transparent 60%
+        );
 
-    justify-content: space-between;
+    border:
+        0;
 
-    align-items: center;
+    border-bottom:
+        1px solid #202020;
 
-    gap: 30px;
+    color:
+        white;
+
+    text-align:
+        left;
+
+    cursor:
+        pointer;
+
+    font-family:
+        inherit;
+
+}
+
+
+.division-header-left {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+    min-width:
+        0;
+
+}
+
+
+/* =========================================================
+   DIVISION LOGO
+========================================================= */
+
+.division-logo {
+
+    width:
+        68px;
+
+    height:
+        68px;
+
+    flex-shrink:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #0b0b0b;
+
+    border:
+        1px solid #303030;
+
+    overflow:
+        hidden;
+
+}
+
+
+.division-logo img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+
+    padding:
+        7px;
+
+}
+
+
+.division-logo i {
+
+    color:
+        var(--orange);
+
+    font-size:
+        22px;
+
+}
+
+
+/* =========================================================
+   DIVISION INFO
+========================================================= */
+
+.division-info {
+
+    min-width:
+        0;
 
 }
 
 
 .division-number {
 
-    color: var(--orange);
+    display:
+        block;
 
-    font-size: 10px;
+    margin-bottom:
+        6px;
 
-    letter-spacing: 3px;
+    color:
+        var(--orange);
 
-    font-weight: 700;
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2px;
 
 }
 
 
-.division-card-title h3 {
+.division-name {
 
     margin:
-        12px
         0;
 
-    font-family:
-        "Anton",
-        sans-serif;
-
-    font-size: 30px;
-
-    font-weight: 400;
-
-}
-
-
-.division-card-title p {
-
-    color: var(--gray);
-
-    font-size: 12px;
-
-}
-
-
-.division-card-title strong {
-
-    color: var(--white);
-
-}
-
-
-.division-total {
-
-    padding:
-        12px
-        18px;
-
-    border:
-        1px solid var(--border);
-
-    color: var(--gray);
-
-    font-size: 10px;
-
-    letter-spacing: 1px;
-
-}
-
-
-.division-button {
-
-    width: 100%;
-
-    padding: 17px;
-
-    border: none;
-
-    border-top:
-        1px solid var(--border);
-
-    background:
-        transparent;
-
-    color: var(--orange);
-
-    cursor: pointer;
+    color:
+        white;
 
     font-family:
-        "Montserrat",
+        "Orbitron",
         sans-serif;
 
-    font-size: 11px;
+    font-size:
+        21px;
 
-    font-weight: 700;
-
-    letter-spacing: 2px;
-
-    transition: 0.3s;
+    line-height:
+        1.25;
 
 }
 
 
-.division-button:hover {
+.division-description {
 
-    background:
-        var(--orange);
+    margin:
+        7px 0 0;
 
     color:
-        var(--black);
+        #555;
+
+    font-size:
+        11px;
 
 }
 
 
-.division-button span {
+/* =========================================================
+   HEADER RIGHT
+========================================================= */
 
-    margin-left: 10px;
+.division-header-right {
 
-    font-size: 16px;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    flex-shrink:
+        0;
 
 }
 
 
-/* =========================================
-   DIVISION DETAIL
-========================================= */
+.division-member-count {
 
-.division-detail {
+    display:
+        inline-flex;
 
-    max-width: 1200px;
+    align-items:
+        center;
 
-    margin: auto;
-
-}
-
-
-/* BACK BUTTON */
-
-.back-button {
-
-    margin-bottom: 40px;
+    gap:
+        7px;
 
     padding:
-        13px
-        20px;
-
-    border:
-        1px solid var(--border);
+        8px 12px;
 
     background:
-        transparent;
+        #171717;
 
-    color: var(--gray);
+    border:
+        1px solid #292929;
 
-    cursor: pointer;
+    color:
+        #777;
 
-    font-family:
-        "Montserrat",
-        sans-serif;
+    font-size:
+        9px;
 
-    font-size: 10px;
-
-    letter-spacing: 1px;
-
-    transition: 0.3s;
+    font-weight:
+        700;
 
 }
 
 
-.back-button:hover {
-
-    border-color:
-        var(--orange);
+.division-member-count i {
 
     color:
         var(--orange);
@@ -922,529 +1010,910 @@ body {
 }
 
 
-/* =========================================
-   TEAM HEADER
-========================================= */
+.division-arrow {
 
-.team-header {
+    width:
+        38px;
 
-    padding-bottom: 40px;
+    height:
+        38px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #171717;
+
+    border:
+        1px solid #292929;
+
+    color:
+        #555;
+
+    transition:
+        transform
+        0.3s ease,
+        color
+        0.3s ease;
+
+}
+
+
+.division-card:hover
+.division-arrow {
+
+    color:
+        var(--orange);
+
+}
+
+
+.division-card.open
+.division-arrow {
+
+    transform:
+        rotate(180deg);
+
+    color:
+        var(--orange);
+
+}
+
+
+/* =========================================================
+   LEADER DIVISION
+========================================================= */
+
+.division-leader-section {
+
+    padding:
+        25px 30px;
+
+    background:
+        #0d0d0d;
 
     border-bottom:
-        1px solid var(--border);
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
+        1px solid #202020;
 
 }
 
 
-.team-small-title {
+.division-leader-heading {
 
-    color: var(--orange);
+    display:
+        flex;
 
-    font-size: 10px;
+    align-items:
+        center;
 
-    letter-spacing: 4px;
+    gap:
+        9px;
 
-}
+    margin-bottom:
+        14px;
 
-
-.team-header h2 {
-
-    margin:
-        15px
-        0;
+    color:
+        var(--orange);
 
     font-family:
-        "Anton",
+        "Orbitron",
         sans-serif;
 
-    font-size: 55px;
+    font-size:
+        9px;
 
-    font-weight: 400;
+    font-weight:
+        800;
 
-}
-
-
-.team-description {
-
-    color: var(--gray);
-
-    font-size: 13px;
+    letter-spacing:
+        1.5px;
 
 }
 
 
-.team-count {
+.division-leader-card {
 
-    text-align: center;
+    display:
+        flex;
 
-    padding: 20px 30px;
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    padding:
+        16px;
+
+    background:
+        #151515;
 
     border:
-        1px solid var(--border);
+        1px solid #292929;
 
 }
 
 
-.team-count strong {
+.division-leader-avatar {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    flex-shrink:
+        0;
+
+    background:
+        rgba(
+            255,
+            107,
+            0,
+            0.08
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            107,
+            0,
+            0.35
+        );
+
+    color:
+        var(--orange);
+
+}
+
+
+.division-leader-info {
+
+    flex:
+        1;
+
+}
+
+
+.division-leader-info span {
+
+    display:
+        block;
+
+    margin-bottom:
+        4px;
+
+    color:
+        #555;
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.5px;
+
+}
+
+
+.division-leader-info h4 {
+
+    margin:
+        0;
+
+    color:
+        white;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        15px;
+
+}
+
+
+.division-leader-info p {
+
+    margin:
+        4px 0 0;
+
+    color:
+        #666;
+
+    font-size:
+        10px;
+
+}
+
+
+.division-leader-role {
+
+    min-width:
+        45px;
+
+    padding:
+        7px 10px;
+
+    text-align:
+        center;
+
+    background:
+        rgba(
+            255,
+            107,
+            0,
+            0.08
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            107,
+            0,
+            0.3
+        );
+
+    color:
+        var(--orange);
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        9px;
+
+    font-weight:
+        800;
+
+}
+
+
+/* =========================================================
+   MEMBERS
+========================================================= */
+
+.division-members {
+
+    display:none;
+
+    padding: 0 30px 30px;
+
+    background: #0d0d0d;
+
+}
+
+
+.division-card.open .division-members {
 
     display: block;
 
-    color: var(--orange);
+    animation: divisionOpen 0.35s ease;
 
-    font-size: 30px;
+}
+/* =========================================================
+   HIDE LEADER UNTIL OPEN
+========================================================= */
+
+.division-card:not(.open) .division-leader-section {
+
+    display: none;
+
+}
+.division-card.open .division-leader-section {
+
+    display: block;
+
+}
+@keyframes divisionOpen {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(-8px);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
+    }
 
 }
 
 
-.team-count span {
+/* =========================================================
+   MEMBER PANEL TOP
+========================================================= */
 
-    font-size: 9px;
+.members-panel-top {
 
-    color: var(--gray);
+    padding:
+        24px 0 18px;
 
-    letter-spacing: 2px;
-
-}
-
-
-/* =========================================
-   LEADER
-========================================= */
-
-.team-leader-section {
-
-    margin-top: 55px;
+    border-bottom:
+        1px solid #202020;
 
 }
 
 
-.section-label {
+.members-panel-title {
 
-    margin-bottom: 18px;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    color:
+        #777;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.5px;
 
 }
 
 
-.leader-card {
-
-    padding: 28px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 25px;
-
-    background:
-        var(--card);
-
-    border:
-        1px solid var(--border);
-
-}
-
-
-.leader-avatar {
-
-    width: 70px;
-
-    height: 70px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border:
-        1px solid
-        rgba(255, 90, 31, 0.5);
+.members-panel-title i {
 
     color:
         var(--orange);
 
-    font-size: 28px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.members-table-wrapper {
+
+    width:
+        100%;
+
+    overflow-x:
+        auto;
 
 }
 
 
-.leader-information {
+.members-table {
 
-    flex: 1;
+    width:
+        100%;
 
-}
+    border-collapse:
+        collapse;
 
-
-.leader-information span {
-
-    color: var(--gray);
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
+    min-width:
+        650px;
 
 }
 
 
-.leader-information h3 {
-
-    margin:
-        8px
-        0;
-
-    font-size: 18px;
-
-}
-
-
-.leader-information p {
-
-    color: var(--gray);
-
-    font-size: 11px;
-
-}
-
-
-.leader-role {
+.members-table th {
 
     padding:
-        10px
-        20px;
-
-    border:
-        1px solid
-        rgba(255, 90, 31, 0.4);
-
-    color:
-        var(--orange);
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-}
-
-
-/* =========================================
-   TEAM MEMBERS
-========================================= */
-
-.team-members-section {
-
-    margin-top: 60px;
-
-}
-
-
-.team-table-header {
-
-    display: grid;
-
-    grid-template-columns:
-
-        50px
-        55px
-        2fr
-        1.2fr
-        100px
-        100px;
-
-    padding:
-        18px
         15px;
 
-    border-top:
-        1px solid var(--border);
-
-    border-bottom:
-        1px solid var(--border);
+    text-align:
+        left;
 
     color:
-        var(--gray);
+        #555;
 
-    font-size: 9px;
+    font-size:
+        8px;
 
-    letter-spacing: 2px;
+    font-weight:
+        700;
 
-}
-
-
-.team-member-row {
-
-    display: grid;
-
-    grid-template-columns:
-
-        50px
-        55px
-        2fr
-        1.2fr
-        100px
-        100px;
-
-    align-items: center;
-
-    min-height: 80px;
-
-    padding:
-        12px
-        15px;
+    letter-spacing:
+        1.5px;
 
     border-bottom:
-        1px solid var(--border);
-
-    transition: 0.3s;
+        1px solid #242424;
 
 }
 
 
-.team-member-row:hover {
+.members-table td {
+
+    padding:
+        14px 15px;
+
+    color:
+        #888;
+
+    font-size:
+        11px;
+
+    border-bottom:
+        1px solid #1b1b1b;
+
+}
+
+
+.members-table tbody tr:hover {
 
     background:
-        rgba(255, 255, 255, 0.02);
+        #141414;
 
 }
 
+
+.members-table tbody tr:last-child td {
+
+    border-bottom:
+        none;
+
+}
+
+
+/* =========================================================
+   MEMBER INDEX
+========================================================= */
 
 .member-index {
 
-    color:
-        var(--gray);
+    width:
+        55px;
 
-    font-size: 11px;
+    color:
+        #444 !important;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
 
 }
 
 
-.member-avatar {
+/* =========================================================
+   MEMBER NAME
+========================================================= */
 
-    width: 36px;
+.member-name-cell {
 
-    height: 36px;
+    display:
+        flex;
 
-    display: flex;
+    align-items:
+        center;
 
-    align-items: center;
-
-    justify-content: center;
-
-    border:
-        1px solid var(--border);
-
-    color:
-        var(--gray);
+    gap:
+        12px;
 
 }
 
 
 .member-nickname {
 
-    font-size: 12px;
+    color:
+        white !important;
 
-    font-weight: 600;
+    font-weight:
+        700;
 
 }
 
+
+.member-photo-placeholder {
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    flex-shrink:
+        0;
+
+    background:
+        #181818;
+
+    border:
+        1px solid #292929;
+
+    color:
+        #555;
+
+}
+
+
+/* =========================================================
+   GAME ID
+========================================================= */
 
 .member-game-id {
 
     color:
-        var(--gray);
+        #666 !important;
 
-    font-size: 11px;
+    font-family:
+        monospace;
 
-    letter-spacing: 1px;
+    letter-spacing:
+        1px;
 
 }
 
 
-.role-badge {
+/* =========================================================
+   ROLE
+========================================================= */
 
-    display: inline-block;
+.member-role {
 
-    min-width: 45px;
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width:
+        40px;
 
     padding:
-        8px
-        12px;
+        5px 9px;
 
-    text-align: center;
+    background:
+        rgba(
+            255,
+            107,
+            0,
+            0.08
+        );
 
     border:
         1px solid
-        rgba(255, 90, 31, 0.4);
+        rgba(
+            255,
+            107,
+            0,
+            0.2
+        );
 
     color:
         var(--orange);
 
-    font-size: 10px;
+    font-family:
+        "Orbitron",
+        sans-serif;
 
-    font-weight: 700;
+    font-size:
+        8px;
+
+    font-weight:
+        800;
 
 }
 
+
+/* =========================================================
+   STATUS
+========================================================= */
 
 .member-status {
 
-    font-size: 9px;
+    color:
+        #555;
 
-    letter-spacing: 1px;
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1px;
 
 }
 
 
-.status-leader {
+.leader-status {
 
     color:
         var(--orange);
 
-    font-weight: 700;
-
 }
 
 
-.status-member {
-
-    color:
-        var(--gray);
-
-}
-
-
-/* =========================================
+/* =========================================================
    LOADING
-========================================= */
+========================================================= */
 
-.loading {
+.division-loading {
 
-    padding: 70px;
+    min-height:
+        250px;
 
-    text-align: center;
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        15px;
 
     color:
-        var(--gray);
+        #555;
+
+    font-size:
+        11px;
+
+}
+
+
+.loading-spinner {
+
+    width:
+        32px;
+
+    height:
+        32px;
 
     border:
-        1px solid var(--border);
+        2px solid #252525;
 
-}
-
-
-.error {
-
-    color:
-        #ff8058;
-
-}
-
-
-/* =========================================
-   QUOTE
-========================================= */
-
-.division-quote {
-
-    margin-top: 80px;
-
-    text-align: center;
-
-}
-
-
-.division-quote p {
-
-    color:
+    border-top-color:
         var(--orange);
 
-    font-size: 12px;
+    border-radius:
+        50%;
 
-    letter-spacing: 8px;
-
-}
-
-
-.division-quote div {
-
-    width: 120px;
-
-    height: 2px;
-
-    margin:
-        30px
-        auto
-        0;
-
-    background:
-        var(--orange);
+    animation:
+        spin
+        0.8s
+        linear
+        infinite;
 
 }
 
 
-/* =========================================
-   FOOTER
-========================================= */
+@keyframes spin {
 
-.footer {
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.division-error {
 
     padding:
+        45px 25px;
 
-        55px
-        8%
-        25px;
-
-    border-top:
-        1px solid var(--border);
+    text-align:
+        center;
 
     background:
-        #080809;
+        #101010;
+
+    border:
+        1px solid #292929;
 
 }
 
 
-.footer-brand {
+.division-error i {
 
-    max-width: 1200px;
+    display:
+        block;
+
+    margin-bottom:
+        15px;
+
+    color:
+        var(--orange);
+
+    font-size:
+        28px;
+
+}
+
+
+.division-error h3 {
 
     margin:
-        auto
-        auto
-        45px;
+        0 0 10px;
 
-    display: flex;
+    color:
+        white;
 
-    align-items: center;
+    font-family:
+        "Orbitron",
+        sans-serif;
 
-    gap: 15px;
-
-}
-
-
-.footer-brand img {
-
-    width: 60px;
-
-    height: 60px;
-
-    object-fit: contain;
+    font-size:
+        16px;
 
 }
 
 
-.footer-brand h2 {
+.division-error p {
 
-    font-size: 22px;
+    margin:
+        0;
+
+    color:
+        #777;
+
+    font-size:
+        11px;
 
 }
 
 
-.footer-brand h2 span {
+.division-error small {
+
+    display:
+        block;
+
+    margin-top:
+        10px;
+
+    color:
+        #444;
+
+    font-size:
+        10px;
+
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.division-cta {
+
+    padding:
+        100px 25px;
+
+    text-align:
+        center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(
+                255,
+                107,
+                0,
+                0.11
+            ),
+            transparent 50%
+        ),
+        #080808;
+
+    border-top:
+        1px solid #171717;
+
+}
+
+
+.division-cta > div {
+
+    max-width:
+        700px;
+
+    margin:
+        auto;
+
+}
+
+
+.division-cta > div > span {
+
+    color:
+        var(--orange);
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        3px;
+
+}
+
+
+.division-cta h2 {
+
+    margin-top:
+        15px;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        clamp(
+            25px,
+            4vw,
+            42px
+        );
+
+}
+
+
+.division-cta h2 strong {
 
     color:
         var(--orange);
@@ -1452,461 +1921,165 @@ body {
 }
 
 
-.footer-brand p {
+.division-cta p {
 
-    margin-top: 5px;
-
-    color:
-        var(--gray);
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-}
-
-
-.footer-bottom {
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding-top: 25px;
-
-    border-top:
-        1px solid var(--border);
-
-    text-align: center;
+    margin:
+        12px 0 25px;
 
     color:
-        #55555d;
+        #666;
 
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-}
-
-
-/* =========================================
-   TABLET
-========================================= */
-
-@media (
-    max-width: 900px
-) {
-
-
-    .navbar {
-
-        padding:
-            0 30px;
-
-        height:
-            85px;
-
-    }
-
-
-    .nav-menu {
-
-        gap:
-            25px;
-
-    }
-
-
-    .club-leader-wrapper {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
-            45px;
-
-    }
-
-
-    .division-heading {
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-
-    }
-
-
-    .division-slogan {
-
-        align-items:
-            flex-start;
-
-    }
-
-
-    .team-table-header,
-
-    .team-member-row {
-
-        grid-template-columns:
-
-            40px
-            45px
-            1.5fr
-            1fr
-            70px;
-
-    }
-
-
-    .team-table-header div:last-child,
-
-    .team-member-row div:last-child {
-
-        display: none;
-
-    }
+    font-size:
+        13px;
 
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+.division-cta-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    padding:
+        14px 22px;
+
+    background:
+        var(--orange);
+
+    color:
+        #080808;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media (
-    max-width: 700px
+    max-width: 750px
 ) {
 
-
-    /* NAVBAR */
-
-    .navbar {
-
-        height:
-            78px;
-
-        padding:
-            0 20px;
-
-        position:
-            sticky;
-
-    }
-
-
-    .brand-logo {
+    .division-container {
 
         width:
-            48px;
-
-        height:
-            48px;
+            calc(100% - 35px);
 
     }
 
-
-    .brand-text h1 {
-
-        font-size:
-            19px;
-
-    }
-
-
-    .brand-text p {
-
-        font-size:
-            7px;
-
-        letter-spacing:
-            2px;
-
-    }
-
-
-    /* HIDE NAV */
-
-    .nav-menu {
-
-        display:
-            none;
-
-        position:
-            absolute;
-
-        top:
-            78px;
-
-        right:
-            15px;
-
-        width:
-            210px;
-
-        padding:
-            15px;
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-
-        gap:
-            0;
-
-        background:
-            #111114;
-
-        border:
-            1px solid var(--border);
-
-        box-shadow:
-            0 20px 40px
-            rgba(0, 0, 0, 0.5);
-
-    }
-
-
-    /* SHOW MENU */
-
-    .nav-menu.show {
-
-        display:
-            flex;
-
-    }
-
-
-    .nav-menu a {
-
-        width:
-            100%;
-
-        padding:
-            15px;
-
-        border-bottom:
-            1px solid var(--border);
-
-    }
-
-
-    .nav-menu a:last-child {
-
-        border-bottom:
-            none;
-
-    }
-
-
-    .nav-menu a.active::after {
-
-        display:
-            none;
-
-    }
-
-
-    /* THREE DOT BUTTON */
-
-    .menu-toggle {
-
-        display:
-            block;
-
-    }
-
-
-    /* HERO */
 
     .division-hero {
 
-        padding:
-
-            65px
-            25px
-            55px;
-
-    }
-
-
-    .hero-content h1 {
-
-        font-size:
-            54px;
-
-    }
-
-
-    /* CLUB LEADER */
-
-    .club-leader-section {
+        min-height:
+            48vh;
 
         padding:
-
-            65px
-            25px;
+            130px 20px 70px;
 
     }
 
 
-    .club-leader-info h2 {
+    .club-leader-section,
+    .teams-section {
 
-        font-size:
-            45px;
+        padding:
+            75px 0;
 
     }
 
 
     .club-leader-card {
 
+        grid-template-columns:
+            55px
+            1fr;
+
+        gap:
+            18px;
+
         padding:
             25px;
 
-        align-items:
-            flex-start;
+    }
 
-        gap:
+
+    .leader-number {
+
+        display:
+            none;
+
+    }
+
+
+    .leader-info {
+
+        grid-column:
+            1 / -1;
+
+        padding-top:
             20px;
 
-    }
-
-
-    .leader-crown {
-
-        width:
-            60px;
-
-        height:
-            60px;
-
-        min-width:
-            60px;
-
-        font-size:
-            28px;
+        border-top:
+            1px solid #222;
 
     }
 
 
-    .club-leader-content h3 {
+    .division-header {
 
-        font-size:
+        padding:
             18px;
 
     }
 
 
-    .leader-data {
+    .division-header-left {
 
         gap:
-            20px;
+            13px;
 
     }
 
 
-    /* DIVISION */
+    .division-logo {
 
-    .division-section {
+        width:
+            55px;
 
-        padding:
-
-            60px
-            25px
-            80px;
+        height:
+            55px;
 
     }
 
 
-    .division-heading h2 {
+    .division-name {
 
         font-size:
-            45px;
+            16px;
 
     }
 
 
-    .division-card-header {
-
-        padding:
-            25px;
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-
-    }
-
-
-    .division-card-title h3 {
-
-        font-size:
-            25px;
-
-    }
-
-
-    /* DETAIL */
-
-    .team-header {
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-
-        gap:
-            25px;
-
-    }
-
-
-    .team-header h2 {
-
-        font-size:
-            42px;
-
-    }
-
-
-    .team-count {
-
-        text-align:
-            left;
-
-    }
-
-
-    .leader-card {
-
-        flex-wrap:
-            wrap;
-
-        padding:
-            20px;
-
-    }
-
-
-    .leader-role {
-
-        margin-left:
-            95px;
-
-    }
-
-
-    /* TABLE MOBILE */
-
-    .team-table-header {
+    .division-member-count {
 
         display:
             none;
@@ -1914,64 +2087,141 @@ body {
     }
 
 
-    .team-member-row {
+    .division-members {
 
-        grid-template-columns:
+        padding:
+            0 18px 20px;
 
-            35px
-            40px
-            1fr
-            65px;
+    }
 
-        gap:
-            10px;
+
+    .division-leader-section {
+
+        padding:
+            20px 18px;
+
+    }
+
+}
+
+
+@media (
+    max-width: 500px
+) {
+
+    .division-hero h1 {
+
+        font-size:
+            38px;
+
+    }
+
+
+    .division-hero p {
+
+        font-size:
+            12px;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size:
+            30px;
+
+    }
+
+
+    .division-header {
 
         min-height:
-            75px;
+            85px;
 
     }
 
 
-    .member-game-id {
+    .division-logo {
 
-        display:
-            none;
+        width:
+            48px;
 
-    }
-
-
-    .member-status {
-
-        display:
-            none;
+        height:
+            48px;
 
     }
 
 
-    /* QUOTE */
-
-    .division-quote p {
+    .division-number {
 
         font-size:
-            9px;
-
-        letter-spacing:
-            4px;
+            8px;
 
     }
 
 
-    /* FOOTER */
+    .division-name {
 
-    .footer {
+        font-size:
+            13px;
+
+    }
+
+
+    .division-description {
+
+        display:
+            none;
+
+    }
+
+
+    .division-arrow {
+
+        width:
+            32px;
+
+        height:
+            32px;
+
+    }
+
+
+    .division-leader-card {
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .division-leader-role {
+
+        min-width:
+            40px;
+
+    }
+
+
+    .division-members {
 
         padding:
-
-            45px
-            25px
-            20px;
+            0 15px 20px;
 
     }
 
+}
 
+
+/* =========================================================
+   MEMBER EMPTY STATE
+========================================================= */
+
+.member-empty {
+    padding: 25px 15px !important;
+    text-align: center;
+    color: #555 !important;
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px !important;
+    letter-spacing: 1.5px;
 }
