@@ -1,434 +1,53 @@
 /* =========================================
-   RESET
+   DIVISION PAGE
 ========================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-/* =========================================
-   ROOT
-========================================= */
-
-:root {
-
-    --orange: #ff6b1a;
-    --orange-dark: #c94c0b;
-
-    --black: #08090b;
-    --dark: #0d0f12;
-
-    --card: #121419;
-    --border: #25282f;
-
-    --gray: #9ca0aa;
-    --white: #f5f5f5;
-
-}
-
-
-/* =========================================
-   BODY
-========================================= */
-
-html {
-    scroll-behavior: smooth;
-}
-
-
-body {
-
-    background: var(--black);
-
-    color: var(--white);
-
-    font-family: 'Montserrat', sans-serif;
-
-    overflow-x: hidden;
-
-}
-
-
-/* =========================================
-   NAVBAR
-========================================= */
-
-.navbar {
-
+.division-page {
     width: 100%;
-
-    min-height: 90px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 12px 5%;
-
-    background: #0b0c0e;
-
-    border-bottom: 1px solid var(--border);
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 9999;
-
-}
-
-
-/* =========================================
-   BRAND
-========================================= */
-
-.brand {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    text-decoration: none;
-
-}
-
-
-.logo {
-
-    width: 65px;
-
-    height: 65px;
-
-    object-fit: contain;
-
-}
-
-
-.brand-text h2 {
-
-    color: var(--white);
-
-    font-size: 21px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
-}
-
-
-.brand-text h2 span {
-
-    color: var(--orange);
-
-}
-
-
-.brand-text p {
-
-    color: #8f95a1;
-
-    font-size: 8px;
-
-    letter-spacing: 3px;
-
-    margin-top: 5px;
-
-}
-
-
-/* =========================================
-   NAVIGATION DESKTOP
-========================================= */
-
-.nav-menu {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 35px;
-
-}
-
-
-.nav-menu a {
-
-    position: relative;
-
-    text-decoration: none;
-
-    color: #c8ccd4;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    transition: 0.3s;
-
-}
-
-
-.nav-menu a:hover {
-
-    color: var(--orange);
-
-}
-
-
-.nav-menu a.active {
-
-    color: var(--orange);
-
-}
-
-
-/* GARIS MENU ACTIVE DESKTOP */
-
-.nav-menu a.active::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 100%;
-
-    height: 2px;
-
-    background: var(--orange);
-
-    left: 0;
-
-    bottom: -12px;
-
-}
-
-
-/* =========================================
-   TOMBOL TITIK TIGA
-   DESKTOP = HIDDEN
-========================================= */
-
-.menu-toggle {
-
-    display: none;
-
-    background: transparent;
-
-    border: none;
-
-    color: var(--orange);
-
-    font-size: 36px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    padding: 5px 10px;
-
-    line-height: 1;
-
-}
-
-
-/* =========================================
-   KETUA KLUB
-========================================= */
-
-.club-leader-section {
-
-    width: 90%;
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding: 80px 0 70px;
-
-}
-
-
-/* =========================================
-   SECTION HEADER
-========================================= */
-
-.section-header {
-
-    text-align: center;
-
-    margin-bottom: 45px;
-
-}
-
-
-.section-subtitle {
-
-    color: var(--orange);
-
-    font-size: 11px;
-
-    letter-spacing: 5px;
-
-    margin-bottom: 14px;
-
-}
-
-
-.section-header h2 {
-
-    font-size: 38px;
-
-    font-weight: 800;
-
-}
-
-
-.orange-line {
-
-    width: 65px;
-
-    height: 3px;
-
-    background: var(--orange);
-
-    margin: 20px auto 0;
-
-}
-
-
-/* =========================================
-   CLUB LEADER CARD
-========================================= */
-
-.club-leader-card {
-
-    width: 100%;
-
-    max-width: 750px;
-
-    min-height: 260px;
-
-    margin: auto;
-
-    padding: 40px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 40px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255, 107, 26, 0.08),
-            #111318
-        );
-
-    border: 1px solid #343841;
-
-    border-left: 4px solid var(--orange);
-
-    position: relative;
-
-    overflow: hidden;
-
-}
-
-
-/* EFFECT */
-
-.club-leader-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-
-    height: 300px;
-
-    border-radius: 50%;
+    min-height: 100vh;
 
     background:
         radial-gradient(
-            circle,
-            rgba(255, 107, 26, 0.12),
-            transparent 70%
-        );
+            circle at top,
+            rgba(255, 102, 0, 0.04),
+            transparent 35%
+        ),
+        #08090b;
 
-    top: -150px;
+    color: white;
 
-    right: -100px;
-
+    padding:
+        120px 30px
+        80px;
 }
 
 
 /* =========================================
-   LEADER ICON
+   HERO
 ========================================= */
 
-.leader-icon {
+.division-hero {
+    max-width: 1000px;
 
-    width: 90px;
+    margin:
+        0 auto
+        55px;
 
-    height: 90px;
-
-    min-width: 90px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border: 1px solid var(--orange);
-
-    border-radius: 50%;
-
-    color: var(--orange);
-
-    font-size: 38px;
-
-    background: #0c0d10;
-
-    position: relative;
-
-    z-index: 2;
-
+    text-align: center;
 }
 
 
-/* =========================================
-   LEADER CONTENT
-========================================= */
+.hero-label {
 
-.leader-content {
+    display: block;
 
-    position: relative;
+    color: #ff6a00;
 
-    z-index: 2;
-
-}
-
-
-.leader-position {
-
-    color: var(--orange);
+    font-family: "Orbitron", sans-serif;
 
     font-size: 11px;
+
+    font-weight: 700;
 
     letter-spacing: 4px;
 
@@ -437,150 +56,45 @@ body {
 }
 
 
-.leader-name {
+.division-hero h1 {
 
-    font-size: 30px;
+    margin: 0;
 
-    margin-bottom: 25px;
+    font-family: "Orbitron", sans-serif;
 
-}
-
-
-/* =========================================
-   LEADER INFO
-========================================= */
-
-.leader-info-container {
-
-    display: flex;
-
-    gap: 60px;
-
-}
-
-
-.leader-info span {
-
-    display: block;
-
-    color: #777d87;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 8px;
-
-}
-
-
-.leader-info strong {
-
-    color: var(--white);
-
-    font-size: 15px;
-
-}
-
-
-/* =========================================
-   DIVISION SECTION
-========================================= */
-
-.division-section {
-
-    width: 100%;
-
-    border-top: 1px solid var(--border);
-
-    padding: 80px 5%;
-
-}
-
-
-/* =========================================
-   DIVISION HEADING
-========================================= */
-
-.division-heading {
-
-    width: 100%;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-start;
-
-    margin-bottom: 60px;
-
-}
-
-
-.division-title-left {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-
-}
-
-
-.title-accent {
-
-    width: 5px;
-
-    height: 55px;
-
-    background: var(--orange);
-
-    border-radius: 10px;
-
-}
-
-
-.division-title-left h2 {
-
-    font-size: 45px;
+    font-size: clamp(
+        35px,
+        5vw,
+        60px
+    );
 
     font-weight: 800;
 
-}
+    letter-spacing: 3px;
 
-
-.division-title-left p {
-
-    color: var(--gray);
-
-    margin-top: 12px;
-
-    font-size: 14px;
+    color: #f4f4f4;
 
 }
 
 
-/* =========================================
-   SLOGAN
-========================================= */
+.division-hero h1 span {
 
-.division-slogan {
-
-    text-align: right;
+    color: #ff6a00;
 
 }
 
 
-.division-slogan p {
+.division-hero p {
 
-    color: #9a8b7e;
+    margin-top: 18px;
 
-    font-size: 10px;
+    color: #8d96a0;
 
-    letter-spacing: 7px;
+    font-family: "Rajdhani", sans-serif;
 
-    margin-bottom: 12px;
+    font-size: 16px;
+
+    letter-spacing: 0.5px;
 
 }
 
@@ -593,11 +107,9 @@ body {
 
     width: 100%;
 
-    display: flex;
+    max-width: 1150px;
 
-    flex-direction: column;
-
-    gap: 25px;
+    margin: auto;
 
 }
 
@@ -608,61 +120,97 @@ body {
 
 .division-card {
 
-    width: 100%;
+    margin-bottom: 30px;
 
-    min-height: 230px;
+    border:
+        1px solid
+        rgba(255, 106, 0, 0.45);
 
-    display: grid;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 106, 0, 0.08),
+            rgba(15, 16, 18, 0.95) 35%
+        );
 
-    grid-template-columns:
-        180px
-        1fr
-        1fr
-        70px;
+    transition:
+        0.3s ease;
 
-    align-items: center;
-
-    gap: 30px;
-
-    padding: 30px;
-
-    background: #111318;
-
-    border: 1px solid #292d35;
-
-    transition: 0.3s;
+    overflow: hidden;
 
 }
 
 
 .division-card:hover {
 
-    border-color: var(--orange);
+    border-color: #ff6a00;
 
-    transform: translateY(-3px);
+    box-shadow:
+        0 0 25px
+        rgba(255, 106, 0, 0.08);
 
 }
 
 
 /* =========================================
-   DIVISION LOGO
+   DIVISION HEADER
 ========================================= */
 
-.division-logo {
+.division-header {
 
-    width: 140px;
-
-    height: 140px;
+    min-height: 110px;
 
     display: flex;
 
     align-items: center;
 
+    gap: 20px;
+
+    padding:
+        20px 28px;
+
+    cursor: pointer;
+
+    border-bottom:
+        1px solid
+        transparent;
+
+}
+
+
+.division-card.open
+.division-header {
+
+    border-bottom-color:
+        #25282d;
+
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.division-logo {
+
+    width: 64px;
+
+    height: 64px;
+
+    display: flex;
+
     justify-content: center;
 
-    border: 1px solid #343841;
+    align-items: center;
 
-    background: #0b0c0f;
+    border:
+        1px solid
+        #3a4148;
+
+    background:
+        #121416;
+
+    flex-shrink: 0;
 
     overflow: hidden;
 
@@ -677,20 +225,22 @@ body {
 
     object-fit: contain;
 
+    padding: 6px;
+
 }
 
 
-.division-number {
+.division-logo-placeholder {
 
-    color: var(--orange);
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    color: #ff6a00;
 
     font-size: 18px;
 
     font-weight: 700;
-
-    text-align: center;
-
-    line-height: 1.5;
 
 }
 
@@ -699,106 +249,455 @@ body {
    DIVISION INFO
 ========================================= */
 
-.division-info h2 {
+.division-info {
 
-    font-size: 25px;
-
-    margin-bottom: 12px;
+    flex: 1;
 
 }
 
 
-.division-info h3 {
+.division-number {
 
-    color: var(--orange);
+    display: block;
 
-    font-size: 13px;
+    color: #ff6a00;
 
-    font-weight: 500;
+    font-family:
+        "Orbitron",
+        sans-serif;
 
-    margin-bottom: 20px;
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
 
 }
 
 
-.division-info p {
+.division-name {
 
-    color: var(--gray);
+    margin: 0;
+
+    color: #f2f2f2;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+
+.member-count {
+
+    margin-top: 8px;
+
+    color: #7e8791;
+
+    font-family:
+        "Rajdhani",
+        sans-serif;
 
     font-size: 13px;
 
-    line-height: 1.8;
+    font-weight: 600;
 
-    max-width: 400px;
+    letter-spacing: 1px;
 
 }
 
 
 /* =========================================
-   DIVISION STATS
+   MEMBER BADGE
 ========================================= */
 
-.division-stats {
-
-    border-left: 1px solid #2c3038;
-
-    padding-left: 35px;
+.member-badge {
 
     display: flex;
 
-    flex-direction: column;
+    align-items: center;
 
-    gap: 20px;
+    gap: 8px;
+
+    padding:
+        10px 16px;
+
+    border:
+        1px solid
+        #2e3339;
+
+    background:
+        #15171a;
+
+    color: #a0a7ae;
+
+    font-family:
+        "Rajdhani",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
 
 }
 
 
-.stat-row {
+.member-badge-icon {
 
-    display: grid;
+    color: #ff6a00;
 
-    grid-template-columns:
-        35px
-        110px
-        1fr;
+}
+
+
+/* =========================================
+   OPEN BUTTON
+========================================= */
+
+.open-button {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-left: 15px;
+
+    border:
+        1px solid
+        #30343a;
+
+    background:
+        #181a1d;
+
+    color: #ff6a00;
+
+    font-size: 22px;
+
+    transition:
+        0.3s;
+
+}
+
+
+.division-card.open
+.open-button {
+
+    transform:
+        rotate(180deg);
+
+    border-color:
+        #ff6a00;
+
+}
+
+
+/* =========================================
+   DIVISION CONTENT
+========================================= */
+
+.division-content {
+
+    display: none;
+
+    background:
+        #0d0f11;
+
+}
+
+
+.division-card.open
+.division-content {
+
+    display: block;
+
+}
+
+
+/* =========================================
+   SECTION TITLE
+========================================= */
+
+.division-section {
+
+    padding:
+        28px 30px;
+
+    border-bottom:
+        1px solid
+        #22262b;
+
+}
+
+
+.section-title {
+
+    display: flex;
 
     align-items: center;
 
     gap: 10px;
 
+    margin-bottom: 18px;
+
+    color: #8d96a0;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
 }
 
 
-.stat-icon {
+.section-title span {
 
-    font-size: 17px;
+    color: #ff6a00;
 
 }
 
 
-.stat-title {
+/* =========================================
+   LEADER CARD
+========================================= */
 
-    color: #858b96;
+.leader-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding:
+        18px;
+
+    border:
+        1px solid
+        #30343a;
+
+    background:
+        #181a1d;
+
+}
+
+
+.leader-avatar {
+
+    width: 50px;
+
+    height: 50px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border:
+        1px solid
+        #7a390d;
+
+    background:
+        rgba(255, 106, 0, 0.05);
+
+    color: #ff6a00;
+
+    font-size: 20px;
+
+}
+
+
+.leader-info {
+
+    flex: 1;
+
+}
+
+
+.leader-label {
+
+    display: block;
+
+    color: #6e7781;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.leader-name {
+
+    margin: 0;
+
+    color: white;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size: 16px;
+
+}
+
+
+.leader-id {
+
+    margin-top: 7px;
+
+    color: #777f88;
+
+    font-family:
+        "Rajdhani",
+        sans-serif;
 
     font-size: 12px;
 
+    letter-spacing: 1px;
+
 }
 
 
-.stat-value {
+/* =========================================
+   ROLE BADGE
+========================================= */
 
-    color: var(--white);
+.role-badge {
+
+    min-width: 50px;
+
+    padding:
+        8px 12px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(255, 106, 0, 0.4);
+
+    color: #ff6a00;
+
+    background:
+        rgba(255, 106, 0, 0.04);
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.member-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+
+.member-table th {
+
+    padding:
+        14px 10px;
+
+    text-align: left;
+
+    color: #6f7780;
+
+    border-top:
+        1px solid
+        #25292e;
+
+    border-bottom:
+        1px solid
+        #25292e;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.member-table td {
+
+    padding:
+        13px 10px;
+
+    border-bottom:
+        1px solid
+        #202328;
+
+    color: #d7dce1;
+
+    font-family:
+        "Rajdhani",
+        sans-serif;
 
     font-size: 14px;
 
-    font-weight: 600;
+}
+
+
+.member-table tr:hover {
+
+    background:
+        rgba(255, 106, 0, 0.025);
 
 }
 
 
-.stat-value small {
+/* =========================================
+   NUMBER
+========================================= */
 
-    color: var(--orange);
+.member-number {
+
+    color: #66707a;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
 
     font-size: 10px;
 
@@ -806,37 +705,125 @@ body {
 
 
 /* =========================================
-   ARROW BUTTON
+   PLAYER
 ========================================= */
 
-.arrow-btn {
+.player-cell {
 
-    width: 50px;
+    display: flex;
 
-    height: 50px;
+    align-items: center;
 
-    border-radius: 50%;
-
-    border: 1px solid var(--orange);
-
-    background: transparent;
-
-    color: var(--orange);
-
-    font-size: 20px;
-
-    cursor: pointer;
-
-    transition: 0.3s;
+    gap: 12px;
 
 }
 
 
-.arrow-btn:hover {
+.player-avatar {
 
-    background: var(--orange);
+    width: 36px;
 
-    color: #111;
+    height: 36px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        #181b1f;
+
+    border:
+        1px solid
+        #2d3238;
+
+    color: #7d8790;
+
+    font-size: 14px;
+
+}
+
+
+.player-name {
+
+    color: #f0f2f4;
+
+    font-weight: 700;
+
+}
+
+
+.player-id {
+
+    color: #7b848d;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status-leader {
+
+    color: #ff6a00;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+
+.status-member {
+
+    color: #77808a;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =========================================
+   NO LEADER
+========================================= */
+
+.no-leader {
+
+    padding: 20px;
+
+    border:
+        1px dashed
+        #30343a;
+
+    color: #737b84;
+
+    text-align: center;
+
+    font-family:
+        "Rajdhani",
+        sans-serif;
 
 }
 
@@ -845,17 +832,62 @@ body {
    LOADING
 ========================================= */
 
-.loading {
+.loading-box {
 
-    width: 100%;
+    display: flex;
 
-    padding: 80px 20px;
+    flex-direction: column;
 
-    text-align: center;
+    align-items: center;
 
-    color: var(--gray);
+    justify-content: center;
 
-    border: 1px solid var(--border);
+    min-height: 250px;
+
+    color: #8d96a0;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.loader {
+
+    width: 35px;
+
+    height: 35px;
+
+    border:
+        3px solid
+        #2a2f35;
+
+    border-top-color:
+        #ff6a00;
+
+    border-radius: 50%;
+
+    animation:
+        spin 0.8s linear infinite;
+
+    margin-bottom: 20px;
+
+}
+
+
+@keyframes spin {
+
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
 
 }
 
@@ -864,770 +896,142 @@ body {
    ERROR
 ========================================= */
 
-.error {
+.error-box {
 
-    width: 100%;
-
-    padding: 50px;
+    padding: 30px;
 
     text-align: center;
 
-    color: var(--orange);
+    border:
+        1px solid
+        #6d2b2b;
 
-    border: 1px solid var(--orange);
+    background:
+        rgba(255, 0, 0, 0.03);
 
-}
+    color: #ff7777;
 
-
-/* =========================================
-   QUOTE
-========================================= */
-
-.division-quote {
-
-    padding: 90px 20px 30px;
-
-    text-align: center;
-
-}
-
-
-.division-quote p {
-
-    color: var(--orange);
-
-    font-size: 13px;
-
-    letter-spacing: 8px;
-
-}
-
-
-.quote-line {
-
-    width: 120px;
-
-    height: 3px;
-
-    background: var(--orange);
-
-    margin: 30px auto 0;
+    font-family:
+        "Rajdhani",
+        sans-serif;
 
 }
 
 
 /* =========================================
-   FOOTER
-========================================= */
-
-.footer {
-
-    background: #0b0c0f;
-
-    border-top: 1px solid var(--border);
-
-    padding-top: 40px;
-
-}
-
-
-.footer-content {
-
-    width: 90%;
-
-    max-width: 1300px;
-
-    margin: auto;
-
-    padding: 20px 0 45px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-}
-
-
-/* FOOTER BRAND */
-
-.footer-brand {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-}
-
-
-.footer-brand img {
-
-    width: 55px;
-
-    height: 55px;
-
-    object-fit: contain;
-
-}
-
-
-.footer-brand h2 {
-
-    font-size: 20px;
-
-}
-
-
-.footer-brand h2 span {
-
-    color: var(--orange);
-
-}
-
-
-.footer-brand p {
-
-    color: #777d87;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    margin-top: 8px;
-
-}
-
-
-/* FOOTER TEXT */
-
-.footer-text {
-
-    text-align: right;
-
-}
-
-
-.footer-text p {
-
-    color: var(--orange);
-
-    font-size: 11px;
-
-    letter-spacing: 3px;
-
-    margin-bottom: 8px;
-
-}
-
-
-.footer-text span {
-
-    color: #777d87;
-
-    font-size: 11px;
-
-}
-
-
-/* FOOTER COPYRIGHT */
-
-.footer-bottom {
-
-    border-top: 1px solid var(--border);
-
-    padding: 22px;
-
-    text-align: center;
-
-}
-
-
-.footer-bottom p {
-
-    color: #666c75;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-}
-
-
-/* =========================================
-   TABLET
-========================================= */
-
-@media screen and (max-width: 1100px) {
-
-
-    .nav-menu {
-
-        gap: 20px;
-
-    }
-
-
-    .division-card {
-
-        grid-template-columns:
-            150px
-            1fr;
-
-    }
-
-
-    .division-stats {
-
-        grid-column: 1 / 3;
-
-        border-left: none;
-
-        border-top: 1px solid #2c3038;
-
-        padding-left: 0;
-
-        padding-top: 25px;
-
-    }
-
-
-    .arrow-btn {
-
-        grid-column: 2;
-
-        justify-self: end;
-
-    }
-
-}
-
-
-/* =========================================
-   MOBILE
+   RESPONSIVE
 ========================================= */
 
 @media screen and (max-width: 768px) {
 
+    .division-page {
 
-    /* ================================
-       NAVBAR
-    ================================= */
-
-    .navbar {
-
-        min-height: 75px;
-
-        padding: 10px 20px;
-
-        position: sticky;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-between;
-
-        flex-wrap: nowrap;
+        padding:
+            100px 15px
+            60px;
 
     }
 
 
-    /* ================================
-       BRAND
-    ================================= */
+    .division-header {
 
-    .brand {
+        padding:
+            18px 15px;
 
-        width: auto;
-
-        justify-content: flex-start;
-
-        gap: 10px;
+        gap: 12px;
 
     }
 
 
-    .logo {
+    .division-name {
 
-        width: 48px;
-
-        height: 48px;
+        font-size: 15px;
 
     }
 
 
-    .brand-text h2 {
-
-        font-size: 16px;
-
-    }
-
-
-    .brand-text p {
-
-        font-size: 6px;
-
-        letter-spacing: 1.8px;
-
-    }
-
-
-    /* ================================
-       TITIK TIGA MUNCUL
-    ================================= */
-
-    .menu-toggle {
-
-        display: block;
-
-        position: relative;
-
-        z-index: 10001;
-
-    }
-
-
-    /* ================================
-       MENU DISEMBUNYIKAN
-    ================================= */
-
-    .nav-menu {
-
-        display: none;
-
-        position: absolute;
-
-        top: 100%;
-
-        right: 15px;
-
-        width: 220px;
-
-        flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 0;
-
-        background: #111318;
-
-        border: 1px solid #2b3038;
-
-        border-top: 3px solid var(--orange);
-
-        padding: 8px 0;
-
-        box-shadow:
-            0 15px 40px
-            rgba(0, 0, 0, 0.6);
-
-        z-index: 10000;
-
-    }
-
-
-    /* ================================
-       MENU SAAT DIBUKA
-    ================================= */
-
-    .nav-menu.show {
-
-        display: flex;
-
-    }
-
-
-    /* ================================
-       LINK MENU
-    ================================= */
-
-    .nav-menu a {
-
-        width: 100%;
-
-        padding: 16px 22px;
-
-        color: #c8ccd4;
-
-        font-size: 14px;
-
-        border-bottom:
-            1px solid #24272d;
-
-    }
-
-
-    .nav-menu a:last-child {
-
-        border-bottom: none;
-
-    }
-
-
-    .nav-menu a:hover {
-
-        background: #191c22;
-
-        color: var(--orange);
-
-    }
-
-
-    /* ACTIVE */
-
-    .nav-menu a.active {
-
-        color: var(--orange);
-
-        background:
-            rgba(255, 107, 26, 0.08);
-
-        border-left:
-            3px solid var(--orange);
-
-    }
-
-
-    .nav-menu a.active::after {
+    .member-badge {
 
         display: none;
 
     }
 
 
-    /* ================================
-       KETUA KLUB
-    ================================= */
+    .open-button {
 
-    .club-leader-section {
+        margin-left: 0;
 
-        width: 90%;
-
-        padding: 65px 0;
+        flex-shrink: 0;
 
     }
 
 
-    .section-header h2 {
+    .division-section {
 
-        font-size: 28px;
-
-    }
-
-
-    .section-subtitle {
-
-        font-size: 9px;
-
-        letter-spacing: 3px;
+        padding:
+            22px 15px;
 
     }
 
 
-    .club-leader-card {
+    .leader-card {
 
-        flex-direction: column;
+        gap: 12px;
 
-        text-align: center;
+    }
 
-        padding: 35px 20px;
 
-        gap: 25px;
+    .member-table {
+
+        min-width: 600px;
+
+    }
+
+
+    .table-wrapper {
+
+        overflow-x: auto;
+
+    }
+
+}
+
+
+@media screen and (max-width: 500px) {
+
+    .division-logo {
+
+        width: 50px;
+
+        height: 50px;
+
+    }
+
+
+    .division-number {
+
+        font-size: 8px;
+
+    }
+
+
+    .member-count {
+
+        font-size: 11px;
 
     }
 
 
     .leader-name {
 
-        font-size: 24px;
-
-    }
-
-
-    .leader-info-container {
-
-        justify-content: center;
-
-        gap: 35px;
-
-    }
-
-
-    /* ================================
-       DIVISION
-    ================================= */
-
-    .division-section {
-
-        padding: 60px 20px;
-
-    }
-
-
-    .division-heading {
-
-        flex-direction: column;
-
-        gap: 30px;
-
-        margin-bottom: 45px;
-
-    }
-
-
-    .division-title-left h2 {
-
-        font-size: 36px;
-
-    }
-
-
-    .division-title-left p {
-
         font-size: 13px;
 
     }
 
 
-    .division-slogan {
+    .leader-card {
 
-        text-align: left;
-
-        padding-left: 25px;
-
-    }
-
-
-    .division-slogan p {
-
-        font-size: 9px;
-
-        letter-spacing: 5px;
-
-    }
-
-
-    /* ================================
-       DIVISION CARD
-    ================================= */
-
-    .division-card {
-
-        grid-template-columns: 1fr;
-
-        padding: 25px;
-
-        gap: 30px;
-
-    }
-
-
-    .division-logo {
-
-        width: 100%;
-
-        height: 120px;
-
-    }
-
-
-    .division-stats {
-
-        grid-column: auto;
-
-        width: 100%;
-
-    }
-
-
-    .stat-row {
-
-        grid-template-columns:
-            30px
-            90px
-            1fr;
-
-    }
-
-
-    .arrow-btn {
-
-        grid-column: auto;
-
-        justify-self: center;
-
-    }
-
-
-    /* ================================
-       QUOTE
-    ================================= */
-
-    .division-quote {
-
-        padding-top: 70px;
-
-    }
-
-
-    .division-quote p {
-
-        font-size: 10px;
-
-        letter-spacing: 4px;
-
-    }
-
-
-    /* ================================
-       FOOTER
-    ================================= */
-
-    .footer-content {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 30px;
-
-    }
-
-
-    .footer-text {
-
-        text-align: left;
-
-    }
-
-}
-
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
-@media screen and (max-width: 480px) {
-
-
-    .navbar {
-
-        padding: 10px 15px;
-
-    }
-
-
-    .logo {
-
-        width: 42px;
-
-        height: 42px;
-
-    }
-
-
-    .brand-text h2 {
-
-        font-size: 14px;
-
-    }
-
-
-    .brand-text p {
-
-        font-size: 5px;
-
-        letter-spacing: 1.4px;
-
-    }
-
-
-    .menu-toggle {
-
-        font-size: 34px;
-
-        padding: 5px;
-
-    }
-
-
-    .nav-menu {
-
-        right: 10px;
-
-        width: 210px;
-
-    }
-
-
-    .leader-icon {
-
-        width: 75px;
-
-        height: 75px;
-
-        min-width: 75px;
-
-        font-size: 30px;
-
-    }
-
-
-    .leader-position {
-
-        font-size: 9px;
-
-        letter-spacing: 2px;
-
-    }
-
-
-    .leader-info-container {
-
-        gap: 25px;
-
-    }
-
-
-    .division-title-left {
-
-        gap: 15px;
-
-    }
-
-
-    .division-title-left h2 {
-
-        font-size: 30px;
-
-    }
-
-
-    .stat-row {
-
-        grid-template-columns:
-            25px
-            75px
-            1fr;
-
-        gap: 5px;
-
-    }
-
-
-    .stat-title {
-
-        font-size: 10px;
-
-    }
-
-
-    .stat-value {
-
-        font-size: 11px;
+        flex-wrap: wrap;
 
     }
 
