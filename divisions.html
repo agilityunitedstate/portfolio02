@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
 
@@ -13,26 +13,29 @@
     <title>Divisions | Agility United</title>
 
 
-    <!-- GOOGLE FONTS -->
+    <!-- =================================
+         FONT AWESOME
+    ================================== -->
 
     <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
 
-    <!-- CSS -->
+    <!-- =================================
+         MAIN CSS
+    ================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- =================================
+         DIVISION CSS
+    ================================== -->
 
     <link
         rel="stylesheet"
@@ -45,446 +48,471 @@
 <body>
 
 
-    <!-- =========================================
+    <!-- =================================
          NAVBAR
-    ========================================== -->
+    ================================== -->
 
     <header class="navbar">
 
-
-        <!-- LOGO / BRAND -->
-
-        <a
-            href="index.html"
-            class="brand"
-        >
-
-            <img
-                src="assets/logo.png"
-                alt="Agility United Logo"
-                class="brand-logo"
-            >
-
-
-            <div class="brand-text">
-
-                <h1>
-
-                    AGILITY
-                    <span>UNITED</span>
-
-                </h1>
-
-
-                <p>
-
-                    MORE THAN A CLAN
-
-                </p>
-
-            </div>
-
-        </a>
-
-
-        <!-- NAVIGATION -->
-
-        <nav
-            class="nav-menu"
-            id="navMenu"
-        >
-
-            <a href="index.html">
-
-                Home
-
-            </a>
-
-
-            <a href="about.html">
-
-                About
-
-            </a>
-
-
-            <a href="members.html">
-
-                Members
-
-            </a>
-
+        <div class="nav-container">
 
             <a
-                href="divisions.html"
-                class="active"
+                href="index.html"
+                class="logo"
             >
 
-                Divisions
+                <img
+                    src="assets/logo.png"
+                    alt="Agility United Logo"
+                >
+
+                <div class="logo-text">
+
+                    <span>
+                        AGILITY
+                    </span>
+
+                    <strong>
+                        UNITED
+                    </strong>
+
+                    <small>
+                        ESPORTS COMMUNITY
+                    </small>
+
+                </div>
 
             </a>
 
 
-            <a href="achivement.html">
+            <nav class="nav-menu">
 
-                Achievement
-
-            </a>
-
-
-            <a href="contact.html">
-
-                Contact
-
-            </a>
-
-        </nav>
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
 
 
-        <!-- MOBILE MENU -->
+                <a
+                    href="members.html"
+                    class="nav-link"
+                >
+                    Members
+                </a>
 
-        <button
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Buka Menu"
-        >
 
-            ⋮
+                <a
+                    href="divisions.html"
+                    class="nav-link active"
+                >
+                    Divisions
+                </a>
 
-        </button>
 
+                <a
+                    href="achievements.html"
+                    class="nav-link"
+                >
+                    Achievements
+                </a>
+
+            </nav>
+
+
+            <button
+                class="menu-toggle"
+                aria-label="Open navigation"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+        </div>
 
     </header>
 
 
-    <!-- =========================================
-         HERO
-    ========================================== -->
 
-    <section class="division-hero">
+    <!-- =================================
+         MAIN
+    ================================== -->
 
-
-        <div class="hero-content">
+    <main>
 
 
-            <p class="hero-small">
+        <!-- =================================
+             HERO
+        ================================== -->
 
-                AGILITY UNITED
+        <section class="division-hero">
 
-            </p>
-
-
-            <h1>
-
-                TEAM
-                <span>DIVISIONS</span>
-
-            </h1>
+            <div class="division-hero-overlay"></div>
 
 
-            <p class="hero-description">
+            <div class="division-hero-content">
 
-                Each division represents a competitive
-                unit within Agility United.
-
-            </p>
-
-
-        </div>
+                <span class="division-eyebrow">
+                    AGILITY UNITED
+                </span>
 
 
-    </section>
+                <h1>
+                    OUR
+                    <span>DIVISIONS</span>
+                </h1>
 
 
-    <!-- =========================================
-         KETUA KLUB
-    ========================================== -->
-
-    <section class="club-leader-section">
-
-
-        <div class="club-leader-wrapper">
-
-
-            <div class="club-leader-info">
-
-
-                <p class="section-label">
-
-                    AGILITY UNITED LEADERSHIP
-
+                <p>
+                    Meet the leaders behind every
+                    Agility United division and discover
+                    the teams competing under our community.
                 </p>
-
-
-                <h2>
-
-                    KETUA
-                    <span>KLUB</span>
-
-                </h2>
-
-
-                <div class="title-line"></div>
-
-
-                <p class="club-description">
-
-                    Pemimpin utama Agility United
-                    yang mengarahkan seluruh divisi
-                    untuk berkembang, berkompetisi,
-                    dan mencapai tujuan bersama.
-
-                </p>
-
 
             </div>
 
-
-            <!-- CARD KETUA KLUB -->
-
-            <div class="club-leader-card">
+        </section>
 
 
-                <div class="leader-crown">
 
-                    ♛
+        <!-- =================================
+             CLUB LEADER
+        ================================== -->
+
+        <section class="club-leader-section">
+
+            <div class="division-container">
+
+
+                <div class="section-heading">
+
+                    <span>
+                        LEADERSHIP
+                    </span>
+
+
+                    <h2>
+                        KETUA
+                        <strong>KLUB</strong>
+                    </h2>
+
+
+                    <p>
+                        The person leading Agility United
+                        and overseeing the entire community.
+                    </p>
 
                 </div>
 
 
-                <div class="club-leader-content">
 
+                <div class="club-leader-card">
 
-                    <span class="leader-position">
+                    <div class="leader-number">
 
-                        CLUB LEADER
-
-                    </span>
-
-
-                    <!-- =================================
-                         EDIT NAMA KETUA KLUB DISINI
-                    ================================== -->
-
-                    <h3>
-
-                        NAMA KETUA KLUB
-
-                    </h3>
-
-
-                    <div class="leader-data">
-
-
-                        <div>
-
-                            <span>
-
-                                GAME ID
-
-                            </span>
-
-                            <strong>
-
-                                123456789
-
-                            </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span>
-
-                                ROLE
-
-                            </span>
-
-                            <strong>
-
-                                CM
-
-                            </strong>
-
-                        </div>
-
+                        <span>
+                            01
+                        </span>
 
                     </div>
 
 
+                    <div class="leader-icon">
+
+                        <i class="fa-solid fa-crown"></i>
+
+                    </div>
+
+
+                    <div class="leader-main">
+
+                        <span class="leader-label">
+                            CLUB LEADER
+                        </span>
+
+
+                        <h3>
+                            NICKNAME KETUA
+                        </h3>
+
+
+                        <p>
+                            Agility United
+                        </p>
+
+                    </div>
+
+
+                    <div class="leader-info">
+
+
+                        <div class="leader-info-item">
+
+                            <span>
+                                GAME ID
+                            </span>
+
+                            <strong>
+                                00000000
+                            </strong>
+
+                        </div>
+
+
+                        <div class="leader-info-item">
+
+                            <span>
+                                ROLE
+                            </span>
+
+                            <strong class="leader-role-badge">
+                                ST
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             TEAM DIVISIONS
+        ================================== -->
+
+        <section class="teams-section">
+
+            <div class="division-container">
+
+
+                <div class="section-heading">
+
+                    <span>
+                        AGILITY UNITED
+                    </span>
+
+
+                    <h2>
+                        TEAM
+                        <strong>DIVISIONS</strong>
+                    </h2>
+
+
+                    <p>
+                        Each division represents a competitive
+                        unit within Agility United.
+                    </p>
+
                 </div>
 
 
+                <!-- =================================
+                     DIVISION DATA
+                ================================== -->
+
+                <div id="divisions-container">
+
+                    <div class="division-loading">
+
+                        <div class="loading-spinner"></div>
+
+                        <span>
+                            LOADING DIVISIONS...
+                        </span>
+
+                    </div>
+
+                </div>
+
             </div>
 
-
-        </div>
-
-
-    </section>
+        </section>
 
 
-    <!-- =========================================
-         DIVISION SECTION
-    ========================================== -->
 
-    <main class="division-section">
+        <!-- =================================
+             CTA
+        ================================== -->
 
-
-        <div class="division-heading">
-
+        <section class="division-cta">
 
             <div>
 
-
-                <p class="section-label">
-
-                    COMPETITIVE UNITS
-
-                </p>
+                <span>
+                    AGILITY UNITED
+                </span>
 
 
                 <h2>
-
-                    OUR
-                    <span>DIVISIONS</span>
-
-                </h2>
-
-
-                <p
-                    id="division-description"
-                    class="division-description"
-                >
-
-                    Memuat data divisi...
-
-                </p>
-
-
-            </div>
-
-
-            <div class="division-slogan">
-
-                <span>
-
-                    DIFFERENT ROLES
-
-                </span>
-
-                <span>
-
-                    SAME GOAL
-
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =========================================
-             DIVISION DATA
-        ========================================== -->
-
-        <div
-            id="division-container"
-            class="division-container"
-        >
-
-
-            <div class="loading">
-
-                Memuat data dari Google Sheet...
-
-            </div>
-
-
-        </div>
-
-
-        <!-- QUOTE -->
-
-        <div class="division-quote">
-
-
-            <p>
-
-                " ONE CLAN, MANY STORIES "
-
-            </p>
-
-
-            <div></div>
-
-
-        </div>
-
-
-    </main>
-
-
-    <!-- =========================================
-         FOOTER
-    ========================================== -->
-
-    <footer class="footer">
-
-
-        <div class="footer-brand">
-
-
-            <img
-                src="assets/logo.png"
-                alt="Agility United"
-            >
-
-
-            <div>
-
-
-                <h2>
-
-                    AGILITY
-                    <span>UNITED</span>
-
+                    RISE. COMPETE.
+                    <strong>CONQUER.</strong>
                 </h2>
 
 
                 <p>
-
-                    MORE THAN A CLAN — A FAMILY
-
+                    One community. Multiple divisions.
+                    One goal.
                 </p>
 
 
+                <a
+                    href="members.html"
+                    class="division-cta-button"
+                >
+
+                    MEET OUR MEMBERS
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
             </div>
 
+        </section>
+
+    </main>
+
+
+
+    <!-- =================================
+         FOOTER
+    ================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-content">
+
+
+                <div class="footer-brand">
+
+                    <img
+                        src="assets/logo.png"
+                        alt="Agility United Logo"
+                    >
+
+
+                    <div class="footer-brand-text">
+
+                        <h3>
+                            AGILITY
+                            <span>UNITED</span>
+                        </h3>
+
+
+                        <p>
+                            ESPORTS COMMUNITY
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="footer-tagline">
+
+                    <p>
+                        RISE. COMPETE. CONQUER.
+                    </p>
+
+                </div>
+
+
+
+                <div class="footer-contact">
+
+                    <span class="footer-label">
+                        CONTACT
+                    </span>
+
+
+                    <h3>
+                        LET'S CONNECT
+                    </h3>
+
+
+                    <p>
+                        Follow and connect with
+                        Agility United.
+                    </p>
+
+
+                    <div class="footer-socials">
+
+                        <a
+                            href="#"
+                            aria-label="Instagram"
+                            target="_blank"
+                        >
+
+                            <i class="fa-brands fa-instagram"></i>
+
+                        </a>
+
+
+                        <a
+                            href="#"
+                            aria-label="Discord"
+                            target="_blank"
+                        >
+
+                            <i class="fa-brands fa-discord"></i>
+
+                        </a>
+
+
+                        <a
+                            href="#"
+                            aria-label="TikTok"
+                            target="_blank"
+                        >
+
+                            <i class="fa-brands fa-tiktok"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
 
         <div class="footer-bottom">
 
-
-            © 2026 AGILITY UNITED.
-            ALL RIGHTS RESERVED.
-
+            <p>
+                © 2026 Agility United — All Rights Reserved.
+            </p>
 
         </div>
-
 
     </footer>
 
 
-    <!-- JAVASCRIPT -->
 
-    <script
-        src="division.js"
-    ></script>
+    <!-- =================================
+         MAIN SCRIPT
+    ================================== -->
+
+    <script src="script.js"></script>
+
+
+    <!-- =================================
+         DIVISION SCRIPT
+    ================================== -->
+
+    <script src="division.js"></script>
 
 
 </body>
