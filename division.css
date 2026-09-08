@@ -237,7 +237,7 @@ body {
     background:
         transparent;
 
-    color:
+    color: 
         #ffffff;
 
     font-size:
@@ -1729,10 +1729,62 @@ body {
     max-width: 420px
 ) {
 
+    .navbar {
+
+        padding:
+            0 15px;
+
+    }
+
+
+    .nav-brand {
+
+        gap:
+            8px;
+
+    }
+
+
+    .nav-logo {
+
+        width:
+            36px;
+
+        height:
+            36px;
+
+    }
+
+
+    /* AGILITY UNITED TETAP MUNCUL */
+
     .nav-brand span {
 
         display:
             inline-block;
+
+        font-size:
+            10px;
+
+        letter-spacing:
+            0.5px;
+
+        white-space:
+            nowrap;
+
+    }
+
+
+    .menu-toggle {
+
+        display:
+            block;
+
+        font-size:
+            28px;
+
+        color:
+            #ffffff;
 
     }
 
