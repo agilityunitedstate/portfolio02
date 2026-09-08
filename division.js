@@ -1,185 +1,421 @@
 /* =========================================
-   GOOGLE SHEET URL
+   GOOGLE SHEET CONFIGURATION
 ========================================= */
 
 
 /*
+   MASUKKAN LINK GOOGLE SHEET CSV KAMU
 
-GANTI URL DI BAWAH INI
+   CONTOH:
 
-Contoh:
-
-https://docs.google.com/spreadsheets/d/
-SHEET_ID/
-gviz/tq?tqx=out:json
-
-
+   https://docs.google.com/spreadsheets/d/e/
+   XXXXXXXX/pub?output=csv
 */
 
-
-const GOOGLE_SHEET_URL =
-    "https://docs.google.com/spreadsheets/d/10wGKpvPXnrQyALarmxPxlFubAluEOkciX-FDPrR2R9A/gviz/tq?tqx=out:json";
-
-
-/* =========================================
-   DIVISION LOGO
-========================================= */
-
-const divisionLogos = {
-
-    "AGILITY EVOLUTION":
-        "assets/division-evolution.png",
-
-    "AGILITY NOVA":
-        "assets/division-nova.png",
-
-    "AGILITY DIVISION 03":
-        "assets/division-03.png",
-
-    "AGILITY DIVISION 04":
-        "assets/division-04.png",
-
-    "AGILITY DIVISION 05":
-        "assets/division-05.png",
-
-    "AGILITY DIVISION 06":
-        "assets/division-06.png",
-
-    "AGILITY DIVISION 07":
-        "assets/division-07.png",
-
-    "AGILITY DIVISION 08":
-        "assets/division-08.png"
-
-};
+const SHEET_URL =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ93uw-1XWwiTKhTOrOPjlBEcxBkFLT_Ol1XYVEggT2ir1Z76HcoLtC15nm_eD_w8R8bWDO8yiOFrDQ/pub?output=csv";
 
 
 /* =========================================
-   GET CONTAINER
+   VARIABLES
 ========================================= */
+
+let players = [];
+
 
 const divisionContainer =
     document.getElementById(
-        "divisionContainer"
+        "division-container"
+    );
+
+
+const divisionDescription =
+    document.getElementById(
+        "division-description"
     );
 
 
 /* =========================================
-   FETCH DATA
+   MOBILE NAVIGATION
 ========================================= */
 
-async function getDivisionData() {
+const menuToggle =
+    document.getElementById(
+        "menuToggle"
+    );
 
-    try {
+
+const navMenu =
+    document.getElementById(
+        "navMenu"
+    );
+
+
+if (
+    menuToggle &&
+    navMenu
+) {
+
+    menuToggle.addEventListener(
+        "click",
+        function () {
+
+            navMenu.classList.toggle(
+                "show"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(
+    text
+) {
+
+    return String(
+        text
+    )
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================
+   CSV PARSER
+========================================= */
+
+function parseCSV(
+    text
+) {
+
+    const rows = [];
+
+    let row = [];
+
+    let value = "";
+
+    let insideQuotes =
+        false;
+
+
+    for (
+        let i = 0;
+        i < text.length;
+        i++
+    ) {
+
+        const char =
+            text[i];
+
+
+        const nextChar =
+            text[i + 1];
+
+
+        /* QUOTE */
 
         if (
-            GOOGLE_SHEET_URL.includes(
-                "PASTE_GOOGLE"
-            )
+            char === '"'
         ) {
 
-            divisionContainer.innerHTML = `
+            if (
+                insideQuotes &&
+                nextChar === '"'
+            ) {
 
-                <div class="error-box">
+                value += '"';
 
-                    Google Sheet URL belum dimasukkan
-                    di file division.js
+                i++;
 
-                </div>
+            }
 
-            `;
+            else {
 
-            return;
+                insideQuotes =
+                    !insideQuotes;
+
+            }
 
         }
 
 
-        const response =
-            await fetch(
-                GOOGLE_SHEET_URL
+        /* COMMA */
+
+        else if (
+            char === "," &&
+            !insideQuotes
+        ) {
+
+            row.push(
+                value.trim()
             );
 
+            value = "";
 
-        const text =
-            await response.text();
+        }
 
 
-        /*
-        GOOGLE GVIZ FORMAT
-        */
+        /* NEW LINE */
 
-        const jsonText =
-            text
-            .substring(
-                47
+        else if (
+
+            (
+                char === "\n" ||
+                char === "\r"
             )
-            .slice(
-                0,
-                -2
-            );
+
+            &&
+
+            !insideQuotes
+
+        ) {
+
+            if (
+                value !== "" ||
+                row.length > 0
+            ) {
+
+                row.push(
+                    value.trim()
+                );
 
 
-        const data =
-            JSON.parse(
-                jsonText
-            );
+                rows.push(
+                    row
+                );
 
 
-        const rows =
-            data.table.rows;
+                row = [];
+
+                value = "";
+
+            }
 
 
-        const members =
-            rows
-            .map(
-                row => {
+            if (
+                char === "\r" &&
+                nextChar === "\n"
+            ) {
 
-                    return {
+                i++;
 
-                        nickname:
-                            row.c[0]
-                                ? row.c[0].v
-                                : "",
+            }
 
-                        id:
-                            row.c[1]
-                                ? String(
-                                    row.c[1].v
-                                )
-                                : "",
-
-                        division:
-                            row.c[2]
-                                ? row.c[2].v
-                                : "",
-
-                        role:
-                            row.c[3]
-                                ? row.c[3].v
-                                : "",
-
-                        status:
-                            row.c[4]
-                                ? row.c[4].v
-                                : ""
-
-                    };
-
-                }
-            )
-            .filter(
-                member =>
-                    member.nickname &&
-                    member.division
-            );
+        }
 
 
-        createDivisions(
-            members
+        /* NORMAL */
+
+        else {
+
+            value += char;
+
+        }
+
+    }
+
+
+    /* LAST ROW */
+
+    if (
+        value !== "" ||
+        row.length > 0
+    ) {
+
+        row.push(
+            value.trim()
         );
 
 
+        rows.push(
+            row
+        );
+
     }
+
+
+    return rows;
+
+}
+
+
+/* =========================================
+   LOAD GOOGLE SHEET
+========================================= */
+
+async function loadDivisions() {
+
+    try {
+
+
+        divisionContainer.innerHTML = `
+
+            <div class="loading">
+
+                Memuat data dari Google Sheet...
+
+            </div>
+
+        `;
+
+
+        const response =
+            await fetch(
+                SHEET_URL
+            );
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Gagal mengambil data Google Sheet"
+            );
+
+        }
+
+
+        const csvText =
+            await response.text();
+
+
+        const rows =
+            parseCSV(
+                csvText
+            );
+
+
+        players = [];
+
+
+        /*
+           DATA DIMULAI BARIS KEDUA
+
+           BARIS PERTAMA = HEADER
+        */
+
+        for (
+            let i = 1;
+            i < rows.length;
+            i++
+        ) {
+
+            const row =
+                rows[i];
+
+
+            const nickname =
+                row[0]
+                    ? row[0].trim()
+                    : "";
+
+
+            const id =
+                row[1]
+                    ? row[1].trim()
+                    : "";
+
+
+            const role =
+                row[2]
+                    ? row[2]
+                        .trim()
+                        .toUpperCase()
+                    : "";
+
+
+            const division =
+                row[3]
+                    ? row[3].trim()
+                    : "";
+
+
+            const status =
+                row[4]
+                    ? row[4]
+                        .trim()
+                        .toUpperCase()
+                    : "MEMBER";
+
+
+            /*
+               MASUKKAN DATA
+
+               HANYA JIKA ADA
+               NICKNAME DAN DIVISION
+            */
+
+            if (
+                nickname !== "" &&
+                division !== ""
+            ) {
+
+                players.push({
+
+                    nickname:
+                        nickname,
+
+                    id:
+                        id,
+
+                    role:
+                        role,
+
+                    division:
+                        division,
+
+                    status:
+                        status
+
+                });
+
+            }
+
+        }
+
+
+        console.log(
+            "Division Data:",
+            players
+        );
+
+
+        renderDivisions();
+
+
+    }
+
     catch (
         error
     ) {
@@ -191,14 +427,31 @@ async function getDivisionData() {
 
         divisionContainer.innerHTML = `
 
-            <div class="error-box">
+            <div class="loading error">
 
-                Gagal mengambil data dari Google Sheet.
+                <strong>
+
+                    Gagal memuat Google Sheet.
+
+                </strong>
 
                 <br><br>
 
-                Pastikan Google Sheet sudah
-                <b>Public / Anyone with the link</b>.
+                Pastikan:
+
+                <br><br>
+
+                1. Google Sheet sudah Publish to Web
+
+                <br>
+
+                2. Link menggunakan output=csv
+
+                <br>
+
+                3. Kolom Sheet:
+
+                nickname | id | role | division | status
 
             </div>
 
@@ -210,51 +463,38 @@ async function getDivisionData() {
 
 
 /* =========================================
-   CREATE DIVISIONS
+   GROUP DIVISIONS
 ========================================= */
 
-function createDivisions(
-    members
-) {
-
-
-    /*
-    GROUP MEMBER
-    BY DIVISION
-    */
+function getDivisions() {
 
     const divisions =
         {};
 
 
-    members.forEach(
-        member => {
-
-
-            const divisionName =
-                member.division
-                    .trim()
-                    .toUpperCase();
+    players.forEach(
+        function (
+            player
+        ) {
 
 
             if (
                 !divisions[
-                    divisionName
+                    player.division
                 ]
             ) {
 
                 divisions[
-                    divisionName
+                    player.division
                 ] = [];
 
             }
 
 
             divisions[
-                divisionName
-            ]
-            .push(
-                member
+                player.division
+            ].push(
+                player
             );
 
 
@@ -262,17 +502,21 @@ function createDivisions(
     );
 
 
-    /*
-    REMOVE LOADING
-    */
+    return divisions;
 
-    divisionContainer.innerHTML =
-        "";
+}
 
 
-    /*
-    GET DIVISION NAMES
-    */
+/* =========================================
+   RENDER DIVISION LIST
+========================================= */
+
+function renderDivisions() {
+
+
+    const divisions =
+        getDivisions();
+
 
     const divisionNames =
         Object.keys(
@@ -280,31 +524,187 @@ function createDivisions(
         );
 
 
-    /*
-    CREATE EACH DIVISION
-    */
+    /* DESCRIPTION */
+
+    if (
+        divisionDescription
+    ) {
+
+        divisionDescription.textContent =
+            `${divisionNames.length} divisi kompetitif Agility United`;
+
+    }
+
+
+    /* CLEAR */
+
+    divisionContainer.innerHTML =
+        "";
+
+
+    /* EMPTY */
+
+    if (
+        divisionNames.length === 0
+    ) {
+
+        divisionContainer.innerHTML = `
+
+            <div class="loading">
+
+                Belum ada data divisi.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* CREATE CARD */
 
     divisionNames.forEach(
-        (
+        function (
             divisionName,
             index
-        ) => {
+        ) {
 
 
-            const divisionMembers =
+            const members =
                 divisions[
                     divisionName
                 ];
 
 
-            createDivisionCard(
+            /*
+               FIND LEADER
+            */
 
-                divisionName,
+            const leader =
+                members.find(
+                    function (
+                        player
+                    ) {
 
-                divisionMembers,
+                        return (
 
-                index
+                            player.status ===
+                            "LEADER"
 
+                        );
+
+                    }
+                );
+
+
+            const leaderName =
+                leader
+                    ? leader.nickname
+                    : "Belum ditentukan";
+
+
+            /*
+               CREATE CARD
+            */
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "division-card";
+
+
+            card.innerHTML = `
+
+
+                <div class="division-card-header">
+
+
+                    <div class="division-card-title">
+
+
+                        <span class="division-number">
+
+                            DIVISION
+                            ${String(
+                                index + 1
+                            ).padStart(
+                                2,
+                                "0"
+                            )}
+
+                        </span>
+
+
+                        <h3>
+
+                            ${escapeHTML(
+                                divisionName
+                            )}
+
+                        </h3>
+
+
+                        <p>
+
+                            Dipimpin oleh:
+
+                            <strong>
+
+                                ${escapeHTML(
+                                    leaderName
+                                )}
+
+                            </strong>
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="division-total">
+
+                        👥
+
+                        ${members.length}
+
+                        MEMBERS
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    class="division-button"
+                    data-division="${escapeHTML(
+                        divisionName
+                    )}"
+                >
+
+                    LIHAT TIM
+
+                    <span>
+
+                        →
+
+                    </span>
+
+                </button>
+
+
+            `;
+
+
+            divisionContainer.appendChild(
+                card
             );
 
 
@@ -312,537 +712,376 @@ function createDivisions(
     );
 
 
+    /* BUTTON EVENTS */
+
+    const buttons =
+        document.querySelectorAll(
+            ".division-button"
+        );
+
+
+    buttons.forEach(
+        function (
+            button
+        ) {
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+
+                    const divisionName =
+                        button.dataset.division;
+
+
+                    showDivisionDetail(
+                        divisionName
+                    );
+
+
+                }
+            );
+
+
+        }
+    );
+
 }
 
 
 /* =========================================
-   CREATE DIVISION CARD
+   SHOW DIVISION DETAIL
 ========================================= */
 
-function createDivisionCard(
-
-    divisionName,
-
-    members,
-
-    index
-
+function showDivisionDetail(
+    divisionName
 ) {
 
 
+    const members =
+        players.filter(
+            function (
+                player
+            ) {
+
+                return (
+
+                    player.division ===
+                    divisionName
+
+                );
+
+            }
+        );
+
+
     /*
-    FIND LEADER
+       FIND LEADER
     */
 
     const leader =
         members.find(
+            function (
+                player
+            ) {
 
-            member =>
+                return (
 
-                member.status
-                .toLowerCase()
-                ===
-                "leader"
+                    player.status ===
+                    "LEADER"
 
+                );
+
+            }
         );
 
 
     /*
-    DIVISION NUMBER
+       CREATE MEMBERS HTML
     */
 
-    const divisionNumber =
-        String(
-            index + 1
-        )
-        .padStart(
-            2,
-            "0"
-        );
+    let membersHTML =
+        "";
 
 
-    /*
-    LOGO
-    */
-
-    const logo =
-        divisionLogos[
-            divisionName
-        ];
+    members.forEach(
+        function (
+            member,
+            index
+        ) {
 
 
-    /*
-    CREATE CARD
-    */
-
-    const card =
-        document.createElement(
-            "div"
-        );
+            const isLeader =
+                member.status ===
+                "LEADER";
 
 
-    card.className =
-        "division-card";
+            const statusText =
+                isLeader
+                    ? "KETUA"
+                    : "MEMBER";
 
 
-    card.innerHTML = `
+            const statusClass =
+                isLeader
+                    ? "status-leader"
+                    : "status-member";
 
 
-        <!-- ================= HEADER ================= -->
-
-        <div
-            class="division-header"
-        >
+            membersHTML += `
 
 
-            <!-- LOGO -->
+                <div class="team-member-row">
 
-            <div
-                class="division-logo"
-            >
 
-                ${
+                    <!-- NUMBER -->
 
-                    logo
+                    <div class="member-index">
 
-                    ?
-
-                    `
-
-                    <img
-                        src="${logo}"
-                        alt="${divisionName}"
-                    >
-
-                    `
-
-                    :
-
-                    `
-
-                    <div
-                        class="division-logo-placeholder"
-                    >
-
-                        AG
+                        ${String(
+                            index + 1
+                        ).padStart(
+                            2,
+                            "0"
+                        )}
 
                     </div>
 
-                    `
 
-                }
+                    <!-- AVATAR -->
 
-            </div>
+                    <div class="member-avatar">
 
+                        👤
 
-
-            <!-- INFO -->
-
-            <div
-                class="division-info"
-            >
-
-                <span
-                    class="division-number"
-                >
-
-                    DIVISION
-                    ${divisionNumber}
-
-                </span>
+                    </div>
 
 
-                <h2
-                    class="division-name"
-                >
+                    <!-- NICKNAME -->
 
-                    ${divisionName}
+                    <div class="member-nickname">
 
-                </h2>
+                        ${escapeHTML(
+                            member.nickname
+                        )}
+
+                    </div>
 
 
-                <div
-                    class="member-count"
-                >
+                    <!-- GAME ID -->
 
-                    ${members.length}
-                    MEMBERS
+                    <div class="member-game-id">
+
+                        ${escapeHTML(
+                            member.id
+                        )}
+
+                    </div>
+
+
+                    <!-- ROLE -->
+
+                    <div>
+
+                        <span class="role-badge">
+
+                            ${escapeHTML(
+                                member.role
+                            )}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div
+                        class="member-status ${statusClass}"
+                    >
+
+                        ${statusText}
+
+                    </div>
+
 
                 </div>
 
-            </div>
+
+            `;
 
 
+        }
+    );
 
-            <!-- MEMBER COUNT -->
 
-            <div
-                class="member-badge"
+    /* =========================================
+       DETAIL HTML
+    ========================================== */
+
+    divisionContainer.innerHTML = `
+
+
+        <section class="division-detail">
+
+
+            <!-- BACK -->
+
+            <button
+                class="back-button"
+                id="backButton"
             >
 
-                <span
-                    class="member-badge-icon"
-                >
+                ← KEMBALI KE DIVISI
 
-                    👥
-
-                </span>
-
-                ${members.length}
-                MEMBERS
-
-            </div>
+            </button>
 
 
+            <!-- TEAM HEADER -->
 
-            <!-- OPEN BUTTON -->
-
-            <div
-                class="open-button"
-            >
-
-                ⌃
-
-            </div>
+            <div class="team-header">
 
 
-        </div>
+                <div>
 
 
+                    <p class="team-small-title">
 
-        <!-- ================= CONTENT ================= -->
+                        AGILITY UNITED
 
-        <div
-            class="division-content"
-        >
-
-
-            <!-- ================= LEADER ================= -->
-
-            <div
-                class="division-section"
-            >
+                    </p>
 
 
-                <div
-                    class="section-title"
-                >
+                    <h2>
+
+                        ${escapeHTML(
+                            divisionName
+                        )}
+
+                    </h2>
+
+
+                    <p class="team-description">
+
+                        Competitive Division
+                        Agility United
+
+                    </p>
+
+
+                </div>
+
+
+                <div class="team-count">
+
+
+                    <strong>
+
+                        ${members.length}
+
+                    </strong>
+
 
                     <span>
-                        ♛
+
+                        MEMBERS
+
                     </span>
 
-                    KETUA DIVISI
 
                 </div>
-
-
-                ${
-
-                    leader
-
-                    ?
-
-                    `
-
-                    <div
-                        class="leader-card"
-                    >
-
-
-                        <div
-                            class="leader-avatar"
-                        >
-
-                            👤
-
-                        </div>
-
-
-                        <div
-                            class="leader-info"
-                        >
-
-                            <span
-                                class="leader-label"
-                            >
-
-                                DIVISION LEADER
-
-                            </span>
-
-
-                            <h3
-                                class="leader-name"
-                            >
-
-                                ${leader.nickname}
-
-                            </h3>
-
-
-                            <div
-                                class="leader-id"
-                            >
-
-                                ID:
-                                ${leader.id}
-
-                            </div>
-
-
-                        </div>
-
-
-                        <div
-                            class="role-badge"
-                        >
-
-                            ${leader.role}
-
-                        </div>
-
-
-                    </div>
-
-                    `
-
-                    :
-
-                    `
-
-                    <div
-                        class="no-leader"
-                    >
-
-                        Leader belum ditentukan
-
-                    </div>
-
-                    `
-
-                }
 
 
             </div>
 
 
+            <!-- LEADER -->
 
-            <!-- ================= MEMBERS ================= -->
-
-            <div
-                class="division-section"
-            >
+            <div class="team-leader-section">
 
 
-                <div
-                    class="section-title"
-                >
+                <p class="section-label">
 
-                    <span>
-                        👥
-                    </span>
+                    ♛ KETUA DIVISI
 
-                    TEAM MEMBERS
-
-                </div>
+                </p>
 
 
-                <div
-                    class="table-wrapper"
-                >
+                <div class="leader-card">
 
 
-                    <table
-                        class="member-table"
-                    >
+                    <div class="leader-avatar">
+
+                        👤
+
+                    </div>
 
 
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    #
-                                </th>
-
-                                <th>
-                                    NICKNAME
-                                </th>
-
-                                <th>
-                                    GAME ID
-                                </th>
-
-                                <th>
-                                    ROLE
-                                </th>
-
-                                <th>
-                                    STATUS
-                                </th>
-
-                            </tr>
-
-                        </thead>
+                    <div class="leader-information">
 
 
-                        <tbody>
+                        <span>
+
+                            DIVISION LEADER
+
+                        </span>
+
+
+                        <h3>
 
                             ${
 
-                                members
-                                .map(
+                                leader
 
-                                    (
-                                        member,
-                                        memberIndex
-                                    ) => {
+                                    ? escapeHTML(
+                                        leader.nickname
+                                    )
 
-                                        return `
-
-
-                                        <tr>
-
-
-                                            <td>
-
-                                                <span
-                                                    class="member-number"
-                                                >
-
-                                                    ${String(
-                                                        memberIndex + 1
-                                                    )
-                                                    .padStart(
-                                                        2,
-                                                        "0"
-                                                    )}
-
-                                                </span>
-
-                                            </td>
-
-
-
-                                            <td>
-
-                                                <div
-                                                    class="player-cell"
-                                                >
-
-                                                    <div
-                                                        class="player-avatar"
-                                                    >
-
-                                                        👤
-
-                                                    </div>
-
-
-                                                    <span
-                                                        class="player-name"
-                                                    >
-
-                                                        ${member.nickname}
-
-                                                    </span>
-
-                                                </div>
-
-                                            </td>
-
-
-
-                                            <td>
-
-                                                <span
-                                                    class="player-id"
-                                                >
-
-                                                    ${member.id}
-
-                                                </span>
-
-                                            </td>
-
-
-
-                                            <td>
-
-                                                <span
-                                                    class="role-badge"
-                                                >
-
-                                                    ${member.role}
-
-                                                </span>
-
-                                            </td>
-
-
-
-                                            <td>
-
-                                                ${
-
-                                                    member.status
-                                                    .toLowerCase()
-                                                    ===
-                                                    "leader"
-
-                                                    ?
-
-                                                    `
-
-                                                    <span
-                                                        class="status-leader"
-                                                    >
-
-                                                        ♛ KETUA
-
-                                                    </span>
-
-                                                    `
-
-                                                    :
-
-                                                    `
-
-                                                    <span
-                                                        class="status-member"
-                                                    >
-
-                                                        MEMBER
-
-                                                    </span>
-
-                                                    `
-
-                                                }
-
-                                            </td>
-
-
-                                        </tr>
-
-
-                                        `;
-
-                                    }
-
-                                )
-                                .join(
-                                    ""
-                                )
+                                    : "Belum ditentukan"
 
                             }
 
+                        </h3>
 
-                        </tbody>
+
+                        <p>
+
+                            ID:
+
+                            ${
+
+                                leader
+
+                                    ? escapeHTML(
+                                        leader.id
+                                    )
+
+                                    : "-"
+
+                            }
+
+                        </p>
 
 
-                    </table>
+                    </div>
+
+
+                    <div class="leader-role">
+
+                        ${
+
+                            leader
+
+                                ? escapeHTML(
+                                    leader.role
+                                )
+
+                                : "-"
+
+                        }
+
+                    </div>
 
 
                 </div>
@@ -851,78 +1090,113 @@ function createDivisionCard(
             </div>
 
 
-        </div>
+            <!-- MEMBERS -->
+
+            <div class="team-members-section">
+
+
+                <p class="section-label">
+
+                    👥 TEAM MEMBERS
+
+                </p>
+
+
+                <!-- HEADER -->
+
+                <div class="team-table-header">
+
+
+                    <div>
+
+                        #
+
+                    </div>
+
+
+                    <div></div>
+
+
+                    <div>
+
+                        NICKNAME
+
+                    </div>
+
+
+                    <div>
+
+                        GAME ID
+
+                    </div>
+
+
+                    <div>
+
+                        ROLE
+
+                    </div>
+
+
+                    <div>
+
+                        STATUS
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- DATA -->
+
+                <div class="team-members-list">
+
+                    ${membersHTML}
+
+                </div>
+
+
+            </div>
+
+
+        </section>
 
 
     `;
 
 
     /*
-    CLICK EVENT
+       BACK EVENT
     */
 
-    const header =
-        card.querySelector(
-            ".division-header"
+    const backButton =
+        document.getElementById(
+            "backButton"
         );
 
 
-    header.addEventListener(
-        "click",
-        () => {
+    if (
+        backButton
+    ) {
 
+        backButton.addEventListener(
+            "click",
+            function () {
 
-            /*
-            CLOSE OTHER DIVISIONS
-            */
+                renderDivisions();
 
-            document
-            .querySelectorAll(
-                ".division-card"
-            )
-            .forEach(
-                otherCard => {
-
-                    if (
-                        otherCard !== card
-                    ) {
-
-                        otherCard
-                        .classList
-                        .remove(
-                            "open"
-                        );
-
+                window.scrollTo(
+                    {
+                        top: 0,
+                        behavior: "smooth"
                     }
+                );
 
-                }
-            );
+            }
+        );
 
-
-            /*
-            TOGGLE CURRENT
-            */
-
-            card
-            .classList
-            .toggle(
-                "open"
-            );
-
-
-        }
-    );
-
-
-    /*
-    ADD TO CONTAINER
-    */
-
-    divisionContainer
-    .appendChild(
-        card
-    );
-
+    }
 
 }
 
@@ -931,4 +1205,4 @@ function createDivisionCard(
    START
 ========================================= */
 
-getDivisionData();
+loadDivisions();
