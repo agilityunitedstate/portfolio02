@@ -1,32 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Team Divisions | Agility United</title>
+    <title>Divisions | Agility United</title>
 
-    <!-- Font -->
-    <link rel="preconnect"
-        href="https://fonts.googleapis.com">
 
-    <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
+    <!-- GOOGLE FONTS -->
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
 
     <!-- CSS -->
-    <link rel="stylesheet"
-        href="style.css">
 
-    <link rel="stylesheet"
-        href="division.css">
+    <link
+        rel="stylesheet"
+        href="division.css"
+    >
 
 </head>
 
@@ -34,125 +45,446 @@
 <body>
 
 
-    <!-- ================= HEADER ================= -->
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
 
     <header class="navbar">
 
-        <div class="nav-container">
 
-            <a href="index.html"
-                class="brand">
+        <!-- LOGO / BRAND -->
 
-                AGILITY
-                <span>UNITED</span>
+        <a
+            href="index.html"
+            class="brand"
+        >
 
-            </a>
-
-
-            <nav class="nav-links">
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="members.html">
-                    Members
-                </a>
-
-                <a href="divisions.html"
-                    class="active">
-                    Divisions
-                </a>
-
-                <a href="achievement.html">
-                    Trophies
-                </a>
-
-                <a href="contact.html">
-                    Contact
-                </a>
-
-            </nav>
-
-        </div>
-
-    </header>
+            <img
+                src="assets/logo.png"
+                alt="Agility United Logo"
+                class="brand-logo"
+            >
 
 
+            <div class="brand-text">
 
-    <!-- ================= MAIN ================= -->
+                <h1>
 
-    <main class="division-page">
+                    AGILITY
+                    <span>UNITED</span>
 
+                </h1>
 
-        <!-- TITLE -->
-
-        <section class="division-hero">
-
-            <span class="hero-label">
-                AGILITY UNITED
-            </span>
-
-            <h1>
-                TEAM
-                <span>DIVISIONS</span>
-            </h1>
-
-            <p>
-                Each division represents a competitive unit within
-                Agility United.
-            </p>
-
-        </section>
-
-
-
-        <!-- ================= DIVISION CONTAINER ================= -->
-
-        <section
-            id="divisionContainer"
-            class="division-container">
-
-
-            <!-- Loading -->
-
-            <div class="loading-box">
-
-                <div class="loader"></div>
 
                 <p>
-                    Loading divisions...
+
+                    MORE THAN A CLAN
+
                 </p>
 
             </div>
 
+        </a>
 
-        </section>
+
+        <!-- NAVIGATION -->
+
+        <nav
+            class="nav-menu"
+            id="navMenu"
+        >
+
+            <a href="index.html">
+
+                Home
+
+            </a>
+
+
+            <a href="about.html">
+
+                About
+
+            </a>
+
+
+            <a href="members.html">
+
+                Members
+
+            </a>
+
+
+            <a
+                href="divisions.html"
+                class="active"
+            >
+
+                Divisions
+
+            </a>
+
+
+            <a href="achivement.html">
+
+                Achievement
+
+            </a>
+
+
+            <a href="contact.html">
+
+                Contact
+
+            </a>
+
+        </nav>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Buka Menu"
+        >
+
+            ⋮
+
+        </button>
+
+
+    </header>
+
+
+    <!-- =========================================
+         HERO
+    ========================================== -->
+
+    <section class="division-hero">
+
+
+        <div class="hero-content">
+
+
+            <p class="hero-small">
+
+                AGILITY UNITED
+
+            </p>
+
+
+            <h1>
+
+                TEAM
+                <span>DIVISIONS</span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Each division represents a competitive
+                unit within Agility United.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================================
+         KETUA KLUB
+    ========================================== -->
+
+    <section class="club-leader-section">
+
+
+        <div class="club-leader-wrapper">
+
+
+            <div class="club-leader-info">
+
+
+                <p class="section-label">
+
+                    AGILITY UNITED LEADERSHIP
+
+                </p>
+
+
+                <h2>
+
+                    KETUA
+                    <span>KLUB</span>
+
+                </h2>
+
+
+                <div class="title-line"></div>
+
+
+                <p class="club-description">
+
+                    Pemimpin utama Agility United
+                    yang mengarahkan seluruh divisi
+                    untuk berkembang, berkompetisi,
+                    dan mencapai tujuan bersama.
+
+                </p>
+
+
+            </div>
+
+
+            <!-- CARD KETUA KLUB -->
+
+            <div class="club-leader-card">
+
+
+                <div class="leader-crown">
+
+                    ♛
+
+                </div>
+
+
+                <div class="club-leader-content">
+
+
+                    <span class="leader-position">
+
+                        CLUB LEADER
+
+                    </span>
+
+
+                    <!-- =================================
+                         EDIT NAMA KETUA KLUB DISINI
+                    ================================== -->
+
+                    <h3>
+
+                        NAMA KETUA KLUB
+
+                    </h3>
+
+
+                    <div class="leader-data">
+
+
+                        <div>
+
+                            <span>
+
+                                GAME ID
+
+                            </span>
+
+                            <strong>
+
+                                123456789
+
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+
+                                ROLE
+
+                            </span>
+
+                            <strong>
+
+                                CM
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================================
+         DIVISION SECTION
+    ========================================== -->
+
+    <main class="division-section">
+
+
+        <div class="division-heading">
+
+
+            <div>
+
+
+                <p class="section-label">
+
+                    COMPETITIVE UNITS
+
+                </p>
+
+
+                <h2>
+
+                    OUR
+                    <span>DIVISIONS</span>
+
+                </h2>
+
+
+                <p
+                    id="division-description"
+                    class="division-description"
+                >
+
+                    Memuat data divisi...
+
+                </p>
+
+
+            </div>
+
+
+            <div class="division-slogan">
+
+                <span>
+
+                    DIFFERENT ROLES
+
+                </span>
+
+                <span>
+
+                    SAME GOAL
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             DIVISION DATA
+        ========================================== -->
+
+        <div
+            id="division-container"
+            class="division-container"
+        >
+
+
+            <div class="loading">
+
+                Memuat data dari Google Sheet...
+
+            </div>
+
+
+        </div>
+
+
+        <!-- QUOTE -->
+
+        <div class="division-quote">
+
+
+            <p>
+
+                " ONE CLAN, MANY STORIES "
+
+            </p>
+
+
+            <div></div>
+
+
+        </div>
 
 
     </main>
 
 
-
-    <!-- ================= FOOTER ================= -->
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
 
     <footer class="footer">
 
-        <p>
-            © 2026 AGILITY UNITED
-        </p>
 
-        <p>
-            UNITED • COMPETE • DOMINATE
-        </p>
+        <div class="footer-brand">
+
+
+            <img
+                src="assets/logo.png"
+                alt="Agility United"
+            >
+
+
+            <div>
+
+
+                <h2>
+
+                    AGILITY
+                    <span>UNITED</span>
+
+                </h2>
+
+
+                <p>
+
+                    MORE THAN A CLAN — A FAMILY
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+
+            © 2026 AGILITY UNITED.
+            ALL RIGHTS RESERVED.
+
+
+        </div>
+
 
     </footer>
 
 
-
     <!-- JAVASCRIPT -->
 
-    <script src="division.js"></script>
+    <script
+        src="division.js"
+    ></script>
 
 
 </body>
