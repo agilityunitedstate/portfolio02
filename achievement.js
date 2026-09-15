@@ -13,7 +13,7 @@
 
 
 const SHEET_URL =
-    "PASTE_LINK_GOOGLE_SHEET_DISINI";
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwhYm4gTk3_3bhG0V87-wPBcY-0aCrutG61O36WPgZ1AJaNNGShvMiizLdKCm5kWDVVidjVuElZiCm/pub?output=csv";
 
 
 /* =========================================
