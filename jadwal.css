@@ -1,0 +1,1207 @@
+/* =====================================================
+   AGILITY UNITED
+   JADWAL / MATCH SCHEDULE
+   ===================================================== */
+
+
+/* ================= ROOT ================= */
+
+:root {
+
+  --black: #0d0d0d;
+  --dark: #151515;
+  --dark-2: #1b1b1b;
+
+  --orange: #ff5a1f;
+  --orange-dark: #b8380f;
+
+  --white: #f4efe6;
+  --gray: #a8a8a8;
+
+  --border: rgba(255, 90, 31, 0.25);
+
+}
+
+
+/* ================= RESET ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+
+  background: var(--black);
+
+  color: var(--white);
+
+  font-family: "Work Sans", sans-serif;
+
+  line-height: 1.6;
+
+}
+
+
+/* =====================================================
+   NAVBAR
+   ===================================================== */
+
+.navbar {
+
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+
+  height: 70px;
+
+  padding: 0 5%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  background: rgba(13, 13, 13, 0.96);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  z-index: 1000;
+
+}
+
+
+/* Brand */
+
+.nav-brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  text-decoration: none;
+
+  color: var(--white);
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+}
+
+
+.nav-brand strong {
+
+  color: var(--orange);
+
+}
+
+
+.nav-logo {
+
+  width: 42px;
+
+  height: 42px;
+
+  object-fit: contain;
+
+}
+
+
+/* Menu */
+
+.nav-menu {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 28px;
+
+}
+
+
+.nav-menu a {
+
+  position: relative;
+
+  color: #d6d6d6;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  transition: 0.3s ease;
+
+}
+
+
+.nav-menu a:hover,
+.nav-menu a.active {
+
+  color: var(--orange);
+
+}
+
+
+.nav-menu a::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: -8px;
+
+  width: 0;
+
+  height: 2px;
+
+  background: var(--orange);
+
+  transition: 0.3s ease;
+
+}
+
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+
+  width: 100%;
+
+}
+
+
+/* Mobile Button */
+
+.menu-toggle {
+
+  display: none;
+
+  border: none;
+
+  background: transparent;
+
+  color: #fff;
+
+  font-size: 30px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  line-height: 1;
+
+  padding: 5px;
+
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.schedule-hero {
+
+  min-height: 420px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 80px 8%;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(255, 90, 31, 0.16),
+      transparent 35%
+    ),
+
+    var(--black);
+
+}
+
+
+.schedule-hero::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 450px;
+
+  height: 450px;
+
+  right: -160px;
+
+  top: -100px;
+
+  border:
+    1px solid rgba(255, 90, 31, 0.12);
+
+  transform: rotate(45deg);
+
+}
+
+
+.hero-content {
+
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 850px;
+
+}
+
+
+.hero-label {
+
+  color: var(--orange);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 4px;
+
+  margin-bottom: 15px;
+
+}
+
+
+.hero-content h1 {
+
+  font-family: "Anton", sans-serif;
+
+  font-size: clamp(65px, 9vw, 115px);
+
+  line-height: 0.9;
+
+  letter-spacing: 2px;
+
+}
+
+
+.hero-content h1 span {
+
+  color: var(--orange);
+
+}
+
+
+.hero-description {
+
+  max-width: 620px;
+
+  margin-top: 25px;
+
+  color: var(--gray);
+
+  font-size: 16px;
+
+}
+
+
+/* =====================================================
+   SCHEDULE SECTION
+   ===================================================== */
+
+.schedule-section {
+
+  padding: 100px 6%;
+
+  background: var(--dark);
+
+}
+
+
+.schedule-container {
+
+  max-width: 1300px;
+
+  margin: auto;
+
+}
+
+
+/* Header */
+
+.section-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: end;
+
+  gap: 30px;
+
+  margin-bottom: 45px;
+
+}
+
+
+.section-label {
+
+  color: var(--orange);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 12px;
+
+}
+
+
+.section-header h2 {
+
+  font-family: "Anton", sans-serif;
+
+  font-size: clamp(40px, 5vw, 65px);
+
+  line-height: 1;
+
+}
+
+
+.section-header h2 span {
+
+  color: var(--orange);
+
+}
+
+
+.schedule-info {
+
+  color: #777;
+
+  font-size: 12px;
+
+  padding-bottom: 5px;
+
+}
+
+
+/* =====================================================
+   TABLE
+   ===================================================== */
+
+.schedule-table-wrapper {
+
+  width: 100%;
+
+  overflow-x: auto;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 18px;
+
+  background: #111;
+
+}
+
+
+.schedule-table {
+
+  width: 100%;
+
+  min-width: 850px;
+
+  border-collapse: collapse;
+
+}
+
+
+.schedule-table thead {
+
+  background: #191a20;
+
+}
+
+
+.schedule-table th {
+
+  padding: 22px 20px;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  color: var(--white);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+}
+
+
+.schedule-table th:first-child {
+
+  border-radius: 18px 0 0 0;
+
+}
+
+
+.schedule-table th:last-child {
+
+  border-radius: 0 18px 0 0;
+
+}
+
+
+.schedule-table td {
+
+  padding: 22px 20px;
+
+  color: #c4c4c4;
+
+  font-size: 14px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.05);
+
+}
+
+
+.schedule-table tbody tr {
+
+  transition: 0.25s ease;
+
+}
+
+
+.schedule-table tbody tr:hover {
+
+  background: rgba(255, 90, 31, 0.05);
+
+}
+
+
+.schedule-table tbody tr:last-child td {
+
+  border-bottom: none;
+
+}
+
+
+/* Squad */
+
+.squad-name {
+
+  color: var(--white);
+
+  font-weight: 700;
+
+}
+
+
+/* Time */
+
+.match-time {
+
+  color: var(--orange);
+
+  font-weight: 800;
+
+}
+
+
+/* Match Type */
+
+.match-type {
+
+  display: inline-block;
+
+  padding: 6px 12px;
+
+  border-radius: 50px;
+
+  background: rgba(255, 90, 31, 0.10);
+
+  border:
+    1px solid rgba(255, 90, 31, 0.25);
+
+  color: var(--orange);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+
+}
+
+
+/* Opponent */
+
+.opponent {
+
+  color: var(--white);
+
+  font-weight: 600;
+
+}
+
+
+/* Loading */
+
+.loading {
+
+  text-align: center !important;
+
+  padding: 50px !important;
+
+  color: #777 !important;
+
+}
+
+
+/* =====================================================
+   MOBILE CARDS
+   ===================================================== */
+
+.schedule-mobile {
+
+  display: none;
+
+}
+
+
+.schedule-card {
+
+  padding: 22px;
+
+  margin-bottom: 15px;
+
+  background: #111;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 15px;
+
+  transition: 0.3s ease;
+
+}
+
+
+.schedule-card:hover {
+
+  border-color: var(--border);
+
+  transform: translateY(-3px);
+
+}
+
+
+/* Card Top */
+
+.schedule-card-top {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+}
+
+
+.card-date {
+
+  color: var(--orange);
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+}
+
+
+/* Card Main */
+
+.match-versus {
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  gap: 12px;
+
+  align-items: center;
+
+  margin: 15px 0 20px;
+
+}
+
+
+.team {
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  color: var(--white);
+
+}
+
+
+.team:last-child {
+
+  text-align: right;
+
+}
+
+
+.vs {
+
+  color: var(--orange);
+
+  font-family: "Anton", sans-serif;
+
+  font-size: 20px;
+
+}
+
+
+/* Card Bottom */
+
+.schedule-card-bottom {
+
+  padding-top: 15px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  color: #888;
+
+  font-size: 12px;
+
+}
+
+
+/* =====================================================
+   EMPTY STATE
+   ===================================================== */
+
+.empty-state {
+
+  text-align: center;
+
+  padding: 70px 20px;
+
+}
+
+
+.empty-icon {
+
+  font-size: 45px;
+
+  margin-bottom: 15px;
+
+}
+
+
+.empty-state h3 {
+
+  font-family: "Anton", sans-serif;
+
+  font-size: 30px;
+
+  letter-spacing: 1px;
+
+}
+
+
+.empty-state p {
+
+  margin-top: 8px;
+
+  color: #777;
+
+}
+
+
+.loading-card {
+
+  padding: 30px;
+
+  text-align: center;
+
+  color: #777;
+
+  background: #111;
+
+  border-radius: 15px;
+
+}
+
+
+/* =====================================================
+   NOTE
+   ===================================================== */
+
+.schedule-note {
+
+  padding: 70px 6%;
+
+  background: var(--black);
+
+}
+
+
+.note-container {
+
+  max-width: 1100px;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 25px 30px;
+
+  background: #17140d;
+
+  border-left:
+    5px solid var(--orange);
+
+  border-radius: 15px;
+
+}
+
+
+.note-icon {
+
+  width: 38px;
+
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: var(--orange);
+
+  color: #fff;
+
+  font-weight: 900;
+
+}
+
+
+.note-container h3 {
+
+  font-size: 15px;
+
+  letter-spacing: 1px;
+
+}
+
+
+.note-container p {
+
+  color: #999;
+
+  font-size: 13px;
+
+  margin-top: 4px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.footer {
+
+  padding: 25px 5%;
+
+  text-align: center;
+
+  background: #090909;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.05);
+
+  color: #666;
+
+  font-size: 12px;
+
+}
+
+
+.footer strong {
+
+  color: var(--orange);
+
+}
+
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 1000px) {
+
+  .nav-menu {
+
+    gap: 18px;
+
+  }
+
+
+  .nav-menu a {
+
+    font-size: 12px;
+
+  }
+
+
+  .schedule-section {
+
+    padding-left: 5%;
+
+    padding-right: 5%;
+
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+  /* Navbar */
+
+  .navbar {
+
+    height: 65px;
+
+    padding: 0 5%;
+
+  }
+
+
+  .nav-menu {
+
+    display: none;
+
+    position: absolute;
+
+    top: 70px;
+
+    right: 5%;
+
+    width: 210px;
+
+    padding: 15px;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 0;
+
+    background: #151515;
+
+    border:
+      1px solid rgba(255, 90, 31, 0.3);
+
+    border-radius: 12px;
+
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.5);
+
+  }
+
+
+  .nav-menu.show {
+
+    display: flex;
+
+  }
+
+
+  .nav-menu a {
+
+    padding: 13px 10px;
+
+    border-bottom:
+      1px solid rgba(255, 255, 255, 0.05);
+
+  }
+
+
+  .nav-menu a:last-child {
+
+    border-bottom: none;
+
+  }
+
+
+  .nav-menu a::after {
+
+    display: none;
+
+  }
+
+
+  .menu-toggle {
+
+    display: block;
+
+    position: relative;
+
+    z-index: 2000;
+
+    color: #fff;
+
+  }
+
+
+  /* Hero */
+
+  .schedule-hero {
+
+    min-height: 350px;
+
+    padding: 65px 7%;
+
+  }
+
+
+  .hero-content h1 {
+
+    font-size: 65px;
+
+  }
+
+
+  .hero-description {
+
+    font-size: 14px;
+
+  }
+
+
+  /* Section */
+
+  .schedule-section {
+
+    padding: 75px 7%;
+
+  }
+
+
+  .section-header {
+
+    display: block;
+
+    margin-bottom: 30px;
+
+  }
+
+
+  .schedule-info {
+
+    margin-top: 15px;
+
+  }
+
+
+  /* Hide table */
+
+  .schedule-table-wrapper {
+
+    display: none;
+
+  }
+
+
+  /* Show mobile cards */
+
+  .schedule-mobile {
+
+    display: block;
+
+  }
+
+
+  .schedule-note {
+
+    padding: 60px 7%;
+
+  }
+
+
+  .note-container {
+
+    align-items: flex-start;
+
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 420px) {
+
+  .navbar {
+
+    padding: 0 15px;
+
+  }
+
+
+  .nav-brand {
+
+    gap: 8px;
+
+  }
+
+
+  .nav-logo {
+
+    width: 36px;
+
+    height: 36px;
+
+  }
+
+
+  .nav-brand span {
+
+    display: inline-block;
+
+    font-size: 10px;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+
+  }
+
+
+  .menu-toggle {
+
+    display: block;
+
+    font-size: 28px;
+
+    color: #fff;
+
+  }
+
+
+  .schedule-hero {
+
+    padding:
+      60px 20px;
+
+  }
+
+
+  .hero-content h1 {
+
+    font-size: 55px;
+
+  }
+
+
+  .schedule-section {
+
+    padding:
+      65px 20px;
+
+  }
+
+
+  .schedule-card {
+
+    padding: 18px;
+
+  }
+
+
+  .match-versus {
+
+    grid-template-columns:
+      1fr auto 1fr;
+
+  }
+
+
+  .team {
+
+    font-size: 13px;
+
+  }
+
+
+  .note-container {
+
+    padding: 20px;
+
+  }
+
+}
