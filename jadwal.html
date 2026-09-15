@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Schedule | Agility United</title>
+
+  <link rel="stylesheet" href="jadwal.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+
+  <header class="navbar">
+
+    <a href="index.html" class="nav-brand">
+
+      <img
+        src="assets/logo.png"
+        alt="Agility United Logo"
+        class="nav-logo"
+      >
+
+      <span>
+        AGILITY <strong>UNITED</strong>
+      </span>
+
+    </a>
+
+
+    <nav class="nav-menu" id="navMenu">
+
+      <a href="index.html">Home</a>
+
+      <a href="about.html">About</a>
+
+      <a href="member.html">Members</a>
+
+      <a href="divisions.html">Divisions</a>
+
+      <a href="achievement.html">Achievement</a>
+
+      <a href="jadwal.html" class="active">Jadwal</a>
+
+      <a href="contact.html">Contact</a>
+
+    </nav>
+
+
+    <!-- Mobile Menu -->
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open Menu"
+    >
+      ⋮
+    </button>
+
+  </header>
+
+
+  <!-- ================= HERO ================= -->
+
+  <section class="schedule-hero">
+
+    <div class="hero-content">
+
+      <p class="hero-label">
+        AGILITY UNITED
+      </p>
+
+      <h1>
+        MATCH<br>
+        <span>SCHEDULE</span>
+      </h1>
+
+      <p class="hero-description">
+        Stay updated with our upcoming sparring sessions,
+        tournaments, and competitive matches.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= SCHEDULE ================= -->
+
+  <main class="schedule-section">
+
+    <div class="schedule-container">
+
+      <!-- Section Header -->
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="section-label">
+            UPCOMING MATCHES
+          </p>
+
+          <h2>
+            JADWAL <span>PERTANDINGAN</span>
+          </h2>
+
+        </div>
+
+        <div class="schedule-info">
+          📅 Updated from Google Sheet
+        </div>
+
+      </div>
+
+
+      <!-- Desktop Table -->
+
+      <div class="schedule-table-wrapper">
+
+        <table class="schedule-table">
+
+          <thead>
+
+            <tr>
+              <th>Hari</th>
+              <th>Tanggal</th>
+              <th>Jam</th>
+              <th>Squad</th>
+              <th>Jenis</th>
+              <th>Lawan</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="scheduleBody">
+
+            <tr>
+
+              <td colspan="6" class="loading">
+                Loading schedule...
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <!-- Mobile Cards -->
+
+      <div
+        class="schedule-mobile"
+        id="scheduleMobile"
+      >
+
+        <div class="loading-card">
+          Loading schedule...
+        </div>
+
+      </div>
+
+
+      <!-- Empty State -->
+
+      <div
+        class="empty-state"
+        id="emptyState"
+        style="display: none;"
+      >
+
+        <div class="empty-icon">
+          📅
+        </div>
+
+        <h3>
+          NO UPCOMING MATCHES
+        </h3>
+
+        <p>
+          Belum ada jadwal pertandingan yang tersedia.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- ================= BOTTOM INFO ================= -->
+
+  <section class="schedule-note">
+
+    <div class="note-container">
+
+      <div class="note-icon">
+        !
+      </div>
+
+      <div>
+
+        <h3>
+          STAY READY
+        </h3>
+
+        <p>
+          Jadwal pertandingan dapat berubah sesuai
+          konfirmasi dari masing-masing squad.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer class="footer">
+
+    <p>
+      © 2026 <strong>AGILITY UNITED</strong>.
+      All Rights Reserved.
+    </p>
+
+  </footer>
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script src="jadwal.js"></script>
+
+</body>
+</html>
