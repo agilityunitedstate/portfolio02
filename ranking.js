@@ -904,10 +904,10 @@ const rankingMainButtons =
     document.querySelectorAll(".main-tab");
 
 const playerSection =
-    document.getElementById("playerRankingSection");
+    document.getElementById("playerRanking");
 
 const teamSection =
-    document.getElementById("teamRankingSection");
+    document.getElementById("teamRanking");
 
 rankingMainButtons.forEach(button => {
 
