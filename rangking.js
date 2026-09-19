@@ -23,7 +23,7 @@ const PLAYER_SHEET_URL =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQurMK3b5wBqlKc0RVJzESByiHS2zTs9dBRkqS6dKMpcfblYHsmDEXQ_exobsZOTBNRz5E0_o6aDz4d/pub?output=csv";
 
 const TEAM_SHEET_URL =
-    "PASTE_URL_CSV_RANKING_TEAM_DI_SINI";
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRUKTKqRGZxPjBTavgPS3ycYFsZz9r0QGQ5VuZdEPg-wsWU6zpXIHthLvW7d0kW9uclnGnB1XA2kps_/pub?output=csv";
 
 
 /* =========================================================
