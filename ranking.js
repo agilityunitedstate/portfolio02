@@ -901,70 +901,52 @@ function escapeHTML(value) {
    ========================================================= */
 
 const rankingMainButtons =
-    document.querySelectorAll(
-        "[data-ranking-type]"
-    );
+    document.querySelectorAll(".main-tab");
 
 const playerSection =
-    document.getElementById(
-        "playerRankingSection"
-    );
+    document.getElementById("playerRankingSection");
 
 const teamSection =
-    document.getElementById(
-        "teamRankingSection"
-    );
+    document.getElementById("teamRankingSection");
 
 rankingMainButtons.forEach(button => {
 
-    button.addEventListener(
-        "click",
-        function () {
+    button.addEventListener("click", function () {
 
-            rankingMainButtons.forEach(
-                btn =>
-                    btn.classList.remove(
-                        "active"
-                    )
-            );
+        rankingMainButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
 
-            this.classList.add(
-                "active"
-            );
+        this.classList.add("active");
 
-            const type =
-                this.dataset.rankingType;
+        const category =
+            this.dataset.category;
 
-            if (type === "player") {
+        if (category === "players") {
 
-                if (playerSection) {
-                    playerSection.style.display =
-                        "block";
-                }
-
-                if (teamSection) {
-                    teamSection.style.display =
-                        "none";
-                }
-
+            if (playerSection) {
+                playerSection.style.display = "block";
             }
 
-            else if (type === "team") {
-
-                if (playerSection) {
-                    playerSection.style.display =
-                        "none";
-                }
-
-                if (teamSection) {
-                    teamSection.style.display =
-                        "block";
-                }
-
+            if (teamSection) {
+                teamSection.style.display = "none";
             }
 
         }
-    );
+
+        else if (category === "teams") {
+
+            if (playerSection) {
+                playerSection.style.display = "none";
+            }
+
+            if (teamSection) {
+                teamSection.style.display = "block";
+            }
+
+        }
+
+    });
 
 });
 
