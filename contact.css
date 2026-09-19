@@ -112,7 +112,7 @@ a {
   font-size: 13px;
   font-weight: 600;
 
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0.5px;
 
   transition: 0.3s ease;
