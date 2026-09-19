@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +8,13 @@
 
   <link rel="stylesheet" href="contact.css">
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -25,7 +24,6 @@
   <header class="navbar">
 
     <a href="index.html" class="nav-brand">
-
       <img
         src="assets/logo.png"
         alt="Agility United Logo"
@@ -35,9 +33,7 @@
       <span>
         AGILITY <strong>UNITED</strong>
       </span>
-
     </a>
-
 
     <nav class="nav-menu" id="navMenu">
 
@@ -56,7 +52,6 @@
       <a href="contact.html" class="active">Contact</a>
 
     </nav>
-
 
     <button
       class="menu-toggle"
@@ -80,13 +75,14 @@
       </p>
 
       <h1>
-        CONNECT<br>
+        CONNECT
+        <br>
         <span>WITH US</span>
       </h1>
 
       <p class="hero-description">
-        Stay connected with Agility United through our
-        official community and social media platforms.
+        Stay connected with Agility United through our official
+        community and social media platforms.
       </p>
 
     </div>
@@ -94,7 +90,7 @@
   </section>
 
 
-  <!-- ================= SOCIAL SECTION ================= -->
+  <!-- ================= CONTACT ================= -->
 
   <main class="contact-section">
 
@@ -116,6 +112,8 @@
     </div>
 
 
+    <!-- SOCIAL GRID -->
+
     <div class="social-grid">
 
 
@@ -124,11 +122,12 @@
       <a
         href="https://wa.me/628xxxxxxxxxx"
         target="_blank"
-        class="social-card whatsapp"
+        rel="noopener noreferrer"
+        class="social-card"
       >
 
         <div class="social-icon">
-          WA
+          <i class="fa-brands fa-whatsapp"></i>
         </div>
 
         <div class="social-content">
@@ -147,7 +146,8 @@
           </p>
 
           <span class="social-link">
-            CHAT WITH US →
+            CHAT WITH US
+            <i class="fa-solid fa-arrow-right"></i>
           </span>
 
         </div>
@@ -160,11 +160,12 @@
       <a
         href="https://discord.gg/yourserver"
         target="_blank"
-        class="social-card discord"
+        rel="noopener noreferrer"
+        class="social-card"
       >
 
         <div class="social-icon">
-          DC
+          <i class="fa-brands fa-discord"></i>
         </div>
 
         <div class="social-content">
@@ -183,7 +184,8 @@
           </p>
 
           <span class="social-link">
-            JOIN SERVER →
+            JOIN SERVER
+            <i class="fa-solid fa-arrow-right"></i>
           </span>
 
         </div>
@@ -196,11 +198,12 @@
       <a
         href="https://instagram.com/agilityunited"
         target="_blank"
-        class="social-card instagram"
+        rel="noopener noreferrer"
+        class="social-card"
       >
 
         <div class="social-icon">
-          IG
+          <i class="fa-brands fa-instagram"></i>
         </div>
 
         <div class="social-content">
@@ -219,7 +222,8 @@
           </p>
 
           <span class="social-link">
-            FOLLOW US →
+            FOLLOW US
+            <i class="fa-solid fa-arrow-right"></i>
           </span>
 
         </div>
@@ -232,11 +236,12 @@
       <a
         href="https://tiktok.com/@agilityunited"
         target="_blank"
-        class="social-card tiktok"
+        rel="noopener noreferrer"
+        class="social-card"
       >
 
         <div class="social-icon">
-          TT
+          <i class="fa-brands fa-tiktok"></i>
         </div>
 
         <div class="social-content">
@@ -255,7 +260,8 @@
           </p>
 
           <span class="social-link">
-            FOLLOW US →
+            FOLLOW US
+            <i class="fa-solid fa-arrow-right"></i>
           </span>
 
         </div>
@@ -279,8 +285,10 @@
       </p>
 
       <h2>
-        PLAY.<br>
-        CONNECT.<br>
+        PLAY.
+        <br>
+        CONNECT.
+        <br>
         <span>CONQUER.</span>
       </h2>
 
@@ -298,7 +306,8 @@
   <footer class="footer">
 
     <p>
-      © 2026 <strong>AGILITY UNITED</strong>.
+      © 2026
+      <strong>AGILITY UNITED</strong>.
       All Rights Reserved.
     </p>
 
@@ -315,22 +324,17 @@
     const navMenu =
       document.getElementById("navMenu");
 
-
     if (menuToggle && navMenu) {
 
-      menuToggle.addEventListener(
-        "click",
-        () => {
+      menuToggle.addEventListener("click", () => {
 
-          navMenu.classList.toggle("show");
+        navMenu.classList.toggle("show");
 
-        }
-      );
+      });
 
     }
 
   </script>
 
 </body>
-
 </html>
