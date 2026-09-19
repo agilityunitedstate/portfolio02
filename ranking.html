@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Top Ranking | Agility United</title>
+
+    <link rel="stylesheet" href="ranking.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <a href="index.html" class="nav-brand">
+            <img src="assets/logo.png" alt="Agility United Logo" class="nav-logo">
+            <span>AGILITY <strong>UNITED</strong></span>
+        </a>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="member.html">Members</a>
+            <a href="divisions.html">Divisions</a>
+            <a href="achievement.html">Achievement</a>
+            <a href="jadwal.html">Jadwal</a>
+            <a href="ranking.html" class="active">Ranking</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+            ⋮
+        </button>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="ranking-hero">
+
+        <div class="hero-content">
+
+            <p class="hero-label">COMPETITIVE PERFORMANCE</p>
+
+            <h1>
+                TOP <span>RANKING</span>
+            </h1>
+
+            <p class="hero-description">
+                Track the best-performing players and teams
+                of Agility United.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- RANKING SECTION -->
+    <main class="ranking-section">
+
+        <div class="section-heading">
+
+            <p class="section-label">AGILITY UNITED</p>
+
+            <h2>
+                RANKING <span>BOARD</span>
+            </h2>
+
+            <p>
+                Performance rankings based on the latest statistics.
+            </p>
+
+        </div>
+
+
+        <!-- MAIN CATEGORY -->
+        <div class="main-tabs">
+
+            <button class="main-tab active" data-category="players">
+                TOP PEMAIN
+            </button>
+
+            <button class="main-tab" data-category="teams">
+                TOP TIM
+            </button>
+
+        </div>
+
+
+        <!-- PLAYER RANKING -->
+        <section class="ranking-content" id="playerRanking">
+
+            <div class="stat-tabs">
+
+                <button class="stat-tab active" data-stat="scorer">
+                    TOP SCORER
+                </button>
+
+                <button class="stat-tab" data-stat="assist">
+                    TOP ASSIST
+                </button>
+
+                <button class="stat-tab" data-stat="defend">
+                    TOP DEFEND
+                </button>
+
+                <button class="stat-tab" data-stat="save">
+                    TOP SAVE
+                </button>
+
+            </div>
+
+
+            <div class="ranking-title">
+
+                <div>
+                    <p class="mini-label">PLAYER PERFORMANCE</p>
+
+                    <h3 id="rankingTitle">
+                        TOP SCORER
+                    </h3>
+                </div>
+
+                <div class="stat-badge" id="statBadge">
+                    SCORER
+                </div>
+
+            </div>
+
+
+            <!-- TOP 3 -->
+            <div class="podium" id="podium">
+
+                <!-- JS -->
+
+            </div>
+
+
+            <!-- RANKING TABLE -->
+            <div class="ranking-table-wrapper">
+
+                <table class="ranking-table">
+
+                    <thead>
+                        <tr>
+                            <th>RANK</th>
+                            <th>PLAYER</th>
+                            <th>DIVISION</th>
+                            <th>STATISTIC</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="playerRankingBody">
+
+                        <tr>
+                            <td colspan="4" class="loading">
+                                Loading ranking...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- TEAM RANKING -->
+        <section class="ranking-content team-content" id="teamRanking">
+
+            <div class="ranking-title">
+
+                <div>
+                    <p class="mini-label">TEAM PERFORMANCE</p>
+
+                    <h3>
+                        TOP TEAM
+                    </h3>
+                </div>
+
+                <div class="stat-badge">
+                    TEAM
+                </div>
+
+            </div>
+
+
+            <!-- TEAM PODIUM -->
+            <div class="podium" id="teamPodium">
+
+                <!-- JS -->
+
+            </div>
+
+
+            <!-- TEAM TABLE -->
+            <div class="ranking-table-wrapper">
+
+                <table class="ranking-table">
+
+                    <thead>
+                        <tr>
+                            <th>RANK</th>
+                            <th>TEAM</th>
+                            <th>MATCH</th>
+                            <th>POINT</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="teamRankingBody">
+
+                        <tr>
+                            <td colspan="4" class="loading">
+                                Loading ranking...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <div class="last-update">
+            <span></span>
+            Ranking data is updated automatically from Google Sheets
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-logo">
+            <img src="assets/logo.png" alt="Agility United Logo">
+            <span>AGILITY <strong>UNITED</strong></span>
+        </div>
+
+        <p>
+            PLAY. CONNECT. CONQUER.
+        </p>
+
+        <small>
+            © 2026 Agility United. All rights reserved.
+        </small>
+
+    </footer>
+
+
+    <script src="ranking.js"></script>
+
+</body>
+</html>
