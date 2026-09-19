@@ -797,3 +797,14 @@ a {
   }
 
 }
+/* Social Media Images */
+.social-icon img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.social-card:hover .social-icon img {
+  transform: scale(1.1);
+  transition: 0.3s ease;
+}
