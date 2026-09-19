@@ -485,7 +485,7 @@ a {
 
 /* Orange side line */
 
-.social-card::before {
+.-card::before {
 
   content: "";
 
@@ -1053,4 +1053,7 @@ a {
 
   }
 
+}
+.social-content h3 {
+  color: #f4efe6 !important;
 }
