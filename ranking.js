@@ -283,31 +283,26 @@ async function loadRankingData() {
    ========================================================= */
 
 const playerStatButtons =
-    document.querySelectorAll(
-        "[data-player-stat]"
-    );
+    document.querySelectorAll(".stat-tab");
 
 playerStatButtons.forEach(button => {
 
-    button.addEventListener(
-        "click",
-        function () {
+    button.addEventListener("click", function () {
 
-            playerStatButtons.forEach(btn =>
-                btn.classList.remove("active")
-            );
+        playerStatButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
 
-            this.classList.add("active");
+        this.classList.add("active");
 
-            currentPlayerStat =
-                this.dataset.playerStat;
+        currentPlayerStat =
+            this.dataset.stat;
 
-            renderPlayerRanking(
-                currentPlayerStat
-            );
+        renderPlayerRanking(
+            currentPlayerStat
+        );
 
-        }
-    );
+    });
 
 });
 
