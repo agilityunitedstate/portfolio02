@@ -55,10 +55,6 @@
                 Achievement
             </a>
 
-            <a href="ranking.html">
-                Ranking
-            </a>
-
             <a href="jadwal.html">
                 Jadwal
             </a>
@@ -140,7 +136,7 @@
 
 
         <!-- =========================
-             SEARCH
+             SEARCH & FILTER
         ========================== -->
 
         <div class="member-tools">
@@ -160,10 +156,6 @@
 
             </div>
 
-
-            <!-- =========================
-                 ROLE FILTER
-            ========================== -->
 
             <div class="role-filters" id="roleFilters">
 
@@ -230,17 +222,38 @@
 
 
         <!-- =========================
-             MEMBER GRID
+             MEMBER TABLE
         ========================== -->
 
-        <section
-            class="member-grid"
-            id="memberContainer"
-        >
+        <div class="member-table-wrapper">
 
-            <!-- JS -->
+            <table class="member-table">
 
-        </section>
+                <thead>
+
+                    <tr>
+                        <th>NO</th>
+                        <th>NICKNAME</th>
+                        <th>ID</th>
+                        <th>ROLE</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="memberContainer">
+
+                    <tr>
+                        <td colspan="4" class="loading">
+                            Loading members...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
 
 
