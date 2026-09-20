@@ -72,6 +72,8 @@ function parseCSV(text) {
             text[i + 1];
 
 
+        /* Handle double quotes inside quoted value */
+
         if (
             char === '"' &&
             insideQuotes &&
@@ -85,6 +87,8 @@ function parseCSV(text) {
         }
 
 
+        /* Start / end quoted value */
+
         else if (char === '"') {
 
             insideQuotes =
@@ -92,6 +96,8 @@ function parseCSV(text) {
 
         }
 
+
+        /* Column separator */
 
         else if (
             char === "," &&
@@ -106,6 +112,8 @@ function parseCSV(text) {
 
         }
 
+
+        /* New row */
 
         else if (
             (
@@ -149,6 +157,8 @@ function parseCSV(text) {
         }
 
 
+        /* Normal character */
+
         else {
 
             value += char;
@@ -157,6 +167,8 @@ function parseCSV(text) {
 
     }
 
+
+    /* Add final row */
 
     if (
         value !== "" ||
@@ -197,12 +209,16 @@ function csvToObjects(text) {
         parseCSV(text);
 
 
-    if (rows.length < 2) {
+    if (
+        rows.length < 2
+    ) {
 
         return [];
 
     }
 
+
+    /* Normalize headers */
 
     const headers =
         rows[0].map(header =>
@@ -214,6 +230,8 @@ function csvToObjects(text) {
 
         );
 
+
+    /* Convert each row into object */
 
     return rows
         .slice(1)
@@ -252,6 +270,8 @@ async function loadMembers() {
         showLoading();
 
 
+        /* Check Google Sheet URL */
+
         if (
             !SHEET_URL ||
             SHEET_URL.includes("PASTE_URL")
@@ -263,6 +283,8 @@ async function loadMembers() {
 
         }
 
+
+        /* Prevent browser cache */
 
         const separator =
             SHEET_URL.includes("?")
@@ -277,11 +299,15 @@ async function loadMembers() {
             Date.now();
 
 
+        /* Fetch CSV */
+
         const response =
             await fetch(url);
 
 
-        if (!response.ok) {
+        if (
+            !response.ok
+        ) {
 
             throw new Error(
                 `HTTP Error ${response.status}`
@@ -294,6 +320,8 @@ async function loadMembers() {
             await response.text();
 
 
+        /* Convert CSV */
+
         memberData =
             csvToObjects(text);
 
@@ -304,7 +332,12 @@ async function loadMembers() {
         );
 
 
+        /* Hide loading */
+
         hideLoading();
+
+
+        /* Render table */
 
         renderMembers();
 
@@ -326,23 +359,26 @@ async function loadMembers() {
 
             memberContainer.innerHTML = `
 
-                <div class="empty-state">
+                <tr>
 
-                    <div class="empty-icon">
-                        !
-                    </div>
-
-                    <h3>
-                        DATA ERROR
-                    </h3>
-
-                    <p>
+                    <td
+                        colspan="4"
+                        class="loading"
+                    >
                         Unable to load member data.
-                    </p>
+                    </td>
 
-                </div>
+                </tr>
 
             `;
+
+        }
+
+
+        if (memberCount) {
+
+            memberCount.textContent =
+                "Unable to load members";
 
         }
 
@@ -355,7 +391,9 @@ async function loadMembers() {
    SEARCH
    ========================================================= */
 
-if (memberSearch) {
+if (
+    memberSearch
+) {
 
     memberSearch.addEventListener(
         "input",
@@ -379,38 +417,48 @@ if (memberSearch) {
    ROLE FILTER
    ========================================================= */
 
-roleFilters.forEach(button => {
+roleFilters.forEach(
+    button => {
 
-    button.addEventListener(
-        "click",
-        function () {
+        button.addEventListener(
+            "click",
+            function () {
 
-            roleFilters.forEach(
-                btn => {
+                /* Remove active from all buttons */
 
-                    btn.classList.remove(
-                        "active"
-                    );
+                roleFilters.forEach(
+                    btn => {
 
-                }
-            );
+                        btn.classList.remove(
+                            "active"
+                        );
 
-
-            this.classList.add(
-                "active"
-            );
+                    }
+                );
 
 
-            currentRole =
-                this.dataset.role;
+                /* Activate selected button */
+
+                this.classList.add(
+                    "active"
+                );
 
 
-            renderMembers();
+                /* Get selected role */
 
-        }
-    );
+                currentRole =
+                    this.dataset.role;
 
-});
+
+                /* Render filtered data */
+
+                renderMembers();
+
+            }
+        );
+
+    }
+);
 
 
 /* =========================================================
@@ -422,11 +470,15 @@ function getFilteredMembers() {
     return memberData.filter(
         member => {
 
+            /* Nickname */
+
             const nickname =
                 String(
                     member.nickname || ""
                 ).toLowerCase();
 
+
+            /* ID */
 
             const id =
                 String(
@@ -434,11 +486,15 @@ function getFilteredMembers() {
                 ).toLowerCase();
 
 
+            /* Role */
+
             const role =
                 String(
                     member.role || ""
                 ).toUpperCase();
 
+
+            /* Search */
 
             const matchesSearch =
 
@@ -452,6 +508,8 @@ function getFilteredMembers() {
                     currentSearch
                 );
 
+
+            /* Role filter */
 
             const matchesRole =
 
@@ -474,22 +532,32 @@ function getFilteredMembers() {
 
 
 /* =========================================================
-   RENDER MEMBERS
+   RENDER MEMBERS - TABLE
    ========================================================= */
 
 function renderMembers() {
 
-    if (!memberContainer) {
+    if (
+        !memberContainer
+    ) {
+
         return;
+
     }
 
+
+    /* Get filtered data */
 
     const filteredMembers =
         getFilteredMembers();
 
 
+    /* Clear table */
+
     memberContainer.innerHTML = "";
 
+
+    /* No result */
 
     if (
         filteredMembers.length === 0
@@ -502,10 +570,16 @@ function renderMembers() {
     }
 
 
+    /* Hide empty state */
+
     hideEmpty();
 
 
-    if (memberCount) {
+    /* Update member count */
+
+    if (
+        memberCount
+    ) {
 
         memberCount.textContent =
             `Showing ${filteredMembers.length} member${
@@ -517,18 +591,18 @@ function renderMembers() {
     }
 
 
+    /* Create table rows */
+
     filteredMembers.forEach(
         (member, index) => {
 
-            const card =
+            const row =
                 document.createElement(
-                    "article"
+                    "tr"
                 );
 
 
-            card.className =
-                "member-card";
-
+            /* Member data */
 
             const nickname =
                 member.nickname ||
@@ -545,37 +619,41 @@ function renderMembers() {
                 "-";
 
 
-            card.innerHTML = `
+            /* Row content */
 
-                <div class="member-number">
-                    ${String(
-                        index + 1
-                    ).padStart(2, "0")}
-                </div>
+            row.innerHTML = `
 
-                <div class="member-nickname">
+                <td class="member-number">
+                    ${index + 1}
+                </td>
+
+                <td class="member-nickname">
                     ${escapeHTML(
                         nickname
                     )}
-                </div>
+                </td>
 
-                <div class="member-id">
-                    ID: ${escapeHTML(
+                <td class="member-id">
+                    ${escapeHTML(
                         id
                     )}
-                </div>
+                </td>
 
-                <span class="member-role">
-                    ${escapeHTML(
-                        role
-                    )}
-                </span>
+                <td>
+                    <span class="member-role">
+                        ${escapeHTML(
+                            role
+                        )}
+                    </span>
+                </td>
 
             `;
 
 
+            /* Add row to table */
+
             memberContainer.appendChild(
-                card
+                row
             );
 
         }
@@ -590,7 +668,9 @@ function renderMembers() {
 
 function showEmpty() {
 
-    if (emptyState) {
+    if (
+        emptyState
+    ) {
 
         emptyState.style.display =
             "block";
@@ -598,7 +678,9 @@ function showEmpty() {
     }
 
 
-    if (memberCount) {
+    if (
+        memberCount
+    ) {
 
         memberCount.textContent =
             "0 members found";
@@ -610,7 +692,9 @@ function showEmpty() {
 
 function hideEmpty() {
 
-    if (emptyState) {
+    if (
+        emptyState
+    ) {
 
         emptyState.style.display =
             "none";
@@ -626,14 +710,19 @@ function hideEmpty() {
 
 function showLoading() {
 
-    if (loadingState) {
+    if (
+        loadingState
+    ) {
 
         loadingState.style.display =
             "block";
 
     }
 
-    if (memberContainer) {
+
+    if (
+        memberContainer
+    ) {
 
         memberContainer.style.display =
             "none";
@@ -645,17 +734,22 @@ function showLoading() {
 
 function hideLoading() {
 
-    if (loadingState) {
+    if (
+        loadingState
+    ) {
 
         loadingState.style.display =
             "none";
 
     }
 
-    if (memberContainer) {
+
+    if (
+        memberContainer
+    ) {
 
         memberContainer.style.display =
-            "grid";
+            "table-row-group";
 
     }
 
@@ -737,7 +831,9 @@ if (
    CLOSE MENU AFTER CLICK
    ========================================================= */
 
-if (navMenu) {
+if (
+    navMenu
+) {
 
     const navLinks =
         navMenu.querySelectorAll(
