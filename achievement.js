@@ -2,7 +2,6 @@
    GOOGLE SHEET CONFIGURATION
 ========================================= */
 
-
 /*
     GOOGLE SHEET HARUS MEMPUNYAI KOLOM:
 
@@ -10,7 +9,6 @@
     Judul Kompetisi
     Keterangan
 */
-
 
 const SHEET_URL =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwhYm4gTk3_3bhG0V87-wPBcY-0aCrutG61O36WPgZ1AJaNNGShvMiizLdKCm5kWDVVidjVuElZiCm/pub?output=csv";
@@ -24,75 +22,52 @@ let achievements = [];
 
 
 const achievementContainer =
-    document.getElementById(
-        "achievementContainer"
-    );
+    document.getElementById("achievementContainer");
 
 
 const achievementDescription =
-    document.getElementById(
-        "achievementDescription"
-    );
+    document.getElementById("achievementDescription");
 
 
 const menuToggle =
-    document.getElementById(
-        "menuToggle"
-    );
+    document.getElementById("menuToggle");
 
 
 const navMenu =
-    document.getElementById(
-        "navMenu"
-    );
+    document.getElementById("navMenu");
 
 
 const modal =
-    document.getElementById(
-        "achievementModal"
-    );
+    document.getElementById("achievementModal");
 
 
 const modalImage =
-    document.getElementById(
-        "modalImage"
-    );
+    document.getElementById("modalImage");
 
 
 const modalTitle =
-    document.getElementById(
-        "modalTitle"
-    );
+    document.getElementById("modalTitle");
 
 
 const modalDescription =
-    document.getElementById(
-        "modalDescription"
-    );
+    document.getElementById("modalDescription");
 
 
 const modalClose =
-    document.getElementById(
-        "modalClose"
-    );
+    document.getElementById("modalClose");
 
 
 /* =========================================
    MOBILE NAVBAR
 ========================================= */
 
-if (
-    menuToggle &&
-    navMenu
-) {
+if (menuToggle && navMenu) {
 
     menuToggle.addEventListener(
         "click",
         function () {
 
-            navMenu.classList.toggle(
-                "show"
-            );
+            navMenu.classList.toggle("show");
 
         }
     );
@@ -104,27 +79,111 @@ if (
    NORMALIZE TEXT
 ========================================= */
 
-function normalizeText(
-    value
-) {
+function normalizeText(value) {
 
-    if (
-        !value
-    ) {
+    if (!value) {
+
+        return "";
+
+    }
+
+    return String(value)
+        .trim()
+        .replace(/\s+/g, " ");
+
+}
+
+
+/* =========================================
+   GOOGLE DRIVE IMAGE URL
+========================================= */
+
+/*
+    Fungsi ini mengubah link Google Drive biasa:
+
+    https://drive.google.com/file/d/FILE_ID/view
+
+    menjadi:
+
+    https://drive.google.com/uc?export=view&id=FILE_ID
+*/
+
+function convertDriveImageURL(url) {
+
+    if (!url) {
 
         return "";
 
     }
 
 
-    return String(
-        value
-    )
-        .trim()
-        .replace(
-            /\s+/g,
-            " "
-        );
+    url = String(url).trim();
+
+
+    /*
+        FORMAT 1
+
+        https://drive.google.com/file/d/FILE_ID/view
+    */
+
+    let match = url.match(
+        /drive\.google\.com\/file\/d\/([^/]+)/
+    );
+
+
+    if (match) {
+
+        return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+
+    }
+
+
+    /*
+        FORMAT 2
+
+        https://drive.google.com/open?id=FILE_ID
+    */
+
+    match = url.match(
+        /drive\.google\.com\/open\?id=([^&]+)/
+    );
+
+
+    if (match) {
+
+        return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+
+    }
+
+
+    /*
+        FORMAT 3
+
+        Jika sudah menggunakan:
+
+        uc?export=view&id=...
+    */
+
+    if (
+        url.includes(
+            "drive.google.com/uc"
+        )
+    ) {
+
+        return url;
+
+    }
+
+
+    /*
+        Bukan Google Drive
+
+        Misalnya:
+
+        https://example.com/image.jpg
+    */
+
+    return url;
 
 }
 
@@ -138,36 +197,27 @@ function findColumn(
     possibleNames
 ) {
 
-
     for (
-        const name
-        of possibleNames
+        const name of possibleNames
     ) {
-
 
         const index =
             headers.findIndex(
 
                 header =>
 
-                    normalizeText(
-                        header
-                    )
+                    normalizeText(header)
                         .toLowerCase()
 
                     ===
 
-                    normalizeText(
-                        name
-                    )
+                    normalizeText(name)
                         .toLowerCase()
 
             );
 
 
-        if (
-            index !== -1
-        ) {
+        if (index !== -1) {
 
             return index;
 
@@ -185,10 +235,7 @@ function findColumn(
    CSV PARSER
 ========================================= */
 
-function parseCSV(
-    text
-) {
-
+function parseCSV(text) {
 
     const rows = [];
 
@@ -196,8 +243,7 @@ function parseCSV(
 
     let value = "";
 
-    let insideQuotes =
-        false;
+    let insideQuotes = false;
 
 
     for (
@@ -206,21 +252,18 @@ function parseCSV(
         i++
     ) {
 
-
         const char =
             text[i];
-
 
         const next =
             text[i + 1];
 
 
-        /* QUOTES */
+        /* =========================
+           QUOTES
+        ========================= */
 
-        if (
-            char === '"'
-        ) {
-
+        if (char === '"') {
 
             if (
                 insideQuotes &&
@@ -243,23 +286,25 @@ function parseCSV(
         }
 
 
-        /* COMMA */
+        /* =========================
+           COMMA
+        ========================= */
 
         else if (
             char === "," &&
             !insideQuotes
         ) {
 
-            row.push(
-                value
-            );
+            row.push(value);
 
             value = "";
 
         }
 
 
-        /* NEW LINE */
+        /* =========================
+           NEW LINE
+        ========================= */
 
         else if (
 
@@ -274,7 +319,6 @@ function parseCSV(
 
         ) {
 
-
             if (
                 char === "\r" &&
                 next === "\n"
@@ -285,18 +329,12 @@ function parseCSV(
             }
 
 
-            row.push(
-                value
-            );
+            row.push(value);
 
 
-            if (
-                row.length > 0
-            ) {
+            if (row.length > 0) {
 
-                rows.push(
-                    row
-                );
+                rows.push(row);
 
             }
 
@@ -317,20 +355,18 @@ function parseCSV(
     }
 
 
-    /* LAST ROW */
+    /* =========================
+       LAST ROW
+    ========================= */
 
     if (
         value ||
         row.length
     ) {
 
-        row.push(
-            value
-        );
+        row.push(value);
 
-        rows.push(
-            row
-        );
+        rows.push(row);
 
     }
 
@@ -344,13 +380,9 @@ function parseCSV(
    ESCAPE HTML
 ========================================= */
 
-function escapeHTML(
-    text
-) {
+function escapeHTML(text) {
 
-    return String(
-        text || ""
-    )
+    return String(text || "")
 
         .replace(
             /&/g,
@@ -386,11 +418,11 @@ function escapeHTML(
 
 async function loadAchievements() {
 
-
     try {
 
-
-        /* LOADING */
+        /* =========================
+           LOADING
+        ========================= */
 
         achievementContainer.innerHTML = `
 
@@ -403,17 +435,19 @@ async function loadAchievements() {
         `;
 
 
-        /* FETCH */
+        /* =========================
+           FETCH GOOGLE SHEET
+        ========================= */
 
         const response =
             await fetch(
-                SHEET_URL
+                SHEET_URL +
+                "&t=" +
+                Date.now()
             );
 
 
-        if (
-            !response.ok
-        ) {
+        if (!response.ok) {
 
             throw new Error(
                 "Google Sheet tidak dapat diakses."
@@ -422,21 +456,23 @@ async function loadAchievements() {
         }
 
 
+        /* =========================
+           GET CSV
+        ========================= */
+
         const csv =
             await response.text();
 
 
-        /* PARSE */
+        /* =========================
+           PARSE CSV
+        ========================= */
 
         const rows =
-            parseCSV(
-                csv
-            );
+            parseCSV(csv);
 
 
-        if (
-            rows.length < 2
-        ) {
+        if (rows.length < 2) {
 
             throw new Error(
                 "Data Google Sheet kosong."
@@ -445,13 +481,17 @@ async function loadAchievements() {
         }
 
 
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================= */
 
         const headers =
             rows[0];
 
 
-        /* COLUMN */
+        /* =========================
+           FIND COLUMNS
+        ========================= */
 
         const imageIndex =
             findColumn(
@@ -495,7 +535,9 @@ async function loadAchievements() {
             );
 
 
-        /* VALIDATION */
+        /* =========================
+           VALIDATION
+        ========================= */
 
         if (
             imageIndex === -1 ||
@@ -512,12 +554,16 @@ async function loadAchievements() {
         }
 
 
-        /* RESET */
+        /* =========================
+           RESET DATA
+        ========================= */
 
         achievements = [];
 
 
-        /* READ ROWS */
+        /* =========================
+           READ DATA
+        ========================= */
 
         for (
             let i = 1;
@@ -525,16 +571,29 @@ async function loadAchievements() {
             i++
         ) {
 
-
             const row =
                 rows[i];
 
 
-            const image =
+            /* =========================
+               IMAGE
+            ========================= */
+
+            const rawImage =
                 normalizeText(
                     row[imageIndex]
                 );
 
+
+            const image =
+                convertDriveImageURL(
+                    rawImage
+                );
+
+
+            /* =========================
+               TITLE
+            ========================= */
 
             const title =
                 normalizeText(
@@ -542,50 +601,54 @@ async function loadAchievements() {
                 );
 
 
+            /* =========================
+               DESCRIPTION
+            ========================= */
+
             const description =
                 normalizeText(
                     row[descriptionIndex]
                 );
 
 
-            /* IGNORE EMPTY ROW */
+            /* =========================
+               IGNORE EMPTY ROW
+            ========================= */
 
-            if (
-                !title
-            ) {
+            if (!title) {
 
                 continue;
 
             }
 
 
+            /* =========================
+               SAVE DATA
+            ========================= */
+
             achievements.push({
 
-                image:
-                    image,
+                image: image,
 
-                title:
-                    title,
+                title: title,
 
-                description:
-                    description
+                description: description
 
             });
 
         }
 
 
-        /* RENDER */
+        /* =========================
+           RENDER
+        ========================= */
 
         renderAchievements();
 
 
     }
 
-    catch (
-        error
-    ) {
-
+    catch (error) {
 
         console.error(
             "Achievement Error:",
@@ -615,17 +678,18 @@ async function loadAchievements() {
 
 
 /* =========================================
-   RENDER
+   RENDER ACHIEVEMENTS
 ========================================= */
 
 function renderAchievements() {
-
 
     achievementContainer.innerHTML =
         "";
 
 
-    /* DESCRIPTION */
+    /* =========================
+       DESCRIPTION
+    ========================= */
 
     if (
         achievementDescription
@@ -638,7 +702,9 @@ function renderAchievements() {
     }
 
 
-    /* EMPTY */
+    /* =========================
+       EMPTY DATA
+    ========================= */
 
     if (
         achievements.length === 0
@@ -659,7 +725,9 @@ function renderAchievements() {
     }
 
 
-    /* LOOP */
+    /* =========================
+       LOOP
+    ========================= */
 
     achievements.forEach(
 
@@ -667,7 +735,6 @@ function renderAchievements() {
             achievement,
             index
         ) {
-
 
             const card =
                 document.createElement(
@@ -679,7 +746,9 @@ function renderAchievements() {
                 "achievement-card";
 
 
-            /* IMAGE */
+            /* =========================
+               IMAGE
+            ========================= */
 
             let imageHTML;
 
@@ -707,7 +776,10 @@ function renderAchievements() {
 
                             loading="lazy"
 
-                            onerror="this.src='assets/logo.png'"
+                            onerror="
+                                this.onerror=null;
+                                this.src='assets/logo.png';
+                            "
 
                         >
 
@@ -741,7 +813,9 @@ function renderAchievements() {
             }
 
 
-            /* CARD */
+            /* =========================
+               CARD
+            ========================= */
 
             card.innerHTML = `
 
@@ -751,7 +825,6 @@ function renderAchievements() {
                 <div
                     class="achievement-content"
                 >
-
 
                     <div
                         class="achievement-number"
@@ -803,7 +876,6 @@ function renderAchievements() {
 
                     </div>
 
-
                 </div>
 
             `;
@@ -818,7 +890,9 @@ function renderAchievements() {
     );
 
 
-    /* EVENT */
+    /* =========================
+       EVENTS
+    ========================= */
 
     setupAchievementEvents();
 
@@ -830,7 +904,6 @@ function renderAchievements() {
 ========================================= */
 
 function setupAchievementEvents() {
-
 
     const clickableImages =
         document.querySelectorAll(
@@ -844,15 +917,20 @@ function setupAchievementEvents() {
         );
 
 
+    /* =========================
+       IMAGE CLICK
+    ========================= */
+
     clickableImages.forEach(
 
         function (
             element
         ) {
 
-
             element.addEventListener(
+
                 "click",
+
                 function () {
 
                     openModal(
@@ -860,6 +938,7 @@ function setupAchievementEvents() {
                     );
 
                 }
+
             );
 
         }
@@ -867,15 +946,20 @@ function setupAchievementEvents() {
     );
 
 
+    /* =========================
+       VIEW BUTTON CLICK
+    ========================= */
+
     viewButtons.forEach(
 
         function (
             element
         ) {
 
-
             element.addEventListener(
+
                 "click",
+
                 function () {
 
                     openModal(
@@ -883,6 +967,7 @@ function setupAchievementEvents() {
                     );
 
                 }
+
             );
 
         }
@@ -896,23 +981,22 @@ function setupAchievementEvents() {
    OPEN MODAL
 ========================================= */
 
-function openModal(
-    index
-) {
-
+function openModal(index) {
 
     const achievement =
         achievements[index];
 
 
-    if (
-        !achievement
-    ) {
+    if (!achievement) {
 
         return;
 
     }
 
+
+    /* =========================
+       IMAGE
+    ========================= */
 
     modalImage.src =
         achievement.image ||
@@ -923,6 +1007,10 @@ function openModal(
         achievement.title;
 
 
+    /* =========================
+       TEXT
+    ========================= */
+
     modalTitle.textContent =
         achievement.title;
 
@@ -930,6 +1018,10 @@ function openModal(
     modalDescription.textContent =
         achievement.description;
 
+
+    /* =========================
+       SHOW MODAL
+    ========================= */
 
     modal.classList.add(
         "show"
@@ -948,6 +1040,12 @@ function openModal(
 
 function closeModal() {
 
+    if (!modal) {
+
+        return;
+
+    }
+
 
     modal.classList.remove(
         "show"
@@ -960,9 +1058,11 @@ function closeModal() {
 }
 
 
-if (
-    modalClose
-) {
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+if (modalClose) {
 
     modalClose.addEventListener(
         "click",
@@ -972,25 +1072,26 @@ if (
 }
 
 
-/* CLICK OUTSIDE */
+/* =========================================
+   CLICK OUTSIDE MODAL
+========================================= */
 
-if (
-    modal
-) {
+if (modal) {
 
     modal.addEventListener(
 
         "click",
 
-        function (
-            event
-        ) {
+        function (event) {
 
             if (
+
                 event.target === modal ||
+
                 event.target.classList.contains(
                     "modal-overlay"
                 )
+
             ) {
 
                 closeModal();
@@ -1004,15 +1105,15 @@ if (
 }
 
 
-/* ESCAPE */
+/* =========================================
+   ESCAPE KEY
+========================================= */
 
 document.addEventListener(
 
     "keydown",
 
-    function (
-        event
-    ) {
+    function (event) {
 
         if (
             event.key === "Escape"
