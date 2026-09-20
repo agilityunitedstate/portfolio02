@@ -2,6 +2,11 @@
    AGILITY UNITED - MEMBER PAGE
    ========================================================= */
 
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
 :root {
 
     --black: #0d0d0d;
@@ -101,7 +106,9 @@ body {
 
 
 .nav-brand strong {
+
     color: var(--orange);
+
 }
 
 
@@ -221,7 +228,9 @@ body {
 
 
 .hero-content {
+
     max-width: 800px;
+
 }
 
 
@@ -401,7 +410,9 @@ body {
 
 
 .search-box input::placeholder {
+
     color: #777;
+
 }
 
 
@@ -527,135 +538,186 @@ body {
 
 
 /* =========================================================
-   MEMBER GRID
+   MEMBER TABLE
    ========================================================= */
 
-.member-grid {
+.member-table-wrapper {
 
-    display: grid;
+    width: 100%;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    overflow-x: auto;
 
-    gap: 18px;
+    overflow-y: hidden;
+
+    border:
+        1px solid
+        rgba(255,90,31,.2);
+
+    border-radius: 10px;
+
+    background: var(--dark);
+
+    -webkit-overflow-scrolling: touch;
+
+}
+
+
+.member-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: var(--dark);
+
+}
+
+
+.member-table thead {
+
+    background: var(--orange);
+
+}
+
+
+.member-table th {
+
+    padding: 16px 20px;
+
+    color: #ffffff;
+
+    text-align: left;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+}
+
+
+.member-table td {
+
+    padding: 15px 20px;
+
+    color: var(--gray);
+
+    font-size: 14px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+
+    white-space: nowrap;
+
+}
+
+
+.member-table tbody tr {
+
+    transition:
+        background .2s ease;
+
+}
+
+
+.member-table tbody tr:hover {
+
+    background: var(--dark-2);
+
+}
+
+
+.member-table tbody tr:last-child td {
+
+    border-bottom: none;
 
 }
 
 
 /* =========================================================
-   MEMBER CARD
+   TABLE COLUMNS
    ========================================================= */
 
-.member-card {
+.member-table th:nth-child(1),
+.member-table td:nth-child(1) {
 
-    position: relative;
+    width: 70px;
 
-    min-height: 180px;
-
-    padding: 25px;
-
-    background: var(--dark);
-
-    border:
-        1px solid rgba(255,255,255,.06);
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    transition:
-        transform .3s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
+    text-align: center;
 
 }
 
 
-.member-card::before {
+.member-table th:nth-child(2),
+.member-table td:nth-child(2) {
 
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-
-    top: 0;
-
-    width: 3px;
-
-    height: 100%;
-
-    background: var(--orange);
-
-    transform:
-        scaleY(0);
-
-    transform-origin: bottom;
-
-    transition: .3s ease;
+    width: auto;
 
 }
 
 
-.member-card:hover {
+.member-table th:nth-child(3),
+.member-table td:nth-child(3) {
 
-    transform:
-        translateY(-5px);
-
-    border-color:
-        rgba(255,90,31,.35);
-
-    box-shadow:
-        0 15px 35px
-        rgba(0,0,0,.3);
+    width: 180px;
 
 }
 
 
-.member-card:hover::before {
+.member-table th:nth-child(4),
+.member-table td:nth-child(4) {
 
-    transform:
-        scaleY(1);
+    width: 100px;
+
+    text-align: center;
 
 }
 
+
+/* =========================================================
+   MEMBER NUMBER
+   ========================================================= */
 
 .member-number {
 
-    color: #555;
+    color: #777 !important;
 
-    font-family: "Anton", sans-serif;
-
-    font-size: 28px;
-
-    margin-bottom: 15px;
+    font-weight: 700;
 
 }
 
+
+/* =========================================================
+   MEMBER NICKNAME
+   ========================================================= */
 
 .member-nickname {
 
-    color: #ffffff;
+    color: #ffffff !important;
 
-    font-size: 19px;
-
-    font-weight: 800;
-
-    margin-bottom: 8px;
+    font-weight: 700;
 
 }
 
+
+/* =========================================================
+   MEMBER ID
+   ========================================================= */
 
 .member-id {
 
-    color: #858585;
-
-    font-size: 12px;
-
-    margin-bottom: 20px;
+    color: #999999 !important;
 
 }
 
+
+/* =========================================================
+   MEMBER ROLE
+   ========================================================= */
 
 .member-role {
 
@@ -665,9 +727,9 @@ body {
 
     justify-content: center;
 
-    min-width: 48px;
+    min-width: 42px;
 
-    padding: 6px 12px;
+    padding: 5px 10px;
 
     border-radius: 5px;
 
@@ -675,7 +737,8 @@ body {
         rgba(255,90,31,.1);
 
     border:
-        1px solid rgba(255,90,31,.25);
+        1px solid
+        rgba(255,90,31,.25);
 
     color: var(--orange);
 
@@ -752,7 +815,8 @@ body {
     margin: auto;
 
     border:
-        3px solid rgba(255,255,255,.1);
+        3px solid
+        rgba(255,255,255,.1);
 
     border-top-color:
         var(--orange);
@@ -779,7 +843,9 @@ body {
 @keyframes spin {
 
     to {
+
         transform: rotate(360deg);
+
     }
 
 }
@@ -796,7 +862,8 @@ body {
     text-align: center;
 
     border-top:
-        1px solid rgba(255,255,255,.06);
+        1px solid
+        rgba(255,255,255,.06);
 
     background: #101010;
 
@@ -872,22 +939,6 @@ body {
 
 
 /* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 1000px) {
-
-    .member-grid {
-
-        grid-template-columns:
-            repeat(3, 1fr);
-
-    }
-
-}
-
-
-/* =========================================================
    MOBILE NAVBAR
    ========================================================= */
 
@@ -954,6 +1005,10 @@ body {
 
         color: #ffffff !important;
 
+        background: transparent;
+
+        border-radius: 8px;
+
     }
 
 
@@ -971,12 +1026,37 @@ body {
     }
 
 
-    .nav-menu a:hover,
+    /* ACTIVE TAB */
+
     .nav-menu a.active {
+
+        color: var(--orange) !important;
+
+        background:
+            rgba(255,90,31,.08);
+
+    }
+
+
+    /* HOVER TAB */
+
+    .nav-menu a:hover {
 
         color: #ffffff !important;
 
         background: transparent;
+
+    }
+
+
+    /* Keep active color when hovering */
+
+    .nav-menu a.active:hover {
+
+        color: var(--orange) !important;
+
+        background:
+            rgba(255,90,31,.08);
 
     }
 
@@ -987,6 +1067,8 @@ body {
 
     }
 
+
+    /* MEMBER TOOLS */
 
     .member-tools {
 
@@ -1004,10 +1086,70 @@ body {
     }
 
 
-    .member-grid {
+    /* MEMBER TABLE */
 
-        grid-template-columns:
-            repeat(2, 1fr);
+    .member-table-wrapper {
+
+        width: 100%;
+
+        overflow-x: auto;
+
+    }
+
+
+    .member-table {
+
+        min-width: 600px;
+
+    }
+
+
+    .member-table th {
+
+        padding: 14px 16px;
+
+        font-size: 10px;
+
+    }
+
+
+    .member-table td {
+
+        padding: 14px 16px;
+
+        font-size: 13px;
+
+    }
+
+
+    .member-table th:nth-child(1),
+    .member-table td:nth-child(1) {
+
+        width: 55px;
+
+    }
+
+
+    .member-table th:nth-child(2),
+    .member-table td:nth-child(2) {
+
+        width: 220px;
+
+    }
+
+
+    .member-table th:nth-child(3),
+    .member-table td:nth-child(3) {
+
+        width: 170px;
+
+    }
+
+
+    .member-table th:nth-child(4),
+    .member-table td:nth-child(4) {
+
+        width: 100px;
 
     }
 
@@ -1067,6 +1209,8 @@ body {
     }
 
 
+    /* HERO */
+
     .member-hero {
 
         min-height: 300px;
@@ -1083,10 +1227,26 @@ body {
     }
 
 
+    .hero-description {
+
+        font-size: 13px;
+
+    }
+
+
+    /* MAIN */
+
     .member-section {
 
         padding:
             65px 5% 80px;
+
+    }
+
+
+    .section-heading {
+
+        margin-bottom: 35px;
 
     }
 
@@ -1098,12 +1258,25 @@ body {
     }
 
 
+    .section-heading > p:last-child {
+
+        font-size: 13px;
+
+        line-height: 1.6;
+
+    }
+
+
+    /* ROLE FILTER */
+
     .role-filters {
 
         display: grid;
 
         grid-template-columns:
             repeat(3, 1fr);
+
+        gap: 7px;
 
     }
 
@@ -1112,207 +1285,116 @@ body {
 
         width: 100%;
 
-    }
+        min-width: 0;
 
-
-    .member-grid {
-
-        grid-template-columns: 1fr;
+        padding: 0 8px;
 
     }
 
 
-    .member-card {
+    /* MEMBER COUNT */
 
-        min-height: 165px;
+    .member-info {
+
+        margin-bottom: 15px;
 
     }
 
-}
-/* =========================================================
-   MEMBER TABLE
-   ========================================================= */
 
-.member-table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    margin-top: 25px;
-    border: 1px solid rgba(255, 90, 31, 0.2);
-    border-radius: 10px;
-}
+    #memberCount {
 
-.member-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #151515;
-}
+        font-size: 11px;
 
-.member-table th {
-    padding: 16px 20px;
-    background: #ff5a1f;
-    color: #ffffff;
-    text-align: left;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
+    }
 
-.member-table td {
-    padding: 15px 20px;
-    color: #d6d6d6;
-    font-size: 14px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
 
-.member-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.member-table tbody tr:hover {
-    background: #1d1d1d;
-}
-
-.member-number {
-    width: 70px;
-    text-align: center;
-    color: #888 !important;
-    font-weight: 700;
-}
-
-.member-nickname {
-    color: #f4efe6 !important;
-    font-weight: 700;
-}
-
-.member-id {
-    color: #aaaaaa !important;
-}
-
-.member-role {
-    display: inline-block;
-    min-width: 40px;
-    padding: 5px 10px;
-    text-align: center;
-    border-radius: 5px;
-    background: rgba(255, 90, 31, 0.12);
-    color: #ff5a1f;
-    font-size: 11px;
-    font-weight: 800;
-}
-/* =========================================================
-   MOBILE MEMBER TABLE
-   ========================================================= */
-
-@media (max-width: 768px) {
+    /* TABLE */
 
     .member-table-wrapper {
-        width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        border-radius: 10px;
+
+        margin-top: 5px;
+
+        border-radius: 8px;
+
     }
+
 
     .member-table {
-        width: 100%;
-        min-width: 600px;
-        table-layout: fixed;
-    }
 
-    .member-table th,
-    .member-table td {
-        padding: 13px 14px;
-        white-space: nowrap;
-    }
-
-    .member-table th {
-        font-size: 10px;
-    }
-
-    .member-table td {
-        font-size: 13px;
-    }
-
-    /* Lebar setiap kolom */
-
-    .member-table th:nth-child(1),
-    .member-table td:nth-child(1) {
-        width: 55px;
-        text-align: center;
-    }
-
-    .member-table th:nth-child(2),
-    .member-table td:nth-child(2) {
-        width: 220px;
-    }
-
-    .member-table th:nth-child(3),
-    .member-table td:nth-child(3) {
-        width: 170px;
-    }
-
-    .member-table th:nth-child(4),
-    .member-table td:nth-child(4) {
-        width: 100px;
-        text-align: center;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 420px) {
-
-    .member-table-wrapper {
-        margin-top: 20px;
-    }
-
-    .member-table {
         min-width: 550px;
+
     }
 
-    .member-table th,
-    .member-table td {
-        padding: 12px 12px;
-    }
 
     .member-table th {
+
+        padding: 12px;
+
         font-size: 9px;
+
         letter-spacing: .7px;
+
     }
 
+
     .member-table td {
+
+        padding: 12px;
+
         font-size: 12px;
+
     }
+
 
     .member-table th:nth-child(1),
     .member-table td:nth-child(1) {
+
         width: 50px;
+
     }
+
 
     .member-table th:nth-child(2),
     .member-table td:nth-child(2) {
+
         width: 200px;
+
     }
+
 
     .member-table th:nth-child(3),
     .member-table td:nth-child(3) {
+
         width: 160px;
+
     }
+
 
     .member-table th:nth-child(4),
     .member-table td:nth-child(4) {
-        width: 90px;
-    }
-   /* =========================================================
-   ACTIVE NAVBAR - MEMBERS
-   ========================================================= */
 
-.nav-menu a.active {
-    color: #ff5a1f !important;
-}
+        width: 90px;
+
+    }
+
+
+    .member-role {
+
+        min-width: 38px;
+
+        padding: 4px 8px;
+
+        font-size: 10px;
+
+    }
+
+
+    /* FOOTER */
+
+    .footer {
+
+        padding: 35px 5%;
+
+    }
 
 }
