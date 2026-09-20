@@ -1199,3 +1199,113 @@ body {
     font-size: 11px;
     font-weight: 800;
 }
+/* =========================================================
+   MOBILE MEMBER TABLE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .member-table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 10px;
+    }
+
+    .member-table {
+        width: 100%;
+        min-width: 600px;
+        table-layout: fixed;
+    }
+
+    .member-table th,
+    .member-table td {
+        padding: 13px 14px;
+        white-space: nowrap;
+    }
+
+    .member-table th {
+        font-size: 10px;
+    }
+
+    .member-table td {
+        font-size: 13px;
+    }
+
+    /* Lebar setiap kolom */
+
+    .member-table th:nth-child(1),
+    .member-table td:nth-child(1) {
+        width: 55px;
+        text-align: center;
+    }
+
+    .member-table th:nth-child(2),
+    .member-table td:nth-child(2) {
+        width: 220px;
+    }
+
+    .member-table th:nth-child(3),
+    .member-table td:nth-child(3) {
+        width: 170px;
+    }
+
+    .member-table th:nth-child(4),
+    .member-table td:nth-child(4) {
+        width: 100px;
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .member-table-wrapper {
+        margin-top: 20px;
+    }
+
+    .member-table {
+        min-width: 550px;
+    }
+
+    .member-table th,
+    .member-table td {
+        padding: 12px 12px;
+    }
+
+    .member-table th {
+        font-size: 9px;
+        letter-spacing: .7px;
+    }
+
+    .member-table td {
+        font-size: 12px;
+    }
+
+    .member-table th:nth-child(1),
+    .member-table td:nth-child(1) {
+        width: 50px;
+    }
+
+    .member-table th:nth-child(2),
+    .member-table td:nth-child(2) {
+        width: 200px;
+    }
+
+    .member-table th:nth-child(3),
+    .member-table td:nth-child(3) {
+        width: 160px;
+    }
+
+    .member-table th:nth-child(4),
+    .member-table td:nth-child(4) {
+        width: 90px;
+    }
+
+}
