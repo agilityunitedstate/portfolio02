@@ -1,5 +1,5 @@
 /* =========================================================
-   AGILITY UNITED - MEMBER PAGE
+   AGILITY UNITED - NON DIVISION PAGE
    ========================================================= */
 
 
@@ -84,6 +84,10 @@ body {
 }
 
 
+/* =========================================================
+   NAV BRAND
+   ========================================================= */
+
 .nav-brand {
 
     display: flex;
@@ -123,6 +127,10 @@ body {
 }
 
 
+/* =========================================================
+   DESKTOP NAV MENU
+   ========================================================= */
+
 .nav-menu {
 
     display: flex;
@@ -153,13 +161,25 @@ body {
 }
 
 
-.nav-menu a:hover,
+/* DESKTOP HOVER */
+
+.nav-menu a:hover {
+
+    color: var(--orange);
+
+}
+
+
+/* DESKTOP ACTIVE */
+
 .nav-menu a.active {
 
     color: var(--orange);
 
 }
 
+
+/* DESKTOP ACTIVE UNDERLINE */
 
 .nav-menu a.active::after {
 
@@ -179,6 +199,10 @@ body {
 
 }
 
+
+/* =========================================================
+   MENU TOGGLE
+   ========================================================= */
 
 .menu-toggle {
 
@@ -843,9 +867,7 @@ body {
 @keyframes spin {
 
     to {
-
         transform: rotate(360deg);
-
     }
 
 }
@@ -940,7 +962,7 @@ body {
 
 /* =========================================================
    MOBILE NAVBAR
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 768px) {
 
@@ -971,7 +993,7 @@ body {
 
         align-items: stretch;
 
-        gap: 0;
+        gap: 4px;
 
         background: #151515;
 
@@ -995,19 +1017,33 @@ body {
     }
 
 
+    /* =====================================================
+       SEMUA MENU
+    ===================================================== */
+
     .nav-menu a {
 
-        padding: 13px 10px;
-
-        border-bottom:
-            1px solid
-            rgba(255,255,255,.05);
+        padding: 13px 15px;
 
         color: #ffffff !important;
 
         background: transparent;
 
-        border-radius: 8px;
+        border:
+            1px solid transparent;
+
+        border-bottom:
+            1px solid rgba(255,255,255,.05);
+
+        border-radius: 7px;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        text-transform: none;
+
+        transition: .25s ease;
 
     }
 
@@ -1019,56 +1055,99 @@ body {
     }
 
 
+    /* =====================================================
+       HILANGKAN GARIS BAWAH DESKTOP
+    ===================================================== */
+
     .nav-menu a::after {
 
-        display: none;
+        display: none !important;
 
     }
 
 
-    /* ACTIVE TAB */
+    /* =====================================================
+       ACTIVE TAB
+       ORANGE TERANG + ORANGE REDUP
+    ===================================================== */
 
     .nav-menu a.active {
 
-        color: var(--orange) !important;
+        color: #ff5a1f !important;
 
         background:
-            rgba(255,90,31,.08);
+            rgba(255,90,31,.12) !important;
+
+        border:
+            1px solid rgba(255,90,31,.22) !important;
+
+        font-weight: 700;
 
     }
 
 
-    /* HOVER TAB */
+    /* =====================================================
+       HOVER
+    ===================================================== */
 
     .nav-menu a:hover {
 
-        color: #ffffff !important;
-
-        background: transparent;
-
-    }
-
-
-    /* Keep active color when hovering */
-
-    .nav-menu a.active:hover {
-
-        color: var(--orange) !important;
+        color: #ff5a1f !important;
 
         background:
             rgba(255,90,31,.08);
 
     }
 
+
+    /* =====================================================
+       ACTIVE + HOVER
+    ===================================================== */
+
+    .nav-menu a.active:hover {
+
+        color: #ff5a1f !important;
+
+        background:
+            rgba(255,90,31,.12) !important;
+
+    }
+
+
+    /* =====================================================
+       THREE DOT BUTTON
+    ===================================================== */
 
     .menu-toggle {
 
         display: block;
 
+        position: relative;
+
+        z-index: 2000;
+
+        color: #ffffff !important;
+
+        background: transparent;
+
+        border: none;
+
+        font-size: 30px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        line-height: 1;
+
+        padding: 5px;
+
     }
 
 
-    /* MEMBER TOOLS */
+    /* =====================================================
+       MEMBER TOOLS
+    ===================================================== */
 
     .member-tools {
 
@@ -1086,7 +1165,9 @@ body {
     }
 
 
-    /* MEMBER TABLE */
+    /* =====================================================
+       MEMBER TABLE
+    ===================================================== */
 
     .member-table-wrapper {
 
@@ -1158,7 +1239,7 @@ body {
 
 /* =========================================================
    SMALL MOBILE
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 420px) {
 
@@ -1185,6 +1266,8 @@ body {
     }
 
 
+    /* BRAND TETAP TERLIHAT */
+
     .nav-brand span {
 
         display: inline-block;
@@ -1204,12 +1287,14 @@ body {
 
         font-size: 28px;
 
-        color: #ffffff;
+        color: #ffffff !important;
 
     }
 
 
-    /* HERO */
+    /* =====================================================
+       HERO
+    ===================================================== */
 
     .member-hero {
 
@@ -1234,7 +1319,9 @@ body {
     }
 
 
-    /* MAIN */
+    /* =====================================================
+       MAIN
+    ===================================================== */
 
     .member-section {
 
@@ -1267,7 +1354,9 @@ body {
     }
 
 
-    /* ROLE FILTER */
+    /* =====================================================
+       ROLE FILTER
+    ===================================================== */
 
     .role-filters {
 
@@ -1292,7 +1381,9 @@ body {
     }
 
 
-    /* MEMBER COUNT */
+    /* =====================================================
+       MEMBER COUNT
+    ===================================================== */
 
     .member-info {
 
@@ -1308,7 +1399,9 @@ body {
     }
 
 
-    /* TABLE */
+    /* =====================================================
+       TABLE
+    ===================================================== */
 
     .member-table-wrapper {
 
@@ -1389,7 +1482,9 @@ body {
     }
 
 
-    /* FOOTER */
+    /* =====================================================
+       FOOTER
+    ===================================================== */
 
     .footer {
 
