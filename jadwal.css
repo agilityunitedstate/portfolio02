@@ -1,901 +1,1259 @@
-/* =========================================================
-   JADWAL.CSS
+/* =====================================================
    AGILITY UNITED
-========================================================= */
+   JADWAL / MATCH SCHEDULE
+   ===================================================== */
 
 :root {
-    --black: #0d0d0d;
-    --dark: #151515;
-    --dark-2: #171717;
-    --orange: #ff5a1f;
-    --orange-dark: #b8380f;
-    --white: #f4efe6;
-    --gray: #d6d6d6;
-    --gray-dark: #999;
-    --yellow: #ffd84d;
+  --black: #0d0d0d;
+  --dark: #151515;
+  --dark-2: #1b1b1b;
+
+  --orange: #ff5a1f;
+  --orange-dark: #b8380f;
+
+  --white: #f4efe6;
+  --gray: #a8a8a8;
+  --gray-dark: #777;
+
+  --orange-soft: rgba(255, 90, 31, 0.12);
+  --orange-soft-border: rgba(255, 90, 31, 0.28);
+
+  --border: rgba(255, 255, 255, 0.07);
 }
 
 
-/* =========================================================
+/* =====================================================
    RESET
-========================================================= */
+   ===================================================== */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: "Work Sans", sans-serif;
-    background: var(--black);
-    color: var(--white);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
+  background: var(--black);
+  color: var(--white);
+  font-family: "Work Sans", sans-serif;
+  line-height: 1.6;
 }
 
 
-/* =========================================================
+/* =====================================================
    NAVBAR
-========================================================= */
+   ===================================================== */
 
 .navbar {
-    width: 100%;
-    height: 75px;
+  position: sticky;
+  top: 0;
 
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+  width: 100%;
+  height: 70px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  padding: 0 5%;
 
-    padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    background: rgba(13, 13, 13, 0.96);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(10px);
+  background: rgba(13, 13, 13, 0.96);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  z-index: 1000;
 }
 
 
 /* BRAND */
 
 .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
 
-    font-family: "Anton", sans-serif;
-    font-size: 20px;
-    letter-spacing: 1px;
+  gap: 12px;
 
-    white-space: nowrap;
+  text-decoration: none;
+
+  color: var(--white);
+
+  font-size: 15px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
 }
 
 .nav-brand strong {
-    color: var(--orange);
+  color: var(--orange);
 }
 
 .nav-logo {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
+  width: 42px;
+  height: 42px;
+
+  object-fit: contain;
 }
 
 
-/* DESKTOP MENU */
+/* =====================================================
+   NAV MENU
+   ===================================================== */
 
 .nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 28px;
+  display: flex;
+  align-items: center;
+
+  gap: 28px;
 }
 
 .nav-menu a {
-    position: relative;
+  position: relative;
 
-    color: var(--gray);
-    font-size: 14px;
-    font-weight: 600;
+  color: #ffffff;
 
-    text-transform: none;
+  text-decoration: none;
 
-    padding: 8px 0;
+  font-size: 13px;
+  font-weight: 600;
 
-    transition: 0.25s ease;
+  transition: 0.3s ease;
 }
 
-
-/* DESKTOP HOVER */
-
-.nav-menu a:hover {
-    color: var(--orange);
-}
-
-
-/* DESKTOP ACTIVE */
-
+.nav-menu a:hover,
 .nav-menu a.active {
-    color: var(--orange);
+  color: var(--orange);
 }
 
 
 /* GARIS BAWAH DESKTOP */
 
 .nav-menu a::after {
-    content: "";
+  content: "";
 
-    position: absolute;
-    left: 0;
-    bottom: 0;
+  position: absolute;
 
-    width: 0;
-    height: 2px;
+  left: 0;
+  bottom: -8px;
 
-    background: var(--orange);
+  width: 0;
+  height: 2px;
 
-    transition: 0.25s ease;
+  background: var(--orange);
+
+  transition: 0.3s ease;
 }
 
 .nav-menu a:hover::after,
 .nav-menu a.active::after {
-    width: 100%;
+  width: 100%;
 }
 
 
-/* MENU TOGGLE */
+/* =====================================================
+   MOBILE MENU BUTTON
+   ===================================================== */
 
 .menu-toggle {
-    display: none;
+  display: none;
 
-    padding: 0;
+  border: none;
 
-    background: transparent;
-    border: none;
+  background: transparent;
 
-    color: #fff;
+  color: #ffffff;
 
-    font-size: 28px;
-    line-height: 1;
+  font-size: 30px;
+  font-weight: 700;
 
-    cursor: pointer;
+  cursor: pointer;
+
+  line-height: 1;
+
+  padding: 5px;
 }
 
 
-/* =========================================================
+/* =====================================================
    HERO
-========================================================= */
+   ===================================================== */
 
-.hero {
-    min-height: 330px;
+.schedule-hero {
+  min-height: 420px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
 
-    text-align: center;
+  padding: 80px 8%;
 
-    padding: 80px 5% 70px;
+  position: relative;
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(255, 90, 31, 0.10),
-            transparent 55%
-        ),
-        var(--black);
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(255, 90, 31, 0.16),
+      transparent 35%
+    ),
+    var(--black);
+}
+
+.schedule-hero::before {
+  content: "";
+
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  right: -160px;
+  top: -100px;
+
+  border:
+    1px solid rgba(255, 90, 31, 0.12);
+
+  transform: rotate(45deg);
 }
 
 .hero-content {
-    max-width: 850px;
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 850px;
 }
 
-.hero h1 {
-    font-family: "Anton", sans-serif;
+.hero-label {
+  color: var(--orange);
 
-    font-size: clamp(45px, 8vw, 85px);
+  font-size: 12px;
+  font-weight: 800;
 
-    line-height: 1;
+  letter-spacing: 4px;
 
-    letter-spacing: 2px;
-
-    color: var(--white);
-
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
-.hero h1 span {
-    color: var(--orange);
+.hero-content h1 {
+  font-family: "Anton", sans-serif;
+
+  font-size: clamp(65px, 9vw, 115px);
+
+  line-height: 0.9;
+
+  letter-spacing: 2px;
 }
 
-.hero p {
-    max-width: 650px;
-    margin: 0 auto;
+.hero-content h1 span {
+  color: var(--orange);
+}
 
-    color: var(--gray-dark);
+.hero-description {
+  max-width: 620px;
 
-    font-size: 15px;
+  margin-top: 25px;
+
+  color: var(--gray);
+
+  font-size: 16px;
 }
 
 
-/* =========================================================
+/* =====================================================
    SCHEDULE SECTION
-========================================================= */
+   ===================================================== */
 
 .schedule-section {
-    width: 100%;
-    max-width: 1200px;
+  padding: 100px 6%;
 
-    margin: 0 auto;
+  background: var(--dark);
+}
 
-    padding: 60px 5% 90px;
+.schedule-container {
+  max-width: 1300px;
+
+  margin: auto;
 }
 
 
-/* SECTION HEADER */
+/* =====================================================
+   SECTION HEADER
+   ===================================================== */
 
 .section-header {
-    text-align: center;
+  display: flex;
 
-    margin-bottom: 35px;
+  justify-content: space-between;
+  align-items: end;
+
+  gap: 30px;
+
+  margin-bottom: 45px;
+}
+
+.section-label {
+  color: var(--orange);
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 12px;
 }
 
 .section-header h2 {
-    font-family: "Anton", sans-serif;
+  font-family: "Anton", sans-serif;
 
-    font-size: 38px;
+  font-size: clamp(40px, 5vw, 65px);
 
-    letter-spacing: 1px;
-
-    color: var(--white);
-
-    margin-bottom: 8px;
+  line-height: 1;
 }
 
-.section-header p {
-    color: var(--gray-dark);
-    font-size: 14px;
+.section-header h2 span {
+  color: var(--orange);
 }
 
+.schedule-info {
+  color: #777;
 
-/* =========================================================
-   FILTER
-========================================================= */
+  font-size: 12px;
 
-.schedule-filter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-    margin-bottom: 30px;
-}
-
-.filter-btn {
-    padding: 10px 18px;
-
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 7px;
-
-    background: #151515;
-
-    color: #d6d6d6;
-
-    font-family: "Work Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: 0.25s ease;
-}
-
-.filter-btn:hover {
-    color: var(--orange);
-
-    border-color: rgba(255, 90, 31, 0.35);
-
-    background: rgba(255, 90, 31, 0.08);
-}
-
-.filter-btn.active {
-    color: var(--orange);
-
-    border-color: rgba(255, 90, 31, 0.35);
-
-    background: rgba(255, 90, 31, 0.12);
+  padding-bottom: 5px;
 }
 
 
-/* CUSTOM DATE */
+/* =====================================================
+   DATE FILTER / TABS
+   ===================================================== */
 
-.custom-date {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/*
+  Jika HTML kamu menggunakan class:
+  .date-filter
+  .date-filter button
 
-    flex-wrap: wrap;
+  bagian ini akan membuat tab aktif
+  orange redup seperti Ranking.
+*/
 
-    gap: 10px;
+.date-filter {
+  display: flex;
 
-    margin-top: 15px;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 30px;
 }
 
-.custom-date label {
-    color: var(--gray-dark);
-    font-size: 13px;
+.date-filter button {
+  padding: 12px 18px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background: var(--dark-2);
+
+  color: #ffffff;
+
+  font-family: "Work Sans", sans-serif;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
 }
 
-.custom-date input {
-    padding: 9px 12px;
+.date-filter button:hover {
+  border-color: var(--orange);
 
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 7px;
-
-    background: #151515;
-
-    color: var(--white);
-
-    font-family: "Work Sans", sans-serif;
-}
-
-.custom-date input:focus {
-    outline: none;
-
-    border-color: var(--orange);
+  color: var(--orange);
 }
 
 
-/* =========================================================
-   DESKTOP TABLE
-========================================================= */
+/* TAB AKTIF - ORANGE REDUP */
+
+.date-filter button.active {
+  background: var(--orange-soft);
+
+  border-color: var(--orange-soft-border);
+
+  color: var(--orange);
+}
+
+
+/* =====================================================
+   CUSTOM DATE FILTER
+   ===================================================== */
+
+.custom-date-filter {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 30px;
+}
+
+.custom-date-filter input {
+  height: 40px;
+
+  padding: 0 12px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 6px;
+
+  background: var(--dark-2);
+
+  color: var(--white);
+
+  font-family: "Work Sans", sans-serif;
+
+  font-size: 12px;
+
+  outline: none;
+}
+
+.custom-date-filter input:focus {
+  border-color:
+    rgba(255, 90, 31, 0.5);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255, 90, 31, 0.08);
+}
+
+.custom-date-filter button {
+  height: 40px;
+
+  padding: 0 18px;
+
+  border:
+    1px solid var(--orange-soft-border);
+
+  border-radius: 6px;
+
+  background: var(--orange-soft);
+
+  color: var(--orange);
+
+  font-family: "Work Sans", sans-serif;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.custom-date-filter button:hover {
+  background: rgba(255, 90, 31, 0.18);
+}
+
+
+/* =====================================================
+   TABLE
+   ===================================================== */
 
 .schedule-table-wrapper {
-    width: 100%;
+  width: 100%;
 
-    overflow-x: auto;
+  overflow-x: auto;
 
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 12px;
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
 
-    background: #111;
+  border-radius: 18px;
+
+  background: #111;
 }
 
 .schedule-table {
-    width: 100%;
+  width: 100%;
 
-    border-collapse: collapse;
+  min-width: 850px;
 
-    min-width: 700px;
+  border-collapse: collapse;
+}
+
+.schedule-table thead {
+  background: #191a20;
 }
 
 .schedule-table th {
-    padding: 16px 18px;
+  padding: 22px 20px;
 
-    text-align: left;
+  text-align: left;
 
-    background: #171717;
+  font-size: 14px;
+  font-weight: 800;
 
-    color: var(--orange);
+  letter-spacing: 0.5px;
 
-    font-size: 12px;
-    font-weight: 700;
+  color: var(--white);
 
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+}
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.schedule-table th:first-child {
+  border-radius: 18px 0 0 0;
+}
+
+.schedule-table th:last-child {
+  border-radius: 0 18px 0 0;
 }
 
 .schedule-table td {
-    padding: 16px 18px;
+  padding: 22px 20px;
 
-    color: var(--gray);
+  color: #c4c4c4;
 
-    font-size: 13px;
+  font-size: 14px;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.schedule-table tr:last-child td {
-    border-bottom: none;
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.05);
 }
 
 .schedule-table tbody tr {
-    transition: 0.2s ease;
+  transition: 0.25s ease;
 }
 
 .schedule-table tbody tr:hover {
-    background: rgba(255, 90, 31, 0.04);
+  background:
+    rgba(255, 90, 31, 0.05);
+}
+
+.schedule-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 
-/* TANGGAL KUNING */
+/* =====================================================
+   DATE - KUNING
+   ===================================================== */
 
 .schedule-table td:nth-child(2) {
-    color: var(--yellow);
+  color: #ffd84d;
 
-    font-weight: 800;
+  font-weight: 800;
 }
 
 
-/* SQUAD */
+/* =====================================================
+   SQUAD
+   ===================================================== */
 
-.schedule-table td:nth-child(4) {
-    color: var(--white);
-    font-weight: 700;
+.squad-name {
+  color: var(--white);
+
+  font-weight: 700;
 }
 
 
-/* JENIS */
+/* =====================================================
+   TIME
+   ===================================================== */
 
-.schedule-table td:nth-child(5) {
-    color: var(--orange);
-    font-weight: 600;
+.match-time {
+  color: var(--orange);
+
+  font-weight: 800;
 }
 
 
-/* =========================================================
-   MOBILE CARD
-========================================================= */
+/* =====================================================
+   MATCH TYPE
+   ===================================================== */
 
-.schedule-cards {
-    display: none;
+.match-type {
+  display: inline-block;
+
+  padding: 6px 12px;
+
+  border-radius: 50px;
+
+  background:
+    rgba(255, 90, 31, 0.10);
+
+  border:
+    1px solid rgba(255, 90, 31, 0.25);
+
+  color: var(--orange);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* =====================================================
+   OPPONENT
+   ===================================================== */
+
+.opponent {
+  color: var(--white);
+
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   LOADING
+   ===================================================== */
+
+.loading {
+  text-align: center !important;
+
+  padding: 50px !important;
+
+  color: #777 !important;
+}
+
+
+/* =====================================================
+   MOBILE CARDS
+   ===================================================== */
+
+.schedule-mobile {
+  display: none;
 }
 
 .schedule-card {
-    position: relative;
+  padding: 22px;
 
-    padding: 20px;
+  margin-bottom: 15px;
 
-    margin-bottom: 14px;
+  background: #111;
 
-    background: #151515;
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
 
-    border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
 
-    border-radius: 12px;
-
-    overflow: hidden;
-
-    transition: 0.25s ease;
+  transition: 0.3s ease;
 }
 
 .schedule-card:hover {
-    border-color: rgba(255, 90, 31, 0.30);
+  border-color: var(--border);
 
-    transform: translateY(-2px);
-}
-
-.schedule-card::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-    bottom: 0;
-
-    width: 3px;
-
-    background: var(--orange);
+  transform: translateY(-3px);
 }
 
 
-/* CARD DATE */
+/* CARD TOP */
+
+.schedule-card-top {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+
+/* DATE MOBILE */
 
 .card-date {
-    color: var(--yellow);
+  color: #ffd84d;
 
-    font-size: 13px;
-    font-weight: 800;
+  font-size: 13px;
 
-    margin-bottom: 5px;
+  font-weight: 800;
 }
 
 
-/* CARD DAY */
+/* CARD MAIN */
 
-.card-day {
-    color: var(--gray-dark);
+.match-versus {
+  display: grid;
 
-    font-size: 12px;
+  grid-template-columns:
+    1fr auto 1fr;
 
-    margin-bottom: 12px;
+  gap: 12px;
+
+  align-items: center;
+
+  margin: 15px 0 20px;
+}
+
+.team {
+  font-size: 15px;
+
+  font-weight: 700;
+
+  color: var(--white);
+}
+
+.team:last-child {
+  text-align: right;
+}
+
+.vs {
+  color: var(--orange);
+
+  font-family: "Anton", sans-serif;
+
+  font-size: 20px;
 }
 
 
-/* CARD SQUAD */
+/* CARD BOTTOM */
 
-.card-squad {
-    color: var(--white);
+.schedule-card-bottom {
+  padding-top: 15px;
 
-    font-family: "Anton", sans-serif;
+  border-top:
+    1px solid rgba(255, 255, 255, 0.06);
 
-    font-size: 23px;
+  display: flex;
 
-    letter-spacing: 0.5px;
+  justify-content: space-between;
 
-    margin-bottom: 8px;
+  color: #888;
+
+  font-size: 12px;
 }
 
 
-/* CARD INFO */
-
-.card-info {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 8px;
-}
-
-.card-info span {
-    padding: 5px 9px;
-
-    border-radius: 5px;
-
-    background: rgba(255, 255, 255, 0.05);
-
-    color: var(--gray);
-
-    font-size: 11px;
-}
-
-.card-info .type {
-    color: var(--orange);
-
-    background: rgba(255, 90, 31, 0.08);
-}
-
-.card-opponent {
-    margin-top: 12px;
-
-    color: var(--gray-dark);
-
-    font-size: 12px;
-}
-
-.card-opponent strong {
-    color: var(--white);
-}
-
-
-/* =========================================================
-   EMPTY / LOADING
-========================================================= */
-
-.loading-state,
-.empty-state {
-    padding: 50px 20px;
-
-    text-align: center;
-
-    color: var(--gray-dark);
-
-    font-size: 14px;
-}
+/* =====================================================
+   EMPTY STATE
+   ===================================================== */
 
 .empty-state {
-    display: none;
+  text-align: center;
+
+  padding: 70px 20px;
+}
+
+.empty-icon {
+  font-size: 45px;
+
+  margin-bottom: 15px;
+
+  color: var(--orange);
+}
+
+.empty-state h3 {
+  font-family: "Anton", sans-serif;
+
+  font-size: 30px;
+
+  letter-spacing: 1px;
+}
+
+.empty-state p {
+  margin-top: 8px;
+
+  color: #777;
 }
 
 
-/* =========================================================
+/* =====================================================
+   LOADING CARD
+   ===================================================== */
+
+.loading-card {
+  padding: 30px;
+
+  text-align: center;
+
+  color: #777;
+
+  background: #111;
+
+  border-radius: 15px;
+}
+
+
+/* =====================================================
+   NOTE
+   ===================================================== */
+
+.schedule-note {
+  padding: 70px 6%;
+
+  background: var(--black);
+}
+
+.note-container {
+  max-width: 1100px;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 25px 30px;
+
+  background: #17140d;
+
+  border-left:
+    5px solid var(--orange);
+
+  border-radius: 15px;
+}
+
+.note-icon {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: var(--orange);
+
+  color: #fff;
+
+  font-weight: 900;
+}
+
+.note-container h3 {
+  font-size: 15px;
+
+  letter-spacing: 1px;
+}
+
+.note-container p {
+  color: #999;
+
+  font-size: 13px;
+
+  margin-top: 4px;
+}
+
+
+/* =====================================================
    FOOTER
-========================================================= */
+   ===================================================== */
 
 .footer {
-    padding: 35px 5%;
+  padding: 25px 5%;
 
-    text-align: center;
+  text-align: center;
 
-    background: #0a0a0a;
+  background: #090909;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top:
+    1px solid rgba(255, 255, 255, 0.05);
+
+  color: #666;
+
+  font-size: 12px;
 }
 
-.footer p {
-    color: #777;
+.footer strong {
+  color: var(--orange);
+}
 
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 1000px) {
+
+  .nav-menu {
+    gap: 18px;
+  }
+
+  .nav-menu a {
     font-size: 12px;
+  }
+
+  .schedule-section {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 }
 
 
-/* =========================================================
-   MOBILE NAVBAR
-   SAMA SEPERTI RANKING.CSS
-========================================================= */
+/* =====================================================
+   MOBILE
+   ===================================================== */
 
 @media (max-width: 768px) {
 
-    .navbar {
-        height: 65px;
-        padding: 0 5%;
-    }
+  /* ================= NAVBAR ================= */
 
+  .navbar {
+    height: 65px;
 
-    /* MENU TERTUTUP */
+    padding: 0 5%;
+  }
 
-    .nav-menu {
-        display: none;
+  .nav-menu {
 
-        position: absolute;
+    display: none;
 
-        top: 70px;
-        right: 5%;
+    position: absolute;
 
-        width: 210px;
+    top: 70px;
 
-        padding: 15px;
+    right: 5%;
 
-        flex-direction: column;
-        align-items: stretch;
+    width: 210px;
 
-        gap: 4px;
+    padding: 15px;
 
-        background: #151515;
+    flex-direction: column;
 
-        border: 1px solid rgba(255, 90, 31, 0.30);
+    align-items: stretch;
 
-        border-radius: 12px;
+    gap: 0;
 
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    }
+    background: #151515;
 
+    border:
+      1px solid
+      rgba(255, 90, 31, 0.3);
 
-    /* MENU TERBUKA */
+    border-radius: 12px;
 
-    .nav-menu.show {
-        display: flex;
-    }
+    box-shadow:
+      0 15px 35px
+      rgba(0, 0, 0, 0.5);
+  }
 
 
-    /* SEMUA MENU MOBILE */
+  .nav-menu.show {
+    display: flex;
+  }
 
-    .nav-menu a {
-        padding: 13px 15px;
 
-        color: #fff !important;
+  /* MENU DALAM MOBILE */
 
-        font-size: 13px;
-        font-weight: 600;
+  .nav-menu a {
 
-        text-transform: none;
+    padding: 13px 15px;
 
-        border-radius: 7px;
+    border-bottom:
+      1px solid
+      rgba(255, 255, 255, 0.05);
 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #ffffff !important;
 
-        transition: 0.25s ease;
-    }
+    font-size: 13px;
 
+    text-transform: none;
 
-    /* MENU TERAKHIR */
+    border-radius: 7px;
 
-    .nav-menu a:last-child {
-        border-bottom: none;
-    }
+    transition: 0.25s ease;
+  }
 
 
-    /* HILANGKAN GARIS BAWAH DESKTOP */
+  .nav-menu a:last-child {
+    border-bottom: none;
+  }
 
-    .nav-menu a::after {
-        display: none !important;
-    }
 
+  /* Hilangkan garis bawah desktop */
 
-    /* =====================================================
-       ACTIVE MOBILE
-       ORANGE TERANG + BACKGROUND ORANGE REDUP
-    ===================================================== */
+  .nav-menu a::after {
+    display: none;
+  }
 
-    .nav-menu a.active {
-        color: #ff5a1f !important;
 
-        background: rgba(255, 90, 31, 0.12);
+  /*
+    TAB AKTIF MOBILE
+    ORANGE REDUP
+  */
 
-        border: 1px solid rgba(255, 90, 31, 0.22);
+  .nav-menu a.active {
 
-        font-weight: 700;
-    }
+    color: var(--orange) !important;
 
+    background:
+      rgba(255, 90, 31, 0.12);
 
-    /* HOVER */
+    border:
+      1px solid
+      rgba(255, 90, 31, 0.22);
+  }
 
-    .nav-menu a:hover {
-        color: #ff5a1f !important;
 
-        background: rgba(255, 90, 31, 0.08);
-    }
+  .nav-menu a:hover {
 
+    color: var(--orange) !important;
 
-    /* TOGGLE ⋮ */
+    background:
+      rgba(255, 90, 31, 0.08);
+  }
 
-    .menu-toggle {
-        display: block;
 
-        position: relative;
+  .menu-toggle {
 
-        z-index: 2000;
+    display: block;
 
-        color: #fff !important;
+    position: relative;
 
-        background: transparent;
+    z-index: 2000;
 
-        border: none;
+    color: #ffffff;
+  }
 
-        font-size: 28px;
 
-        cursor: pointer;
-    }
+  /* ================= HERO ================= */
 
+  .schedule-hero {
 
-    /* TABLE DISEMBUNYIKAN */
+    min-height: 350px;
 
-    .schedule-table-wrapper {
-        display: none;
-    }
+    padding: 65px 7%;
+  }
 
 
-    /* CARD DITAMPILKAN */
+  .hero-content h1 {
+    font-size: 65px;
+  }
 
-    .schedule-cards {
-        display: block;
-    }
 
+  .hero-description {
+    font-size: 14px;
+  }
 
-    /* SECTION */
 
-    .schedule-section {
-        padding: 50px 5% 70px;
-    }
+  /* ================= SECTION ================= */
 
+  .schedule-section {
+    padding: 75px 7%;
+  }
 
-    .section-header h2 {
-        font-size: 32px;
-    }
 
+  .section-header {
 
-    /* FILTER */
+    display: block;
 
-    .schedule-filter {
-        gap: 7px;
-    }
+    margin-bottom: 30px;
+  }
 
-    .filter-btn {
-        padding: 9px 13px;
 
-        font-size: 12px;
-    }
+  .schedule-info {
+    margin-top: 15px;
+  }
 
 
-    /* HERO */
+  /* ================= DATE FILTER ================= */
 
-    .hero {
-        min-height: 280px;
+  .date-filter {
 
-        padding: 65px 5% 55px;
-    }
+    display: grid;
 
-    .hero h1 {
-        font-size: 55px;
-    }
+    grid-template-columns:
+      repeat(3, 1fr);
 
-    .hero p {
-        font-size: 13px;
-    }
+    gap: 8px;
+  }
+
+
+  .date-filter button {
+
+    width: 100%;
+
+    padding: 12px 8px;
+
+    font-size: 10px;
+  }
+
+
+  /* ================= CUSTOM DATE ================= */
+
+  .custom-date-filter {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+  }
+
+
+  .custom-date-filter input {
+
+    width: 100%;
+  }
+
+
+  .custom-date-filter button {
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+  }
+
+
+  /* ================= TABLE ================= */
+
+  .schedule-table-wrapper {
+    display: none;
+  }
+
+
+  /* ================= MOBILE CARDS ================= */
+
+  .schedule-mobile {
+    display: block;
+  }
+
+
+  .schedule-note {
+    padding: 60px 7%;
+  }
+
+
+  .note-container {
+    align-items: flex-start;
+  }
 }
 
 
-/* =========================================================
+/* =====================================================
    SMALL MOBILE
-========================================================= */
+   ===================================================== */
 
 @media (max-width: 420px) {
 
-    .navbar {
-        padding: 0 15px;
-    }
+  .navbar {
+    padding: 0 15px;
+  }
 
 
-    .nav-brand {
-        gap: 8px;
-    }
+  .nav-brand {
+    gap: 8px;
+  }
 
 
-    .nav-logo {
-        width: 36px;
-        height: 36px;
-    }
+  .nav-logo {
+    width: 36px;
+    height: 36px;
+  }
 
 
-    /* JANGAN HILANGKAN BRAND */
+  .nav-brand span {
 
-    .nav-brand span {
-        display: inline-block;
+    display: inline-block;
 
-        font-size: 10px;
+    font-size: 10px;
 
-        letter-spacing: 0.5px;
+    letter-spacing: 0.5px;
 
-        white-space: nowrap;
-    }
-
-
-    .menu-toggle {
-        display: block;
-
-        font-size: 28px;
-
-        color: #fff !important;
-    }
+    white-space: nowrap;
+  }
 
 
-    .nav-menu {
-        right: 15px;
+  .menu-toggle {
 
-        width: 205px;
-    }
+    display: block;
 
+    font-size: 28px;
 
-    .hero {
-        min-height: 240px;
-
-        padding: 55px 15px 45px;
-    }
+    color: #ffffff;
+  }
 
 
-    .hero h1 {
-        font-size: 43px;
-    }
+  /* ================= HERO ================= */
+
+  .schedule-hero {
+    padding: 60px 20px;
+  }
 
 
-    .hero p {
-        font-size: 12px;
-    }
+  .hero-content h1 {
+    font-size: 55px;
+  }
 
 
-    .schedule-section {
-        padding: 40px 15px 60px;
-    }
+  /* ================= SECTION ================= */
+
+  .schedule-section {
+    padding: 65px 20px;
+  }
 
 
-    .section-header h2 {
-        font-size: 28px;
-    }
+  /* ================= DATE FILTER ================= */
+
+  .date-filter {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
 
 
-    .custom-date {
-        flex-direction: column;
+  .date-filter button {
 
-        align-items: stretch;
-    }
+    padding: 11px 6px;
 
-
-    .custom-date input {
-        width: 100%;
-    }
+    font-size: 10px;
+  }
 
 
-    .schedule-card {
-        padding: 17px;
-    }
+  /* ================= CUSTOM DATE ================= */
+
+  .custom-date-filter {
+
+    grid-template-columns: 1fr;
+  }
 
 
-    .card-squad {
-        font-size: 21px;
-    }
+  .custom-date-filter button {
+
+    grid-column: auto;
+  }
+
+
+  /* ================= MOBILE CARD ================= */
+
+  .schedule-card {
+    padding: 18px;
+  }
+
+
+  .match-versus {
+
+    grid-template-columns:
+      1fr auto 1fr;
+  }
+
+
+  .team {
+    font-size: 13px;
+  }
+
+
+  .note-container {
+    padding: 20px;
+  }
 }
+apakah udah benar ini jadwal.cssnya
