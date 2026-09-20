@@ -312,6 +312,35 @@ playerStatButtons.forEach(button => {
    ========================================================= */
 
 function renderPlayerRanking(stat) {
+    const rankingTitle =
+        document.getElementById("rankingTitle");
+
+    const statBadge =
+        document.getElementById("statBadge");
+
+    const statNames = {
+        scorer: "TOP SCORER",
+        assist: "TOP ASSIST",
+        defend: "TOP DEFEND",
+        save: "TOP SAVE"
+    };
+
+    const statBadges = {
+        scorer: "SCORER",
+        assist: "ASSIST",
+        defend: "DEFEND",
+        save: "SAVE"
+    };
+
+    if (rankingTitle) {
+        rankingTitle.textContent =
+            statNames[stat] || "TOP SCORER";
+    }
+
+    if (statBadge) {
+        statBadge.textContent =
+            statBadges[stat] || "SCORER";
+    }
 
     if (!playerRankingBody) {
         return;
