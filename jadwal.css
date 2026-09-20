@@ -3,11 +3,7 @@
    JADWAL / MATCH SCHEDULE
    ===================================================== */
 
-
-/* ================= ROOT ================= */
-
 :root {
-
   --black: #0d0d0d;
   --dark: #151515;
   --dark-2: #1b1b1b;
@@ -17,13 +13,18 @@
 
   --white: #f4efe6;
   --gray: #a8a8a8;
+  --gray-dark: #777;
 
-  --border: rgba(255, 90, 31, 0.25);
+  --orange-soft: rgba(255, 90, 31, 0.12);
+  --orange-soft-border: rgba(255, 90, 31, 0.28);
 
+  --border: rgba(255, 255, 255, 0.07);
 }
 
 
-/* ================= RESET ================= */
+/* =====================================================
+   RESET
+   ===================================================== */
 
 * {
   margin: 0;
@@ -31,22 +32,15 @@
   box-sizing: border-box;
 }
 
-
 html {
   scroll-behavior: smooth;
 }
 
-
 body {
-
   background: var(--black);
-
   color: var(--white);
-
   font-family: "Work Sans", sans-serif;
-
   line-height: 1.6;
-
 }
 
 
@@ -55,21 +49,16 @@ body {
    ===================================================== */
 
 .navbar {
-
   position: sticky;
-
   top: 0;
 
   width: 100%;
-
   height: 70px;
 
   padding: 0 5%;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   background: rgba(13, 13, 13, 0.96);
@@ -78,16 +67,13 @@ body {
     1px solid rgba(255, 255, 255, 0.06);
 
   z-index: 1000;
-
 }
 
 
-/* Brand */
+/* BRAND */
 
 .nav-brand {
-
   display: flex;
-
   align-items: center;
 
   gap: 12px;
@@ -97,113 +83,91 @@ body {
   color: var(--white);
 
   font-size: 15px;
-
   font-weight: 700;
 
   letter-spacing: 1px;
-
 }
-
 
 .nav-brand strong {
-
   color: var(--orange);
-
 }
 
-
 .nav-logo {
-
   width: 42px;
-
   height: 42px;
 
   object-fit: contain;
-
 }
 
 
-/* Menu */
+/* =====================================================
+   NAV MENU
+   ===================================================== */
 
 .nav-menu {
-
   display: flex;
-
   align-items: center;
 
   gap: 28px;
-
 }
 
-
 .nav-menu a {
-
   position: relative;
 
-  color: #d6d6d6;
+  color: #ffffff;
 
   text-decoration: none;
 
   font-size: 13px;
-
   font-weight: 600;
 
   transition: 0.3s ease;
-
 }
-
 
 .nav-menu a:hover,
 .nav-menu a.active {
-
   color: var(--orange);
-
 }
 
 
-.nav-menu a::after {
+/* GARIS BAWAH DESKTOP */
 
+.nav-menu a::after {
   content: "";
 
   position: absolute;
 
   left: 0;
-
   bottom: -8px;
 
   width: 0;
-
   height: 2px;
 
   background: var(--orange);
 
   transition: 0.3s ease;
-
 }
-
 
 .nav-menu a:hover::after,
 .nav-menu a.active::after {
-
   width: 100%;
-
 }
 
 
-/* Mobile Button */
+/* =====================================================
+   MOBILE MENU BUTTON
+   ===================================================== */
 
 .menu-toggle {
-
   display: none;
 
   border: none;
 
   background: transparent;
 
-  color: #fff;
+  color: #ffffff;
 
   font-size: 30px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -211,7 +175,6 @@ body {
   line-height: 1;
 
   padding: 5px;
-
 }
 
 
@@ -220,11 +183,9 @@ body {
    ===================================================== */
 
 .schedule-hero {
-
   min-height: 420px;
 
   display: flex;
-
   align-items: center;
 
   padding: 80px 8%;
@@ -234,68 +195,51 @@ body {
   overflow: hidden;
 
   background:
-
     radial-gradient(
       circle at 80% 50%,
       rgba(255, 90, 31, 0.16),
       transparent 35%
     ),
-
     var(--black);
-
 }
 
-
 .schedule-hero::before {
-
   content: "";
 
   position: absolute;
 
   width: 450px;
-
   height: 450px;
 
   right: -160px;
-
   top: -100px;
 
   border:
     1px solid rgba(255, 90, 31, 0.12);
 
   transform: rotate(45deg);
-
 }
 
-
 .hero-content {
-
   position: relative;
 
   z-index: 2;
 
   max-width: 850px;
-
 }
 
-
 .hero-label {
-
   color: var(--orange);
 
   font-size: 12px;
-
   font-weight: 800;
 
   letter-spacing: 4px;
 
   margin-bottom: 15px;
-
 }
 
-
 .hero-content h1 {
-
   font-family: "Anton", sans-serif;
 
   font-size: clamp(65px, 9vw, 115px);
@@ -303,19 +247,13 @@ body {
   line-height: 0.9;
 
   letter-spacing: 2px;
-
 }
-
 
 .hero-content h1 span {
-
   color: var(--orange);
-
 }
 
-
 .hero-description {
-
   max-width: 620px;
 
   margin-top: 25px;
@@ -323,7 +261,6 @@ body {
   color: var(--gray);
 
   font-size: 16px;
-
 }
 
 
@@ -332,81 +269,200 @@ body {
    ===================================================== */
 
 .schedule-section {
-
   padding: 100px 6%;
 
   background: var(--dark);
-
 }
 
-
 .schedule-container {
-
   max-width: 1300px;
 
   margin: auto;
-
 }
 
 
-/* Header */
+/* =====================================================
+   SECTION HEADER
+   ===================================================== */
 
 .section-header {
-
   display: flex;
 
   justify-content: space-between;
-
   align-items: end;
 
   gap: 30px;
 
   margin-bottom: 45px;
-
 }
 
-
 .section-label {
-
   color: var(--orange);
 
   font-size: 12px;
-
   font-weight: 800;
 
   letter-spacing: 3px;
 
   margin-bottom: 12px;
-
 }
 
-
 .section-header h2 {
-
   font-family: "Anton", sans-serif;
 
   font-size: clamp(40px, 5vw, 65px);
 
   line-height: 1;
-
 }
-
 
 .section-header h2 span {
-
   color: var(--orange);
-
 }
 
-
 .schedule-info {
-
   color: #777;
 
   font-size: 12px;
 
   padding-bottom: 5px;
+}
 
+
+/* =====================================================
+   DATE FILTER / TABS
+   ===================================================== */
+
+/*
+  Jika HTML kamu menggunakan class:
+  .date-filter
+  .date-filter button
+
+  bagian ini akan membuat tab aktif
+  orange redup seperti Ranking.
+*/
+
+.date-filter {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 30px;
+}
+
+.date-filter button {
+  padding: 12px 18px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background: var(--dark-2);
+
+  color: #ffffff;
+
+  font-family: "Work Sans", sans-serif;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.date-filter button:hover {
+  border-color: var(--orange);
+
+  color: var(--orange);
+}
+
+
+/* TAB AKTIF - ORANGE REDUP */
+
+.date-filter button.active {
+  background: var(--orange-soft);
+
+  border-color: var(--orange-soft-border);
+
+  color: var(--orange);
+}
+
+
+/* =====================================================
+   CUSTOM DATE FILTER
+   ===================================================== */
+
+.custom-date-filter {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 30px;
+}
+
+.custom-date-filter input {
+  height: 40px;
+
+  padding: 0 12px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 6px;
+
+  background: var(--dark-2);
+
+  color: var(--white);
+
+  font-family: "Work Sans", sans-serif;
+
+  font-size: 12px;
+
+  outline: none;
+}
+
+.custom-date-filter input:focus {
+  border-color:
+    rgba(255, 90, 31, 0.5);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255, 90, 31, 0.08);
+}
+
+.custom-date-filter button {
+  height: 40px;
+
+  padding: 0 18px;
+
+  border:
+    1px solid var(--orange-soft-border);
+
+  border-radius: 6px;
+
+  background: var(--orange-soft);
+
+  color: var(--orange);
+
+  font-family: "Work Sans", sans-serif;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.custom-date-filter button:hover {
+  background: rgba(255, 90, 31, 0.18);
 }
 
 
@@ -415,7 +471,6 @@ body {
    ===================================================== */
 
 .schedule-table-wrapper {
-
   width: 100%;
 
   overflow-x: auto;
@@ -426,36 +481,26 @@ body {
   border-radius: 18px;
 
   background: #111;
-
 }
 
-
 .schedule-table {
-
   width: 100%;
 
   min-width: 850px;
 
   border-collapse: collapse;
-
 }
-
 
 .schedule-table thead {
-
   background: #191a20;
-
 }
 
-
 .schedule-table th {
-
   padding: 22px 20px;
 
   text-align: left;
 
   font-size: 14px;
-
   font-weight: 800;
 
   letter-spacing: 0.5px;
@@ -464,26 +509,17 @@ body {
 
   border-bottom:
     1px solid rgba(255, 255, 255, 0.08);
-
 }
-
 
 .schedule-table th:first-child {
-
   border-radius: 18px 0 0 0;
-
 }
-
 
 .schedule-table th:last-child {
-
   border-radius: 0 18px 0 0;
-
 }
 
-
 .schedule-table td {
-
   padding: 22px 20px;
 
   color: #c4c4c4;
@@ -492,64 +528,68 @@ body {
 
   border-bottom:
     1px solid rgba(255, 255, 255, 0.05);
-
 }
-
 
 .schedule-table tbody tr {
-
   transition: 0.25s ease;
-
 }
-
 
 .schedule-table tbody tr:hover {
-
-  background: rgba(255, 90, 31, 0.05);
-
+  background:
+    rgba(255, 90, 31, 0.05);
 }
-
 
 .schedule-table tbody tr:last-child td {
-
   border-bottom: none;
-
 }
 
 
-/* Squad */
+/* =====================================================
+   DATE - KUNING
+   ===================================================== */
+
+.schedule-table td:nth-child(2) {
+  color: #ffd84d;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   SQUAD
+   ===================================================== */
 
 .squad-name {
-
   color: var(--white);
 
   font-weight: 700;
-
 }
 
 
-/* Time */
+/* =====================================================
+   TIME
+   ===================================================== */
 
 .match-time {
-
   color: var(--orange);
 
   font-weight: 800;
-
 }
 
 
-/* Match Type */
+/* =====================================================
+   MATCH TYPE
+   ===================================================== */
 
 .match-type {
-
   display: inline-block;
 
   padding: 6px 12px;
 
   border-radius: 50px;
 
-  background: rgba(255, 90, 31, 0.10);
+  background:
+    rgba(255, 90, 31, 0.10);
 
   border:
     1px solid rgba(255, 90, 31, 0.25);
@@ -557,37 +597,35 @@ body {
   color: var(--orange);
 
   font-size: 11px;
-
   font-weight: 800;
 
   text-transform: uppercase;
 
   letter-spacing: 0.5px;
-
 }
 
 
-/* Opponent */
+/* =====================================================
+   OPPONENT
+   ===================================================== */
 
 .opponent {
-
   color: var(--white);
 
   font-weight: 600;
-
 }
 
 
-/* Loading */
+/* =====================================================
+   LOADING
+   ===================================================== */
 
 .loading {
-
   text-align: center !important;
 
   padding: 50px !important;
 
   color: #777 !important;
-
 }
 
 
@@ -596,14 +634,10 @@ body {
    ===================================================== */
 
 .schedule-mobile {
-
   display: none;
-
 }
 
-
 .schedule-card {
-
   padding: 22px;
 
   margin-bottom: 15px;
@@ -616,97 +650,79 @@ body {
   border-radius: 15px;
 
   transition: 0.3s ease;
-
 }
 
-
 .schedule-card:hover {
-
   border-color: var(--border);
 
   transform: translateY(-3px);
-
 }
 
 
-/* Card Top */
+/* CARD TOP */
 
 .schedule-card-top {
-
   display: flex;
 
   justify-content: space-between;
-
   align-items: center;
 
   gap: 10px;
 
   margin-bottom: 18px;
-
 }
 
 
-.card-date {
+/* DATE MOBILE */
 
-  color: var(--orange);
+.card-date {
+  color: #ffd84d;
 
   font-size: 13px;
 
   font-weight: 800;
-
 }
 
 
-/* Card Main */
+/* CARD MAIN */
 
 .match-versus {
-
   display: grid;
 
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns:
+    1fr auto 1fr;
 
   gap: 12px;
 
   align-items: center;
 
   margin: 15px 0 20px;
-
 }
 
-
 .team {
-
   font-size: 15px;
 
   font-weight: 700;
 
   color: var(--white);
-
 }
-
 
 .team:last-child {
-
   text-align: right;
-
 }
 
-
 .vs {
-
   color: var(--orange);
 
   font-family: "Anton", sans-serif;
 
   font-size: 20px;
-
 }
 
 
-/* Card Bottom */
+/* CARD BOTTOM */
 
 .schedule-card-bottom {
-
   padding-top: 15px;
 
   border-top:
@@ -719,7 +735,6 @@ body {
   color: #888;
 
   font-size: 12px;
-
 }
 
 
@@ -728,45 +743,39 @@ body {
    ===================================================== */
 
 .empty-state {
-
   text-align: center;
 
   padding: 70px 20px;
-
 }
 
-
 .empty-icon {
-
   font-size: 45px;
 
   margin-bottom: 15px;
 
+  color: var(--orange);
 }
 
-
 .empty-state h3 {
-
   font-family: "Anton", sans-serif;
 
   font-size: 30px;
 
   letter-spacing: 1px;
-
 }
 
-
 .empty-state p {
-
   margin-top: 8px;
 
   color: #777;
-
 }
 
 
-.loading-card {
+/* =====================================================
+   LOADING CARD
+   ===================================================== */
 
+.loading-card {
   padding: 30px;
 
   text-align: center;
@@ -776,7 +785,6 @@ body {
   background: #111;
 
   border-radius: 15px;
-
 }
 
 
@@ -785,16 +793,12 @@ body {
    ===================================================== */
 
 .schedule-note {
-
   padding: 70px 6%;
 
   background: var(--black);
-
 }
 
-
 .note-container {
-
   max-width: 1100px;
 
   margin: auto;
@@ -813,14 +817,10 @@ body {
     5px solid var(--orange);
 
   border-radius: 15px;
-
 }
 
-
 .note-icon {
-
   width: 38px;
-
   height: 38px;
 
   flex-shrink: 0;
@@ -828,7 +828,6 @@ body {
   display: flex;
 
   justify-content: center;
-
   align-items: center;
 
   border-radius: 50%;
@@ -838,27 +837,20 @@ body {
   color: #fff;
 
   font-weight: 900;
-
 }
 
-
 .note-container h3 {
-
   font-size: 15px;
 
   letter-spacing: 1px;
-
 }
 
-
 .note-container p {
-
   color: #999;
 
   font-size: 13px;
 
   margin-top: 4px;
-
 }
 
 
@@ -867,7 +859,6 @@ body {
    ===================================================== */
 
 .footer {
-
   padding: 25px 5%;
 
   text-align: center;
@@ -880,14 +871,10 @@ body {
   color: #666;
 
   font-size: 12px;
-
 }
 
-
 .footer strong {
-
   color: var(--orange);
-
 }
 
 
@@ -898,27 +885,17 @@ body {
 @media (max-width: 1000px) {
 
   .nav-menu {
-
     gap: 18px;
-
   }
-
 
   .nav-menu a {
-
     font-size: 12px;
-
   }
-
 
   .schedule-section {
-
     padding-left: 5%;
-
     padding-right: 5%;
-
   }
-
 }
 
 
@@ -928,16 +905,13 @@ body {
 
 @media (max-width: 768px) {
 
-  /* Navbar */
+  /* ================= NAVBAR ================= */
 
   .navbar {
-
     height: 65px;
 
     padding: 0 5%;
-
   }
-
 
   .nav-menu {
 
@@ -962,44 +936,80 @@ body {
     background: #151515;
 
     border:
-      1px solid rgba(255, 90, 31, 0.3);
+      1px solid
+      rgba(255, 90, 31, 0.3);
 
     border-radius: 12px;
 
     box-shadow:
-      0 15px 35px rgba(0, 0, 0, 0.5);
-
+      0 15px 35px
+      rgba(0, 0, 0, 0.5);
   }
 
 
   .nav-menu.show {
-
     display: flex;
-
   }
 
 
+  /* MENU DALAM MOBILE */
+
   .nav-menu a {
 
-    padding: 13px 10px;
+    padding: 13px 15px;
 
     border-bottom:
-      1px solid rgba(255, 255, 255, 0.05);
+      1px solid
+      rgba(255, 255, 255, 0.05);
 
+    color: #ffffff !important;
+
+    font-size: 13px;
+
+    text-transform: none;
+
+    border-radius: 7px;
+
+    transition: 0.25s ease;
   }
 
 
   .nav-menu a:last-child {
-
     border-bottom: none;
-
   }
 
 
+  /* Hilangkan garis bawah desktop */
+
   .nav-menu a::after {
-
     display: none;
+  }
 
+
+  /*
+    TAB AKTIF MOBILE
+    ORANGE REDUP
+  */
+
+  .nav-menu a.active {
+
+    color: var(--orange) !important;
+
+    background:
+      rgba(255, 90, 31, 0.12);
+
+    border:
+      1px solid
+      rgba(255, 90, 31, 0.22);
+  }
+
+
+  .nav-menu a:hover {
+
+    color: var(--orange) !important;
+
+    background:
+      rgba(255, 90, 31, 0.08);
   }
 
 
@@ -1011,42 +1021,34 @@ body {
 
     z-index: 2000;
 
-    color: #fff;
-
+    color: #ffffff;
   }
 
 
-  /* Hero */
+  /* ================= HERO ================= */
 
   .schedule-hero {
 
     min-height: 350px;
 
     padding: 65px 7%;
-
   }
 
 
   .hero-content h1 {
-
     font-size: 65px;
-
   }
 
 
   .hero-description {
-
     font-size: 14px;
-
   }
 
 
-  /* Section */
+  /* ================= SECTION ================= */
 
   .schedule-section {
-
     padding: 75px 7%;
-
   }
 
 
@@ -1055,48 +1057,85 @@ body {
     display: block;
 
     margin-bottom: 30px;
-
   }
 
 
   .schedule-info {
-
     margin-top: 15px;
-
   }
 
 
-  /* Hide table */
+  /* ================= DATE FILTER ================= */
+
+  .date-filter {
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(3, 1fr);
+
+    gap: 8px;
+  }
+
+
+  .date-filter button {
+
+    width: 100%;
+
+    padding: 12px 8px;
+
+    font-size: 10px;
+  }
+
+
+  /* ================= CUSTOM DATE ================= */
+
+  .custom-date-filter {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+  }
+
+
+  .custom-date-filter input {
+
+    width: 100%;
+  }
+
+
+  .custom-date-filter button {
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+  }
+
+
+  /* ================= TABLE ================= */
 
   .schedule-table-wrapper {
-
     display: none;
-
   }
 
 
-  /* Show mobile cards */
+  /* ================= MOBILE CARDS ================= */
 
   .schedule-mobile {
-
     display: block;
-
   }
 
 
   .schedule-note {
-
     padding: 60px 7%;
-
   }
 
 
   .note-container {
-
     align-items: flex-start;
-
   }
-
 }
 
 
@@ -1107,25 +1146,18 @@ body {
 @media (max-width: 420px) {
 
   .navbar {
-
     padding: 0 15px;
-
   }
 
 
   .nav-brand {
-
     gap: 8px;
-
   }
 
 
   .nav-logo {
-
     width: 36px;
-
     height: 36px;
-
   }
 
 
@@ -1138,7 +1170,6 @@ body {
     letter-spacing: 0.5px;
 
     white-space: nowrap;
-
   }
 
 
@@ -1148,38 +1179,64 @@ body {
 
     font-size: 28px;
 
-    color: #fff;
-
+    color: #ffffff;
   }
 
 
+  /* ================= HERO ================= */
+
   .schedule-hero {
-
-    padding:
-      60px 20px;
-
+    padding: 60px 20px;
   }
 
 
   .hero-content h1 {
-
     font-size: 55px;
-
   }
 
+
+  /* ================= SECTION ================= */
 
   .schedule-section {
-
-    padding:
-      65px 20px;
-
+    padding: 65px 20px;
   }
 
 
+  /* ================= DATE FILTER ================= */
+
+  .date-filter {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+
+  .date-filter button {
+
+    padding: 11px 6px;
+
+    font-size: 10px;
+  }
+
+
+  /* ================= CUSTOM DATE ================= */
+
+  .custom-date-filter {
+
+    grid-template-columns: 1fr;
+  }
+
+
+  .custom-date-filter button {
+
+    grid-column: auto;
+  }
+
+
+  /* ================= MOBILE CARD ================= */
+
   .schedule-card {
-
     padding: 18px;
-
   }
 
 
@@ -1187,33 +1244,15 @@ body {
 
     grid-template-columns:
       1fr auto 1fr;
-
   }
 
 
   .team {
-
     font-size: 13px;
-
   }
 
 
   .note-container {
-
     padding: 20px;
-
   }
-
-}
-/* Warna tanggal */
-.schedule-table td:nth-child(2) {
-  color: #ffd84d;
-  font-weight: 800;
-}
-
-/* Warna tanggal pada tampilan mobile */
-.card-date {
-  color: #ffd84d;
-  font-size: 13px;
-  font-weight: 800;
 }
