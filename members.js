@@ -1,87 +1,53 @@
-/* ========================================
-   GOOGLE SHEET CONFIGURATION
-======================================== */
+/* =========================================================
+   AGILITY UNITED - MEMBER SYSTEM
+   ========================================================= */
 
-/*
-   LINK GOOGLE SHEET YANG SUDAH
-   PUBLISH TO WEB FORMAT CSV
-*/
+
+/* =========================================================
+   GOOGLE SHEET URL
+   ========================================================= */
 
 const SHEET_URL =
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJnrF27QnQSNsZP6LGyzMD1053hz8Zqscskhd26ENN8blQ_O_sORgoXghFevrOex3XA6A_nr_oXbtR/pub?output=csv";
+    "PASTE_URL_CSV_MEMBER_DI_SINI";
 
 
-/* ========================================
-   VARIABLES
-======================================== */
+/* =========================================================
+   GLOBAL DATA
+   ========================================================= */
 
-let players = [];
+let memberData = [];
 
 let currentRole = "ALL";
 
-
-const playerContainer =
-    document.getElementById(
-        "playerContainer"
-    );
+let currentSearch = "";
 
 
-const playerCount =
-    document.getElementById(
-        "playerCount"
-    );
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
 
+const memberContainer =
+    document.getElementById("memberContainer");
 
-const searchInput =
-    document.getElementById(
-        "searchInput"
-    );
+const memberSearch =
+    document.getElementById("memberSearch");
 
+const roleFilters =
+    document.querySelectorAll(".role-filter");
+
+const memberCount =
+    document.getElementById("memberCount");
 
 const emptyState =
-    document.getElementById(
-        "emptyState"
-    );
+    document.getElementById("emptyState");
+
+const loadingState =
+    document.getElementById("loadingState");
 
 
-const menuToggle =
-    document.getElementById(
-        "menuToggle"
-    );
-
-
-const navMenu =
-    document.getElementById(
-        "navMenu"
-    );
-
-
-/* ========================================
-   MOBILE MENU
-======================================== */
-
-if (
-    menuToggle &&
-    navMenu
-) {
-
-    menuToggle.addEventListener(
-        "click",
-        function () {
-
-            navMenu.classList.toggle(
-                "show"
-            );
-
-        }
-    );
-
-}
-
-
-/* ========================================
-   PARSE CSV
-======================================== */
+/* =========================================================
+   CSV PARSER
+   ========================================================= */
 
 function parseCSV(text) {
 
@@ -100,46 +66,32 @@ function parseCSV(text) {
         i++
     ) {
 
-        const char =
-            text[i];
-
+        const char = text[i];
 
         const nextChar =
             text[i + 1];
 
 
-        /*
-        QUOTES
-        */
-
         if (
-            char === '"'
+            char === '"' &&
+            insideQuotes &&
+            nextChar === '"'
         ) {
 
-            if (
-                insideQuotes &&
-                nextChar === '"'
-            ) {
+            value += '"';
 
-                value += '"';
-
-                i++;
-
-            }
-
-            else {
-
-                insideQuotes =
-                    !insideQuotes;
-
-            }
+            i++;
 
         }
 
 
-        /*
-        COMMA
-        */
+        else if (char === '"') {
+
+            insideQuotes =
+                !insideQuotes;
+
+        }
+
 
         else if (
             char === "," &&
@@ -155,10 +107,6 @@ function parseCSV(text) {
         }
 
 
-        /*
-        NEW LINE
-        */
-
         else if (
             (
                 char === "\n" ||
@@ -166,32 +114,6 @@ function parseCSV(text) {
             ) &&
             !insideQuotes
         ) {
-
-            if (
-                value !== "" ||
-                row.length > 0
-            ) {
-
-                row.push(
-                    value.trim()
-                );
-
-
-                rows.push(
-                    row
-                );
-
-
-                row = [];
-
-                value = "";
-
-            }
-
-
-            /*
-            HANDLE WINDOWS \r\n
-            */
 
             if (
                 char === "\r" &&
@@ -202,12 +124,30 @@ function parseCSV(text) {
 
             }
 
+
+            row.push(
+                value.trim()
+            );
+
+
+            if (
+                row.some(
+                    cell =>
+                        cell !== ""
+                )
+            ) {
+
+                rows.push(row);
+
+            }
+
+
+            row = [];
+
+            value = "";
+
         }
 
-
-        /*
-        NORMAL CHARACTER
-        */
 
         else {
 
@@ -218,10 +158,6 @@ function parseCSV(text) {
     }
 
 
-    /*
-    LAST VALUE
-    */
-
     if (
         value !== "" ||
         row.length > 0
@@ -231,9 +167,17 @@ function parseCSV(text) {
             value.trim()
         );
 
-        rows.push(
-            row
-        );
+
+        if (
+            row.some(
+                cell =>
+                    cell !== ""
+            )
+        ) {
+
+            rows.push(row);
+
+        }
 
     }
 
@@ -243,251 +187,162 @@ function parseCSV(text) {
 }
 
 
-/* ========================================
-   LOAD GOOGLE SHEET
-======================================== */
+/* =========================================================
+   CSV TO OBJECT
+   ========================================================= */
 
-async function loadPlayers() {
+function csvToObjects(text) {
 
-    try {
+    const rows =
+        parseCSV(text);
 
 
-        /*
-        LOADING
-        */
+    if (rows.length < 2) {
 
-        playerContainer.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="4"
-                    class="loading"
-                >
-
-                    Memuat data player...
-
-                </td>
-
-            </tr>
-
-        `;
-
-
-        /*
-        FETCH GOOGLE SHEET
-        */
-
-        const response =
-            await fetch(
-                SHEET_URL
-            );
-
-
-        /*
-        CHECK RESPONSE
-        */
-
-        if (
-            !response.ok
-        ) {
-
-            throw new Error(
-                "Gagal mengambil Google Sheet"
-            );
-
-        }
-
-
-        /*
-        GET CSV TEXT
-        */
-
-        const csvText =
-            await response.text();
-
-
-        /*
-        DEBUG
-        */
-
-        console.log(
-            "Google Sheet CSV:",
-            csvText
-        );
-
-
-        /*
-        PARSE CSV
-        */
-
-        const rows =
-            parseCSV(
-                csvText
-            );
-
-
-        console.log(
-            "Parsed Rows:",
-            rows
-        );
-
-
-        /*
-        RESET PLAYERS
-        */
-
-        players = [];
-
-
-        /*
-        CEK APAKAH ADA DATA
-        */
-
-        if (
-            rows.length <= 1
-        ) {
-
-            throw new Error(
-                "Data Google Sheet kosong"
-            );
-
-        }
-
-
-        /*
-        MULAI DARI INDEX 1
-
-        INDEX 0 ADALAH HEADER:
-
-        nickname | id | role
-        */
-
-        for (
-            let i = 1;
-            i < rows.length;
-            i++
-        ) {
-
-
-            const row =
-                rows[i];
-
-
-            /*
-            AMBIL DATA
-            */
-
-            const nickname =
-                row[0]
-                    ? row[0].trim()
-                    : "";
-
-
-            const id =
-                row[1]
-                    ? row[1].trim()
-                    : "";
-
-
-            const role =
-                row[2]
-                    ? row[2]
-                        .trim()
-                        .toUpperCase()
-                    : "";
-
-
-            /*
-            MASUKKAN DATA
-            JIKA NICKNAME ADA
-            */
-
-            if (
-                nickname !== ""
-            ) {
-
-                players.push({
-
-                    nickname:
-                        nickname,
-
-                    id:
-                        id,
-
-                    role:
-                        role
-
-                });
-
-            }
-
-
-        }
-
-
-        /*
-        DEBUG
-        */
-
-        console.log(
-            "Players Loaded:",
-            players
-        );
-
-
-        /*
-        TAMPILKAN PLAYER
-        */
-
-        renderPlayers();
-
+        return [];
 
     }
 
-    catch (
-        error
-    ) {
+
+    const headers =
+        rows[0].map(header =>
+
+            header
+                .trim()
+                .toLowerCase()
+                .replace(/\s+/g, "_")
+
+        );
+
+
+    return rows
+        .slice(1)
+        .map(row => {
+
+            const obj = {};
+
+
+            headers.forEach(
+                (header, index) => {
+
+                    obj[header] =
+                        row[index]
+                            ? row[index].trim()
+                            : "";
+
+                }
+            );
+
+
+            return obj;
+
+        });
+
+}
+
+
+/* =========================================================
+   FETCH MEMBER DATA
+   ========================================================= */
+
+async function loadMembers() {
+
+    try {
+
+        showLoading();
+
+
+        if (
+            !SHEET_URL ||
+            SHEET_URL.includes("PASTE_URL")
+        ) {
+
+            throw new Error(
+                "URL Google Sheet belum dimasukkan."
+            );
+
+        }
+
+
+        const separator =
+            SHEET_URL.includes("?")
+                ? "&"
+                : "?";
+
+
+        const url =
+            SHEET_URL +
+            separator +
+            "t=" +
+            Date.now();
+
+
+        const response =
+            await fetch(url);
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `HTTP Error ${response.status}`
+            );
+
+        }
+
+
+        const text =
+            await response.text();
+
+
+        memberData =
+            csvToObjects(text);
+
+
+        console.log(
+            "Member Data:",
+            memberData
+        );
+
+
+        hideLoading();
+
+        renderMembers();
+
+    }
+
+
+    catch (error) {
 
         console.error(
-            "Google Sheet Error:",
+            "Member Error:",
             error
         );
 
 
-        playerContainer.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="4"
-                    class="loading error"
-                >
-
-                    <strong>
-                        Gagal memuat data Google Sheet.
-                    </strong>
-
-                    <br>
-
-                    <br>
-
-                    Periksa pengaturan
-                    Publish to Web Google Sheet.
-
-                </td>
-
-            </tr>
-
-        `;
+        hideLoading();
 
 
-        if (
-            playerCount
-        ) {
+        if (memberContainer) {
 
-            playerCount.textContent =
-                "0";
+            memberContainer.innerHTML = `
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        !
+                    </div>
+
+                    <h3>
+                        DATA ERROR
+                    </h3>
+
+                    <p>
+                        Unable to load member data.
+                    </p>
+
+                </div>
+
+            `;
 
         }
 
@@ -496,262 +351,381 @@ async function loadPlayers() {
 }
 
 
-/* ========================================
-   RENDER PLAYERS
-======================================== */
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
-function renderPlayers() {
+if (memberSearch) {
 
+    memberSearch.addEventListener(
+        "input",
+        function () {
 
-    /*
-    JIKA ELEMENT BELUM ADA
-    */
-
-    if (
-        !playerContainer
-    ) {
-
-        return;
-
-    }
+            currentSearch =
+                this.value
+                    .trim()
+                    .toLowerCase();
 
 
-    /*
-    SEARCH VALUE
-    */
-
-    const searchValue =
-        searchInput
-            ? searchInput
-                .value
-                .toLowerCase()
-                .trim()
-            : "";
-
-
-    /*
-    FILTER DATA
-    */
-
-    const filteredPlayers =
-        players.filter(
-            function (
-                player
-            ) {
-
-
-                const nickname =
-                    player.nickname
-                        .toLowerCase();
-
-
-                const id =
-                    player.id
-                        .toLowerCase();
-
-
-                /*
-                SEARCH
-                */
-
-                const matchSearch =
-
-                    nickname.includes(
-                        searchValue
-                    )
-
-                    ||
-
-                    id.includes(
-                        searchValue
-                    );
-
-
-                /*
-                ROLE
-                */
-
-                const matchRole =
-
-                    currentRole ===
-                    "ALL"
-
-                    ||
-
-                    player.role ===
-                    currentRole;
-
-
-                return (
-
-                    matchSearch
-
-                    &&
-
-                    matchRole
-
-                );
-
-            }
-        );
-
-
-    /*
-    UPDATE COUNT
-    */
-
-    if (
-        playerCount
-    ) {
-
-        playerCount.textContent =
-            filteredPlayers.length;
-
-    }
-
-
-    /*
-    CLEAR TABLE
-    */
-
-    playerContainer.innerHTML =
-        "";
-
-
-    /*
-    EMPTY STATE
-    */
-
-    if (
-        filteredPlayers.length === 0
-    ) {
-
-
-        playerContainer.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="4"
-                    class="loading"
-                >
-
-                    Tidak ada player ditemukan.
-
-                </td>
-
-            </tr>
-
-        `;
-
-
-        if (
-            emptyState
-        ) {
-
-            emptyState.style.display =
-                "block";
+            renderMembers();
 
         }
+    );
 
+}
+
+
+/* =========================================================
+   ROLE FILTER
+   ========================================================= */
+
+roleFilters.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            roleFilters.forEach(
+                btn => {
+
+                    btn.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            this.classList.add(
+                "active"
+            );
+
+
+            currentRole =
+                this.dataset.role;
+
+
+            renderMembers();
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   FILTER DATA
+   ========================================================= */
+
+function getFilteredMembers() {
+
+    return memberData.filter(
+        member => {
+
+            const nickname =
+                String(
+                    member.nickname || ""
+                ).toLowerCase();
+
+
+            const id =
+                String(
+                    member.id || ""
+                ).toLowerCase();
+
+
+            const role =
+                String(
+                    member.role || ""
+                ).toUpperCase();
+
+
+            const matchesSearch =
+
+                nickname.includes(
+                    currentSearch
+                )
+
+                ||
+
+                id.includes(
+                    currentSearch
+                );
+
+
+            const matchesRole =
+
+                currentRole === "ALL"
+
+                ||
+
+                role === currentRole;
+
+
+            return (
+                matchesSearch &&
+                matchesRole
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   RENDER MEMBERS
+   ========================================================= */
+
+function renderMembers() {
+
+    if (!memberContainer) {
+        return;
+    }
+
+
+    const filteredMembers =
+        getFilteredMembers();
+
+
+    memberContainer.innerHTML = "";
+
+
+    if (
+        filteredMembers.length === 0
+    ) {
+
+        showEmpty();
 
         return;
 
     }
 
 
-    /*
-    HIDE EMPTY STATE
-    */
+    hideEmpty();
 
-    if (
-        emptyState
-    ) {
+
+    if (memberCount) {
+
+        memberCount.textContent =
+            `Showing ${filteredMembers.length} member${
+                filteredMembers.length !== 1
+                    ? "s"
+                    : ""
+            }`;
+
+    }
+
+
+    filteredMembers.forEach(
+        (member, index) => {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "member-card";
+
+
+            const nickname =
+                member.nickname ||
+                "-";
+
+
+            const id =
+                member.id ||
+                "-";
+
+
+            const role =
+                member.role ||
+                "-";
+
+
+            card.innerHTML = `
+
+                <div class="member-number">
+                    ${String(
+                        index + 1
+                    ).padStart(2, "0")}
+                </div>
+
+                <div class="member-nickname">
+                    ${escapeHTML(
+                        nickname
+                    )}
+                </div>
+
+                <div class="member-id">
+                    ID: ${escapeHTML(
+                        id
+                    )}
+                </div>
+
+                <span class="member-role">
+                    ${escapeHTML(
+                        role
+                    )}
+                </span>
+
+            `;
+
+
+            memberContainer.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+function showEmpty() {
+
+    if (emptyState) {
+
+        emptyState.style.display =
+            "block";
+
+    }
+
+
+    if (memberCount) {
+
+        memberCount.textContent =
+            "0 members found";
+
+    }
+
+}
+
+
+function hideEmpty() {
+
+    if (emptyState) {
 
         emptyState.style.display =
             "none";
 
     }
 
-
-    /*
-    CREATE TABLE
-    */
-
-    filteredPlayers.forEach(
-        function (
-            player,
-            index
-        ) {
+}
 
 
-            const row =
-                document.createElement(
-                    "tr"
-                );
+/* =========================================================
+   LOADING
+   ========================================================= */
 
+function showLoading() {
 
-            row.innerHTML = `
+    if (loadingState) {
 
-                <td
-                    class="player-number"
-                >
-                    ${index + 1}
-                </td>
+        loadingState.style.display =
+            "block";
 
+    }
 
-                <td
-                    class="player-name"
-                >
-                    ${player.nickname}
-                </td>
+    if (memberContainer) {
 
+        memberContainer.style.display =
+            "none";
 
-                <td
-                    class="player-id"
-                >
-                    ${player.id}
-                </td>
-
-
-                <td>
-
-                    <span
-                        class="role-badge role-${player.role}"
-                    >
-                        ${player.role}
-                    </span>
-
-                </td>
-
-            `;
-
-
-            playerContainer.appendChild(
-                row
-            );
-
-
-        }
-    );
-
+    }
 
 }
 
 
-/* ========================================
-   SEARCH
-======================================== */
+function hideLoading() {
+
+    if (loadingState) {
+
+        loadingState.style.display =
+            "none";
+
+    }
+
+    if (memberContainer) {
+
+        memberContainer.style.display =
+            "grid";
+
+    }
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+const menuToggle =
+    document.getElementById(
+        "menuToggle"
+    );
+
+
+const navMenu =
+    document.getElementById(
+        "navMenu"
+    );
+
 
 if (
-    searchInput
+    menuToggle &&
+    navMenu
 ) {
 
-    searchInput.addEventListener(
-        "input",
-        function () {
+    menuToggle.addEventListener(
+        "click",
+        () => {
 
-            renderPlayers();
+            navMenu.classList.toggle(
+                "show"
+            );
 
         }
     );
@@ -759,79 +733,54 @@ if (
 }
 
 
-/* ========================================
-   ROLE FILTER
-======================================== */
+/* =========================================================
+   CLOSE MENU AFTER CLICK
+   ========================================================= */
 
-const filterButtons =
-    document.querySelectorAll(
-        ".filter-btn"
-    );
+if (navMenu) {
 
-
-filterButtons.forEach(
-    function (
-        button
-    ) {
-
-
-        button.addEventListener(
-            "click",
-            function () {
-
-
-                /*
-                REMOVE ACTIVE
-                */
-
-                filterButtons.forEach(
-                    function (
-                        btn
-                    ) {
-
-                        btn.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-
-                /*
-                ADD ACTIVE
-                */
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                /*
-                GET ROLE
-                */
-
-                currentRole =
-                    button.dataset.role
-                        .toUpperCase();
-
-
-                /*
-                RENDER
-                */
-
-                renderPlayers();
-
-
-            }
+    const navLinks =
+        navMenu.querySelectorAll(
+            "a"
         );
 
 
-    }
+    navLinks.forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    navMenu.classList.remove(
+                        "show"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+   ========================================================= */
+
+loadMembers();
+
+
+/* =========================================================
+   AUTO REFRESH
+   ========================================================= */
+
+setInterval(
+    () => {
+
+        loadMembers();
+
+    },
+    60000
 );
-
-
-/* ========================================
-   START
-======================================== */
-
-loadPlayers();
