@@ -1307,5 +1307,12 @@ body {
     .member-table td:nth-child(4) {
         width: 90px;
     }
+   /* =========================================================
+   ACTIVE NAVBAR - MEMBERS
+   ========================================================= */
+
+.nav-menu a.active {
+    color: #ff5a1f !important;
+}
 
 }
