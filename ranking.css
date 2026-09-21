@@ -1,6 +1,633 @@
 /* =====================================================
+   AGILITY UNITED - TOP RANKING
+===================================================== */
+
+:root {
+    --black: #0d0d0d;
+    --dark: #151515;
+    --dark-2: #1c1c1c;
+
+    --orange: #ff5a1f;
+    --orange-dark: #b8380f;
+
+    --white: #f4efe6;
+    --gray: #a8a8a8;
+    --gray-dark: #666;
+
+    --border: rgba(255, 255, 255, 0.07);
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: "Work Sans", sans-serif;
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+    height: 70px;
+    padding: 0 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(13, 13, 13, 0.96);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--white);
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.nav-brand strong {
+    color: var(--orange);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-menu a {
+    position: relative;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    transition: 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--orange);
+}
+
+.nav-menu a.active {
+    color: var(--orange);
+}
+
+.nav-menu a.active::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -9px;
+
+    height: 2px;
+    background: var(--orange);
+}
+
+.menu-toggle {
+    display: none;
+
+    border: none;
+    background: transparent;
+
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 700;
+
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.ranking-hero {
+    min-height: 390px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 90, 31, 0.12),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            #111111 0%,
+            var(--black) 100%
+        );
+
+    overflow: hidden;
+}
+
+.ranking-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border:
+        1px solid rgba(255, 90, 31, 0.15);
+
+    border-radius: 50%;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 750px;
+    padding: 40px 20px;
+}
+
+.hero-label {
+    color: var(--orange);
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+.hero-content h1 {
+    font-family: "Anton", sans-serif;
+
+    font-size:
+        clamp(55px, 9vw, 105px);
+
+    line-height: 0.95;
+    letter-spacing: 2px;
+}
+
+.hero-content h1 span {
+    color: var(--orange);
+}
+
+.hero-description {
+    max-width: 500px;
+
+    margin: 25px auto 0;
+
+    color: var(--gray);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   MAIN SECTION
+===================================================== */
+
+.ranking-section {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 80px 5% 100px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-label,
+.mini-label {
+    color: var(--orange);
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.section-heading h2 {
+    font-family: "Anton", sans-serif;
+
+    font-size: 50px;
+
+    margin: 8px 0;
+}
+
+.section-heading h2 span {
+    color: var(--orange);
+}
+
+.section-heading p:last-child {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   MAIN TABS
+===================================================== */
+
+.main-tabs {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-bottom: 45px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.main-tab {
+    border: none;
+    background: transparent;
+
+    color: #ffffff;
+
+    padding: 16px 35px;
+
+    font-family: "Work Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    position: relative;
+
+    transition: 0.3s ease;
+}
+
+.main-tab:hover {
+    color: var(--orange);
+}
+
+.main-tab.active {
+    color: var(--orange);
+}
+
+.main-tab.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -1px;
+
+    height: 3px;
+
+    background: var(--orange);
+}
+
+
+/* =====================================================
+   RANKING CONTENT
+===================================================== */
+
+.ranking-content {
+    display: block;
+}
+
+.team-content {
+    display: none;
+}
+
+
+/* =====================================================
+   STAT TABS
+===================================================== */
+
+.stat-tabs {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 35px;
+}
+
+.stat-tab {
+    padding: 16px 10px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    background: var(--dark);
+
+    color: #ffffff;
+
+    font-family: "Work Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.stat-tab:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+}
+
+.stat-tab.active {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   RANKING TITLE
+===================================================== */
+
+.ranking-title {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.ranking-title h3 {
+    font-family: "Anton", sans-serif;
+
+    font-size: 35px;
+    letter-spacing: 1px;
+
+    margin-top: 5px;
+}
+
+.stat-badge {
+    padding: 8px 14px;
+
+    border:
+        1px solid rgba(255, 90, 31, 0.4);
+
+    color: var(--orange);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+
+/* =====================================================
+   PODIUM
+===================================================== */
+
+.podium {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    align-items: end;
+
+    gap: 15px;
+
+    margin-bottom: 35px;
+}
+
+
+/* =====================================================
+   PODIUM CARD
+===================================================== */
+
+.podium-card {
+    background:
+        linear-gradient(
+            180deg,
+            #191919 0%,
+            #131313 100%
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    padding: 28px 15px;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 158px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =====================================================
+   TOP LINE
+===================================================== */
+
+.podium-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--orange),
+            transparent
+        );
+}
+
+
+/* =====================================================
+   BACKGROUND GLOW
+===================================================== */
+
+.podium-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: 50%;
+    top: -110px;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 90, 31, 0.14),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.podium-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(255, 90, 31, 0.45);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0, 0, 0, 0.45);
+}
+
+
+/* =====================================================
+   RANK 1 CARD
+===================================================== */
+
+.podium-card.first {
+    min-height: 200px;
+
+    padding-top: 38px;
+    padding-bottom: 38px;
+
+    border-color:
+        rgba(255, 90, 31, 0.38);
+
+    box-shadow:
+        0 15px 40px
+        rgba(255, 90, 31, 0.08);
+}
+
+.podium-card.first::before {
+    height: 5px;
+}
+
+
+/* =====================================================
+   RANK BADGE
+===================================================== */
+
+.podium-rank {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 14px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-family: "Anton", sans-serif;
+
+    font-size: 30px;
+    line-height: 1;
+
+    color: #ffffff;
+
+    background: #252525;
+
+    border:
+        2px solid
+        rgba(255,255,255,.12);
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* =====================================================
    MEDAL
 ===================================================== */
+
+/*
+   Medal sekarang ditentukan berdasarkan urutan card:
+
+   Card 1 = 🥇
+   Card 2 = 🥈
+   Card 3 = 🥉
+
+   Tidak menggunakan .first untuk menentukan medal,
+   dan tidak menggunakan sistem medal lama.
+*/
 
 .podium-rank::before {
     position: absolute;
@@ -40,10 +667,10 @@
 
 
 /* =====================================================
-   JUARA 1
+   JUARA 1 - GOLD
 ===================================================== */
 
-.podium-card.rank-1 .podium-rank {
+.podium-card:nth-child(1) .podium-rank {
     background:
         linear-gradient(
             145deg,
@@ -60,7 +687,7 @@
         rgba(255,90,31,.3);
 }
 
-.podium-card.rank-1 .podium-rank::before {
+.podium-card:nth-child(1) .podium-rank::before {
     content: "🥇";
 
     background:
@@ -72,10 +699,10 @@
 
 
 /* =====================================================
-   JUARA 2
+   JUARA 2 - SILVER
 ===================================================== */
 
-.podium-card.rank-2 .podium-rank {
+.podium-card:nth-child(2) .podium-rank {
     background:
         linear-gradient(
             145deg,
@@ -87,16 +714,16 @@
         rgba(220,220,220,.3);
 }
 
-.podium-card.rank-2 .podium-rank::before {
+.podium-card:nth-child(2) .podium-rank::before {
     content: "🥈";
 }
 
 
 /* =====================================================
-   JUARA 3
+   JUARA 3 - BRONZE
 ===================================================== */
 
-.podium-card.rank-3 .podium-rank {
+.podium-card:nth-child(3) .podium-rank {
     background:
         linear-gradient(
             145deg,
@@ -108,6 +735,858 @@
         rgba(205,139,90,.35);
 }
 
-.podium-card.rank-3 .podium-rank::before {
+.podium-card:nth-child(3) .podium-rank::before {
     content: "🥉";
+}
+
+
+/* =====================================================
+   PODIUM NAME
+===================================================== */
+
+.podium-name {
+    font-size: 15px;
+
+    font-weight: 800;
+
+    margin-bottom: 6px;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* =====================================================
+   PODIUM DIVISION
+===================================================== */
+
+.podium-division {
+    color: var(--gray);
+
+    font-size: 11px;
+
+    margin-bottom: 14px;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* =====================================================
+   PODIUM VALUE
+===================================================== */
+
+.podium-value {
+    font-family: "Anton", sans-serif;
+
+    font-size: 28px;
+
+    color: var(--orange);
+
+    position: relative;
+
+    z-index: 3;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =====================================================
+   PODIUM STAT LABEL
+===================================================== */
+
+.podium-stat-label {
+    color: var(--gray);
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.ranking-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    background: var(--dark);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ranking-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 600px;
+}
+
+.ranking-table th {
+    padding: 17px 20px;
+
+    text-align: left;
+
+    background: #191919;
+
+    color: var(--gray);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+}
+
+.ranking-table td {
+    padding: 17px 20px;
+
+    font-size: 13px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.05);
+}
+
+.ranking-table tbody tr {
+    transition: 0.25s ease;
+}
+
+.ranking-table tbody tr:hover {
+    background:
+        rgba(255, 90, 31, 0.05);
+}
+
+.ranking-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =====================================================
+   RANK NUMBER
+===================================================== */
+
+.rank-number {
+    color: var(--orange);
+
+    font-family: "Anton", sans-serif;
+
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   PLAYER / TEAM NAME
+===================================================== */
+
+.player-name,
+.team-name {
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   DIVISION
+===================================================== */
+
+.division-name {
+    color: var(--gray);
+}
+
+
+/* =====================================================
+   VALUE
+===================================================== */
+
+.stat-value,
+.point-value {
+    color: var(--orange);
+
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading {
+    text-align: center;
+
+    color: var(--gray);
+
+    padding: 35px !important;
+}
+
+
+/* =====================================================
+   LAST UPDATE
+===================================================== */
+
+.last-update {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 30px;
+
+    color: var(--gray);
+
+    font-size: 11px;
+}
+
+.last-update span {
+    width: 7px;
+    height: 7px;
+
+    background: #49c16d;
+
+    border-radius: 50%;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+    padding: 50px 5% 30px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    text-align: center;
+
+    background: #101010;
+}
+
+.footer-logo {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.footer-logo img {
+    width: 35px;
+    height: 35px;
+
+    object-fit: contain;
+}
+
+.footer-logo strong {
+    color: var(--orange);
+}
+
+.footer p {
+    color: var(--orange);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 15px;
+}
+
+.footer small {
+    color: var(--gray-dark);
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   MOBILE NAVBAR
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        height: 65px;
+
+        padding: 0 5%;
+    }
+
+    .nav-menu {
+        display: none;
+
+        position: absolute;
+
+        top: 70px;
+        right: 5%;
+
+        width: 210px;
+
+        padding: 15px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        background: #151515;
+
+        border:
+            1px solid
+            rgba(255, 90, 31, 0.3);
+
+        border-radius: 12px;
+
+        box-shadow:
+            0 15px 35px
+            rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-menu.show {
+        display: flex;
+    }
+
+    .nav-menu a {
+        padding: 13px 15px;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.05);
+
+        color: #ffffff !important;
+
+        font-size: 13px;
+
+        text-transform: none;
+
+        border-radius: 7px;
+
+        transition:
+            background 0.25s ease,
+            color 0.25s ease;
+    }
+
+    .nav-menu a:last-child {
+        border-bottom: none;
+    }
+
+    .nav-menu a::after {
+        display: none;
+    }
+
+    .nav-menu a:hover {
+        color: var(--orange) !important;
+
+        background:
+            rgba(255, 90, 31, 0.08);
+    }
+
+
+    /* =================================================
+       ACTIVE MOBILE NAV
+    ================================================= */
+
+    .nav-menu a.active {
+        color: var(--orange) !important;
+
+        background:
+            rgba(255, 90, 31, 0.12) !important;
+
+        border:
+            1px solid
+            rgba(255, 90, 31, 0.22);
+
+        font-weight: 700;
+    }
+
+    .menu-toggle {
+        display: block;
+
+        position: relative;
+
+        z-index: 2000;
+
+        color: #ffffff;
+    }
+
+
+    /* =================================================
+       HERO
+    ================================================= */
+
+    .ranking-hero {
+        min-height: 320px;
+    }
+
+    .hero-content h1 {
+        font-size: 65px;
+    }
+
+
+    /* =================================================
+       SECTION
+    ================================================= */
+
+    .ranking-section {
+        padding:
+            60px 5% 80px;
+    }
+
+    .section-heading h2 {
+        font-size: 40px;
+    }
+
+
+    /* =================================================
+       MAIN TABS
+    ================================================= */
+
+    .main-tab {
+        padding:
+            14px 20px;
+    }
+
+
+    /* =================================================
+       STAT TABS
+    ================================================= */
+
+    .stat-tabs {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    /* =================================================
+       PODIUM MOBILE
+    ================================================= */
+
+    .podium {
+        grid-template-columns: 1fr;
+
+        align-items: stretch;
+
+        gap: 14px;
+
+        margin-bottom: 30px;
+    }
+
+    /*
+        MOBILE:
+
+        [ 1 ]
+        [ 2 ]
+        [ 3 ]
+    */
+
+    .podium-card:nth-child(1) {
+        order: 1;
+    }
+
+    .podium-card:nth-child(2) {
+        order: 2;
+    }
+
+    .podium-card:nth-child(3) {
+        order: 3;
+    }
+
+
+    /* =================================================
+       MOBILE PODIUM CARD
+    ================================================= */
+
+    .podium-card,
+    .podium-card.first {
+        min-height: 165px;
+
+        padding:
+            25px 18px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+
+    /* =================================================
+       RANK 1 MOBILE
+    ================================================= */
+
+    .podium-card.first {
+        min-height: 195px;
+
+        padding:
+            30px 18px;
+
+        border-color:
+            rgba(255, 90, 31, 0.45);
+
+        box-shadow:
+            0 15px 40px
+            rgba(255, 90, 31, 0.13);
+    }
+
+
+    /* =================================================
+       RANK BADGE MOBILE
+    ================================================= */
+
+    .podium-rank {
+        width: 58px;
+
+        height: 58px;
+
+        font-size: 30px;
+
+        margin-bottom: 12px;
+    }
+
+    .podium-card.first .podium-rank {
+        width: 72px;
+
+        height: 72px;
+
+        font-size: 40px;
+    }
+
+
+    /* =================================================
+       PODIUM NAME
+    ================================================= */
+
+    .podium-name {
+        font-size: 15px;
+
+        margin-bottom: 5px;
+    }
+
+
+    /* =================================================
+       PODIUM DIVISION
+    ================================================= */
+
+    .podium-division {
+        margin-bottom: 10px;
+    }
+
+
+    /* =================================================
+       PODIUM VALUE
+    ================================================= */
+
+    .podium-value {
+        font-size: 27px;
+    }
+
+
+    /* =================================================
+       RANKING TITLE
+    ================================================= */
+
+    .ranking-title h3 {
+        font-size: 29px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 420px) {
+
+    .navbar {
+        padding: 0 15px;
+    }
+
+    .nav-brand {
+        gap: 8px;
+    }
+
+    .nav-logo {
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-brand span {
+        display: inline-block;
+
+        font-size: 10px;
+
+        letter-spacing: 0.5px;
+
+        white-space: nowrap;
+    }
+
+    .menu-toggle {
+        display: block;
+
+        font-size: 28px;
+
+        color: #ffffff;
+    }
+
+
+    /* =================================================
+       HERO
+    ================================================= */
+
+    .ranking-hero {
+        min-height: 300px;
+    }
+
+    .hero-content h1 {
+        font-size: 55px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+
+    /* =================================================
+       SECTION
+    ================================================= */
+
+    .ranking-section {
+        padding:
+            55px 5% 75px;
+    }
+
+    .section-heading h2 {
+        font-size: 36px;
+    }
+
+
+    /* =================================================
+       MAIN TABS
+    ================================================= */
+
+    .main-tabs {
+        gap: 0;
+    }
+
+    .main-tab {
+        flex: 1;
+
+        padding:
+            14px 10px;
+
+        font-size: 11px;
+    }
+
+
+    /* =================================================
+       STAT TABS
+    ================================================= */
+
+    .stat-tab {
+        font-size: 10px;
+    }
+
+
+    /* =================================================
+       RANKING TITLE
+    ================================================= */
+
+    .ranking-title {
+        align-items: flex-start;
+    }
+
+    .ranking-title h3 {
+        font-size: 25px;
+    }
+
+    .stat-badge {
+        font-size: 9px;
+
+        padding:
+            7px 9px;
+    }
+
+
+    /* =================================================
+       PODIUM SMALL MOBILE
+    ================================================= */
+
+    .podium {
+        gap: 12px;
+    }
+
+    .podium-card,
+    .podium-card.first {
+        min-height: 150px;
+
+        padding:
+            22px 15px;
+    }
+
+    .podium-card.first {
+        min-height: 175px;
+
+        padding:
+            27px 15px;
+    }
+
+    .podium-rank {
+        width: 52px;
+
+        height: 52px;
+
+        font-size: 27px;
+
+        margin-bottom: 10px;
+    }
+
+    .podium-card.first .podium-rank {
+        width: 65px;
+
+        height: 65px;
+
+        font-size: 37px;
+    }
+
+    .podium-name {
+        font-size: 14px;
+    }
+
+    .podium-division {
+        font-size: 10px;
+    }
+
+    .podium-value {
+        font-size: 25px;
+    }
+
+
+    /* =================================================
+       RANKING TABLE
+    ================================================= */
+
+    .ranking-table-wrapper {
+        overflow-x: auto;
+
+        border-radius: 8px;
+    }
+
+    .ranking-table {
+        min-width: 550px;
+    }
+
+    .ranking-table th,
+    .ranking-table td {
+        padding:
+            13px 12px;
+    }
+
+    .ranking-table th {
+        font-size: 9px;
+
+        letter-spacing: 0.8px;
+    }
+
+    .ranking-table td {
+        font-size: 12px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE TEAM PODIUM
+===================================================== */
+
+@media (max-width: 768px) {
+
+    #teamPodium {
+        display: grid !important;
+
+        grid-template-columns:
+            1fr 1fr !important;
+
+        grid-template-areas:
+            "rank1 rank1"
+            "rank2 rank3" !important;
+
+        gap: 15px !important;
+
+        align-items: stretch !important;
+    }
+
+    #teamPodium .podium-card {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        margin: 0 !important;
+
+        transform: none !important;
+    }
+
+
+    /* =================================================
+       JUARA 1
+    ================================================= */
+
+    #teamPodium .podium-card.rank-1 {
+        grid-area: rank1 !important;
+
+        min-height: 190px !important;
+    }
+
+
+    /* =================================================
+       JUARA 2
+    ================================================= */
+
+    #teamPodium .podium-card.rank-2 {
+        grid-area: rank2 !important;
+
+        min-height: 150px !important;
+    }
+
+
+    /* =================================================
+       JUARA 3
+    ================================================= */
+
+    #teamPodium .podium-card.rank-3 {
+        grid-area: rank3 !important;
+
+        min-height: 150px !important;
+    }
+
+    #teamPodium .podium-rank {
+        margin-bottom: 12px;
+    }
+
 }
