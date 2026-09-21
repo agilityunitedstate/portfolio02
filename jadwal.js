@@ -4,32 +4,30 @@
    ===================================================== */
 
 
-/* ================= GOOGLE SHEET ================= */
-
-/*
-   Ganti URL di bawah dengan
-   Published CSV Google Sheet kamu.
-*/
+/* =====================================================
+   GOOGLE SHEET
+   ===================================================== */
 
 const SHEET_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYZD-UuIIvYNuWTeV9kAC0RfbsnwhA1pXhcPohfbY5EYD5G-65o8y8JhSqG1c_ZVyApZhKxwwEjoo2/pub?output=csv";
 
 
-/* ================= ELEMENT ================= */
+/* =====================================================
+   ELEMENT
+   ===================================================== */
 
-const scheduleBody =
-  document.getElementById("scheduleBody");
+const scheduleBody = document.getElementById("scheduleBody");
+const scheduleMobile = document.getElementById("scheduleMobile");
+const emptyState = document.getElementById("emptyState");
 
-const scheduleMobile =
-  document.getElementById("scheduleMobile");
 
-const emptyState =
-  document.getElementById("emptyState");
-/* ================= SEARCH ================= */
+/* =====================================================
+   SEARCH VARIABLE
+   ===================================================== */
 
 let allSchedules = [];
-
 let scheduleSearchInput = null;
+
 
 /* =====================================================
    CSV PARSER
@@ -38,58 +36,36 @@ let scheduleSearchInput = null;
 function parseCSV(text) {
 
   const rows = [];
-
   let row = [];
-
   let value = "";
-
   let insideQuotes = false;
-
 
   for (let i = 0; i < text.length; i++) {
 
     const char = text[i];
-
     const nextChar = text[i + 1];
 
-
-    /* Quote */
-
+    // Double quote di dalam quote
     if (char === '"' && insideQuotes && nextChar === '"') {
-
       value += '"';
-
       i++;
-
       continue;
-
     }
 
-
+    // Awal / akhir quote
     if (char === '"') {
-
       insideQuotes = !insideQuotes;
-
       continue;
-
     }
 
-
-    /* Comma */
-
+    // Pemisah kolom
     if (char === "," && !insideQuotes) {
-
       row.push(value.trim());
-
       value = "";
-
       continue;
-
     }
 
-
-    /* New line */
-
+    // Baris baru
     if (
       (char === "\n" || char === "\r") &&
       !insideQuotes
@@ -98,38 +74,25 @@ function parseCSV(text) {
       if (value !== "" || row.length > 0) {
 
         row.push(value.trim());
-
         rows.push(row);
 
         row = [];
-
         value = "";
-
       }
 
       continue;
-
     }
 
-
     value += char;
-
   }
 
-
-  /* Last row */
-
+  // Data terakhir
   if (value !== "" || row.length > 0) {
-
     row.push(value.trim());
-
     rows.push(row);
-
   }
-
 
   return rows;
-
 }
 
 
@@ -139,32 +102,25 @@ function parseCSV(text) {
 
 function cleanHeader(header) {
 
-  return header
+  return String(header || "")
     .toLowerCase()
     .trim()
     .replace(/\s+/g, "")
     .replace(/_/g, "");
-
 }
 
+
 /* =====================================================
-   SEARCH BOX
-   Cari berdasarkan:
-   - Hari
-   - Squad
-   - Lawan
+   CREATE SEARCH BOX
    ===================================================== */
 
 function createScheduleSearch() {
 
-  const searchWrapper =
-    document.createElement("div");
+  const searchWrapper = document.createElement("div");
 
-  searchWrapper.className =
-    "schedule-search-wrapper";
+  searchWrapper.className = "schedule-search-wrapper";
 
   searchWrapper.innerHTML = `
-
     <div class="schedule-search">
 
       <span class="schedule-search-icon">
@@ -182,32 +138,27 @@ function createScheduleSearch() {
         type="button"
         id="clearScheduleSearch"
         class="clear-search"
-        style="display:none;"
+        aria-label="Clear search"
       >
         ×
       </button>
 
     </div>
-
   `;
 
 
-  /*
-     Cari section jadwal
-  */
+  /* =================================================
+     CARI POSISI SECTION JADWAL
+     ================================================= */
 
   const scheduleSection =
-    document.querySelector(
-      ".schedule-section"
-    );
+    document.querySelector(".schedule-section");
 
 
   if (scheduleSection) {
 
     const heading =
-      scheduleSection.querySelector(
-        ".section-heading"
-      );
+      scheduleSection.querySelector(".section-heading");
 
 
     if (heading) {
@@ -217,86 +168,90 @@ function createScheduleSearch() {
         searchWrapper
       );
 
-    }
+    } else {
 
-    else {
-
-      scheduleSection.prepend(
-        searchWrapper
-      );
+      scheduleSection.prepend(searchWrapper);
 
     }
 
-  }
+  } else {
 
-
-  /*
-     Jika class schedule-section
-     tidak ditemukan
-  */
-
-  else if (scheduleBody) {
+    /*
+      Jika .schedule-section tidak ditemukan,
+      coba cari tabel jadwal.
+    */
 
     const table =
-      scheduleBody.closest("table");
+      document.querySelector(".schedule-table");
 
-    if (table) {
+
+    if (table && table.parentElement) {
 
       table.parentElement.insertBefore(
         searchWrapper,
         table
       );
 
-    }
+    } else {
 
+      /*
+        Jika semuanya tidak ditemukan,
+        masukkan ke awal body.
+      */
+
+      document.body.prepend(searchWrapper);
+
+    }
   }
 
+
+  /* =================================================
+     AMBIL ELEMENT SEARCH
+     ================================================= */
 
   scheduleSearchInput =
-    document.getElementById(
-      "scheduleSearch"
-    );
-
+    document.getElementById("scheduleSearch");
 
   const clearButton =
-    document.getElementById(
-      "clearScheduleSearch"
-    );
+    document.getElementById("clearScheduleSearch");
 
 
-  /* ================= SEARCH ================= */
-
-  if (scheduleSearchInput) {
-
-    scheduleSearchInput.addEventListener(
-      "input",
-      function () {
-
-        const keyword =
-          this.value
-            .toLowerCase()
-            .trim();
-
-
-        if (clearButton) {
-
-          clearButton.style.display =
-            keyword
-              ? "block"
-              : "none";
-
-        }
-
-
-        filterAndRenderSchedules();
-
-      }
-    );
-
+  if (!scheduleSearchInput) {
+    console.error("Search jadwal tidak ditemukan.");
+    return;
   }
 
 
-  /* ================= CLEAR ================= */
+  /* =================================================
+     EVENT SEARCH
+     ================================================= */
+
+  scheduleSearchInput.addEventListener(
+    "input",
+    function () {
+
+      const keyword =
+        this.value.trim().toLowerCase();
+
+
+      // Tampilkan tombol X jika ada teks
+      if (clearButton) {
+
+        clearButton.style.display =
+          keyword ? "block" : "none";
+
+      }
+
+
+      filterAndRenderSchedules(keyword);
+
+    }
+  );
+
+
+  /* =================================================
+     EVENT CLEAR
+     ================================================= */
 
   if (clearButton) {
 
@@ -306,53 +261,26 @@ function createScheduleSearch() {
 
         scheduleSearchInput.value = "";
 
-        this.style.display =
-          "none";
+        clearButton.style.display = "none";
 
-        filterAndRenderSchedules();
+        filterAndRenderSchedules("");
 
         scheduleSearchInput.focus();
 
       }
     );
-
   }
-
 }
 
 
 /* =====================================================
-   FILTER SEARCH
+   FILTER SCHEDULE
    ===================================================== */
 
-function filterSchedules(schedules) {
+function filterAndRenderSchedules(keyword) {
 
-  if (!scheduleSearchInput) {
-
-    return schedules;
-
-  }
-
-
-  const keyword =
-    scheduleSearchInput.value
-      .toLowerCase()
-      .trim();
-
-
-  /*
-     Tidak ada pencarian
-  */
-
-  if (!keyword) {
-
-    return schedules;
-
-  }
-
-
-  return schedules.filter(
-    function (schedule) {
+  const filteredSchedules =
+    allSchedules.filter(schedule => {
 
       const hari =
         String(schedule.hari || "")
@@ -367,58 +295,49 @@ function filterSchedules(schedules) {
           .toLowerCase();
 
 
+      /*
+        Search berdasarkan:
+        - Hari
+        - Squad
+        - Lawan
+      */
+
       return (
-
         hari.includes(keyword) ||
-
         squad.includes(keyword) ||
-
         lawan.includes(keyword)
-
       );
 
-    }
-  );
-
-}
+    });
 
 
-/* =====================================================
-   FILTER + RENDER
-   ===================================================== */
+  /* =================================================
+     JIKA TIDAK ADA HASIL
+     ================================================= */
 
-function filterAndRenderSchedules() {
+  if (filteredSchedules.length === 0) {
 
-  const filteredSchedules =
-    filterSchedules(
-      allSchedules
-    );
-
-
-  if (
-    filteredSchedules.length === 0
-  ) {
-
-    showEmpty();
+    showSearchEmpty();
 
     return;
-
   }
 
 
-  emptyState.style.display =
-    "none";
+  /* =================================================
+     ADA HASIL
+     ================================================= */
+
+  if (emptyState) {
+    emptyState.style.display = "none";
+  }
 
 
-  renderDesktop(
-    filteredSchedules
-  );
+  renderDesktop(filteredSchedules);
 
-  renderMobile(
-    filteredSchedules
-  );
-
+  renderMobile(filteredSchedules);
 }
+
+
 /* =====================================================
    LOAD SCHEDULE
    ===================================================== */
@@ -427,9 +346,14 @@ async function loadSchedule() {
 
   try {
 
+    /* ===============================================
+       CEK GOOGLE SHEET
+       =============================================== */
+
     if (
       !SHEET_URL ||
-      SHEET_URL === "PASTE_LINK_GOOGLE_SHEET_DISINI"
+      SHEET_URL ===
+      "PASTE_LINK_GOOGLE_SHEET_DISINI"
     ) {
 
       showError(
@@ -437,12 +361,17 @@ async function loadSchedule() {
       );
 
       return;
-
     }
 
 
+    /* ===============================================
+       FETCH GOOGLE SHEET
+       =============================================== */
+
     const response =
-      await fetch(SHEET_URL);
+      await fetch(
+        SHEET_URL + "&t=" + Date.now()
+      );
 
 
     if (!response.ok) {
@@ -458,6 +387,10 @@ async function loadSchedule() {
       await response.text();
 
 
+    /* ===============================================
+       PARSE CSV
+       =============================================== */
+
     const rows =
       parseCSV(text);
 
@@ -467,77 +400,98 @@ async function loadSchedule() {
       showEmpty();
 
       return;
-
     }
 
 
-    /* Header */
+    /* ===============================================
+       HEADER
+       =============================================== */
 
     const headers =
       rows[0].map(cleanHeader);
 
 
-    /* Convert rows */
+    console.log(
+      "Schedule Headers:",
+      headers
+    );
 
-    const schedules =
-      rows
-        .slice(1)
-        .map(row => {
 
-          const data = {};
+    /* ===============================================
+       BUAT DATA SCHEDULE
+       =============================================== */
 
-          headers.forEach(
-            (header, index) => {
+    const schedules = rows
+      .slice(1)
+      .map(row => {
 
-              data[header] =
-                row[index] || "";
+        const data = {};
 
-            }
-          );
+        headers.forEach(
+          (header, index) => {
 
-          return data;
+            data[header] =
+              row[index] || "";
 
-        })
-        .filter(item => {
+          }
+        );
 
-          return (
-            item.hari ||
-            item.tanggal ||
-            item.jam ||
-            item.squad
-          );
+        return data;
 
-        });
+      })
+      .filter(item => {
 
+        return (
+          item.hari ||
+          item.tanggal ||
+          item.jam ||
+          item.squad ||
+          item.jenis ||
+          item.lawan
+        );
+
+      });
+
+
+    /* ===============================================
+       CEK DATA
+       =============================================== */
 
     if (schedules.length === 0) {
 
       showEmpty();
 
       return;
-
     }
 
 
+    /* ===============================================
+       SIMPAN DATA UNTUK SEARCH
+       =============================================== */
+
     allSchedules = schedules;
 
-    filterAndRenderSchedules();
 
-  }
+    /* ===============================================
+       RENDER AWAL
+       =============================================== */
 
-  catch (error) {
+    filterAndRenderSchedules("");
+
+
+  } catch (error) {
 
     console.error(
       "Schedule Error:",
       error
     );
 
+
     showError(
       "Gagal mengambil data jadwal dari Google Sheet."
     );
 
   }
-
 }
 
 
@@ -547,56 +501,62 @@ async function loadSchedule() {
 
 function renderDesktop(schedules) {
 
+  if (!scheduleBody) {
+    return;
+  }
+
+
   scheduleBody.innerHTML = "";
 
 
-  schedules.forEach(schedule => {
+  schedules.forEach(
+    schedule => {
 
-    const row =
-      document.createElement("tr");
-
-
-    row.innerHTML = `
-
-      <td>
-        ${escapeHTML(schedule.hari)}
-      </td>
-
-      <td>
-        ${escapeHTML(schedule.tanggal)}
-      </td>
-
-      <td>
-        <span class="match-time">
-          ${escapeHTML(schedule.jam)}
-        </span>
-      </td>
-
-      <td>
-        <span class="squad-name">
-          ${escapeHTML(schedule.squad)}
-        </span>
-      </td>
-
-      <td>
-        <span class="match-type">
-          ${escapeHTML(schedule.jenis)}
-        </span>
-      </td>
-
-      <td>
-        <span class="opponent">
-          ${escapeHTML(schedule.lawan)}
-        </span>
-      </td>
-
-    `;
+      const row =
+        document.createElement("tr");
 
 
-    scheduleBody.appendChild(row);
+      row.innerHTML = `
 
-  });
+        <td>
+          ${escapeHTML(schedule.hari)}
+        </td>
 
+        <td>
+          ${escapeHTML(schedule.tanggal)}
+        </td>
+
+        <td>
+          <span class="match-time">
+            ${escapeHTML(schedule.jam)}
+          </span>
+        </td>
+
+        <td>
+          <span class="squad-name">
+            ${escapeHTML(schedule.squad)}
+          </span>
+        </td>
+
+        <td>
+          <span class="match-type">
+            ${escapeHTML(schedule.jenis)}
+          </span>
+        </td>
+
+        <td>
+          <span class="opponent">
+            ${escapeHTML(schedule.lawan)}
+          </span>
+        </td>
+
+      `;
+
+
+      scheduleBody.appendChild(row);
+
+    }
+  );
 }
 
 
@@ -606,104 +566,176 @@ function renderDesktop(schedules) {
 
 function renderMobile(schedules) {
 
+  if (!scheduleMobile) {
+    return;
+  }
+
+
   scheduleMobile.innerHTML = "";
 
 
-  schedules.forEach(schedule => {
+  schedules.forEach(
+    schedule => {
 
-    const card =
-      document.createElement("div");
-
-
-    card.className =
-      "schedule-card";
+      const card =
+        document.createElement("div");
 
 
-    card.innerHTML = `
-
-      <div class="schedule-card-top">
-
-        <span class="card-date">
-
-          ${escapeHTML(schedule.hari)}
-          ·
-          ${escapeHTML(schedule.tanggal)}
-
-        </span>
-
-        <span class="match-type">
-
-          ${escapeHTML(schedule.jenis)}
-
-        </span>
-
-      </div>
+      card.className =
+        "schedule-card";
 
 
-      <div class="match-versus">
+      card.innerHTML = `
 
-        <div class="team">
+        <div class="schedule-card-top">
 
-          ${escapeHTML(schedule.squad)}
+          <span class="card-date">
+
+            ${escapeHTML(schedule.hari)}
+
+            ·
+
+            ${escapeHTML(schedule.tanggal)}
+
+          </span>
+
+
+          <span class="match-type">
+
+            ${escapeHTML(schedule.jenis)}
+
+          </span>
 
         </div>
 
 
-        <div class="vs">
+        <div class="match-versus">
 
-          VS
+          <div class="team">
+
+            ${escapeHTML(schedule.squad)}
+
+          </div>
+
+
+          <div class="vs">
+
+            VS
+
+          </div>
+
+
+          <div class="team">
+
+            ${escapeHTML(schedule.lawan)}
+
+          </div>
 
         </div>
 
 
-        <div class="team">
+        <div class="schedule-card-bottom">
 
-          ${escapeHTML(schedule.lawan)}
+          <span>
+
+            🕒 ${escapeHTML(schedule.jam)}
+
+          </span>
+
+
+          <span>
+
+            ${escapeHTML(schedule.jenis)}
+
+          </span>
 
         </div>
 
-      </div>
+      `;
 
 
-      <div class="schedule-card-bottom">
+      scheduleMobile.appendChild(card);
 
-        <span>
-
-          🕒 ${escapeHTML(schedule.jam)}
-
-        </span>
-
-        <span>
-
-          ${escapeHTML(schedule.jenis)}
-
-        </span>
-
-      </div>
-
-    `;
-
-
-    scheduleMobile.appendChild(card);
-
-  });
-
+    }
+  );
 }
 
 
 /* =====================================================
-   EMPTY
+   EMPTY DATA
    ===================================================== */
 
 function showEmpty() {
 
-  scheduleBody.innerHTML = "";
+  if (scheduleBody) {
+    scheduleBody.innerHTML = "";
+  }
 
-  scheduleMobile.innerHTML = "";
 
-  emptyState.style.display =
-    "block";
+  if (scheduleMobile) {
+    scheduleMobile.innerHTML = "";
+  }
 
+
+  if (emptyState) {
+
+    emptyState.innerHTML = `
+      <div class="empty-message">
+        Belum ada jadwal.
+      </div>
+    `;
+
+    emptyState.style.display = "block";
+  }
+}
+
+
+/* =====================================================
+   EMPTY SEARCH RESULT
+   ===================================================== */
+
+function showSearchEmpty() {
+
+  if (scheduleBody) {
+
+    scheduleBody.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="6"
+          class="loading"
+        >
+
+          Jadwal tidak ditemukan.
+
+        </td>
+
+      </tr>
+
+    `;
+  }
+
+
+  if (scheduleMobile) {
+
+    scheduleMobile.innerHTML = `
+
+      <div class="loading-card">
+
+        Jadwal tidak ditemukan.
+
+      </div>
+
+    `;
+  }
+
+
+  if (emptyState) {
+
+    emptyState.style.display = "none";
+
+  }
 }
 
 
@@ -713,31 +745,39 @@ function showEmpty() {
 
 function showError(message) {
 
-  scheduleBody.innerHTML = `
+  if (scheduleBody) {
 
-    <tr>
+    scheduleBody.innerHTML = `
 
-      <td colspan="6" class="loading">
+      <tr>
 
-        ${message}
+        <td
+          colspan="6"
+          class="loading"
+        >
 
-      </td>
+          ${escapeHTML(message)}
 
-    </tr>
+        </td>
 
-  `;
+      </tr>
+
+    `;
+  }
 
 
-  scheduleMobile.innerHTML = `
+  if (scheduleMobile) {
 
-    <div class="loading-card">
+    scheduleMobile.innerHTML = `
 
-      ${message}
+      <div class="loading-card">
 
-    </div>
+        ${escapeHTML(message)}
 
-  `;
+      </div>
 
+    `;
+  }
 }
 
 
@@ -749,16 +789,30 @@ function escapeHTML(value) {
 
   return String(value || "")
 
-    .replace(/&/g, "&amp;")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
 
-    .replace(/</g, "&lt;")
+    .replace(
+      /</g,
+      "&lt;"
+    )
 
-    .replace(/>/g, "&gt;")
+    .replace(
+      />/g,
+      "&gt;"
+    )
 
-    .replace(/"/g, "&quot;")
+    .replace(
+      /"/g,
+      "&quot;"
+    )
 
-    .replace(/'/g, "&#039;");
-
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 }
 
 
@@ -779,7 +833,9 @@ if (menuToggle && navMenu) {
     "click",
     () => {
 
-      navMenu.classList.toggle("show");
+      navMenu.classList.toggle(
+        "show"
+      );
 
     }
   );
@@ -790,5 +846,7 @@ if (menuToggle && navMenu) {
 /* =====================================================
    START
    ===================================================== */
+
 createScheduleSearch();
+
 loadSchedule();
