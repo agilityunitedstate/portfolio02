@@ -803,6 +803,7 @@ function renderAchievements() {
                             loading="lazy"
 
                             onerror="
+                                this.onerror=null;
                                 console.error('Gambar gagal dimuat:', this.src);
                             "
 
