@@ -2,9 +2,10 @@
    AGILITY UNITED - RANKING SYSTEM
    ========================================================= */
 
+
 /* =========================================================
-   GOOGLE SHEET
-   ========================================================= */
+   GOOGLE SHEET URL
+========================================================= */
 
 const PLAYER_SHEET_URL =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQurMK3b5wBqlKc0RVJzESByiHS2zTs9dBRkqS6dKMpcfblYHsmDEXQ_exobsZOTBNRz5E0_o6aDz4d/pub?output=csv";
@@ -14,8 +15,8 @@ const TEAM_SHEET_URL =
 
 
 /* =========================================================
-   DATA
-   ========================================================= */
+   GLOBAL DATA
+========================================================= */
 
 let playerData = [];
 let teamData = [];
@@ -24,19 +25,8 @@ let currentPlayerStat = "scorer";
 
 
 /* =========================================================
-   MEDAL
-   ========================================================= */
-
-const medals = {
-    1: "🥇",
-    2: "🥈",
-    3: "🥉"
-};
-
-
-/* =========================================================
    ELEMENTS
-   ========================================================= */
+========================================================= */
 
 const playerRankingBody =
     document.getElementById("playerRankingBody");
@@ -50,6 +40,12 @@ const playerPodium =
 const teamPodium =
     document.getElementById("teamPodium");
 
+const rankingTable =
+    document.getElementById("rankingTable");
+
+const teamRankingTable =
+    document.getElementById("teamRankingTable");
+
 const playerEmpty =
     document.getElementById("playerEmpty");
 
@@ -59,7 +55,7 @@ const teamEmpty =
 
 /* =========================================================
    CSV PARSER
-   ========================================================= */
+========================================================= */
 
 function parseCSV(text) {
 
@@ -67,33 +63,55 @@ function parseCSV(text) {
 
     let row = [];
     let value = "";
+
     let insideQuotes = false;
+
 
     for (let i = 0; i < text.length; i++) {
 
         const char = text[i];
         const nextChar = text[i + 1];
 
+
+        /* Double quote di dalam quoted value */
+
         if (
             char === '"' &&
             insideQuotes &&
             nextChar === '"'
         ) {
+
             value += '"';
+
             i++;
+
         }
 
+
+        /* Awal / akhir quoted value */
+
         else if (char === '"') {
+
             insideQuotes = !insideQuotes;
+
         }
+
+
+        /* Pemisah kolom */
 
         else if (
             char === "," &&
             !insideQuotes
         ) {
+
             row.push(value.trim());
+
             value = "";
+
         }
+
+
+        /* Baris baru */
 
         else if (
             (char === "\n" || char === "\r") &&
@@ -104,27 +122,43 @@ function parseCSV(text) {
                 char === "\r" &&
                 nextChar === "\n"
             ) {
+
                 i++;
+
             }
+
 
             row.push(value.trim());
 
+
             if (
-                row.some(
-                    cell => cell !== ""
-                )
+                row.some(cell => cell !== "")
             ) {
+
                 rows.push(row);
+
             }
 
+
             row = [];
+
             value = "";
+
         }
 
+
+        /* Karakter biasa */
+
         else {
+
             value += char;
+
         }
+
     }
+
+
+    /* Sisa data */
 
     if (
         value !== "" ||
@@ -133,111 +167,143 @@ function parseCSV(text) {
 
         row.push(value.trim());
 
+
         if (
-            row.some(
-                cell => cell !== ""
-            )
+            row.some(cell => cell !== "")
         ) {
+
             rows.push(row);
+
         }
+
     }
 
+
     return rows;
+
 }
 
 
 /* =========================================================
-   CSV TO OBJECT
-   ========================================================= */
+   CONVERT CSV TO OBJECT
+========================================================= */
 
 function csvToObjects(text) {
 
     const rows = parseCSV(text);
 
+
     if (rows.length < 2) {
+
         return [];
+
     }
+
 
     const headers =
         rows[0].map(header =>
+
             header
                 .trim()
                 .toLowerCase()
                 .replace(/\s+/g, "_")
+
         );
 
-    return rows.slice(1).map(row => {
 
-        const obj = {};
+    return rows
+        .slice(1)
+        .map(row => {
 
-        headers.forEach(
-            (header, index) => {
+            const obj = {};
 
-                obj[header] =
-                    row[index]
-                        ? row[index].trim()
-                        : "";
 
-            }
-        );
+            headers.forEach(
+                (header, index) => {
 
-        return obj;
+                    obj[header] =
+                        row[index]
+                            ? row[index].trim()
+                            : "";
 
-    });
+                }
+            );
+
+
+            return obj;
+
+        });
+
 }
 
 
 /* =========================================================
-   NUMBER
-   ========================================================= */
+   NUMBER FORMAT
+========================================================= */
 
 function toNumber(value) {
 
     if (
         value === null ||
-        value === undefined ||
-        value === ""
+        value === undefined
     ) {
+
         return 0;
+
     }
 
+
+    const number =
+        String(value)
+            .replace(/,/g, "")
+            .replace(/\./g, "");
+
+
     const result =
-        Number(
-            String(value)
-                .replace(/,/g, "")
-                .replace(/\./g, "")
-        );
+        Number(number);
+
 
     return isNaN(result)
         ? 0
         : result;
+
 }
 
 
 /* =========================================================
    FETCH CSV
-   ========================================================= */
+========================================================= */
 
 async function fetchCSV(url) {
 
-    if (!url) {
+    if (
+        !url ||
+        url.includes("PASTE_URL") ||
+        url.includes("DI_SINI")
+    ) {
+
         throw new Error(
             "Google Sheet URL belum dimasukkan."
         );
+
     }
+
 
     const separator =
         url.includes("?")
             ? "&"
             : "?";
 
+
+    const cacheBuster =
+        `${separator}t=${Date.now()}`;
+
+
     const response =
         await fetch(
-            url +
-            separator +
-            "t=" +
-            Date.now()
+            url + cacheBuster
         );
+
 
     if (!response.ok) {
 
@@ -247,43 +313,70 @@ async function fetchCSV(url) {
 
     }
 
+
     const text =
         await response.text();
 
+
     return csvToObjects(text);
+
 }
 
 
 /* =========================================================
-   LOAD DATA
-   ========================================================= */
+   LOAD ALL DATA
+========================================================= */
 
 async function loadRankingData() {
 
     showLoading();
 
+
     try {
 
-        const [players, teams] =
+        const [
+            players,
+            teams
+        ] =
             await Promise.all([
+
                 fetchCSV(
                     PLAYER_SHEET_URL
                 ),
+
                 fetchCSV(
                     TEAM_SHEET_URL
                 )
+
             ]);
 
+
         playerData = players;
+
         teamData = teams;
+
+
+        console.log(
+            "Player Data:",
+            playerData
+        );
+
+
+        console.log(
+            "Team Data:",
+            teamData
+        );
+
 
         renderPlayerRanking(
             currentPlayerStat
         );
 
+
         renderTeamRanking();
 
     }
+
 
     catch (error) {
 
@@ -292,17 +385,68 @@ async function loadRankingData() {
             error
         );
 
+
         showError(
             "Data ranking tidak dapat dimuat. Periksa URL Google Sheet."
         );
 
     }
+
 }
 
 
 /* =========================================================
+   PLAYER STAT BUTTON
+========================================================= */
+
+const playerStatButtons =
+    document.querySelectorAll(
+        ".stat-tab"
+    );
+
+
+playerStatButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+
+                playerStatButtons.forEach(
+                    btn => {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                this.classList.add(
+                    "active"
+                );
+
+
+                currentPlayerStat =
+                    this.dataset.stat;
+
+
+                renderPlayerRanking(
+                    currentPlayerStat
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
    PLAYER RANKING
-   ========================================================= */
+========================================================= */
 
 function renderPlayerRanking(stat) {
 
@@ -311,10 +455,12 @@ function renderPlayerRanking(stat) {
             "rankingTitle"
         );
 
+
     const statBadge =
         document.getElementById(
             "statBadge"
         );
+
 
     const statNames = {
 
@@ -332,6 +478,7 @@ function renderPlayerRanking(stat) {
 
     };
 
+
     const statBadges = {
 
         scorer:
@@ -348,6 +495,7 @@ function renderPlayerRanking(stat) {
 
     };
 
+
     if (rankingTitle) {
 
         rankingTitle.textContent =
@@ -355,6 +503,7 @@ function renderPlayerRanking(stat) {
             "TOP SCORER";
 
     }
+
 
     if (statBadge) {
 
@@ -364,51 +513,72 @@ function renderPlayerRanking(stat) {
 
     }
 
+
     if (!playerRankingBody) {
+
         return;
+
     }
 
-    const sortedPlayers =
+
+    let sortedPlayers =
+
         [...playerData]
+
             .filter(
                 player =>
+
                     player.nickname &&
                     player.nickname.trim() !== ""
+
             )
-            .map(player => ({
 
-                nickname:
-                    player.nickname,
+            .map(
+                player => {
 
-                division:
-                    player.division || "-",
+                    return {
 
-                scorer:
-                    toNumber(
-                        player.scorer
-                    ),
+                        nickname:
+                            player.nickname,
 
-                assist:
-                    toNumber(
-                        player.assist
-                    ),
+                        division:
+                            player.division ||
+                            "-",
 
-                defend:
-                    toNumber(
-                        player.defend
-                    ),
+                        scorer:
+                            toNumber(
+                                player.scorer
+                            ),
 
-                save:
-                    toNumber(
-                        player.save
-                    )
+                        assist:
+                            toNumber(
+                                player.assist
+                            ),
 
-            }));
+                        defend:
+                            toNumber(
+                                player.defend
+                            ),
+
+                        save:
+                            toNumber(
+                                player.save
+                            )
+
+                    };
+
+                }
+            );
+
 
     sortedPlayers.sort(
         (a, b) =>
-            b[stat] - a[stat]
+
+            b[stat] -
+            a[stat]
+
     );
+
 
     if (
         sortedPlayers.length === 0
@@ -417,32 +587,39 @@ function renderPlayerRanking(stat) {
         showPlayerEmpty();
 
         return;
+
     }
 
+
     hidePlayerEmpty();
+
 
     renderPlayerTable(
         sortedPlayers,
         stat
     );
 
+
     renderPlayerPodium(
         sortedPlayers,
         stat
     );
+
 }
 
 
 /* =========================================================
    PLAYER TABLE
-   ========================================================= */
+========================================================= */
 
 function renderPlayerTable(
     players,
     stat
 ) {
 
-    playerRankingBody.innerHTML = "";
+    playerRankingBody.innerHTML =
+        "";
+
 
     players.forEach(
         (player, index) => {
@@ -450,59 +627,89 @@ function renderPlayerTable(
             const rank =
                 index + 1;
 
-            let rankClass = "";
-
-            if (rank === 1) {
-                rankClass =
-                    "rank-first";
-            }
-
-            else if (rank === 2) {
-                rankClass =
-                    "rank-second";
-            }
-
-            else if (rank === 3) {
-                rankClass =
-                    "rank-third";
-            }
 
             const row =
                 document.createElement(
                     "tr"
                 );
 
+
+            let rankClass = "";
+
+
+            if (rank === 1) {
+
+                rankClass =
+                    "rank-first";
+
+            }
+
+            else if (rank === 2) {
+
+                rankClass =
+                    "rank-second";
+
+            }
+
+            else if (rank === 3) {
+
+                rankClass =
+                    "rank-third";
+
+            }
+
+
             row.innerHTML = `
 
                 <td>
-                    <span class="rank-number ${rankClass}">
+
+                    <span
+                        class="rank-number ${rankClass}"
+                    >
                         ${rank}
                     </span>
+
                 </td>
 
+
                 <td>
+
                     <div class="player-name">
+
                         ${escapeHTML(
                             player.nickname
                         )}
+
                     </div>
+
                 </td>
 
+
                 <td>
+
                     <span class="division-name">
+
                         ${escapeHTML(
                             player.division
                         )}
+
                     </span>
+
                 </td>
 
+
                 <td>
+
                     <strong class="stat-value">
+
                         ${player[stat]}
+
                     </strong>
+
                 </td>
 
             `;
+
 
             playerRankingBody.appendChild(
                 row
@@ -510,12 +717,19 @@ function renderPlayerTable(
 
         }
     );
+
 }
 
 
 /* =========================================================
    PLAYER PODIUM
-   ========================================================= */
+   URUTAN DATA NORMAL:
+   1 - 2 - 3
+
+   CSS MOBILE YANG MENGATUR:
+   1 DI ATAS
+   2 & 3 DI BAWAH
+========================================================= */
 
 function renderPlayerPodium(
     players,
@@ -523,24 +737,19 @@ function renderPlayerPodium(
 ) {
 
     if (!playerPodium) {
+
         return;
+
     }
 
-    playerPodium.innerHTML = "";
+
+    playerPodium.innerHTML =
+        "";
+
 
     const topThree =
         players.slice(0, 3);
 
-
-    /* =========================================
-       URUTAN DATA:
-       1 → 2 → 3
-
-       CSS yang mengatur posisi:
-       Desktop = 2 | 1 | 3
-       Mobile  = 1
-                  2 | 3
-    ========================================= */
 
     topThree.forEach(
         (player, index) => {
@@ -548,46 +757,52 @@ function renderPlayerPodium(
             const position =
                 index + 1;
 
+
             const card =
                 document.createElement(
                     "div"
                 );
 
+
             card.className =
-                `podium-card podium-${position}`;
+                `podium-card podium-${position} rank-${position}`;
 
 
             card.innerHTML = `
 
                 <div class="podium-rank">
 
-                    <span class="podium-medal">
-                        ${medals[position]}
-                    </span>
-
-                    <span class="podium-number">
-                        ${position}
-                    </span>
+                    ${position}
 
                 </div>
 
+
                 <div class="podium-player">
+
                     ${escapeHTML(
                         player.nickname
                     )}
+
                 </div>
 
+
                 <div class="podium-division">
+
                     ${escapeHTML(
                         player.division
                     )}
+
                 </div>
 
+
                 <div class="podium-stat">
+
                     ${player[stat]}
+
                 </div>
 
             `;
+
 
             playerPodium.appendChild(
                 card
@@ -595,74 +810,105 @@ function renderPlayerPodium(
 
         }
     );
+
 }
 
 
 /* =========================================================
    TEAM RANKING
-   ========================================================= */
+========================================================= */
 
 function renderTeamRanking() {
 
     if (!teamRankingBody) {
+
         return;
+
     }
 
-    const teams =
+
+    let teams =
+
         [...teamData]
+
             .filter(
                 team =>
+
                     team.team &&
                     team.team.trim() !== ""
+
             )
-            .map(team => ({
 
-                team:
-                    team.team,
+            .map(
+                team => {
 
-                match:
-                    toNumber(
-                        team.match
-                    ),
+                    return {
 
-                point:
-                    toNumber(
-                        team.point
-                    )
+                        team:
+                            team.team,
 
-            }));
+                        match:
+                            toNumber(
+                                team.match
+                            ),
+
+                        point:
+                            toNumber(
+                                team.point
+                            )
+
+                    };
+
+                }
+            );
+
 
     teams.sort(
         (a, b) =>
-            b.point - a.point
+
+            b.point -
+            a.point
+
     );
 
-    if (teams.length === 0) {
+
+    if (
+        teams.length === 0
+    ) {
 
         showTeamEmpty();
 
         return;
+
     }
 
+
     hideTeamEmpty();
+
 
     renderTeamTable(
         teams
     );
 
+
     renderTeamPodium(
         teams
     );
+
 }
 
 
 /* =========================================================
    TEAM TABLE
-   ========================================================= */
+========================================================= */
 
-function renderTeamTable(teams) {
+function renderTeamTable(
+    teams
+) {
 
-    teamRankingBody.innerHTML = "";
+    teamRankingBody.innerHTML =
+        "";
+
 
     teams.forEach(
         (team, index) => {
@@ -670,55 +916,83 @@ function renderTeamTable(teams) {
             const rank =
                 index + 1;
 
-            let rankClass = "";
-
-            if (rank === 1) {
-                rankClass =
-                    "rank-first";
-            }
-
-            else if (rank === 2) {
-                rankClass =
-                    "rank-second";
-            }
-
-            else if (rank === 3) {
-                rankClass =
-                    "rank-third";
-            }
 
             const row =
                 document.createElement(
                     "tr"
                 );
 
+
+            let rankClass = "";
+
+
+            if (rank === 1) {
+
+                rankClass =
+                    "rank-first";
+
+            }
+
+            else if (rank === 2) {
+
+                rankClass =
+                    "rank-second";
+
+            }
+
+            else if (rank === 3) {
+
+                rankClass =
+                    "rank-third";
+
+            }
+
+
             row.innerHTML = `
 
                 <td>
-                    <span class="rank-number ${rankClass}">
+
+                    <span
+                        class="rank-number ${rankClass}"
+                    >
                         ${rank}
                     </span>
+
                 </td>
 
+
                 <td>
+
                     <div class="team-name">
+
                         ${escapeHTML(
                             team.team
                         )}
+
                     </div>
+
                 </td>
 
+
                 <td>
+
                     ${team.match}
+
                 </td>
 
+
                 <td>
+
                     <strong class="stat-value">
+
                         ${team.point}
+
                     </strong>
+
                 </td>
 
             `;
+
 
             teamRankingBody.appendChild(
                 row
@@ -726,29 +1000,39 @@ function renderTeamTable(teams) {
 
         }
     );
+
 }
 
 
 /* =========================================================
    TEAM PODIUM
-   ========================================================= */
+   URUTAN DATA NORMAL:
+   1 - 2 - 3
 
-function renderTeamPodium(teams) {
+   MOBILE:
+             1
+
+         2       3
+========================================================= */
+
+function renderTeamPodium(
+    teams
+) {
 
     if (!teamPodium) {
+
         return;
+
     }
 
-    teamPodium.innerHTML = "";
+
+    teamPodium.innerHTML =
+        "";
+
 
     const topThree =
         teams.slice(0, 3);
 
-
-    /* =========================================
-       URUTAN DATA:
-       1 → 2 → 3
-    ========================================= */
 
     topThree.forEach(
         (team, index) => {
@@ -756,40 +1040,43 @@ function renderTeamPodium(teams) {
             const position =
                 index + 1;
 
+
             const card =
                 document.createElement(
                     "div"
                 );
 
+
             card.className =
-                `podium-card podium-${position}`;
+                `podium-card podium-${position} rank-${position}`;
 
 
             card.innerHTML = `
 
                 <div class="podium-rank">
 
-                    <span class="podium-medal">
-                        ${medals[position]}
-                    </span>
-
-                    <span class="podium-number">
-                        ${position}
-                    </span>
+                    ${position}
 
                 </div>
 
+
                 <div class="podium-team">
+
                     ${escapeHTML(
                         team.team
                     )}
+
                 </div>
 
+
                 <div class="podium-stat">
+
                     ${team.point} PTS
+
                 </div>
 
             `;
+
 
             teamPodium.appendChild(
                 card
@@ -797,68 +1084,97 @@ function renderTeamPodium(teams) {
 
         }
     );
+
 }
 
 
 /* =========================================================
-   EMPTY
-   ========================================================= */
+   EMPTY STATE
+========================================================= */
 
 function showPlayerEmpty() {
 
     if (playerRankingBody) {
-        playerRankingBody.innerHTML = "";
+
+        playerRankingBody.innerHTML =
+            "";
+
     }
+
 
     if (playerPodium) {
-        playerPodium.innerHTML = "";
+
+        playerPodium.innerHTML =
+            "";
+
     }
 
+
     if (playerEmpty) {
+
         playerEmpty.style.display =
             "block";
+
     }
+
 }
 
 
 function hidePlayerEmpty() {
 
     if (playerEmpty) {
+
         playerEmpty.style.display =
             "none";
+
     }
+
 }
 
 
 function showTeamEmpty() {
 
     if (teamRankingBody) {
-        teamRankingBody.innerHTML = "";
+
+        teamRankingBody.innerHTML =
+            "";
+
     }
+
 
     if (teamPodium) {
-        teamPodium.innerHTML = "";
+
+        teamPodium.innerHTML =
+            "";
+
     }
 
+
     if (teamEmpty) {
+
         teamEmpty.style.display =
             "block";
+
     }
+
 }
 
 
 function hideTeamEmpty() {
 
     if (teamEmpty) {
+
         teamEmpty.style.display =
             "none";
+
     }
+
 }
 
 
 /* =========================================================
    LOADING
-   ========================================================= */
+========================================================= */
 
 function showLoading() {
 
@@ -867,38 +1183,50 @@ function showLoading() {
         playerRankingBody.innerHTML = `
 
             <tr>
+
                 <td
                     colspan="4"
                     class="loading"
                 >
+
                     Loading ranking...
+
                 </td>
+
             </tr>
 
         `;
+
     }
+
 
     if (teamRankingBody) {
 
         teamRankingBody.innerHTML = `
 
             <tr>
+
                 <td
                     colspan="4"
                     class="loading"
                 >
+
                     Loading ranking...
+
                 </td>
+
             </tr>
 
         `;
+
     }
+
 }
 
 
 /* =========================================================
    ERROR
-   ========================================================= */
+========================================================= */
 
 function showError(message) {
 
@@ -907,78 +1235,102 @@ function showError(message) {
         playerRankingBody.innerHTML = `
 
             <tr>
+
                 <td
                     colspan="4"
                     class="error"
                 >
-                    ${escapeHTML(message)}
+
+                    ${escapeHTML(
+                        message
+                    )}
+
                 </td>
+
             </tr>
 
         `;
+
     }
+
 
     if (teamRankingBody) {
 
         teamRankingBody.innerHTML = `
 
             <tr>
+
                 <td
                     colspan="4"
                     class="error"
                 >
-                    ${escapeHTML(message)}
+
+                    ${escapeHTML(
+                        message
+                    )}
+
                 </td>
+
             </tr>
 
         `;
+
     }
+
 }
 
 
 /* =========================================================
    ESCAPE HTML
-   ========================================================= */
+========================================================= */
 
 function escapeHTML(value) {
 
     return String(value)
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
         );
+
 }
 
 
 /* =========================================================
-   MAIN TAB
-   ========================================================= */
+   TOP PLAYER / TEAM SWITCH
+========================================================= */
 
 const rankingMainButtons =
     document.querySelectorAll(
         ".main-tab"
     );
 
+
 const playerSection =
     document.getElementById(
         "playerRanking"
     );
+
 
 const teamSection =
     document.getElementById(
@@ -993,51 +1345,68 @@ rankingMainButtons.forEach(
             "click",
             function () {
 
+
                 rankingMainButtons.forEach(
-                    btn =>
+                    btn => {
+
                         btn.classList.remove(
                             "active"
-                        )
+                        );
+
+                    }
                 );
+
 
                 this.classList.add(
                     "active"
                 );
 
+
                 const category =
                     this.dataset.category;
 
+
                 if (
-                    category ===
-                    "players"
+                    category === "players"
                 ) {
 
                     if (playerSection) {
+
                         playerSection.style.display =
                             "block";
+
                     }
 
+
                     if (teamSection) {
+
                         teamSection.style.display =
                             "none";
+
                     }
 
                 }
 
+
                 else if (
-                    category ===
-                    "teams"
+                    category === "teams"
                 ) {
 
                     if (playerSection) {
+
                         playerSection.style.display =
                             "none";
+
                     }
 
+
                     if (teamSection) {
+
                         teamSection.style.display =
                             "block";
+
                     }
+
 
                     renderTeamRanking();
 
@@ -1051,55 +1420,14 @@ rankingMainButtons.forEach(
 
 
 /* =========================================================
-   PLAYER STAT TAB
-   ========================================================= */
-
-const playerStatButtons =
-    document.querySelectorAll(
-        ".stat-tab"
-    );
-
-
-playerStatButtons.forEach(
-    button => {
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                playerStatButtons.forEach(
-                    btn =>
-                        btn.classList.remove(
-                            "active"
-                        )
-                );
-
-                this.classList.add(
-                    "active"
-                );
-
-                currentPlayerStat =
-                    this.dataset.stat;
-
-                renderPlayerRanking(
-                    currentPlayerStat
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   MOBILE NAV
-   ========================================================= */
+   MOBILE NAVIGATION
+========================================================= */
 
 const menuToggle =
     document.getElementById(
         "menuToggle"
     );
+
 
 const navMenu =
     document.getElementById(
@@ -1126,12 +1454,17 @@ if (
 }
 
 
+/* =========================================================
+   CLOSE MOBILE MENU AFTER CLICK
+========================================================= */
+
 if (navMenu) {
 
     const navLinks =
         navMenu.querySelectorAll(
             "a"
         );
+
 
     navLinks.forEach(
         link => {
@@ -1149,19 +1482,21 @@ if (navMenu) {
 
         }
     );
+
 }
 
 
 /* =========================================================
-   START
-   ========================================================= */
+   INITIAL LOAD
+========================================================= */
 
 loadRankingData();
 
 
 /* =========================================================
    AUTO REFRESH
-   ========================================================= */
+   60 SECONDS
+========================================================= */
 
 setInterval(
     () => {
