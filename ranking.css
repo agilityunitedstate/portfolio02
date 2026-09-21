@@ -583,30 +583,20 @@ body {
 ===================================================== */
 
 .podium-rank {
-    width: 58px;
-    height: 58px;
+    width: 65px;
+    height: 65px;
 
     margin: 0 auto 14px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     border-radius: 50%;
 
-    font-family: "Anton", sans-serif;
+    background: #151515;
 
-    font-size: 30px;
-    line-height: 1;
-
-    color: #ffffff;
-
-    background: #252525;
-
-    border:
-        2px solid
-        rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.08);
 
     position: relative;
 
@@ -615,86 +605,37 @@ body {
 
 
 /* =====================================================
-   MEDAL
+   JUARA 1 - GOLD
 ===================================================== */
 
-/*
-   Medal sekarang ditentukan berdasarkan urutan card:
+.podium-card.rank-1 .podium-rank {
+    background:
+        linear-gradient(
+            145deg,
+            #3a2d08,
+            #17130a
+        );
 
-   Card 1 = 🥇
-   Card 2 = 🥈
-   Card 3 = 🥉
+    border:
+        2px solid
+        rgba(255,216,77,.35);
 
-   Tidak menggunakan .first untuk menentukan medal,
-   dan tidak menggunakan sistem medal lama.
-*/
+    box-shadow:
+        0 0 30px
+        rgba(255,216,77,.12);
+}
 
-.podium-rank::before {
-    position: absolute;
-
-    top: -17px;
-    right: -13px;
-
-    width: 30px;
-    height: 30px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
+.podium-card.rank-1 .podium-rank::before {
+    content: "🥇";
 
     font-family:
         "Segoe UI Emoji",
         "Apple Color Emoji",
         sans-serif;
 
-    font-size: 18px;
+    font-size: 38px;
 
-    background: #151515;
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-
-    box-shadow:
-        0 5px 15px
-        rgba(0,0,0,.4);
-
-    z-index: 5;
-}
-
-
-/* =====================================================
-   JUARA 1 - GOLD
-===================================================== */
-
-.podium-card:nth-child(1) .podium-rank {
-    background:
-        linear-gradient(
-            145deg,
-            #ff6a2c,
-            #b8380f
-        );
-
-    border:
-        2px solid
-        rgba(255,255,255,.25);
-
-    box-shadow:
-        0 0 35px
-        rgba(255,90,31,.3);
-}
-
-.podium-card:nth-child(1) .podium-rank::before {
-    content: "🥇";
-
-    background:
-        rgba(255,216,77,.12);
-
-    border-color:
-        rgba(255,216,77,.3);
+    line-height: 1;
 }
 
 
@@ -702,20 +643,30 @@ body {
    JUARA 2 - SILVER
 ===================================================== */
 
-.podium-card:nth-child(2) .podium-rank {
+.podium-card.rank-2 .podium-rank {
     background:
         linear-gradient(
             145deg,
-            #555555,
-            #242424
+            #333333,
+            #181818
         );
 
-    border-color:
+    border:
+        2px solid
         rgba(220,220,220,.3);
 }
 
-.podium-card:nth-child(2) .podium-rank::before {
+.podium-card.rank-2 .podium-rank::before {
     content: "🥈";
+
+    font-family:
+        "Segoe UI Emoji",
+        "Apple Color Emoji",
+        sans-serif;
+
+    font-size: 38px;
+
+    line-height: 1;
 }
 
 
@@ -723,22 +674,31 @@ body {
    JUARA 3 - BRONZE
 ===================================================== */
 
-.podium-card:nth-child(3) .podium-rank {
+.podium-card.rank-3 .podium-rank {
     background:
         linear-gradient(
             145deg,
-            #70452f,
-            #2a211d
+            #38251b,
+            #18120f
         );
 
-    border-color:
+    border:
+        2px solid
         rgba(205,139,90,.35);
 }
 
-.podium-card:nth-child(3) .podium-rank::before {
+.podium-card.rank-3 .podium-rank::before {
     content: "🥉";
-}
 
+    font-family:
+        "Segoe UI Emoji",
+        "Apple Color Emoji",
+        sans-serif;
+
+    font-size: 38px;
+
+    line-height: 1;
+}
 
 /* =====================================================
    PODIUM NAME
