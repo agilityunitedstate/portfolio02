@@ -25,7 +25,11 @@ const scheduleMobile =
 
 const emptyState =
   document.getElementById("emptyState");
+/* ================= SEARCH ================= */
 
+let allSchedules = [];
+
+let scheduleSearchInput = null;
 
 /* =====================================================
    CSV PARSER
@@ -143,7 +147,278 @@ function cleanHeader(header) {
 
 }
 
+/* =====================================================
+   SEARCH BOX
+   Cari berdasarkan:
+   - Hari
+   - Squad
+   - Lawan
+   ===================================================== */
 
+function createScheduleSearch() {
+
+  const searchWrapper =
+    document.createElement("div");
+
+  searchWrapper.className =
+    "schedule-search-wrapper";
+
+  searchWrapper.innerHTML = `
+
+    <div class="schedule-search">
+
+      <span class="schedule-search-icon">
+        🔍
+      </span>
+
+      <input
+        type="text"
+        id="scheduleSearch"
+        placeholder="Cari squad, lawan, atau hari..."
+        autocomplete="off"
+      >
+
+      <button
+        type="button"
+        id="clearScheduleSearch"
+        class="clear-search"
+        style="display:none;"
+      >
+        ×
+      </button>
+
+    </div>
+
+  `;
+
+
+  /*
+     Cari section jadwal
+  */
+
+  const scheduleSection =
+    document.querySelector(
+      ".schedule-section"
+    );
+
+
+  if (scheduleSection) {
+
+    const heading =
+      scheduleSection.querySelector(
+        ".section-heading"
+      );
+
+
+    if (heading) {
+
+      heading.insertAdjacentElement(
+        "afterend",
+        searchWrapper
+      );
+
+    }
+
+    else {
+
+      scheduleSection.prepend(
+        searchWrapper
+      );
+
+    }
+
+  }
+
+
+  /*
+     Jika class schedule-section
+     tidak ditemukan
+  */
+
+  else if (scheduleBody) {
+
+    const table =
+      scheduleBody.closest("table");
+
+    if (table) {
+
+      table.parentElement.insertBefore(
+        searchWrapper,
+        table
+      );
+
+    }
+
+  }
+
+
+  scheduleSearchInput =
+    document.getElementById(
+      "scheduleSearch"
+    );
+
+
+  const clearButton =
+    document.getElementById(
+      "clearScheduleSearch"
+    );
+
+
+  /* ================= SEARCH ================= */
+
+  if (scheduleSearchInput) {
+
+    scheduleSearchInput.addEventListener(
+      "input",
+      function () {
+
+        const keyword =
+          this.value
+            .toLowerCase()
+            .trim();
+
+
+        if (clearButton) {
+
+          clearButton.style.display =
+            keyword
+              ? "block"
+              : "none";
+
+        }
+
+
+        filterAndRenderSchedules();
+
+      }
+    );
+
+  }
+
+
+  /* ================= CLEAR ================= */
+
+  if (clearButton) {
+
+    clearButton.addEventListener(
+      "click",
+      function () {
+
+        scheduleSearchInput.value = "";
+
+        this.style.display =
+          "none";
+
+        filterAndRenderSchedules();
+
+        scheduleSearchInput.focus();
+
+      }
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   FILTER SEARCH
+   ===================================================== */
+
+function filterSchedules(schedules) {
+
+  if (!scheduleSearchInput) {
+
+    return schedules;
+
+  }
+
+
+  const keyword =
+    scheduleSearchInput.value
+      .toLowerCase()
+      .trim();
+
+
+  /*
+     Tidak ada pencarian
+  */
+
+  if (!keyword) {
+
+    return schedules;
+
+  }
+
+
+  return schedules.filter(
+    function (schedule) {
+
+      const hari =
+        String(schedule.hari || "")
+          .toLowerCase();
+
+      const squad =
+        String(schedule.squad || "")
+          .toLowerCase();
+
+      const lawan =
+        String(schedule.lawan || "")
+          .toLowerCase();
+
+
+      return (
+
+        hari.includes(keyword) ||
+
+        squad.includes(keyword) ||
+
+        lawan.includes(keyword)
+
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   FILTER + RENDER
+   ===================================================== */
+
+function filterAndRenderSchedules() {
+
+  const filteredSchedules =
+    filterSchedules(
+      allSchedules
+    );
+
+
+  if (
+    filteredSchedules.length === 0
+  ) {
+
+    showEmpty();
+
+    return;
+
+  }
+
+
+  emptyState.style.display =
+    "none";
+
+
+  renderDesktop(
+    filteredSchedules
+  );
+
+  renderMobile(
+    filteredSchedules
+  );
+
+}
 /* =====================================================
    LOAD SCHEDULE
    ===================================================== */
@@ -244,9 +519,9 @@ async function loadSchedule() {
     }
 
 
-    renderDesktop(schedules);
+    allSchedules = schedules;
 
-    renderMobile(schedules);
+    filterAndRenderSchedules();
 
   }
 
@@ -515,5 +790,5 @@ if (menuToggle && navMenu) {
 /* =====================================================
    START
    ===================================================== */
-
+createScheduleSearch();
 loadSchedule();
