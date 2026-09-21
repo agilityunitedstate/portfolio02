@@ -111,9 +111,8 @@ function convertDriveImageURL(url) {
 
     url = String(url).trim();
 
-
     /* =====================================
-       GOOGLE DRIVE /file/d/FILE_ID
+       GOOGLE DRIVE /file/d/FILE_ID/view
     ===================================== */
 
     let match = url.match(
@@ -122,10 +121,9 @@ function convertDriveImageURL(url) {
 
     if (match) {
 
-        return (
-            "https://drive.google.com/uc?export=view&id=" +
-            match[1]
-        );
+        const fileId = match[1];
+
+        return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1200`;
 
     }
 
@@ -140,25 +138,26 @@ function convertDriveImageURL(url) {
 
     if (match) {
 
-        return (
-            "https://drive.google.com/uc?export=view&id=" +
-            match[1]
-        );
+        const fileId = match[1];
+
+        return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1200`;
 
     }
 
 
     /* =====================================
-       GOOGLE DRIVE uc?export=view&id=...
+       GOOGLE DRIVE uc?export=view&id=FILE_ID
     ===================================== */
 
-    if (
-        url.includes(
-            "drive.google.com/uc"
-        )
-    ) {
+    match = url.match(
+        /drive\.google\.com\/uc\?(?:[^#]*&)?id=([^&]+)/
+    );
 
-        return url;
+    if (match) {
+
+        const fileId = match[1];
+
+        return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1200`;
 
     }
 
@@ -170,7 +169,6 @@ function convertDriveImageURL(url) {
     return url;
 
 }
-
 
 /* =========================================
    FIND COLUMN
