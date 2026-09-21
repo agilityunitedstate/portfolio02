@@ -804,7 +804,7 @@ function renderAchievements() {
 
                             onerror="
                                 this.onerror=null;
-                                console.error('Gambar gagal dimuat:', this.src);
+                                this.alt='Gambar achievement tidak dapat dimuat';
                             "
 
                         >
@@ -824,13 +824,9 @@ function renderAchievements() {
                         data-index="${index}"
                     >
 
-                        <img
-
-                            src="assets/logo.png"
-
-                            alt="Agility United"
-
-                        >
+                        <div class="achievement-no-image">
+                              IMAGE NOT AVAILABLE
+                        </div>
 
                     </div>
 
