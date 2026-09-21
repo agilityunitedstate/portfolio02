@@ -663,136 +663,109 @@ body {
 
 .podium-rank {
     width: 58px;
-
     height: 58px;
 
     margin: 0 auto 14px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     border-radius: 50%;
 
     font-family: "Anton", sans-serif;
-
-    font-size: 31px;
+    font-size: 30px;
 
     line-height: 1;
 
-    color: var(--white);
+    color: #ffffff;
 
-    background:
-        linear-gradient(
-            145deg,
-            #343434,
-            #1a1a1a
-        );
+    background: #252525;
 
-    border:
-        2px solid rgba(255, 255, 255, 0.12);
-
-    box-shadow:
-        inset 0 0 15px
-        rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255,255,255,.12);
 
     position: relative;
-
     z-index: 3;
 }
 
 
-/* =====================================================
-   MEDAL SYMBOL
-===================================================== */
+/* =========================================
+   MEDAL / TROPHY
+========================================= */
 
 .podium-rank::before {
     position: absolute;
 
-    font-family: sans-serif;
+    top: -17px;
+    right: -13px;
 
-    font-size: 15px;
-
-    top: -11px;
-
-    right: -4px;
-
-    width: 27px;
-
-    height: 27px;
+    width: 30px;
+    height: 30px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     border-radius: 50%;
 
-    background: #202020;
+    font-family: "Segoe UI Emoji",
+                 "Apple Color Emoji",
+                 sans-serif;
 
-    border:
-        1px solid rgba(255, 255, 255, 0.1);
+    font-size: 18px;
+
+    background: #151515;
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.4);
 }
 
 
-/* =====================================================
-   RANK 1
-===================================================== */
+/* =========================================
+   RANK 1 - TROPHY
+========================================= */
 
 .podium-card.first .podium-rank {
     width: 78px;
-
     height: 78px;
 
     font-size: 43px;
-
-    color: #ffffff;
 
     background:
         linear-gradient(
             145deg,
             #ff6a2c,
-            #d43e0c
+            #b8380f
         );
 
     border:
         2px solid
-        rgba(255, 255, 255, 0.22);
+        rgba(255,255,255,.25);
 
     box-shadow:
         0 0 35px
-        rgba(255, 90, 31, 0.30),
-
-        inset 0 0 18px
-        rgba(255, 255, 255, 0.12);
+        rgba(255,90,31,.3);
 }
 
-
-/* GOLD MEDAL */
 
 .podium-card.first .podium-rank::before {
-    content: "★";
-
-    color: #ffd84d;
+    content: "🏆";
 
     background:
-        rgba(255, 216, 77, 0.12);
+        rgba(255,216,77,.12);
 
     border-color:
-        rgba(255, 216, 77, 0.3);
+        rgba(255,216,77,.3);
 }
 
 
-/* =====================================================
-   RANK 2
-===================================================== */
+/* =========================================
+   RANK 2 - SILVER MEDAL
+========================================= */
 
 .podium-card:nth-child(1) .podium-rank {
-    color: #eeeeee;
-
     background:
         linear-gradient(
             145deg,
@@ -801,27 +774,20 @@ body {
         );
 
     border-color:
-        rgba(220, 220, 220, 0.28);
+        rgba(220,220,220,.3);
 }
 
 
 .podium-card:nth-child(1) .podium-rank::before {
-    content: "2";
-
-    color: #e5e5e5;
-
-    background:
-        rgba(220, 220, 220, 0.08);
+    content: "🥈";
 }
 
 
-/* =====================================================
-   RANK 3
-===================================================== */
+/* =========================================
+   RANK 3 - BRONZE MEDAL
+========================================= */
 
 .podium-card:nth-child(3) .podium-rank {
-    color: #ffd1b5;
-
     background:
         linear-gradient(
             145deg,
@@ -830,19 +796,13 @@ body {
         );
 
     border-color:
-        rgba(205, 139, 90, 0.35);
+        rgba(205,139,90,.35);
 }
 
 
 .podium-card:nth-child(3) .podium-rank::before {
-    content: "3";
-
-    color: #cd8b5a;
-
-    background:
-        rgba(205, 139, 90, 0.10);
+    content: "🥉";
 }
-
 
 /* =====================================================
    PODIUM NAME
