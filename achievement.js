@@ -803,8 +803,7 @@ function renderAchievements() {
                             loading="lazy"
 
                             onerror="
-                                this.onerror=null;
-                                this.src='assets/logo.png';
+                                console.error('Gambar gagal dimuat:', this.src);
                             "
 
                         >
