@@ -512,27 +512,25 @@ body {
 
 /* =====================================================
    PODIUM
-   ===================================================== */
+===================================================== */
 
 .podium {
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
+    grid-template-columns: repeat(3, 1fr);
     align-items: end;
-
     gap: 15px;
-
     margin-bottom: 35px;
 }
 
-
 .podium-card {
-    background: var(--dark);
+    background:
+        linear-gradient(
+            180deg,
+            #191919 0%,
+            #131313 100%
+        );
 
-    border:
-        1px solid rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 
     padding: 25px 15px;
 
@@ -541,9 +539,14 @@ body {
     position: relative;
 
     overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-
+/* garis atas */
 .podium-card::before {
     content: "";
 
@@ -558,31 +561,155 @@ body {
     background: var(--orange);
 }
 
+/* efek cahaya */
+.podium-card::after {
+    content: "";
 
-.podium-card.first {
-    padding-top: 38px;
+    position: absolute;
 
-    padding-bottom: 38px;
+    width: 140px;
+    height: 140px;
+
+    left: 50%;
+    top: -80px;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 90, 31, 0.16),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+.podium-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(255, 90, 31, 0.45);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.35);
 }
 
 
+/* =====================================================
+   RANK 1
+===================================================== */
+
+.podium-card.first {
+    padding-top: 38px;
+    padding-bottom: 38px;
+
+    border-color:
+        rgba(255, 90, 31, 0.35);
+
+    box-shadow:
+        0 12px 35px
+        rgba(255, 90, 31, 0.08);
+}
+
+.podium-card.first::before {
+    height: 5px;
+}
+
+
+/* =====================================================
+   RANK ICON
+===================================================== */
+
 .podium-rank {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 14px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
     font-family: "Anton", sans-serif;
 
-    font-size: 40px;
+    font-size: 30px;
 
     color: var(--orange);
 
     line-height: 1;
 
-    margin-bottom: 12px;
+    border:
+        1px solid
+        rgba(255, 90, 31, 0.35);
+
+    background:
+        rgba(255, 90, 31, 0.08);
+
+    box-shadow:
+        0 0 25px
+        rgba(255, 90, 31, 0.08);
+
+    position: relative;
+
+    z-index: 2;
 }
 
+
+/* =====================================================
+   RANK 1 ICON
+===================================================== */
 
 .podium-card.first .podium-rank {
-    font-size: 55px;
+    width: 76px;
+    height: 76px;
+
+    font-size: 42px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--orange),
+            var(--orange-dark)
+        );
+
+    border:
+        2px solid
+        rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        0 0 35px
+        rgba(255, 90, 31, 0.28);
 }
 
+
+/* =====================================================
+   RANK 2
+===================================================== */
+
+.podium-card:nth-child(1) .podium-rank {
+    color: #d9d9d9;
+}
+
+
+/* =====================================================
+   RANK 3
+===================================================== */
+
+.podium-card:nth-child(3) .podium-rank {
+    color: #cd8b5a;
+}
+
+
+/* =====================================================
+   NAME
+===================================================== */
 
 .podium-name {
     font-size: 15px;
@@ -590,8 +717,16 @@ body {
     font-weight: 800;
 
     margin-bottom: 6px;
+
+    position: relative;
+
+    z-index: 2;
 }
 
+
+/* =====================================================
+   DIVISION
+===================================================== */
 
 .podium-division {
     color: var(--gray);
@@ -599,8 +734,16 @@ body {
     font-size: 11px;
 
     margin-bottom: 15px;
+
+    position: relative;
+
+    z-index: 2;
 }
 
+
+/* =====================================================
+   POINT / VALUE
+===================================================== */
 
 .podium-value {
     font-family: "Anton", sans-serif;
@@ -608,8 +751,16 @@ body {
     font-size: 28px;
 
     color: var(--orange);
+
+    position: relative;
+
+    z-index: 2;
 }
 
+
+/* =====================================================
+   STAT LABEL
+===================================================== */
 
 .podium-stat-label {
     color: var(--gray);
@@ -617,6 +768,10 @@ body {
     font-size: 9px;
 
     letter-spacing: 1px;
+
+    position: relative;
+
+    z-index: 2;
 }
 
 
