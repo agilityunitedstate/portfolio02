@@ -770,11 +770,7 @@ function renderPlayerPodium(
 
             card.innerHTML = `
 
-                <div class="podium-rank">
-
-                    ${position}
-
-                </div>
+                <div class="podium-rank"></div>
 
 
                 <div class="podium-player">
