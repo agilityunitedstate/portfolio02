@@ -1,6 +1,6 @@
 /* =========================================================
    AGILITY UNITED - RANKING SYSTEM
-   ========================================================= */
+========================================================= */
 
 
 /* =========================================================
@@ -22,6 +22,17 @@ let playerData = [];
 let teamData = [];
 
 let currentPlayerStat = "scorer";
+
+
+/* =========================================================
+   MEDAL
+========================================================= */
+
+const medals = {
+    1: "🏆",
+    2: "🥈",
+    3: "🥉"
+};
 
 
 /* =========================================================
@@ -63,7 +74,6 @@ function parseCSV(text) {
 
     let row = [];
     let value = "";
-
     let insideQuotes = false;
 
 
@@ -72,8 +82,6 @@ function parseCSV(text) {
         const char = text[i];
         const nextChar = text[i + 1];
 
-
-        /* Double quote di dalam quoted value */
 
         if (
             char === '"' &&
@@ -88,16 +96,12 @@ function parseCSV(text) {
         }
 
 
-        /* Awal / akhir quoted value */
-
         else if (char === '"') {
 
             insideQuotes = !insideQuotes;
 
         }
 
-
-        /* Pemisah kolom */
 
         else if (
             char === "," &&
@@ -110,8 +114,6 @@ function parseCSV(text) {
 
         }
 
-
-        /* Baris baru */
 
         else if (
             (char === "\n" || char === "\r") &&
@@ -132,7 +134,9 @@ function parseCSV(text) {
 
 
             if (
-                row.some(cell => cell !== "")
+                row.some(
+                    cell => cell !== ""
+                )
             ) {
 
                 rows.push(row);
@@ -141,13 +145,10 @@ function parseCSV(text) {
 
 
             row = [];
-
             value = "";
 
         }
 
-
-        /* Karakter biasa */
 
         else {
 
@@ -158,8 +159,6 @@ function parseCSV(text) {
     }
 
 
-    /* Sisa data */
-
     if (
         value !== "" ||
         row.length > 0
@@ -169,7 +168,9 @@ function parseCSV(text) {
 
 
         if (
-            row.some(cell => cell !== "")
+            row.some(
+                cell => cell !== ""
+            )
         ) {
 
             rows.push(row);
@@ -185,12 +186,13 @@ function parseCSV(text) {
 
 
 /* =========================================================
-   CONVERT CSV TO OBJECT
+   CSV TO OBJECT
 ========================================================= */
 
 function csvToObjects(text) {
 
-    const rows = parseCSV(text);
+    const rows =
+        parseCSV(text);
 
 
     if (rows.length < 2) {
@@ -201,12 +203,16 @@ function csvToObjects(text) {
 
 
     const headers =
-        rows[0].map(header =>
+        rows[0].map(
+            header =>
 
-            header
-                .trim()
-                .toLowerCase()
-                .replace(/\s+/g, "_")
+                header
+                    .trim()
+                    .toLowerCase()
+                    .replace(
+                        /\s+/g,
+                        "_"
+                    )
 
         );
 
@@ -337,23 +343,25 @@ async function loadRankingData() {
         const [
             players,
             teams
-        ] =
-            await Promise.all([
+        ] = await Promise.all([
 
-                fetchCSV(
-                    PLAYER_SHEET_URL
-                ),
+            fetchCSV(
+                PLAYER_SHEET_URL
+            ),
 
-                fetchCSV(
-                    TEAM_SHEET_URL
-                )
+            fetchCSV(
+                TEAM_SHEET_URL
+            )
 
-            ]);
+        ]);
 
 
-        playerData = players;
+        playerData =
+            players;
 
-        teamData = teams;
+
+        teamData =
+            teams;
 
 
         console.log(
@@ -411,7 +419,6 @@ playerStatButtons.forEach(
         button.addEventListener(
             "click",
             function () {
-
 
                 playerStatButtons.forEach(
                     btn => {
@@ -723,12 +730,9 @@ function renderPlayerTable(
 
 /* =========================================================
    PLAYER PODIUM
-   URUTAN DATA NORMAL:
-   1 - 2 - 3
-
-   CSS MOBILE YANG MENGATUR:
-   1 DI ATAS
-   2 & 3 DI BAWAH
+   1 = 🏆
+   2 = 🥈
+   3 = 🥉
 ========================================================= */
 
 function renderPlayerPodium(
@@ -772,7 +776,18 @@ function renderPlayerPodium(
 
                 <div class="podium-rank">
 
-                    ${position}
+                    <span
+                        class="podium-medal"
+                        aria-label="Medal"
+                    >
+                        ${medals[position] || ""}
+                    </span>
+
+                    <span
+                        class="podium-number"
+                    >
+                        ${position}
+                    </span>
 
                 </div>
 
@@ -1006,13 +1021,9 @@ function renderTeamTable(
 
 /* =========================================================
    TEAM PODIUM
-   URUTAN DATA NORMAL:
-   1 - 2 - 3
-
-   MOBILE:
-             1
-
-         2       3
+   1 = 🏆
+   2 = 🥈
+   3 = 🥉
 ========================================================= */
 
 function renderTeamPodium(
@@ -1055,7 +1066,18 @@ function renderTeamPodium(
 
                 <div class="podium-rank">
 
-                    ${position}
+                    <span
+                        class="podium-medal"
+                        aria-label="Medal"
+                    >
+                        ${medals[position] || ""}
+                    </span>
+
+                    <span
+                        class="podium-number"
+                    >
+                        ${position}
+                    </span>
 
                 </div>
 
@@ -1344,7 +1366,6 @@ rankingMainButtons.forEach(
         button.addEventListener(
             "click",
             function () {
-
 
                 rankingMainButtons.forEach(
                     btn => {
