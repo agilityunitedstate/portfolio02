@@ -213,119 +213,132 @@ a {
 
 
 /* =========================================================
-   NAV MENU
-   ========================================================= */
+   NAVBAR
+========================================================= */
 
-.nav-menu {
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.96);
+    border-bottom: 1px solid rgba(255, 90, 31, 0.12);
+    backdrop-filter: blur(12px);
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1400px;
+    height: 100%;
+    margin: auto;
 
     display: flex;
-
     align-items: center;
-
-    justify-content: flex-end;
-
-    gap: 2px;
-
+    justify-content: space-between;
 }
 
+/* LOGO */
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.nav-brand span {
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-brand strong {
+    color: #ff5a1f;
+}
+
+/* MENU */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
 
 .nav-link {
-
     position: relative;
 
-    padding:
-        10px 10px;
+    padding: 10px 13px;
 
-    color: #999;
+    color: #aaa;
+    text-decoration: none;
 
-    font-size: 9px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.5px;
-
-    text-transform: uppercase;
+    font-family: "Work Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
 
     transition:
-        color 0.25s ease,
-        background 0.25s ease;
-
+        color .25s ease,
+        background .25s ease;
 }
 
+/* ORANGE REDUP SAAT HOVER */
 
 .nav-link:hover {
-
-    color: var(--orange);
-
+    color: #ff5a1f;
+    background: rgba(255, 90, 31, 0.07);
+    border-radius: 7px;
 }
 
+/* ACTIVE */
 
 .nav-link.active {
-
-    color: var(--orange);
-
+    color: #ff5a1f;
+    background: rgba(255, 90, 31, 0.10);
+    border-radius: 7px;
 }
 
+/* GARIS ORANGE REDUP */
 
-.nav-link::after {
-
+.nav-link.active::after {
     content: "";
 
     position: absolute;
+    left: 13px;
+    right: 13px;
+    bottom: 4px;
 
-    left: 50%;
-    bottom: 3px;
-
-    width: 0;
     height: 2px;
 
-    background: var(--orange);
-
-    transform:
-        translateX(-50%);
-
-    transition:
-        width 0.25s ease;
-
+    background: rgba(255, 90, 31, 0.65);
+    border-radius: 2px;
 }
 
-
-.nav-link:hover::after,
-.nav-link.active::after {
-
-    width: 55%;
-
-}
-
-
-/* =========================================================
-   MOBILE MENU BUTTON
-   ========================================================= */
+/* MOBILE THREE DOT */
 
 .menu-toggle {
-
     display: none;
 
-    width: 40px;
-    height: 40px;
-
-    padding: 0;
-
     border: none;
-
     background: transparent;
 
-    color: var(--white);
+    color: #fff;
 
-    font-size: 29px;
-
+    font-size: 28px;
     line-height: 1;
 
     cursor: pointer;
-
 }
-
-
 /* =========================================================
    HERO
    ========================================================= */
@@ -2169,145 +2182,94 @@ a {
 @media (max-width: 768px) {
 
     .navbar {
-
         height: 65px;
-
     }
-
 
     .nav-container {
-
-        padding:
-            0 20px;
-
+        width: 90%;
     }
-
-
-    .logo img {
-
-        width: 38px;
-        height: 38px;
-
-    }
-
-
-    .logo-text span {
-
-        font-size: 10px;
-
-    }
-
-
-    .logo-text strong {
-
-        font-size: 12px;
-
-    }
-
-
-    .logo-text small {
-
-        font-size: 5px;
-
-    }
-
 
     .nav-menu {
-
         display: none;
 
         position: absolute;
-
         top: 70px;
+        right: 5%;
 
-        right: 20px;
+        width: 210px;
 
-        width: 215px;
-
-        padding: 12px;
+        padding: 15px;
 
         flex-direction: column;
-
         align-items: stretch;
 
-        gap: 2px;
+        gap: 0;
 
-        background:
-            #151515;
+        background: #151515;
 
-        border:
-            1px solid rgba(255, 90, 31, 0.25);
-
+        border: 1px solid rgba(255, 90, 31, 0.25);
         border-radius: 12px;
 
-        box-shadow:
-            0 20px 40px rgba(0, 0, 0, 0.55);
-
+        box-shadow: 0 15px 35px rgba(0,0,0,.5);
     }
-
 
     .nav-menu.show {
-
         display: flex;
-
     }
-
 
     .nav-link {
+        padding: 13px 15px;
 
-        width: 100%;
+        color: #fff !important;
 
-        padding:
-            12px 14px;
-
-        color: #ddd !important;
+        font-size: 13px;
 
         border-radius: 7px;
-
-        font-size: 10px;
-
-        text-transform: none;
-
     }
-
 
     .nav-link::after {
-
         display: none;
-
     }
-
-
-    .nav-link:hover {
-
-        color: var(--orange) !important;
-
-        background:
-            rgba(255, 90, 31, 0.07);
-
-    }
-
 
     .nav-link.active {
-
-        color: var(--orange) !important;
-
-        background:
-            rgba(255, 90, 31, 0.1);
-
-        border:
-            1px solid rgba(255, 90, 31, 0.18);
-
+        color: #ff5a1f !important;
+        background: rgba(255, 90, 31, 0.10);
+        border: 1px solid rgba(255, 90, 31, 0.18);
     }
 
+    .nav-link:hover {
+        color: #ff5a1f !important;
+        background: rgba(255, 90, 31, 0.07);
+    }
 
     .menu-toggle {
-
         display: block;
-
-        color: #fff;
-
     }
+}
+
+@media (max-width: 420px) {
+
+    .nav-container {
+        width: calc(100% - 30px);
+    }
+
+    .nav-logo {
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-brand span {
+        display: inline-block;
+        font-size: 10px;
+        letter-spacing: .5px;
+        white-space: nowrap;
+    }
+
+    .menu-toggle {
+        font-size: 28px;
+        color: #fff;
+    }
+}
 
 
     .division-hero {
