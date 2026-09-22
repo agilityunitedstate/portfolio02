@@ -127,33 +127,23 @@ function initMobileMenu() {
 
     /* CLOSE AFTER CLICK LINK */
 
-    navMenu
-        .querySelectorAll(
-            ".nav-link"
-        )
-        .forEach(
-            link => {
+navMenu
+    .querySelectorAll("a")
+    .forEach(
+        link => {
+            link.addEventListener(
+                "click",
+                () => {
+                    navMenu.classList.remove("show");
 
-                link.addEventListener(
-                    "click",
-                    () => {
-
-                        navMenu.classList.remove(
-                            "show"
-                        );
-
-
-                        menuToggle.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
-
-                    }
-                );
-
-            }
-        );
-
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+                }
+            );
+        }
+    );
 
     /* CLOSE WHEN CLICK OUTSIDE */
 
