@@ -1,455 +1,1119 @@
-/* =====================================================
+/* =========================================================
+   AGILITY UNITED
+   DIVISION PAGE
+   STANDALONE CSS
+   ========================================================= */
+
+
+/* =========================================================
    ROOT
-   ===================================================== */
+   ========================================================= */
 
 :root {
-    --black: #090909;
-    --dark: #0d0d0d;
-    --card: #111111;
-    --card-2: #151515;
 
     --orange: #ff5a1f;
+    --orange-dark: #c93f0e;
 
-    --white: #f4efe6;
-    --gray: #777;
-    --gray-light: #999;
+    --black: #080808;
+    --black-2: #0d0d0d;
+    --black-3: #121212;
+    --black-4: #171717;
 
-    --border: rgba(255, 255, 255, 0.09);
+    --white: #ffffff;
+    --text: #eeeeee;
+    --muted: #8a8a8a;
+    --muted-2: #5e5e5e;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --border-orange: rgba(255, 90, 31, 0.28);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    RESET
-   ===================================================== */
+   ========================================================= */
 
 * {
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 
 html {
+
     scroll-behavior: smooth;
+
 }
 
 
 body {
-    min-height: 100vh;
 
     background: var(--black);
-
     color: var(--white);
 
     font-family:
         Arial,
         Helvetica,
         sans-serif;
+
+    line-height: 1.5;
+
+}
+
+
+button,
+input,
+textarea,
+select {
+
+    font: inherit;
+
 }
 
 
 a {
+
     color: inherit;
     text-decoration: none;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    NAVBAR
-   ===================================================== */
+   ========================================================= */
 
 .navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
     height: 70px;
 
-    padding: 0 5%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    background: #090909;
+    background:
+        rgba(7, 7, 7, 0.96);
 
     border-bottom:
-        1px solid rgba(255,255,255,.07);
+        1px solid rgba(255, 255, 255, 0.06);
 
-    position: sticky;
-    top: 0;
+    backdrop-filter: blur(14px);
 
     z-index: 1000;
+
 }
 
 
-/* BRAND */
+.nav-container {
 
-.nav-brand {
+    width: 100%;
+    max-width: 1250px;
+
+    height: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        0 25px;
+
     display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo {
+
+    display: flex;
+
     align-items: center;
 
     gap: 10px;
+
+    flex-shrink: 0;
+
 }
 
 
-.nav-logo {
-    width: 40px;
-    height: 40px;
+.logo img {
+
+    width: 42px;
+    height: 42px;
 
     object-fit: contain;
+
 }
 
 
-.nav-brand span {
-    color: #fff;
+.logo-text {
 
-    font-size: 13px;
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-
-.nav-brand strong {
-    color: var(--orange);
-}
-
-
-/* MENU */
-
-.nav-menu {
     display: flex;
-    align-items: center;
 
-    gap: 24px;
+    flex-direction: column;
+
+    line-height: 1;
+
 }
 
 
-.nav-menu a {
-    color: #888;
+.logo-text span {
+
+    color: var(--white);
 
     font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+.logo-text strong {
+
+    color: var(--orange);
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+}
+
+
+.logo-text small {
+
+    margin-top: 4px;
+
+    color: #666;
+
+    font-size: 6px;
+
     font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+}
+
+
+/* =========================================================
+   NAV MENU
+   ========================================================= */
+
+.nav-menu {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 2px;
+
+}
+
+
+.nav-link {
+
+    position: relative;
+
+    padding:
+        10px 10px;
+
+    color: #999;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
 
     text-transform: uppercase;
 
     transition:
-        color .25s ease;
+        color 0.25s ease,
+        background 0.25s ease;
+
 }
 
 
-.nav-menu a:hover {
+.nav-link:hover {
+
     color: var(--orange);
+
 }
 
 
-.nav-menu a.active {
+.nav-link.active {
+
     color: var(--orange);
+
 }
 
 
-/* MOBILE BUTTON */
+.nav-link::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 3px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--orange);
+
+    transform:
+        translateX(-50%);
+
+    transition:
+        width 0.25s ease;
+
+}
+
+
+.nav-link:hover::after,
+.nav-link.active::after {
+
+    width: 55%;
+
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
 
 .menu-toggle {
+
     display: none;
+
+    width: 40px;
+    height: 40px;
 
     padding: 0;
 
     border: none;
-    background: none;
 
-    color: #fff;
+    background: transparent;
 
-    font-size: 28px;
-    line-height: 1;
-
-    cursor: pointer;
-}
-
-
-/* =====================================================
-   HERO
-   ===================================================== */
-
-.division-hero {
-    padding:
-        58px 7% 48px;
-}
-
-
-.hero-content {
-    width: 100%;
-    max-width: 1100px;
-
-    margin: auto;
-}
-
-
-.hero-label {
-    margin-bottom: 16px;
-
-    color: var(--orange);
-
-    font-size: 10px;
-    font-weight: 800;
-
-    letter-spacing: 4px;
-
-    text-align: center;
-}
-
-
-.hero-content h1 {
     color: var(--white);
 
-    font-size: clamp(42px, 6vw, 62px);
+    font-size: 29px;
 
     line-height: 1;
 
-    font-weight: 900;
+    cursor: pointer;
 
-    text-align: center;
 }
 
 
-.hero-content h1 span {
-    color: var(--orange);
-}
+/* =========================================================
+   HERO
+   ========================================================= */
 
+.division-hero {
 
-.hero-content p {
-    margin-top: 22px;
+    position: relative;
 
-    color: #666;
+    min-height: 430px;
 
-    font-size: 14px;
+    padding:
+        150px 5% 90px;
 
-    text-align: center;
-}
-
-
-/* =====================================================
-   MAIN CONTAINER
-   ===================================================== */
-
-.division-container {
-    width: 90%;
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding-bottom: 90px;
-}
-
-
-/* =====================================================
-   DIVISION LIST
-   ===================================================== */
-
-.division-list {
     display: flex;
-    flex-direction: column;
 
-    gap: 24px;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(255, 90, 31, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #090909,
+            #101010
+        );
+
 }
 
 
-/* =====================================================
-   DIVISION CARD
-   ===================================================== */
+.division-hero::before {
 
-.division-card {
-    background: var(--card);
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    right: -180px;
+    top: -200px;
+
+    border-radius: 50%;
 
     border:
-        1px solid var(--border);
+        1px solid rgba(255, 90, 31, 0.12);
 
-    transition:
-        border-color .25s ease;
 }
 
 
-.division-card:hover {
-    border-color:
-        rgba(255,90,31,.28);
-}
+.division-hero-overlay {
 
+    position: absolute;
 
-/* =====================================================
-   DIVISION HEADER
-   ===================================================== */
-
-.division-header {
-    min-height: 122px;
-
-    padding: 22px 28px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    cursor: pointer;
+    inset: 0;
 
     background:
         linear-gradient(
             90deg,
-            rgba(255,90,31,.045),
-            transparent 60%
+            rgba(8, 8, 8, 0.95),
+            rgba(8, 8, 8, 0.55),
+            rgba(8, 8, 8, 0.85)
         );
+
 }
 
 
-/* =====================================================
-   DIVISION INFORMATION
-   ===================================================== */
+.division-hero-content {
 
-.division-info {
-    display: flex;
-    align-items: center;
+    position: relative;
 
-    gap: 22px;
+    z-index: 2;
 
-    min-width: 0;
+    width: 100%;
+    max-width: 1150px;
+
+    margin: 0 auto;
+
 }
 
 
-/* NUMBER */
+.division-eyebrow {
 
-.division-number-box {
-    width: 76px;
-    height: 76px;
+    display: inline-block;
 
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #0b0b0b;
-
-    border:
-        1px solid rgba(255,255,255,.10);
+    margin-bottom: 14px;
 
     color: var(--orange);
 
-    font-size: 18px;
+    font-size: 11px;
+
     font-weight: 800;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+
 }
 
 
-/* TEXT */
+.division-hero h1 {
 
-.division-text {
-    min-width: 0;
+    color: var(--white);
+
+    font-size:
+        clamp(42px, 7vw, 78px);
+
+    font-weight: 900;
+
+    line-height: 0.95;
+
+    letter-spacing: -2px;
+
 }
 
 
-.division-label {
+.division-hero h1 span {
+
+    color: var(--orange);
+
+    display: block;
+
+}
+
+
+.division-hero p {
+
+    max-width: 560px;
+
+    margin-top: 22px;
+
+    color: #999;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.division-container {
+
+    width: 100%;
+
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    padding:
+        0 25px;
+
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.club-leader-section,
+.teams-section {
+
+    padding:
+        85px 0;
+
+}
+
+
+.club-leader-section {
+
+    background: #0a0a0a;
+
+}
+
+
+.teams-section {
+
+    background: #080808;
+
+}
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.section-heading {
+
+    margin-bottom: 35px;
+
+}
+
+
+.section-heading > span {
+
     display: block;
 
     margin-bottom: 8px;
 
     color: var(--orange);
 
-    font-size: 10px;
+    font-size: 9px;
+
     font-weight: 800;
 
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
+
+}
+
+
+.section-heading h2 {
+
+    color: var(--white);
+
+    font-size:
+        clamp(28px, 4vw, 42px);
+
+    font-weight: 900;
+
+    line-height: 1.1;
+
+    letter-spacing: -1px;
+
+}
+
+
+.section-heading h2 strong {
+
+    color: var(--orange);
+
+}
+
+
+.section-heading p {
+
+    max-width: 580px;
+
+    margin-top: 12px;
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   CLUB LEADER CARD
+   ========================================================= */
+
+.club-leader-card {
+
+    min-height: 125px;
+
+    padding:
+        25px 28px;
+
+    display: grid;
+
+    grid-template-columns:
+        55px
+        55px
+        1fr
+        auto;
+
+    align-items: center;
+
+    gap: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #151515,
+            #101010
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease;
+
+}
+
+
+.club-leader-card:hover {
+
+    border-color:
+        var(--border-orange);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   LEADER NUMBER
+   ========================================================= */
+
+.leader-number {
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+
+}
+
+
+.leader-number span {
+
+    color: #555;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+}
+
+
+/* =========================================================
+   LEADER ICON
+   ========================================================= */
+
+.leader-icon {
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--orange);
+
+    background:
+        rgba(255, 90, 31, 0.08);
+
+    border:
+        1px solid rgba(255, 90, 31, 0.18);
+
+    border-radius: 12px;
+
+    font-size: 18px;
+
+}
+
+
+/* =========================================================
+   LEADER MAIN
+   ========================================================= */
+
+.leader-main {
+
+    min-width: 0;
+
+}
+
+
+.leader-label {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--orange);
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+.leader-main h3 {
+
+    color: var(--white);
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+}
+
+
+.leader-main p {
+
+    margin-top: 3px;
+
+    color: #666;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================================
+   LEADER INFO
+   ========================================================= */
+
+.leader-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+}
+
+
+.leader-info-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.leader-info-item > span {
+
+    color: #555;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+.leader-info-item > strong {
+
+    color: #ddd;
+
+    font-size: 12px;
+
+}
+
+
+.leader-role-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 35px;
+
+    padding:
+        5px 9px;
+
+    color: var(--orange) !important;
+
+    background:
+        rgba(255, 90, 31, 0.08);
+
+    border:
+        1px solid rgba(255, 90, 31, 0.2);
+
+    border-radius: 5px;
+
+}
+
+
+/* =========================================================
+   DIVISION LIST
+   ========================================================= */
+
+#divisions-container {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+}
+
+
+/* =========================================================
+   DIVISION CARD
+   ========================================================= */
+
+.division-card {
+
+    width: 100%;
+
+    overflow: hidden;
+
+    background: #101010;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 13px;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease;
+
+}
+
+
+.division-card:hover {
+
+    border-color:
+        rgba(255, 90, 31, 0.18);
+
+}
+
+
+.division-card.open {
+
+    border-color:
+        rgba(255, 90, 31, 0.3);
+
+    background: #111111;
+
+}
+
+
+/* =========================================================
+   DIVISION HEADER
+   ========================================================= */
+
+.division-header {
+
+    width: 100%;
+
+    min-height: 92px;
+
+    padding:
+        15px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--white);
+
+    text-align: left;
+
+    cursor: pointer;
+
+}
+
+
+.division-header-left {
+
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+}
+
+
+/* =========================================================
+   DIVISION LOGO
+   ========================================================= */
+
+.division-logo {
+
+    width: 58px;
+    height: 58px;
+
+    min-width: 58px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        #181818;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 11px;
+
+}
+
+
+.division-logo img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 5px;
+
+}
+
+
+.division-logo-fallback {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--orange);
+
+    font-size: 19px;
+
+}
+
+
+/* =========================================================
+   DIVISION INFO
+   ========================================================= */
+
+.division-info {
+
+    min-width: 0;
+
+}
+
+
+.division-number {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--orange);
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.8px;
+
 }
 
 
 .division-name {
-    margin-bottom: 8px;
+
+    overflow: hidden;
 
     color: var(--white);
 
-    font-size: 24px;
-    font-weight: 900;
+    font-size: 17px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
 
     white-space: nowrap;
-    overflow: hidden;
+
     text-overflow: ellipsis;
+
 }
 
 
-.division-count-text {
+.division-description {
+
+    margin-top: 3px;
+
     color: #666;
 
-    font-size: 11px;
+    font-size: 10px;
+
 }
 
 
-/* =====================================================
-   RIGHT SIDE
-   ===================================================== */
+/* =========================================================
+   DIVISION HEADER RIGHT
+   ========================================================= */
 
-.division-actions {
+.division-header-right {
+
     display: flex;
+
     align-items: center;
 
-    gap: 16px;
-}
-
-
-/* MEMBER COUNT */
-
-.member-count {
-    padding:
-        10px 15px;
-
-    border:
-        1px solid rgba(255,255,255,.08);
-
-    color: #777;
-
-    font-size: 10px;
-    font-weight: 700;
-
-    white-space: nowrap;
-}
-
-
-.member-count span {
-    color: var(--orange);
-}
-
-
-/* =====================================================
-   TOGGLE
-   ===================================================== */
-
-.division-toggle {
-    width: 42px;
-    height: 42px;
-
-    position: relative;
+    gap: 20px;
 
     flex-shrink: 0;
 
-    border:
-        1px solid rgba(255,255,255,.09);
-
-    background: transparent;
-
-    cursor: pointer;
 }
 
 
-/*
-    CSS BORDER ARROW
-    CLOSED = ^
-    OPEN   = v
-*/
+.division-member-count {
 
-.division-toggle::before {
-    content: "";
+    display: flex;
 
-    position: absolute;
+    align-items: center;
 
-    width: 8px;
-    height: 8px;
+    gap: 7px;
 
-    left: 15px;
-    top: 15px;
+    color: #777;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+}
+
+
+.division-member-count i {
+
+    color: var(--orange);
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   BORDER ARROW
+   ========================================================= */
+
+.division-arrow {
+
+    width: 35px;
+    height: 35px;
+
+    min-width: 35px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 50%;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease;
+
+}
+
+
+.division-arrow > span {
+
+    width: 9px;
+    height: 9px;
+
+    display: block;
 
     border-left:
         2px solid var(--orange);
@@ -460,365 +1124,1122 @@ a {
     transform:
         rotate(45deg);
 
+    margin-top: 4px;
+
     transition:
-        transform .25s ease,
-        top .25s ease;
+        transform 0.3s ease,
+        margin-top 0.3s ease;
+
 }
 
 
-/* OPEN */
+.division-card.open .division-arrow {
 
-.division-card.open
-.division-toggle::before {
+    background:
+        rgba(255, 90, 31, 0.08);
 
-    top: 11px;
+    border-color:
+        rgba(255, 90, 31, 0.3);
+
+}
+
+
+.division-card.open .division-arrow > span {
 
     transform:
         rotate(225deg);
+
+    margin-top: -4px;
+
 }
 
 
-/* =====================================================
-   CONTENT
-   ===================================================== */
+/* =========================================================
+   DIVISION CONTENT
+   ========================================================= */
 
 .division-content {
-    display: none;
-
-    border-top:
-        1px solid rgba(255,255,255,.07);
-}
-
-
-.division-card.open
-.division-content {
-
-    display: block;
-}
-
-
-/* =====================================================
-   MEMBER SECTION
-   ===================================================== */
-
-.member-section {
-    padding:
-        25px 28px;
-}
-
-
-.member-section + .member-section {
-    border-top:
-        1px solid rgba(255,255,255,.06);
-}
-
-
-.member-section-title {
-    margin-bottom: 16px;
-
-    color: var(--orange);
-
-    font-size: 10px;
-    font-weight: 800;
-
-    letter-spacing: 2px;
-}
-
-
-/* =====================================================
-   KETUA DIVISI
-   ===================================================== */
-
-.leader-row {
-    min-height: 72px;
-
-    padding:
-        12px 16px;
 
     display: grid;
 
-    grid-template-columns:
-        1fr 100px 100px;
+    grid-template-rows:
+        0fr;
+
+    transition:
+        grid-template-rows 0.4s ease;
+
+}
+
+
+.division-card.open .division-content {
+
+    grid-template-rows:
+        1fr;
+
+}
+
+
+.division-content > * {
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   DIVISION LEADER SECTION
+   ========================================================= */
+
+.division-leader-section {
+
+    margin:
+        0 20px;
+
+    padding:
+        0 0 25px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.06);
+
+}
+
+
+.division-leader-heading {
+
+    padding-top: 23px;
+
+    margin-bottom: 14px;
+
+    display: flex;
 
     align-items: center;
 
-    background: var(--card-2);
-
-    border:
-        1px solid rgba(255,90,31,.18);
-}
-
-
-.leader-name {
-    color: var(--white);
-
-    font-size: 13px;
-    font-weight: 800;
-}
-
-
-.leader-id {
-    margin-top: 5px;
-
-    color: #555;
-
-    font-size: 10px;
-}
-
-
-.leader-role {
-    justify-self: center;
-
-    min-width: 45px;
-
-    padding:
-        7px 10px;
-
-    text-align: center;
-
-    border:
-        1px solid rgba(255,90,31,.28);
+    gap: 8px;
 
     color: var(--orange);
 
     font-size: 9px;
-    font-weight: 800;
-}
 
-
-.leader-status {
-    justify-self: end;
-
-    color: var(--orange);
-
-    font-size: 9px;
-    font-weight: 800;
-}
-
-
-/* =====================================================
-   MEMBER TABLE
-   ===================================================== */
-
-.member-table-header,
-.member-row {
-
-    display: grid;
-
-    grid-template-columns:
-        50px
-        1fr
-        160px
-        80px
-        100px;
-
-    align-items: center;
-}
-
-
-/* HEADER */
-
-.member-table-header {
-
-    padding:
-        0 15px 12px;
-
-    color: #555;
-
-    font-size: 9px;
     font-weight: 800;
 
     letter-spacing: 1.5px;
 
-    border-bottom:
-        1px solid rgba(255,255,255,.07);
 }
 
 
-/* ROW */
+.division-leader-heading i {
 
-.member-row {
+    font-size: 11px;
 
-    min-height: 58px;
+}
+
+
+/* =========================================================
+   DIVISION LEADER CARD
+   ========================================================= */
+
+.division-leader-card {
+
+    min-height: 78px;
+
+    padding:
+        14px 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    background:
+        #151515;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 10px;
+
+}
+
+
+.division-leader-avatar {
+
+    width: 45px;
+    height: 45px;
+
+    min-width: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--orange);
+
+    background:
+        rgba(255, 90, 31, 0.08);
+
+    border:
+        1px solid rgba(255, 90, 31, 0.15);
+
+    border-radius: 50%;
+
+}
+
+
+.division-leader-info {
+
+    min-width: 0;
+
+    flex: 1;
+
+}
+
+
+.division-leader-info > span {
+
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #555;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.division-leader-info h4 {
+
+    color: #eee;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+}
+
+
+.division-leader-info p {
+
+    margin-top: 2px;
+
+    color: #666;
+
+    font-size: 10px;
+
+}
+
+
+.division-leader-role {
+
+    min-width: 40px;
+
+    padding:
+        6px 10px;
+
+    color: var(--orange);
+
+    background:
+        rgba(255, 90, 31, 0.08);
+
+    border:
+        1px solid rgba(255, 90, 31, 0.2);
+
+    border-radius: 5px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    text-align: center;
+
+}
+
+
+.division-leader-card.no-leader {
+
+    opacity: 0.7;
+
+}
+
+
+/* =========================================================
+   TEAM MEMBERS
+   ========================================================= */
+
+.division-members {
+
+    margin:
+        0 20px 25px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    background: #0d0d0d;
+
+}
+
+
+.members-panel-top {
+
+    min-height: 48px;
 
     padding:
         0 15px;
 
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
     border-bottom:
-        1px solid rgba(255,255,255,.05);
+        1px solid rgba(255, 255, 255, 0.06);
+
 }
 
 
-.member-row:last-child {
-    border-bottom: none;
-}
+.members-panel-title {
 
+    display: flex;
 
-/* NUMBER */
+    align-items: center;
 
-.member-index {
-    color: #555;
+    gap: 8px;
 
-    font-size: 10px;
-}
-
-
-/* NAME */
-
-.member-name {
     color: #ddd;
 
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
 }
 
 
-/* ID */
+.members-panel-title i {
+
+    color: var(--orange);
+
+}
+
+
+.members-panel-top > span {
+
+    color: #555;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.members-table-wrapper {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+}
+
+
+.members-table {
+
+    width: 100%;
+
+    min-width: 650px;
+
+    border-collapse: collapse;
+
+}
+
+
+.members-table th {
+
+    padding:
+        11px 14px;
+
+    color: #555;
+
+    background: #111;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-align: left;
+
+}
+
+
+.members-table td {
+
+    padding:
+        11px 14px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.045);
+
+    color: #aaa;
+
+    font-size: 10px;
+
+}
+
+
+.members-table tbody tr:last-child td {
+
+    border-bottom: none;
+
+}
+
+
+.members-table tbody tr:hover {
+
+    background:
+        rgba(255, 255, 255, 0.018);
+
+}
+
+
+.member-index {
+
+    width: 45px;
+
+    color: #444 !important;
+
+    font-weight: 700;
+
+}
+
+
+.member-name-cell {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.member-photo-placeholder {
+
+    width: 30px;
+    height: 30px;
+
+    min-width: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #666;
+
+    background:
+        #181818;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 50%;
+
+    font-size: 10px;
+
+}
+
+
+.member-nickname {
+
+    color: #eee !important;
+
+    font-weight: 700;
+
+}
+
 
 .member-game-id {
+
+    color: #777 !important;
+
+    font-family:
+        monospace;
+
+    font-size: 9px !important;
+
+}
+
+
+.member-role {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 32px;
+
+    padding:
+        4px 7px;
+
+    color: #bbb;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 4px;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+}
+
+
+.member-status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color: #666;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+}
+
+
+.leader-status {
+
+    color: var(--orange);
+
+}
+
+
+.member-empty,
+.members-empty {
+
+    padding:
+        30px !important;
+
+    color: #555 !important;
+
+    text-align: center !important;
+
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.division-loading {
+
+    min-height: 120px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
     color: #666;
 
     font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
 }
 
 
-/* ROLE */
+.loading-spinner {
 
-.member-role {
-    justify-self: start;
+    width: 20px;
+    height: 20px;
 
-    min-width: 45px;
+    border:
+        2px solid rgba(255, 255, 255, 0.08);
+
+    border-top-color:
+        var(--orange);
+
+    border-radius: 50%;
+
+    animation:
+        spin 0.8s linear infinite;
+
+}
+
+
+@keyframes spin {
+
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.division-error {
 
     padding:
-        7px 10px;
+        45px 25px;
 
     text-align: center;
 
+    background:
+        #111;
+
     border:
-        1px solid rgba(255,90,31,.20);
+        1px solid rgba(255, 90, 31, 0.2);
+
+    border-radius: 12px;
+
+}
+
+
+.division-error > i {
+
+    color: var(--orange);
+
+    font-size: 25px;
+
+}
+
+
+.division-error h3 {
+
+    margin-top: 14px;
+
+    color: #eee;
+
+    font-size: 14px;
+
+}
+
+
+.division-error p {
+
+    max-width: 600px;
+
+    margin:
+        10px auto 0;
+
+    color: #777;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+}
+
+
+.division-error small {
+
+    display: block;
+
+    margin-top: 15px;
+
+    color: #555;
+
+    font-size: 9px;
+
+    line-height: 1.7;
+
+}
+
+
+.division-error strong {
+
+    color: #777;
+
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.division-cta {
+
+    padding:
+        80px 25px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111111,
+            #090909
+        );
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.05);
+
+}
+
+
+.division-cta-inner {
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+}
+
+
+.division-cta-inner > span {
 
     color: var(--orange);
 
     font-size: 9px;
+
     font-weight: 800;
+
+    letter-spacing: 3px;
+
 }
 
 
-/* STATUS */
+.division-cta h2 {
 
-.member-status {
-    color: #555;
+    margin-top: 12px;
+
+    color: #eee;
+
+    font-size:
+        clamp(25px, 4vw, 40px);
+
+    font-weight: 900;
+
+}
+
+
+.division-cta h2 strong {
+
+    color: var(--orange);
+
+}
+
+
+.division-cta p {
+
+    margin:
+        12px auto 25px;
+
+    color: #666;
+
+    font-size: 12px;
+
+}
+
+
+.division-cta-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        12px 18px;
+
+    color: white;
+
+    background:
+        var(--orange);
+
+    border-radius: 6px;
 
     font-size: 9px;
-    font-weight: 700;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+
 }
 
 
-/* =====================================================
-   LOADING
-   ===================================================== */
+.division-cta-button:hover {
 
-.loading {
+    background:
+        var(--orange-dark);
 
-    padding: 60px 20px;
+    transform:
+        translateY(-2px);
 
-    color: #555;
-
-    font-size: 12px;
-
-    text-align: center;
 }
 
 
-/* =====================================================
-   EMPTY
-   ===================================================== */
-
-.empty-state {
-
-    display: none;
-
-    padding: 60px 20px;
-
-    color: #555;
-
-    font-size: 12px;
-
-    text-align: center;
-
-    border:
-        1px dashed rgba(255,255,255,.08);
-}
-
-
-/* =====================================================
+/* =========================================================
    FOOTER
-   ===================================================== */
+   ========================================================= */
 
 .footer {
 
-    padding: 30px;
+    background:
+        #060606;
 
     border-top:
-        1px solid rgba(255,255,255,.06);
+        1px solid rgba(255, 255, 255, 0.06);
 
-    text-align: center;
 }
 
 
-.footer p {
+.footer-container {
+
+    width: 100%;
+
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    padding:
+        55px 25px;
+
+}
+
+
+.footer-content {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        1fr;
+
+    align-items: center;
+
+    gap: 40px;
+
+}
+
+
+/* =========================================================
+   FOOTER BRAND
+   ========================================================= */
+
+.footer-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.footer-brand img {
+
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+}
+
+
+.footer-brand-text h3 {
+
+    color: #eee;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+}
+
+
+.footer-brand-text h3 span {
+
+    color: var(--orange);
+
+}
+
+
+.footer-brand-text p {
+
+    margin-top: 3px;
+
+    color: #555;
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+/* =========================================================
+   FOOTER TAGLINE
+   ========================================================= */
+
+.footer-tagline {
+
+    text-align: center;
+
+}
+
+
+.footer-tagline p {
 
     color: #444;
 
-    font-size: 10px;
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
 }
 
 
-/* =====================================================
-   TABLET
-   ===================================================== */
+/* =========================================================
+   FOOTER CONTACT
+   ========================================================= */
 
-@media (max-width: 1000px) {
+.footer-contact {
+
+    text-align: right;
+
+}
+
+
+.footer-label {
+
+    color: var(--orange);
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+.footer-contact h3 {
+
+    margin-top: 5px;
+
+    color: #ddd;
+
+    font-size: 12px;
+
+}
+
+
+.footer-contact p {
+
+    margin-top: 4px;
+
+    color: #555;
+
+    font-size: 9px;
+
+}
+
+
+.footer-socials {
+
+    margin-top: 12px;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 7px;
+
+}
+
+
+.footer-socials a {
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #777;
+
+    background:
+        #111;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 6px;
+
+    font-size: 12px;
+
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease;
+
+}
+
+
+.footer-socials a:hover {
+
+    color: var(--orange);
+
+    border-color:
+        rgba(255, 90, 31, 0.3);
+
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+   ========================================================= */
+
+.footer-bottom {
+
+    padding:
+        18px 25px;
+
+    text-align: center;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.05);
+
+}
+
+
+.footer-bottom p {
+
+    color: #3f3f3f;
+
+    font-size: 8px;
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
 
     .nav-menu {
-        gap: 15px;
+
+        gap: 0;
+
     }
 
 
-    .nav-menu a {
-        font-size: 9px;
-    }
+    .nav-link {
 
+        padding:
+            10px 7px;
 
-    .member-table-header,
-    .member-row {
-
-        grid-template-columns:
-            40px
-            1fr
-            120px
-            65px
-            80px;
+        font-size: 8px;
 
     }
 
 }
 
 
-/* =====================================================
-   MOBILE
-   ===================================================== */
+/* =========================================================
+   MOBILE NAVBAR
+   ========================================================= */
 
 @media (max-width: 768px) {
-
-    /* NAVBAR */
 
     .navbar {
 
         height: 65px;
 
+    }
+
+
+    .nav-container {
+
         padding:
-            0 5%;
+            0 20px;
+
+    }
+
+
+    .logo img {
+
+        width: 38px;
+        height: 38px;
+
+    }
+
+
+    .logo-text span {
+
+        font-size: 10px;
+
+    }
+
+
+    .logo-text strong {
+
+        font-size: 12px;
+
+    }
+
+
+    .logo-text small {
+
+        font-size: 5px;
 
     }
 
@@ -830,59 +2251,84 @@ a {
         position: absolute;
 
         top: 70px;
-        right: 5%;
 
-        width: 210px;
+        right: 20px;
 
-        padding: 15px;
+        width: 215px;
+
+        padding: 12px;
 
         flex-direction: column;
 
-        gap: 0;
+        align-items: stretch;
 
-        background: #151515;
+        gap: 2px;
+
+        background:
+            #151515;
 
         border:
-            1px solid rgba(255,90,31,.30);
+            1px solid rgba(255, 90, 31, 0.25);
 
         border-radius: 12px;
 
         box-shadow:
-            0 15px 35px rgba(0,0,0,.5);
+            0 20px 40px rgba(0, 0, 0, 0.55);
 
     }
 
 
     .nav-menu.show {
+
         display: flex;
+
     }
 
 
-    .nav-menu a {
+    .nav-link {
+
+        width: 100%;
 
         padding:
-            13px 15px;
+            12px 14px;
 
-        color: #fff !important;
-
-        font-size: 13px;
-
-        text-transform: none;
-
-        border-bottom:
-            1px solid rgba(255,255,255,.05);
+        color: #ddd !important;
 
         border-radius: 7px;
 
+        font-size: 10px;
+
+        text-transform: none;
+
     }
 
 
-    .nav-menu a.active {
+    .nav-link::after {
+
+        display: none;
+
+    }
+
+
+    .nav-link:hover {
 
         color: var(--orange) !important;
 
         background:
-            rgba(255,90,31,.10);
+            rgba(255, 90, 31, 0.07);
+
+    }
+
+
+    .nav-link.active {
+
+        color: var(--orange) !important;
+
+        background:
+            rgba(255, 90, 31, 0.1);
+
+        border:
+            1px solid rgba(255, 90, 31, 0.18);
 
     }
 
@@ -896,251 +2342,188 @@ a {
     }
 
 
-    /* HERO */
-
     .division-hero {
 
+        min-height: 390px;
+
         padding:
-            50px 6% 40px;
+            130px 25px 70px;
 
     }
 
 
-    .hero-content h1 {
+    .division-hero p {
 
-        font-size: 42px;
-
-    }
-
-
-    .hero-content p {
+        max-width: 480px;
 
         font-size: 12px;
 
-        line-height: 1.6;
-
     }
 
-
-    /* MAIN */
 
     .division-container {
 
-        width: 92%;
+        padding:
+            0 20px;
 
     }
 
 
-    /* CARD */
+    .club-leader-section,
+    .teams-section {
+
+        padding:
+            65px 0;
+
+    }
+
+
+    .club-leader-card {
+
+        grid-template-columns:
+            48px
+            48px
+            1fr;
+
+        gap: 15px;
+
+        padding:
+            20px;
+
+    }
+
+
+    .leader-info {
+
+        grid-column:
+            1 / -1;
+
+        padding-top:
+            12px;
+
+        border-top:
+            1px solid rgba(255, 255, 255, 0.05);
+
+    }
+
 
     .division-header {
 
-        min-height: 105px;
+        min-height: 82px;
 
         padding:
-            18px;
+            13px 15px;
 
     }
 
 
-    .division-info {
+    .division-header-left {
 
-        gap: 14px;
-
-    }
-
-
-    .division-number-box {
-
-        width: 60px;
-        height: 60px;
-
-        font-size: 15px;
+        gap: 12px;
 
     }
 
 
-    .division-label {
+    .division-logo {
 
-        font-size: 8px;
+        width: 48px;
+        height: 48px;
 
-        margin-bottom: 6px;
+        min-width: 48px;
 
     }
 
 
     .division-name {
 
-        font-size: 18px;
-
-        margin-bottom: 6px;
+        font-size: 14px;
 
     }
 
 
-    .division-count-text {
-
-        font-size: 9px;
-
-    }
-
-
-    .member-count {
+    .division-member-count {
 
         display: none;
 
     }
 
 
-    .division-toggle {
+    .division-arrow {
 
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
 
-    }
-
-
-    .division-toggle::before {
-
-        width: 7px;
-        height: 7px;
-
-        left: 13px;
-        top: 13px;
+        min-width: 32px;
 
     }
 
 
-    .division-card.open
-    .division-toggle::before {
+    .division-leader-section {
 
-        top: 10px;
+        margin:
+            0 15px;
 
     }
 
 
-    /* CONTENT */
+    .division-members {
 
-    .member-section {
+        margin:
+            0 15px 20px;
+
+    }
+
+
+    .footer-container {
 
         padding:
-            20px 15px;
+            45px 20px;
 
     }
 
 
-    /* LEADER */
-
-    .leader-row {
+    .footer-content {
 
         grid-template-columns:
-            1fr 55px;
+            1fr;
 
-        gap: 10px;
+        text-align: center;
 
-    }
-
-
-    .leader-role {
-
-        grid-column: 2;
-
-        grid-row: 1;
-
-        justify-self: end;
+        gap: 28px;
 
     }
 
 
-    .leader-status {
+    .footer-brand {
 
-        grid-column: 1;
-
-        grid-row: 2;
-
-        justify-self: start;
+        justify-content: center;
 
     }
 
 
-    /* TABLE HEADER */
+    .footer-contact {
 
-    .member-table-header {
-
-        display: none;
+        text-align: center;
 
     }
 
 
-    /* MEMBER */
+    .footer-socials {
 
-    .member-row {
-
-        grid-template-columns:
-            30px
-            1fr
-            45px;
-
-        gap: 8px;
-
-        padding:
-            12px 5px;
-
-    }
-
-
-    .member-index {
-
-        grid-row:
-            1 / span 2;
-
-    }
-
-
-    .member-name {
-
-        grid-column: 2;
-
-    }
-
-
-    .member-game-id {
-
-        grid-column: 2;
-
-        margin-top: 3px;
-
-    }
-
-
-    .member-role {
-
-        grid-column: 3;
-
-        grid-row:
-            1 / span 2;
-
-        justify-self: end;
-
-    }
-
-
-    .member-status {
-
-        display: none;
+        justify-content: center;
 
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    SMALL MOBILE
-   ===================================================== */
+   ========================================================= */
 
-@media (max-width: 420px) {
+@media (max-width: 500px) {
 
-    .navbar {
+    .nav-container {
 
         padding:
             0 15px;
@@ -1148,14 +2531,14 @@ a {
     }
 
 
-    .nav-brand {
+    .logo {
 
         gap: 8px;
 
     }
 
 
-    .nav-logo {
+    .logo img {
 
         width: 36px;
         height: 36px;
@@ -1163,87 +2546,358 @@ a {
     }
 
 
-    .nav-brand span {
+    .logo-text span {
 
-        display: inline-block;
+        font-size: 9px;
 
-        font-size: 10px;
+    }
 
-        letter-spacing: .5px;
 
-        white-space: nowrap;
+    .logo-text strong {
+
+        font-size: 11px;
+
+    }
+
+
+    .logo-text small {
+
+        font-size: 4.5px;
+
+    }
+
+
+    .nav-menu {
+
+        top: 68px;
+
+        right: 15px;
+
+        width: calc(100% - 30px);
+
+        max-width: 300px;
 
     }
 
 
     .menu-toggle {
 
-        font-size: 28px;
+        width: 36px;
+        height: 36px;
+
+        font-size: 27px;
 
     }
 
 
     .division-hero {
 
+        min-height: 350px;
+
         padding:
-            45px 15px 35px;
+            115px 20px 60px;
 
     }
 
 
-    .hero-label {
+    .division-eyebrow {
 
-        font-size: 8px;
+        font-size: 9px;
+
+        letter-spacing: 2px;
 
     }
 
 
-    .hero-content h1 {
+    .division-hero h1 {
 
-        font-size: 35px;
+        font-size: 42px;
+
+    }
+
+
+    .division-hero p {
+
+        margin-top: 16px;
+
+        font-size: 11px;
+
+        line-height: 1.7;
 
     }
 
 
     .division-container {
 
-        width:
-            calc(100% - 30px);
+        padding:
+            0 15px;
 
     }
 
 
-    .division-header {
+    .section-heading {
+
+        margin-bottom: 25px;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 28px;
+
+    }
+
+
+    .section-heading p {
+
+        font-size: 11px;
+
+    }
+
+
+    .club-leader-card {
+
+        grid-template-columns:
+            42px
+            1fr;
+
+        gap: 12px;
 
         padding:
-            15px;
+            17px;
 
     }
 
 
-    .division-number-box {
+    .leader-number {
 
-        width: 52px;
-        height: 52px;
-
-        font-size: 13px;
+        width: 40px;
+        height: 40px;
 
     }
 
 
-    .division-name {
+    .leader-icon {
 
-        max-width: 190px;
+        width: 42px;
+        height: 42px;
+
+        grid-column:
+            1 / 2;
+
+        grid-row:
+            2;
+
+    }
+
+
+    .leader-main {
+
+        grid-column:
+            2;
+
+        grid-row:
+            1 / 3;
+
+    }
+
+
+    .leader-main h3 {
 
         font-size: 16px;
 
     }
 
 
-    .division-toggle {
+    .leader-info {
 
-        width: 34px;
-        height: 34px;
+        grid-column:
+            1 / -1;
+
+        grid-row:
+            3;
+
+    }
+
+
+    .leader-info-item > strong {
+
+        font-size: 10px;
+
+    }
+
+
+    .division-header {
+
+        min-height: 76px;
+
+        padding:
+            12px;
+
+    }
+
+
+    .division-logo {
+
+        width: 43px;
+        height: 43px;
+
+        min-width: 43px;
+
+    }
+
+
+    .division-number {
+
+        font-size: 7px;
+
+    }
+
+
+    .division-name {
+
+        font-size: 12px;
+
+    }
+
+
+    .division-description {
+
+        font-size: 9px;
+
+    }
+
+
+    .division-header-right {
+
+        gap: 8px;
+
+    }
+
+
+    .division-arrow {
+
+        width: 30px;
+        height: 30px;
+
+        min-width: 30px;
+
+    }
+
+
+    .division-arrow > span {
+
+        width: 8px;
+        height: 8px;
+
+    }
+
+
+    .division-leader-section {
+
+        margin:
+            0 12px;
+
+        padding-bottom:
+            20px;
+
+    }
+
+
+    .division-leader-heading {
+
+        padding-top:
+            18px;
+
+        font-size: 8px;
+
+    }
+
+
+    .division-leader-card {
+
+        padding:
+            12px;
+
+        gap: 10px;
+
+    }
+
+
+    .division-leader-avatar {
+
+        width: 38px;
+        height: 38px;
+
+        min-width: 38px;
+
+        font-size: 12px;
+
+    }
+
+
+    .division-leader-info h4 {
+
+        font-size: 13px;
+
+    }
+
+
+    .division-leader-info p {
+
+        font-size: 9px;
+
+    }
+
+
+    .division-leader-role {
+
+        min-width: 32px;
+
+        padding:
+            5px 7px;
+
+        font-size: 8px;
+
+    }
+
+
+    .division-members {
+
+        margin:
+            0 12px 15px;
+
+    }
+
+
+    .members-panel-top {
+
+        padding:
+            0 12px;
+
+    }
+
+
+    .members-table {
+
+        min-width: 600px;
+
+    }
+
+
+    .division-cta {
+
+        padding:
+            60px 20px;
+
+    }
+
+
+    .footer-container {
+
+        padding:
+            40px 15px;
 
     }
 
