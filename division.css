@@ -2014,19 +2014,7 @@ a {
 @media (max-width: 1050px) {
 
     .nav-menu {
-
-        gap: 0;
-
-    }
-
-
-    .nav-link {
-
-        padding:
-            10px 7px;
-
-        font-size: 8px;
-
+        gap: 20px;
     }
 
 }
@@ -2649,23 +2637,13 @@ a {
 
 }
 /* =========================================================
-   FORCE HIDE DIVISION CONTENT WHEN CLOSED
-   ========================================================= */
+   DIVISION ACCORDION — FINAL
+========================================================= */
 
-.division-card:not(.open) .division-content {
+.division-content {
     display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    max-height: 0 !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    margin: 0 !important;
 }
 
 .division-card.open .division-content {
     display: block !important;
-    visibility: visible !important;
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
 }
