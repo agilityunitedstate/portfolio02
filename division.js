@@ -1381,25 +1381,19 @@ function createDivisionCard(
         );
 
 
-    header.addEventListener(
-        "click",
-        () => {
+   header.addEventListener("click", function () {
 
-            const isOpen =
-                card.classList.toggle(
-                    "open"
-                );
+    const isOpen = card.classList.contains("open");
 
+    if (isOpen) {
+        card.classList.remove("open");
+        header.setAttribute("aria-expanded", "false");
+    } else {
+        card.classList.add("open");
+        header.setAttribute("aria-expanded", "true");
+    }
 
-            header.setAttribute(
-                "aria-expanded",
-                String(
-                    isOpen
-                )
-            );
-
-        }
-    );
+});
 
 
     divisionContainer.appendChild(
