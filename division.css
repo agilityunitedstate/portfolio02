@@ -1159,21 +1159,12 @@ a {
    ========================================================= */
 
 .division-content {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.35s ease;
+    display: none;
 }
 
-.division-content > * {
-    min-height: 0;
-    overflow: hidden;
-}
-
-/* HANYA MUNCUL KETIKA CARD OPEN */
 .division-card.open .division-content {
-    grid-template-rows: 1fr;
+    display: block;
 }
-
 /* =========================================================
    DIVISION LEADER SECTION
    ========================================================= */
