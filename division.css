@@ -213,150 +213,119 @@ a {
 
 
 /* =========================================================
-   NAVBAR
-========================================================= */
-
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-
-    background: rgba(7, 7, 7, 0.96);
-    border-bottom: 1px solid rgba(255, 90, 31, 0.10);
-
-    backdrop-filter: blur(14px);
-
-    z-index: 1000;
-}
-
-.nav-container {
-    width: 90%;
-    max-width: 1400px;
-    height: 100%;
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* BRAND */
-
-.nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
-    flex-shrink: 0;
-
-    color: #fff;
-    text-decoration: none;
-}
-
-.nav-logo {
-    width: 40px;
-    height: 40px;
-
-    object-fit: contain;
-}
-
-.nav-brand span {
-    font-family: "Orbitron", sans-serif;
-    color: #fff;
-
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    white-space: nowrap;
-}
-
-.nav-brand strong {
-    color: #ff5a1f;
-}
-
-/* MENU */
+   NAV MENU
+   ========================================================= */
 
 .nav-menu {
+
     display: flex;
+
     align-items: center;
-    gap: 3px;
+
+    justify-content: flex-end;
+
+    gap: 2px;
+
 }
+
 
 .nav-link {
+
     position: relative;
 
-    padding: 10px 12px;
+    padding:
+        10px 10px;
 
-    color: #888;
-    background: transparent;
+    color: #999;
 
-    border-radius: 7px;
+    font-size: 9px;
 
-    font-family: "Work Sans", sans-serif;
-    font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
 
-    text-decoration: none;
+    letter-spacing: 0.5px;
+
+    text-transform: uppercase;
 
     transition:
-        color .25s ease,
-        background .25s ease;
+        color 0.25s ease,
+        background 0.25s ease;
+
 }
 
-/* HOVER ORANGE REDUP */
 
 .nav-link:hover {
-    color: #ff5a1f;
-    background: rgba(255, 90, 31, 0.07);
+
+    color: var(--orange);
+
 }
 
-/* ACTIVE DIVISIONS */
 
 .nav-link.active {
-    color: #ff5a1f;
-    background: rgba(255, 90, 31, 0.10);
+
+    color: var(--orange);
+
 }
 
-/* GARIS ACTIVE YANG REDUP */
 
-.nav-link.active::after {
+.nav-link::after {
+
     content: "";
 
     position: absolute;
 
-    left: 12px;
-    right: 12px;
-    bottom: 4px;
+    left: 50%;
+    bottom: 3px;
 
+    width: 0;
     height: 2px;
 
-    background: rgba(255, 90, 31, 0.55);
+    background: var(--orange);
 
-    border-radius: 2px;
+    transform:
+        translateX(-50%);
+
+    transition:
+        width 0.25s ease;
+
 }
 
-/* THREE DOT */
+
+.nav-link:hover::after,
+.nav-link.active::after {
+
+    width: 55%;
+
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
 
 .menu-toggle {
+
     display: none;
 
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
 
     padding: 0;
 
     border: none;
+
     background: transparent;
 
-    color: #fff;
+    color: var(--white);
 
-    font-size: 28px;
+    font-size: 29px;
+
     line-height: 1;
 
     cursor: pointer;
+
 }
+
+
 /* =========================================================
    HERO
    ========================================================= */
@@ -1183,6 +1152,9 @@ a {
     margin-top: -4px;
 
 }
+
+
+
 
 
 /* =========================================================
@@ -2175,15 +2147,10 @@ a {
 @media (max-width: 1050px) {
 
     .nav-menu {
-        gap: 1px;
-    }
 
-    .nav-link {
-        padding: 9px 8px;
-        font-size: 10px;
-    }
+        gap: 0;
 
-}
+    }
 
 
     .nav-link {
@@ -2205,107 +2172,147 @@ a {
 @media (max-width: 768px) {
 
     .navbar {
+
         height: 65px;
+
     }
+
 
     .nav-container {
-        width: 90%;
+
+        padding:
+            0 20px;
+
     }
 
+
+    .logo img {
+
+        width: 38px;
+        height: 38px;
+
+    }
+
+
+    .logo-text span {
+
+        font-size: 10px;
+
+    }
+
+
+    .logo-text strong {
+
+        font-size: 12px;
+
+    }
+
+
+    .logo-text small {
+
+        font-size: 5px;
+
+    }
+
+
     .nav-menu {
+
         display: none;
 
         position: absolute;
+
         top: 70px;
-        right: 5%;
 
-        width: 210px;
+        right: 20px;
 
-        padding: 15px;
+        width: 215px;
+
+        padding: 12px;
 
         flex-direction: column;
+
         align-items: stretch;
 
-        gap: 0;
-
-        background: #151515;
-
-        border: 1px solid rgba(255, 90, 31, 0.22);
-        border-radius: 12px;
-
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    }
-
-    .nav-menu.show {
-        display: flex;
-    }
-
-    .nav-link {
-        padding: 13px 15px;
-
-        color: #fff !important;
-
-        font-size: 13px;
-
-        border-radius: 7px;
-    }
-
-    .nav-link::after {
-        display: none;
-    }
-
-    .nav-link.active {
-        color: #ff5a1f !important;
+        gap: 2px;
 
         background:
-            rgba(255, 90, 31, 0.10);
+            #151515;
 
         border:
-            1px solid rgba(255, 90, 31, 0.18);
+            1px solid rgba(255, 90, 31, 0.25);
+
+        border-radius: 12px;
+
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.55);
+
     }
 
+
+    .nav-menu.show {
+
+        display: flex;
+
+    }
+
+
+    .nav-link {
+
+        width: 100%;
+
+        padding:
+            12px 14px;
+
+        color: #ddd !important;
+
+        border-radius: 7px;
+
+        font-size: 10px;
+
+        text-transform: none;
+
+    }
+
+
+    .nav-link::after {
+
+        display: none;
+
+    }
+
+
     .nav-link:hover {
-        color: #ff5a1f !important;
+
+        color: var(--orange) !important;
 
         background:
             rgba(255, 90, 31, 0.07);
+
     }
+
+
+    .nav-link.active {
+
+        color: var(--orange) !important;
+
+        background:
+            rgba(255, 90, 31, 0.1);
+
+        border:
+            1px solid rgba(255, 90, 31, 0.18);
+
+    }
+
 
     .menu-toggle {
+
         display: block;
-    }
-}
-
-@media (max-width: 420px) {
-
-    .nav-container {
-        width: calc(100% - 30px);
-    }
-
-    .nav-logo {
-        width: 36px;
-        height: 36px;
-    }
-
-    .nav-brand span {
-        display: inline-block;
-
-        font-size: 10px;
-        letter-spacing: .5px;
-
-        white-space: nowrap;
-    }
-
-    .menu-toggle {
-        display: block;
-
-        width: 36px;
-        height: 36px;
 
         color: #fff;
-        font-size: 28px;
+
     }
-}
+
+
     .division-hero {
 
         min-height: 390px;
