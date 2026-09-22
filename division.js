@@ -694,14 +694,6 @@ function renderClubLeader(
 
             <div class="club-leader-card">
 
-                <div class="leader-number">
-
-                    <span>
-                        01
-                    </span>
-
-                </div>
-
 
                 <div class="leader-icon">
 
@@ -770,15 +762,6 @@ function renderClubLeader(
     clubLeaderContainer.innerHTML = `
 
         <div class="club-leader-card">
-
-
-            <div class="leader-number">
-
-                <span>
-                    01
-                </span>
-
-            </div>
 
 
             <div class="leader-icon">
