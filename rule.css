@@ -99,8 +99,7 @@ body {
     rgba(13, 13, 13, 0.96);
 
   border-bottom:
-    1px solid
-    rgba(
+    1px solid rgba(
       255,
       255,
       255,
@@ -656,46 +655,33 @@ body {
 }
 
 
-/* =====================================================
-   SECTION ARROW
-   ===================================================== */
-
 .section-arrow {
-    width: 35px;
-    height: 35px;
-    min-width: 35px;
-    position: relative;
 
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 50%;
-}
-.section-arrow::before {
-    content: "";
-    position: absolute;
+  width: 35px;
 
-    width: 9px;
-    height: 9px;
+  height: 35px;
 
-    left: 12px;
-    top: 11px;
+  display: flex;
 
-    border-left: 2px solid var(--orange);
-    border-top: 2px solid var(--orange);
+  align-items: center;
 
-    transform: rotate(45deg);
-}
+  justify-content: center;
 
-.rule-section.open .section-arrow::before {
-    transform: rotate(225deg);
-}
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+
+  border-radius: 50%;
+
   color:
     var(--orange);
 
   font-size: 22px;
-
-  font-weight: 700;
-
-  line-height: 1;
 
   transition:
     transform .3s ease,
@@ -725,7 +711,7 @@ body {
 .section-arrow {
 
   transform:
-    rotate(180deg);
+    rotate(45deg);
 
   background:
     rgba(
@@ -1414,8 +1400,6 @@ body {
     height: 30px;
 
     min-width: 30px;
-
-    font-size: 18px;
 
   }
 
