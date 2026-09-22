@@ -99,7 +99,8 @@ body {
     rgba(13, 13, 13, 0.96);
 
   border-bottom:
-    1px solid rgba(
+    1px solid
+    rgba(
       255,
       255,
       255,
@@ -655,11 +656,17 @@ body {
 }
 
 
+/* =====================================================
+   SECTION ARROW
+   ===================================================== */
+
 .section-arrow {
 
   width: 35px;
 
   height: 35px;
+
+  min-width: 35px;
 
   display: flex;
 
@@ -682,6 +689,10 @@ body {
     var(--orange);
 
   font-size: 22px;
+
+  font-weight: 700;
+
+  line-height: 1;
 
   transition:
     transform .3s ease,
@@ -711,7 +722,7 @@ body {
 .section-arrow {
 
   transform:
-    rotate(45deg);
+    rotate(180deg);
 
   background:
     rgba(
@@ -1400,6 +1411,8 @@ body {
     height: 30px;
 
     min-width: 30px;
+
+    font-size: 18px;
 
   }
 
