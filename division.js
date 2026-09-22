@@ -1370,30 +1370,66 @@ function createDivisionCard(
 
     `;
 
+/* =====================================================
+   ACCORDION
+====================================================== */
 
-    /* =====================================================
-       ACCORDION
-    ====================================================== */
+const header =
+    card.querySelector(
+        ".division-header"
+    );
 
-    const header =
-        card.querySelector(
-            ".division-header"
-        );
+const content =
+    card.querySelector(
+        ".division-content"
+    );
 
 
-   header.addEventListener("click", function () {
+/* DEFAULT: TERTUTUP */
 
-    const isOpen = card.classList.contains("open");
+content.style.display = "none";
 
-    if (isOpen) {
-        card.classList.remove("open");
-        header.setAttribute("aria-expanded", "false");
-    } else {
-        card.classList.add("open");
-        header.setAttribute("aria-expanded", "true");
+
+/* CLICK HEADER */
+
+header.addEventListener(
+    "click",
+    function () {
+
+        const isOpen =
+            card.classList.contains("open");
+
+
+        if (isOpen) {
+
+            /* TUTUP */
+
+            card.classList.remove("open");
+
+            header.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            content.style.display = "none";
+
+        } else {
+
+            /* BUKA */
+
+            card.classList.add("open");
+
+            header.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+            content.style.display = "block";
+
+        }
+
     }
-
-});
+);
 
 
     divisionContainer.appendChild(
