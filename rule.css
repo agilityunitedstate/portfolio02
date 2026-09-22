@@ -715,7 +715,7 @@ body {
 .section-arrow {
 
   transform:
-    rotate(180deg);
+    rotate(45deg);
 
   background:
     rgba(
