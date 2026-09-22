@@ -676,7 +676,6 @@ body {
   color: var(--orange);
 
   transition:
-    transform .3s ease,
     background .3s ease;
 }
 
@@ -689,7 +688,7 @@ body {
   border-left: 2px solid var(--orange);
   border-top: 2px solid var(--orange);
 
-  transform: rotate(45deg);
+  transform: rotate(180deg);
 
   margin-top: 4px;
 }
@@ -711,20 +710,12 @@ body {
 }
 
 
-.rule-section.open
-.section-arrow {
+.rule-section.open .section-arrow {
+  background: rgba(255,90,31,.08);
+}
 
-  transform:
-    rotate(45deg);
-
-  background:
-    rgba(
-      255,
-      90,
-      31,
-      0.08
-    );
-
+.rule-section.open .section-arrow span {
+  transform: rotate(225deg);
 }
 
 
