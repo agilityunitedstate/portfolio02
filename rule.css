@@ -659,47 +659,40 @@ body {
 /* =====================================================
    SECTION ARROW
    ===================================================== */
-
 .section-arrow {
 
   width: 35px;
-
   height: 35px;
-
   min-width: 35px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      0.12
-    );
+  border: 1px solid rgba(255,255,255,.12);
 
   border-radius: 50%;
 
-  color:
-    var(--orange);
-
-  font-size: 22px;
-
-  font-weight: 700;
-
-  line-height: 1;
+  color: var(--orange);
 
   transition:
     transform .3s ease,
     background .3s ease;
-
 }
 
+
+.section-arrow span {
+
+  width: 15px;
+  height: 15px;
+
+  border-left: 2px solid var(--orange);
+  border-top: 2px solid var(--orange);
+
+  transform: rotate(45deg);
+
+  margin-top: 4px;
+}
 
 /* =====================================================
    ACTIVE SECTION
