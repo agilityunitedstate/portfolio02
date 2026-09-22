@@ -661,30 +661,33 @@ body {
    ===================================================== */
 
 .section-arrow {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    position: relative;
 
-  width: 35px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 50%;
+}
+.section-arrow::before {
+    content: "";
+    position: absolute;
 
-  height: 35px;
+    width: 9px;
+    height: 9px;
 
-  min-width: 35px;
+    left: 12px;
+    top: 11px;
 
-  display: flex;
+    border-left: 2px solid var(--orange);
+    border-top: 2px solid var(--orange);
 
-  align-items: center;
+    transform: rotate(45deg);
+}
 
-  justify-content: center;
-
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      0.12
-    );
-
-  border-radius: 50%;
-
+.rule-section.open .section-arrow::before {
+    transform: rotate(225deg);
+}
   color:
     var(--orange);
 
