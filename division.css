@@ -1155,17 +1155,6 @@ a {
 
 
 /* =========================================================
-   DIVISION CONTENT
-   ========================================================= */
-
-.division-content {
-    display: none;
-}
-
-.division-card.open .division-content {
-    display: block;
-}
-/* =========================================================
    DIVISION LEADER SECTION
    ========================================================= */
 
@@ -2880,4 +2869,25 @@ a {
 
     }
 
+}
+/* =========================================================
+   FORCE HIDE DIVISION CONTENT WHEN CLOSED
+   ========================================================= */
+
+.division-card:not(.open) .division-content {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.division-card.open .division-content {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
 }
